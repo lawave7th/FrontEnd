@@ -1,0 +1,59 @@
+.mb-md-xxl{
+    margin-bottom: 434px;
+}
+.banner{
+    height: 714px;
+    background: url("https://fakeimg.pl/700/");
+}
+.banner-select select{ 
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.59 0.589966L6 5.16997L1.41 0.589966L0 1.99997L6 7.99997L12 1.99997L10.59 0.589966Z' fill='black'/%3E%3C/svg%3E%0A") no-repeat;
+}
+.search-btn{ 
+img{
+    max-width: 24px;
+}
+}
+.introduce-card{
+    h3{
+        font-size: 3rem;
+    }
+}
+.situational-photo{
+    background: url("https://fakeimg.pl/1116x627/");
+    height: 627px;
+}
+.service-box{
+    height: 728px;
+}
+.praise-content {
+   max-width: 736px;
+  }
+.member-photo{
+    background: url("https://fakeimg.pl/64x64/");
+    height: 64px;
+    width: 64px;
+}
+.join-photo{
+    background: url("https://fakeimg.pl/1116x467/");
+    height: 467px;
+}
+//登入 modal
+#email{
+    @include input-icon(url("data:image/svg+xml,%3Csvg width='20' height='16' viewBox='0 0 20 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18 0H2C0.9 0 0.00999999 0.9 0.00999999 2L0 14C0 15.1 0.9 16 2 16H18C19.1 16 20 15.1 20 14V2C20 0.9 19.1 0 18 0ZM18 4L10 9L2 4V2L10 7L18 2V4Z' fill='%23C4C4C4'/%3E%3C/svg%3E%0A"),5px,9px);
+}
+.divider{
+    position: relative;
+    &::before{
+        @include divider-s(#000,60%,52%,40%);
+    }
+    &::after{
+        @include divider-e(#000,60%,52%,40%);
+    }
+}
+//註冊 modal
+#password,#check-password{
+    @include input-icon(url("data:image/svg+xml,%3Csvg width='22' height='12' viewBox='0 0 22 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11.65 4C10.83 1.67 8.61 0 6 0C2.69 0 0 2.69 0 6C0 9.31 2.69 12 6 12C8.61 12 10.83 10.33 11.65 8H16V12H20V8H22V4H11.65ZM6 8C4.9 8 4 7.1 4 6C4 4.9 4.9 4 6 4C7.1 4 8 4.9 8 6C8 7.1 7.1 8 6 8Z' fill='%23C4C4C4'/%3E%3C/svg%3E%0A"),5px,9px);
+}
+#phone{
+    @include input-icon(url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.62 7.79C5.06 10.62 7.38 12.93 10.21 14.38L12.41 12.18C12.68 11.91 13.08 11.82 13.43 11.94C14.55 12.31 15.76 12.51 17 12.51C17.55 12.51 18 12.96 18 13.51V17C18 17.55 17.55 18 17 18C7.61 18 0 10.39 0 1C0 0.45 0.45 0 1 0H4.5C5.05 0 5.5 0.45 5.5 1C5.5 2.25 5.7 3.45 6.07 4.57C6.18 4.92 6.1 5.31 5.82 5.59L3.62 7.79Z' fill='%23C4C4C4'/%3E%3C/svg%3E "),5px,9px);
+}

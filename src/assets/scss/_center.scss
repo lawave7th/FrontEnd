@@ -1,0 +1,77 @@
+.center-side-menu{
+    li{
+        &:hover{
+        background:gray;
+    }
+    }
+}
+//驗證碼
+.verify-box{
+    li{
+        input{
+            width: 40px;
+            height: 48px;
+        }
+    }
+    
+}
+//預約中心
+.appointment-menu li{ 
+        a{
+        &:hover{
+            border-bottom: 1px solid #000;
+            }
+        } 
+}
+//預約中心 modal select
+.system-default{
+    width: 160px;
+    height: 40px;
+    background: url("data:image/svg+xml,%3Csvg width='13' height='8' viewBox='0 0 13 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.5 1.99984L11.09 0.589844L6.5 5.16984L1.91 0.589843L0.5 1.99984L6.5 7.99984L12.5 1.99984Z' fill='black'/%3E%3C/svg%3E%0A") no-repeat;     
+    background-position: 128px 15px;
+}
+.appointment-pagination li a{
+    width: 23px;
+    height: 22px;
+    padding: 3px 0;
+}
+.appointment-pagination .pagination-next{
+    width: 32px;
+}
+
+//預約中心-預約記錄下拉旋轉(沒用)
+.score-drop-down{
+    &::after{
+        flex-shrink:0;
+        content: '';
+        background: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.59 0.589844L6 5.16984L1.41 0.589844L0 1.99984L6 7.99984L12 1.99984L10.59 0.589844Z' fill='white'/%3E%3C/svg%3E%0A") no-repeat;  
+        background-position: 80px 15px;
+        width: 12px;
+        height: 8px;
+        background-size:1.25rem;
+        transition:transform .2s ease-in-out;
+    }
+    &:not(.collapsed)::after{
+        content: '';
+        background: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.59 0.589844L6 5.16984L1.41 0.589844L0 1.99984L6 7.99984L12 1.99984L10.59 0.589844Z' fill='white'/%3E%3C/svg%3E%0A") no-repeat; 
+        transform:rotate(-180deg);
+    }    
+}
+
+//律師聊天室
+.send-btn{
+    width: 56px;
+    height: 56px;
+}
+.other-txt{ 
+    background: rgb(238, 237, 237);
+    border-top-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+.user-txt{
+    background: rgb(238, 237, 237);
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}   
