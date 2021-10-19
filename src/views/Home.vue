@@ -1,74 +1,72 @@
 <template>
-  <Header></Header>
-  <main>
-    <div class="container-fluid g-0">
-      <div class="banner mb-md-7">
-        <div class="container">
-          <div class="row d-none d-md-flex justify-content-center">
-            <div
-              class="col-8 col-lg-6 rounded-pill shadow-sm bg-white p-1 mb-md-xxl mt-md-4"
-            >
-              <!-- banner 上下拉式選單 -->
-              <div class="banner-select">
-                <div class="row">
-                  <div class="col-4">
-                    <select
-                      class="border-0 bg-secondary py-3 fs-2 rounded-pill px-4"
+  <div class="bg-container mb-md-7">
+    <Header></Header>
+    <div class="banner mb-md-7">
+      <div class="container">
+        <div class="row d-none d-md-flex justify-content-center">
+          <div
+            class="col-8 col-lg-6 rounded-pill shadow-sm bg-white p-1  mt-md-4 mb-md-xxl"
+          >
+            <!-- banner 上下拉式選單 -->
+            <div class="banner-select">
+              <div class="row">
+                <div class="col-4 banner-select-area">
+                  <select
+                    class=" border-0 bg-secondary py-3 fs-2 rounded-pill px-4"
+                  >
+                    <option>地區</option>
+                    <option>臺北市</option>
+                    <option>新北市</option>
+                    <option>桃園市</option>
+                    <option>臺中市</option>
+                    <option>臺南市</option>
+                    <option>高雄市</option>
+                    <option>基隆市</option>
+                    <option>新竹市</option>
+                    <option>嘉義市</option>
+                    <option>新竹縣</option>
+                    <option>苗栗縣</option>
+                    <option>彰化縣</option>
+                    <option>南投縣</option>
+                    <option>雲林縣</option>
+                    <option>嘉義縣</option>
+                    <option>屏東縣</option>
+                    <option>宜蘭縣</option>
+                    <option>花蓮縣</option>
+                    <option>臺東縣</option>
+                    <option>澎湖縣</option>
+                    <option>金門縣</option>
+                    <option>連江縣</option>
+                  </select>
+                </div>
+                <div class="col-5 banner-select-case col-lg-6">
+                  <select class=" border-0 py-3 fs-2 pe-5">
+                    <option>訴訟類型</option>
+                    <option>民事訴訟</option>
+                    <option>刑事訴訟</option>
+                    <option>家事訴訟</option>
+                    <option>勞資爭議</option>
+                    <option>消費糾紛</option>
+                  </select>
+                </div>
+                <div class="col-2">
+                  <button
+                    class="search-btn d-block ms-4 ms-lg-0 border-0 rounded-circle p-4 mt-1"
+                    type="button"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
-                      <option>地區</option>
-                      <option>臺北市</option>
-                      <option>新北市</option>
-                      <option>桃園市</option>
-                      <option>臺中市</option>
-                      <option>臺南市</option>
-                      <option>高雄市</option>
-                      <option>基隆市</option>
-                      <option>新竹市</option>
-                      <option>嘉義市</option>
-                      <option>新竹縣</option>
-                      <option>苗栗縣</option>
-                      <option>彰化縣</option>
-                      <option>南投縣</option>
-                      <option>雲林縣</option>
-                      <option>嘉義縣</option>
-                      <option>屏東縣</option>
-                      <option>宜蘭縣</option>
-                      <option>花蓮縣</option>
-                      <option>臺東縣</option>
-                      <option>澎湖縣</option>
-                      <option>金門縣</option>
-                      <option>連江縣</option>
-                    </select>
-                  </div>
-                  <div class="col-5 col-lg-6">
-                    <select class="border-0 py-3 fs-2">
-                      <option>訴訟類型</option>
-                      <option>民事訴訟</option>
-                      <option>刑事訴訟</option>
-                      <option>家事訴訟</option>
-                      <option>勞資爭議</option>
-                      <option>消費糾紛</option>
-                    </select>
-                  </div>
-                  <div class="col-2">
-                    <button
-                      class="search-btn d-block ms-4 ms-lg-0 border-0 rounded-circle p-4 mt-1"
-                      type="button"
-                    >
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M17.1527 15.0943H16.0686L15.6844 14.7238C17.0292 13.1595 17.8388 11.1286 17.8388 8.91938C17.8388 3.99314 13.8456 0 8.91938 0C3.99314 0 0 3.99314 0 8.91938C0 13.8456 3.99314 17.8388 8.91938 17.8388C11.1286 17.8388 13.1595 17.0292 14.7238 15.6844L15.0943 16.0686V17.1527L21.9554 24L24 21.9554L17.1527 15.0943V15.0943ZM8.91938 15.0943C5.50257 15.0943 2.74443 12.3362 2.74443 8.91938C2.74443 5.50257 5.50257 2.74443 8.91938 2.74443C12.3362 2.74443 15.0943 5.50257 15.0943 8.91938C15.0943 12.3362 12.3362 15.0943 8.91938 15.0943Z"
-                          fill="white"
-                        />
-                      </svg>
-                    </button>
-                  </div>
+                      <path
+                        d="M17.1527 15.0943H16.0686L15.6844 14.7238C17.0292 13.1595 17.8388 11.1286 17.8388 8.91938C17.8388 3.99314 13.8456 0 8.91938 0C3.99314 0 0 3.99314 0 8.91938C0 13.8456 3.99314 17.8388 8.91938 17.8388C11.1286 17.8388 13.1595 17.0292 14.7238 15.6844L15.0943 16.0686V17.1527L21.9554 24L24 21.9554L17.1527 15.0943V15.0943ZM8.91938 15.0943C5.50257 15.0943 2.74443 12.3362 2.74443 8.91938C2.74443 5.50257 5.50257 2.74443 8.91938 2.74443C12.3362 2.74443 15.0943 5.50257 15.0943 8.91938C15.0943 12.3362 12.3362 15.0943 8.91938 15.0943Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>
@@ -84,8 +82,11 @@
           </button>
         </div>
       </div>
-      <!-- 痛點區塊 -->
-    </div>
+   </div>
+  </div>
+
+  <main>
+    <!-- 痛點區塊 -->
     <div class="container ">
       <div class="pain-points">
         <div class="row">
@@ -161,7 +162,7 @@
           <li class="col-md-3 mb-md-5">
             <div class="introduce-card py-4 bg-secondary rounded">
               <h3>34</h3>
-              <p>累積勝訴案件量</p>
+              <p>會員回饋數量</p>
             </div>
           </li>
           <li class="col-md-3 mb-md-5">
