@@ -111,7 +111,7 @@
                 >
               </li>
               <li>
-                <a
+                <a @click="openModal('loginModal')"
                   class="dropdown-item"
                   href="#"
                 >登入</a
@@ -237,9 +237,9 @@
                   </div>
                   <!-- 信箱 -->
                   <div class="mb-3">
-                    <label for="email" class="form-label d-none"></label>
+                    <label for="registerEmail" class="form-label d-none"></label>
                     <input type="password" placeholder="example@gmail.com" class="form-control"
-                           id="email">
+                           id="registerEmail">
                     <!-- 信箱錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
@@ -253,9 +253,9 @@
                   </div>
                   <!-- 密碼 -->
                   <div class="mb-3">
-                    <label for="password" class="form-label d-none"></label>
+                    <label for="registerPassword" class="form-label d-none"></label>
                     <input type="password" placeholder="6-18位數密碼，請區分大小寫" class="form-control"
-                           id="password">
+                           id="registerPassword">
                     <!-- 密碼錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
@@ -269,9 +269,9 @@
                   </div>
                   <!-- 確認密碼 -->
                   <div class="mb-3">
-                    <label for="check-password" class="form-label d-none"></label>
+                    <label for="registerCheckPassword" class="form-label d-none"></label>
                     <input type="password" placeholder="再次輸入您的密碼" class="form-control"
-                           id="check-password">
+                           id="registerCheckPassword">
                     <!-- 密碼錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
@@ -345,9 +345,9 @@
                   </div>
                   <!-- 信箱 -->
                   <div class="mb-3">
-                    <label for="email" class="form-label d-none"></label>
-                    <input type="password" placeholder="example@gmail.com" class="form-control"
-                           id="email">
+                    <label for="lawyerRegisterEmail" class="form-label d-none"></label>
+                    <input type="email" placeholder="example@gmail.com" class="form-control"
+                           id="lawyerRegisterEmail">
                     <!-- 信箱錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
@@ -361,9 +361,9 @@
                   </div>
                   <!-- 密碼 -->
                   <div class="mb-3">
-                    <label for="password" class="form-label d-none"></label>
+                    <label for="lawyerRegisterPassword" class="form-label d-none"></label>
                     <input type="password" placeholder="6-18位數密碼，請區分大小寫" class="form-control"
-                           id="password">
+                           id="lawyerRegisterPassword">
                     <!-- 密碼錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
@@ -377,9 +377,9 @@
                   </div>
                   <!-- 確認密碼 -->
                   <div class="mb-3">
-                    <label for="check-password" class="form-label d-none"></label>
+                    <label for="lawyerCheckPassword" class="form-label d-none"></label>
                     <input type="password" placeholder="再次輸入您的密碼" class="form-control"
-                           id="check-password">
+                           id="lawyerCheckPassword">
                     <!-- 密碼錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
@@ -394,9 +394,10 @@
                   <!-- 手機號碼驗證 -->
                   <div class="mb-3">
                     <div class="row d-flex align-items-center">
-                      <div class="col-8"><label for="phone" class="form-label d-none"></label>
+                      <div class="col-8">
+                        <label for="lawyerPhone" class="form-label d-none"></label>
                         <input type="password" placeholder="請輸入您的手機號碼" class="form-control"
-                               id="phone">
+                               id="lawyerPhone">
                       </div>
                       <div class="col-4">
                         <button type="button"
@@ -417,9 +418,9 @@
                   </div>
                   <!-- 驗證碼輸入 -->
                   <div class="mb-3">
-                    <label for="verification-code" class="form-label d-none"></label>
+                    <label for="lawyerVerificationCode" class="form-label d-none"></label>
                     <input type="password" placeholder="輸入您的驗證碼" class="form-control"
-                           id="verification-code">
+                           id="lawyerVerificationCode">
                     <!-- 驗證碼錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
@@ -446,7 +447,7 @@
 
   <!--  登入流程 modal-->
   <!-- 登入 Modal -->
-  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal fade" ref="loginModal" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="position-relative">
@@ -464,23 +465,23 @@
         </div>
         <div class="modal-body">
           <!-- active 功能切換 tabs 顏色手寫 -->
-          <ul class="nav row g-0" id="myTab" role="tablist">
+          <ul class="nav row g-0" id="myLoginTab" role="tablist">
             <li class="nav-item col col-md-5 d-grid gap-2 offset-md-1" role="presentation">
-              <button class="nav-link border-0 rounded-top  text-dark" id="member-tab"
-                      data-bs-toggle="tab" data-bs-target="#member" type="button" role="tab"
+              <button class="nav-link border-0 rounded-top  text-dark" id="loginMemberTab"
+                      data-bs-toggle="tab" data-bs-target="#loginMember" type="button" role="tab"
                       aria-controls="member" aria-selected="true">一般會員
               </button>
             </li>
             <li class="nav-item col col-md-5 d-grid gap-2" role="presentation">
-              <button class="nav-link border-0 rounded-top  text-dark" id="lawyer-tab"
-                      data-bs-toggle="tab" data-bs-target="#lawyer" type="button" role="tab"
+              <button class="nav-link border-0 rounded-top  text-dark" id="loginLawyerTab"
+                      data-bs-toggle="tab" data-bs-target="#loginLawyer" type="button" role="tab"
                       aria-controls="lawyer" aria-selected="false">律師會員
               </button>
             </li>
           </ul>
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active row g-0" id="member" role="tabpanel"
-                 aria-labelledby="member-tab">
+          <div class="tab-content" id="myLoginTabContent">
+            <div class="tab-pane fade show active row g-0" id="loginMember" role="tabpanel"
+                 aria-labelledby="loginMemberTab">
               <!-- 下方 modal 內容外層 -->
               <div
                 class="col col-md-10 bg-light border border-2 border-top-0 border-light rounded-bottom offset-md-1 py-3 px-4">
@@ -535,9 +536,9 @@
                   </div>
                   <!-- 信箱 -->
                   <div class="mb-3">
-                    <label for="email" class="form-label d-none"></label>
+                    <label for="loginEmail" class="form-label d-none"></label>
                     <input type="password" placeholder="example@gmail.com" class="form-control"
-                           id="email">
+                           id="loginEmail">
                     <!-- 信箱錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
@@ -551,9 +552,9 @@
                   </div>
                   <!-- 密碼 -->
                   <div class="mb-3">
-                    <label for="password" class="form-label d-none"></label>
+                    <label for="loginPassword" class="form-label d-none"></label>
                     <input type="password" placeholder="6-18位數密碼，請區分大小寫" class="form-control"
-                           id="password">
+                           id="loginPassword">
                     <!-- 密碼錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
@@ -571,7 +572,7 @@
                 </form>
               </div>
             </div>
-            <div class="tab-pane fade" id="lawyer" role="tabpanel" aria-labelledby="lawyer-tab">
+            <div class="tab-pane fade" id="loginLawyer" role="tabpanel" aria-labelledby="loginLawyerTab">
               <div
                 class="col col-md-10 bg-light border border-2 border-top-0 border-light rounded-bottom offset-md-1 py-3 px-4">
                 <form class="row">
@@ -830,7 +831,9 @@ export default {
           modal = new Modal(this.$refs.registerModal)
           break
         case 'loginModal':
+          console.log(modalName)
           modal = new Modal(this.$refs.loginModal)
+          break
       }
       modal.show()
     }
