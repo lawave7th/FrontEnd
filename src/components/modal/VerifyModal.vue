@@ -6,7 +6,7 @@
     tabindex="-1"
     aria-labelledby="verifyModal"
     aria-hidden="true"
-    ref="modal"
+    ref="verifyModal"
   >
     <div class="modal-dialog">
       <div class="modal-content">
@@ -43,16 +43,16 @@
           <p class="mb-md-5">請輸入法學電波剛傳送至您信箱的 4 位數驗證碼</p>
           <ul class="d-flex verify-box">
             <li>
-              <input class="border  border-1 rounded" type="number" />
+              <input class="border  border-1 rounded" type="number"/>
             </li>
             <li class="ms-4">
-              <input class="border  border-1 rounded" type="number" />
+              <input class="border  border-1 rounded" type="number"/>
             </li>
             <li class="ms-4">
-              <input class="border  border-1 rounded" type="number" />
+              <input class="border  border-1 rounded" type="number"/>
             </li>
             <li class="ms-4">
-              <input class="border  border-1 rounded" type="number" />
+              <input class="border  border-1 rounded" type="number"/>
             </li>
           </ul>
         </div>
@@ -60,7 +60,7 @@
           class="modal-footer border-0 text-center flex-column align-items-center "
         >
           <span
-            >沒有收到信件？<a class="border-bottom" href="#">重新傳送</a></span
+          >沒有收到信件？<a class="border-bottom" href="#">重新傳送</a></span
           >
           <a class="d-block mb-7 border-bottom" href="#">稍後再完成</a>
         </div>
@@ -75,19 +75,19 @@ import Modal from 'bootstrap/js/dist/modal'
 export default {
   data () {
     return {
-      modal: {}
+      verifyModal: {}
     }
   },
   methods: {
     showModal () {
-      this.modal.show()
+      this.verifyModal.show()
     },
     hideModal () {
-      this.modal.hide()
+      this.verifyModal.hide()
     }
   },
   mounted () {
-    this.modal = new Modal(this.$refs.modal)
+    this.verifyModal = new Modal(this.$refs.verifyModal)
   }
 }
 </script>
