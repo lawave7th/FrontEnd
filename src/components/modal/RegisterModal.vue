@@ -1,6 +1,6 @@
 <template>
   <!-- 註冊Modal -->
-  <div class="modal fade" ref="registerModal" id="registerModal"  tabindex="-1" aria-labelledby="registerModalLabel"
+  <div class="modal fade" ref="modal" id="modal"  tabindex="-1" aria-labelledby="registerModalLabel"
        aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -328,24 +328,14 @@
   </div>
 </template>
 <script>
-import Modal from 'bootstrap/js/dist/modal'
+import modalMixin from '@/mixins/modalMixin'
 
 export default {
   data () {
     return {
-      registerModal: {}
+      modal: {}
     }
   },
-  methods: {
-    showModal () {
-      this.registerModal.show()
-    },
-    hideModal () {
-      this.registerModal.hide()
-    }
-  },
-  mounted () {
-    this.registerModal = new Modal(this.$refs.registerModal)
-  }
+  mixins: [modalMixin]
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <!--  登入流程 modal-->
   <!-- 登入 Modal -->
-  <div class="modal fade" ref="loginModal" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal fade" ref="modal" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="position-relative">
@@ -225,7 +225,7 @@
   <ForgetPasswordModal ref="forgetPasswordModal"></ForgetPasswordModal>
 </template>
 <script>
-import Modal from 'bootstrap/js/dist/modal'
+import modalMixin from '@/mixins/modalMixin'
 import ForgetPasswordModal from './ForgetPasswordModal'
 
 export default {
@@ -234,19 +234,9 @@ export default {
   },
   data () {
     return {
-      loginModal: {}
+      modal: {}
     }
   },
-  methods: {
-    showModal () {
-      this.loginModal.show()
-    },
-    hideModal () {
-      this.loginModal.hide()
-    }
-  },
-  mounted () {
-    this.loginModal = new Modal(this.$refs.loginModal)
-  }
+  mixins: [modalMixin]
 }
 </script>
