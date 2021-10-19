@@ -120,8 +120,7 @@
                       <p class="text-danger m-0 ms-1">請輸入您的密碼</p>
                     </div>
                   </div>
-                  <!--                      <a data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#forgetPasswordModal" class="d-block mb-3" href="#">忘記密碼？</a>-->
-                  <a data-bs-dismiss="modal" aria-label="Close" class="d-block mb-3" @click="test" href="#">忘記密碼？</a>
+                  <a data-bs-dismiss="modal" aria-label="Close"  @click="$refs.forgetPasswordModal.showModal()" class="d-block mb-3" href="#">忘記密碼？</a>
                   <button type="button" class="btn btn-dark">登入</button>
                 </form>
               </div>
@@ -210,8 +209,8 @@
                       <p class="text-danger m-0 ms-1">請輸入您的密碼</p>
                     </div>
                   </div>
-                  <a class="d-block mb-3" data-bs-dismiss="modal" data-bs-toggle="modal"
-                     data-bs-target="#forgetPasswordModal" href="#">忘記密碼？</a>
+                  <a class="d-block mb-3" data-bs-dismiss="modal"
+                     @click="$refs.forgetPasswordModal.showModal()" href="#">忘記密碼？</a>
                   <button type="button" class="btn btn-dark">登入</button>
                 </form>
               </div>
@@ -223,11 +222,16 @@
       </div>
     </div>
   </div>
+  <ForgetPasswordModal ref="forgetPasswordModal"></ForgetPasswordModal>
 </template>
 <script>
 import Modal from 'bootstrap/js/dist/modal'
+import ForgetPasswordModal from './ForgetPasswordModal'
 
 export default {
+  components: {
+    ForgetPasswordModal
+  },
   data () {
     return {
       loginModal: {}
