@@ -1,6 +1,6 @@
 <template>
-  <header class="py-md-2 sticky-top">
-    <div class="container ">
+  <header class="py-md-2 position-fixed  start-0 end-0 ">
+    <div class="container p-0">
       <nav class="navbar">
         <div class="container">
           <div class="d-flex align-items-center">
@@ -53,26 +53,18 @@
                   </clipPath>
                 </defs>
               </svg>
-              <a class="navbar-brand ps-3 fs-2 d-none d-md-block" href="#">
-                法學電波
-              </a>
+              <router-link class="navbar-brand ps-3 fs-2 d-none d-md-block" to="/">法學電波</router-link>
             </h1>
             <!-- PC版左側選單 -->
             <ul class="title-bar d-none d-md-flex">
               <li>
-                <a class="fs-4 d-block  me-4 text-decoration-none" href="#"
-                >律師媒合</a
-                >
+                <router-link class="fs-4 d-block  me-4 text-decoration-none" to="/lawyer-solvation">律師媒合</router-link>
               </li>
               <li>
-                <a class="fs-4 d-block  me-4 text-decoration-none" href="#"
-                >法律知識＋</a
-                >
+                <router-link class="fs-4 d-block  me-4 text-decoration-none" to="/knowledge">法律知識+</router-link>
               </li>
               <li>
-                <a class="fs-4 d-block  text-decoration-none" href="#"
-                >常見問題</a
-                >
+                <router-link class="fs-4 d-block  text-decoration-none" to="/common-problem">常見問題</router-link>
               </li>
             </ul>
           </div>
@@ -134,19 +126,13 @@
       </nav>
       <ul class="title-bar d-flex d-md-none justify-content-center">
         <li>
-          <a class="fs-4 d-block pt-2 me-4 text-decoration-none" href="#"
-          >律師媒合</a
-          >
+          <router-link class="fs-4 d-block pt-2 me-4 text-decoration-none" to="/lawyer-solvation">律師媒合</router-link>
         </li>
         <li>
-          <a class="fs-4 d-block pt-2 me-4 text-decoration-none" href="#"
-          >法律知識＋</a
-          >
+          <router-link class="fs-4 d-block pt-2 me-4 text-decoration-none" to="/knowledge">法律知識+</router-link>
         </li>
         <li>
-          <a class="fs-4 d-block pt-2 me-4 text-decoration-none" href="#"
-          >常見問題</a
-          >
+          <router-link class="fs-4 d-block pt-2 me-4 text-decoration-none" to="/common-problem">常見問題</router-link>
         </li>
       </ul>
     </div>
