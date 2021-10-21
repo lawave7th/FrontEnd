@@ -39,7 +39,7 @@
               <!-- 下方 modal 內容外層 -->
               <div
                 class="col col-md-10 bg-light border border-2 border-top-0 border-light rounded-bottom offset-md-1 py-3 px-4">
-                <form class="row">
+                <v-form class="row" v-slot="{ errors }">
                   <!-- google 按鈕 -->
                   <div class="my-3">
                     <a href="#" class="btn d-block btn-outline-secondary">
@@ -91,17 +91,17 @@
                   <!-- 信箱 -->
                   <div class="mb-3">
                     <label for="loginEmail" class="form-label d-none"></label>
-                    <input type="password" placeholder="example@gmail.com" class="form-control"
-                           id="loginEmail">
+                    <v-field name="email" type="email" :class="{ 'is-invalid': errors['email'] }" placeholder="請輸入 Email" rules="email|required" class="form-control"
+                           id="loginEmail"></v-field>
                     <!-- 信箱錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                           xmlns="http://www.w3.org/2000/svg">
+                      <error-message name="email" class="text-danger m-0 ms-1 invalid-feedback">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                                                                                      xmlns="http://www.w3.org/2000/svg">
                         <path
                           d="M6.99992 0.333374C3.31325 0.333374 0.333252 3.31337 0.333252 7.00004C0.333252 10.6867 3.31325 13.6667 6.99992 13.6667C10.6866 13.6667 13.6666 10.6867 13.6666 7.00004C13.6666 3.31337 10.6866 0.333374 6.99992 0.333374ZM10.3333 9.39337L9.39325 10.3334L6.99992 7.94004L4.60659 10.3334L3.66659 9.39337L6.05992 7.00004L3.66659 4.60671L4.60659 3.66671L6.99992 6.06004L9.39325 3.66671L10.3333 4.60671L7.93992 7.00004L10.3333 9.39337Z"
                           fill="#DB3328"/>
-                      </svg>
-                      <p class="text-danger m-0 ms-1">請輸入您的帳號/電子郵件</p>
+                      </svg>請輸入正確 email</error-message>
                     </div>
                   </div>
                   <!-- 密碼 -->
@@ -122,7 +122,7 @@
                   </div>
                   <a data-bs-dismiss="modal" aria-label="Close"  @click="$refs.forgetPasswordModal.showModal()" class="d-block mb-3" href="#">忘記密碼？</a>
                   <button type="button" class="btn btn-dark">登入</button>
-                </form>
+                </v-form>
               </div>
             </div>
             <div class="tab-pane fade" id="loginLawyer" role="tabpanel" aria-labelledby="loginLawyerTab">

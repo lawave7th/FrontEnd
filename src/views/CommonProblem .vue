@@ -1,6 +1,6 @@
 <template>
-  <main>
-    <div class="container py-10">
+  <main class="pt-md-11">
+    <div class="container  py-10">
       <h2 class="text-center pb-2">Q&A 常見問題專區</h2>
       <div class="line bg-dark mb-3"></div>
       <p class="question-text mb-md-7">選擇您需要的支援服務類型指南，有任何問題都歡迎透過客服信箱（service@mail.com）或者服務專線（02-3456-7890）
