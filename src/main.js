@@ -1,5 +1,7 @@
 import { createApp } from 'vue'
 import 'bootstrap'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 import App from './App.vue'
 import router from './router'
 import Loading from 'vue3-loading-overlay'
@@ -23,6 +25,7 @@ localize('./zh_TW', TW)
 const app = createApp(App)
 app.use(router)
 app.component('Loading', Loading)
+app.use(VueAxios, axios)
 app.component('VForm', Form)
 app.component('VField', Field)
 app.component('ErrorMessage', ErrorMessage)
