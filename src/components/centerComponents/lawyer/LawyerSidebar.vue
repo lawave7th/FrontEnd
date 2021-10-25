@@ -1,8 +1,11 @@
 <template>
 
     <div class="border d-flex flex-column align-items-center rounded rounded-3 shadow-sm">
-      <div class="lawyer-photo img-fluid mx-4 my-5">
-        <img class="rounded-pill " src="../assets/img/lawyer-photo.jpeg" alt="律師照片">
+      <div class="lawyer-photo img-fluid position-relative mx-4 my-5 ">
+        <label for="photo-upload">
+          <img class="rounded-pill" src="../../../assets/img/lawyer-photo.jpeg" alt="律師照片">
+        </label>
+        <input class="d-none" type="file" id="photo-upload"/>
       </div>
       <div class="lawyer-information text-center">
         <p class="fs-7 mb-1">
@@ -17,7 +20,7 @@
       <!-- 會員中心點擊欄位 -->
       <ul class="center-side-menu mb-5">
         <li>
-          <a class="d-block p-4 border-bottom border-top border-2" href="#">
+          <router-link class="d-block p-4 border-bottom border-top border-2" to="/lawyer-certification">
 
             <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                  xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +36,7 @@
                     fill="black" />
             </svg>
 
-          </a>
+          </router-link>
         </li>
         <li>
           <a class="d-block p-4 border-bottom border-2" href="#">
@@ -79,11 +82,4 @@
 
 <script>
 
-export default {
-  data () {
-    return {
-
-    }
-  }
-}
 </script>

@@ -1,11 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home'
+import Layout from '../views/Layout'
 
 const routes = [
   {
     path: '/',
-    name: Home,
-    component: Home,
+    name: Layout,
+    component: Layout,
     children: [{
       path: '/',
       name: 'Index',
@@ -30,9 +30,19 @@ const routes = [
   {
     path: '/lawyer-center',
     name: 'LawyerCenter',
-    component: () => import('../views/lawyerCenter/LawyerHome'),
+    component: () => import('../views/lawyerCenter/LawyerLayout'),
     children: [{
-      path: '/lawyer-center'
+      path: '/lawyer-center',
+      component: () => import('../views/lawyerCenter/LawyerHome')
+    },
+    {
+      path: '/lawyer-certification',
+      name: 'lawyerCertification',
+      component: () => import('../views/lawyerCenter/LawyerCertification')
+    }, {
+      path: '/lawyer-edit-page',
+      name: 'lawyerEditPage',
+      component: () => import('../views/lawyerCenter/LawyerEditPage')
     }]
   }
 ]
