@@ -38,7 +38,7 @@
               <!-- 下方 modal 內容外層 -->
               <div
                 class="col col-md-10 bg-light border border-2 border-top-0 border-light rounded-bottom offset-md-1 py-3 px-4">
-                <form class="row">
+                <v-form class="row" v-slot="{ errors }" @submit="onSubmit(value)">
                   <!-- google 按鈕 -->
                   <div class="my-3">
                     <a href="#" class="btn d-block btn-outline-secondary">
@@ -89,64 +89,68 @@
                   </div>
                   <!-- 信箱 -->
                   <div class="mb-3">
-                    <label for="registerEmail" class="form-label d-none"></label>
-                    <input type="password" placeholder="example@gmail.com" class="form-control"
-                           id="registerEmail">
+                    <v-field name="email" type="email" :class="{ 'is-invalid': errors['email'] }" placeholder="請輸入 Email" rules="email|required" class="form-control"
+                          v-model="user.email"   id="registerEmail"></v-field>
                     <!-- 信箱錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                           xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M6.99992 0.333374C3.31325 0.333374 0.333252 3.31337 0.333252 7.00004C0.333252 10.6867 3.31325 13.6667 6.99992 13.6667C10.6866 13.6667 13.6666 10.6867 13.6666 7.00004C13.6666 3.31337 10.6866 0.333374 6.99992 0.333374ZM10.3333 9.39337L9.39325 10.3334L6.99992 7.94004L4.60659 10.3334L3.66659 9.39337L6.05992 7.00004L3.66659 4.60671L4.60659 3.66671L6.99992 6.06004L9.39325 3.66671L10.3333 4.60671L7.93992 7.00004L10.3333 9.39337Z"
-                          fill="#DB3328"/>
-                      </svg>
-                      <p class="text-danger m-0 ms-1">請輸入您的帳號/電子郵件</p>
+                      <error-message name="email" class="invalid-feedback">
+                        <p class="text-danger m-0 ms-1">
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                               xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M6.99992 0.333374C3.31325 0.333374 0.333252 3.31337 0.333252 7.00004C0.333252 10.6867 3.31325 13.6667 6.99992 13.6667C10.6866 13.6667 13.6666 10.6867 13.6666 7.00004C13.6666 3.31337 10.6866 0.333374 6.99992 0.333374ZM10.3333 9.39337L9.39325 10.3334L6.99992 7.94004L4.60659 10.3334L3.66659 9.39337L6.05992 7.00004L3.66659 4.60671L4.60659 3.66671L6.99992 6.06004L9.39325 3.66671L10.3333 4.60671L7.93992 7.00004L10.3333 9.39337Z"
+                              fill="#DB3328"/>
+                          </svg>&nbsp;{{ errors.email }}</p>
+                      </error-message>
                     </div>
                   </div>
                   <!-- 密碼 -->
                   <div class="mb-3">
-                    <label for="registerPassword" class="form-label d-none"></label>
-                    <input type="password" placeholder="6-18位數密碼，請區分大小寫" class="form-control"
-                           id="registerPassword">
+                    <v-field type="password" name="密碼"  :class="{ 'is-invalid': errors['密碼'] }" rules="required|min:8" placeholder="至少 8 位數密碼，請區分大小寫" class="form-control"
+                         v-model="user.password" id="registerPassword"></v-field>
                     <!-- 密碼錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                           xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M6.99992 0.333374C3.31325 0.333374 0.333252 3.31337 0.333252 7.00004C0.333252 10.6867 3.31325 13.6667 6.99992 13.6667C10.6866 13.6667 13.6666 10.6867 13.6666 7.00004C13.6666 3.31337 10.6866 0.333374 6.99992 0.333374ZM10.3333 9.39337L9.39325 10.3334L6.99992 7.94004L4.60659 10.3334L3.66659 9.39337L6.05992 7.00004L3.66659 4.60671L4.60659 3.66671L6.99992 6.06004L9.39325 3.66671L10.3333 4.60671L7.93992 7.00004L10.3333 9.39337Z"
-                          fill="#DB3328"/>
-                      </svg>
-                      <p class="text-danger m-0 ms-1">請輸入您的密碼</p>
+                      <error-message name="密碼" class="invalid-feedback">
+                        <p class="text-danger m-0 ms-1">
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                               xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M6.99992 0.333374C3.31325 0.333374 0.333252 3.31337 0.333252 7.00004C0.333252 10.6867 3.31325 13.6667 6.99992 13.6667C10.6866 13.6667 13.6666 10.6867 13.6666 7.00004C13.6666 3.31337 10.6866 0.333374 6.99992 0.333374ZM10.3333 9.39337L9.39325 10.3334L6.99992 7.94004L4.60659 10.3334L3.66659 9.39337L6.05992 7.00004L3.66659 4.60671L4.60659 3.66671L6.99992 6.06004L9.39325 3.66671L10.3333 4.60671L7.93992 7.00004L10.3333 9.39337Z"
+                              fill="#DB3328"/>
+                          </svg>&nbsp;{{ errors.密碼 }}</p>
+                      </error-message>
                     </div>
                   </div>
+
                   <!-- 確認密碼 -->
                   <div class="mb-3">
-                    <label for="registerCheckPassword" class="form-label d-none"></label>
-                    <input type="password" placeholder="再次輸入您的密碼" class="form-control"
-                           id="registerCheckPassword">
+                    <v-field type="password" name="確認密碼" :rules="checkPassword"  :class="{ 'is-invalid': errors['確認密碼'] }"  placeholder="再次輸入您的密碼" class="form-control"
+                           id="registerCheckPassword"></v-field>
                     <!-- 密碼錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                           xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M6.99992 0.333374C3.31325 0.333374 0.333252 3.31337 0.333252 7.00004C0.333252 10.6867 3.31325 13.6667 6.99992 13.6667C10.6866 13.6667 13.6666 10.6867 13.6666 7.00004C13.6666 3.31337 10.6866 0.333374 6.99992 0.333374ZM10.3333 9.39337L9.39325 10.3334L6.99992 7.94004L4.60659 10.3334L3.66659 9.39337L6.05992 7.00004L3.66659 4.60671L4.60659 3.66671L6.99992 6.06004L9.39325 3.66671L10.3333 4.60671L7.93992 7.00004L10.3333 9.39337Z"
-                          fill="#DB3328"/>
-                      </svg>
-                      <p class="text-danger m-0 ms-1">請輸入您的密碼</p>
+                      <error-message name="確認密碼" class="invalid-feedback">
+                        <p class="text-danger m-0 ms-1">
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                               xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M6.99992 0.333374C3.31325 0.333374 0.333252 3.31337 0.333252 7.00004C0.333252 10.6867 3.31325 13.6667 6.99992 13.6667C10.6866 13.6667 13.6666 10.6867 13.6666 7.00004C13.6666 3.31337 10.6866 0.333374 6.99992 0.333374ZM10.3333 9.39337L9.39325 10.3334L6.99992 7.94004L4.60659 10.3334L3.66659 9.39337L6.05992 7.00004L3.66659 4.60671L4.60659 3.66671L6.99992 6.06004L9.39325 3.66671L10.3333 4.60671L7.93992 7.00004L10.3333 9.39337Z"
+                              fill="#DB3328"/>
+                          </svg>&nbsp;密碼輸入不一致</p>
+                      </error-message>
                     </div>
                   </div>
 
                   <!-- 按鈕 -->
-                  <button type="button" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#welcomeModal"
+                  <button data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#welcomeModal"
                           class="btn btn-dark">註冊
                   </button>
-                </form>
+                </v-form>
               </div>
             </div>
             <div class="tab-pane fade" id="lawyer" role="tabpanel" aria-labelledby="lawyer-tab">
               <div
                 class="col col-md-10 bg-light border border-2 border-top-0 border-light rounded-bottom offset-md-1 py-3 px-4">
-                <form class="row">
+                <v-form class="row" v-slot="{ errors }" @submit="onSubmit">
                   <!-- google 按鈕 -->
                   <div class="my-3">
                     <a href="#" class="btn d-block btn-outline-secondary">
@@ -197,59 +201,63 @@
                   </div>
                   <!-- 信箱 -->
                   <div class="mb-3">
-                    <label for="lawyerRegisterEmail" class="form-label d-none"></label>
-                    <input type="email" placeholder="example@gmail.com" class="form-control"
-                           id="lawyerRegisterEmail">
+                    <v-field name="email" type="email"  :class="{ 'is-invalid': errors['email'] }" placeholder="請輸入 Email" rules="email|required" class="form-control"
+                             id="lawyerRegisterEmail"></v-field>
                     <!-- 信箱錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                           xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M6.99992 0.333374C3.31325 0.333374 0.333252 3.31337 0.333252 7.00004C0.333252 10.6867 3.31325 13.6667 6.99992 13.6667C10.6866 13.6667 13.6666 10.6867 13.6666 7.00004C13.6666 3.31337 10.6866 0.333374 6.99992 0.333374ZM10.3333 9.39337L9.39325 10.3334L6.99992 7.94004L4.60659 10.3334L3.66659 9.39337L6.05992 7.00004L3.66659 4.60671L4.60659 3.66671L6.99992 6.06004L9.39325 3.66671L10.3333 4.60671L7.93992 7.00004L10.3333 9.39337Z"
-                          fill="#DB3328"/>
-                      </svg>
-                      <p class="text-danger m-0 ms-1">請輸入您的帳號/電子郵件</p>
+                      <error-message name="email" class="invalid-feedback">
+                        <p class="text-danger m-0 ms-1">
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                               xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M6.99992 0.333374C3.31325 0.333374 0.333252 3.31337 0.333252 7.00004C0.333252 10.6867 3.31325 13.6667 6.99992 13.6667C10.6866 13.6667 13.6666 10.6867 13.6666 7.00004C13.6666 3.31337 10.6866 0.333374 6.99992 0.333374ZM10.3333 9.39337L9.39325 10.3334L6.99992 7.94004L4.60659 10.3334L3.66659 9.39337L6.05992 7.00004L3.66659 4.60671L4.60659 3.66671L6.99992 6.06004L9.39325 3.66671L10.3333 4.60671L7.93992 7.00004L10.3333 9.39337Z"
+                              fill="#DB3328"/>
+                          </svg>&nbsp;{{ errors.email }}</p>
+                      </error-message>
                     </div>
                   </div>
                   <!-- 密碼 -->
                   <div class="mb-3">
-                    <label for="lawyerRegisterPassword" class="form-label d-none"></label>
-                    <input type="password" placeholder="6-18位數密碼，請區分大小寫" class="form-control"
-                           id="lawyerRegisterPassword">
+                    <v-field type="password" name="密碼"  :class="{ 'is-invalid': errors['密碼'] }" rules="required|min:8" placeholder="至少 8 位數密碼，請區分大小寫" class="form-control"
+                             v-model="user.password" id="lawyerRegisterPassword"></v-field>
                     <!-- 密碼錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                           xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M6.99992 0.333374C3.31325 0.333374 0.333252 3.31337 0.333252 7.00004C0.333252 10.6867 3.31325 13.6667 6.99992 13.6667C10.6866 13.6667 13.6666 10.6867 13.6666 7.00004C13.6666 3.31337 10.6866 0.333374 6.99992 0.333374ZM10.3333 9.39337L9.39325 10.3334L6.99992 7.94004L4.60659 10.3334L3.66659 9.39337L6.05992 7.00004L3.66659 4.60671L4.60659 3.66671L6.99992 6.06004L9.39325 3.66671L10.3333 4.60671L7.93992 7.00004L10.3333 9.39337Z"
-                          fill="#DB3328"/>
-                      </svg>
-                      <p class="text-danger m-0 ms-1">請輸入您的密碼</p>
+                      <error-message name="密碼" class="invalid-feedback">
+                        <p class="text-danger m-0 ms-1">
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                               xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M6.99992 0.333374C3.31325 0.333374 0.333252 3.31337 0.333252 7.00004C0.333252 10.6867 3.31325 13.6667 6.99992 13.6667C10.6866 13.6667 13.6666 10.6867 13.6666 7.00004C13.6666 3.31337 10.6866 0.333374 6.99992 0.333374ZM10.3333 9.39337L9.39325 10.3334L6.99992 7.94004L4.60659 10.3334L3.66659 9.39337L6.05992 7.00004L3.66659 4.60671L4.60659 3.66671L6.99992 6.06004L9.39325 3.66671L10.3333 4.60671L7.93992 7.00004L10.3333 9.39337Z"
+                              fill="#DB3328"/>
+                          </svg>&nbsp;{{ errors.密碼 }}</p>
+                      </error-message>
                     </div>
                   </div>
+
                   <!-- 確認密碼 -->
                   <div class="mb-3">
-                    <label for="lawyerCheckPassword" class="form-label d-none"></label>
-                    <input type="password" placeholder="再次輸入您的密碼" class="form-control"
-                           id="lawyerCheckPassword">
+                    <v-field type="password" name="確認密碼" :rules="checkPassword"  :class="{ 'is-invalid': errors['確認密碼'] }"  placeholder="再次輸入您的密碼" class="form-control"
+                             id="lawyerCheckPassword"></v-field>
                     <!-- 密碼錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                           xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M6.99992 0.333374C3.31325 0.333374 0.333252 3.31337 0.333252 7.00004C0.333252 10.6867 3.31325 13.6667 6.99992 13.6667C10.6866 13.6667 13.6666 10.6867 13.6666 7.00004C13.6666 3.31337 10.6866 0.333374 6.99992 0.333374ZM10.3333 9.39337L9.39325 10.3334L6.99992 7.94004L4.60659 10.3334L3.66659 9.39337L6.05992 7.00004L3.66659 4.60671L4.60659 3.66671L6.99992 6.06004L9.39325 3.66671L10.3333 4.60671L7.93992 7.00004L10.3333 9.39337Z"
-                          fill="#DB3328"/>
-                      </svg>
-                      <p class="text-danger m-0 ms-1">請輸入您的密碼</p>
+                      <error-message name="確認密碼" class="invalid-feedback">
+                        <p class="text-danger m-0 ms-1">
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                               xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M6.99992 0.333374C3.31325 0.333374 0.333252 3.31337 0.333252 7.00004C0.333252 10.6867 3.31325 13.6667 6.99992 13.6667C10.6866 13.6667 13.6666 10.6867 13.6666 7.00004C13.6666 3.31337 10.6866 0.333374 6.99992 0.333374ZM10.3333 9.39337L9.39325 10.3334L6.99992 7.94004L4.60659 10.3334L3.66659 9.39337L6.05992 7.00004L3.66659 4.60671L4.60659 3.66671L6.99992 6.06004L9.39325 3.66671L10.3333 4.60671L7.93992 7.00004L10.3333 9.39337Z"
+                              fill="#DB3328"/>
+                          </svg>&nbsp;密碼輸入不一致</p>
+                      </error-message>
                     </div>
                   </div>
+
                   <!-- 手機號碼驗證 -->
                   <div class="mb-3">
                     <div class="row d-flex align-items-center">
                       <div class="col-8">
-                        <label for="lawyerPhone" class="form-label d-none"></label>
-                        <input type="password" placeholder="請輸入您的手機號碼" class="form-control"
-                               id="lawyerPhone">
+                        <v-field  name="電話" type="text" class="form-control" :class="{ 'is-invalid': errors['電話'] }" id="lawyerPhone"  placeholder="請輸入電話" :rules="isPhone"></v-field>
+
                       </div>
                       <div class="col-4">
                         <button type="button"
@@ -259,13 +267,15 @@
                     </div>
                     <!-- 手機號碼錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                           xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M6.99992 0.333374C3.31325 0.333374 0.333252 3.31337 0.333252 7.00004C0.333252 10.6867 3.31325 13.6667 6.99992 13.6667C10.6866 13.6667 13.6666 10.6867 13.6666 7.00004C13.6666 3.31337 10.6866 0.333374 6.99992 0.333374ZM10.3333 9.39337L9.39325 10.3334L6.99992 7.94004L4.60659 10.3334L3.66659 9.39337L6.05992 7.00004L3.66659 4.60671L4.60659 3.66671L6.99992 6.06004L9.39325 3.66671L10.3333 4.60671L7.93992 7.00004L10.3333 9.39337Z"
-                          fill="#DB3328"/>
-                      </svg>
-                      <p class="text-danger m-0 ms-1">請輸入您的手機號碼</p>
+                      <error-message name="電話" class="invalid-feedback">
+                        <p class="text-danger m-0 ms-1">
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                               xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M6.99992 0.333374C3.31325 0.333374 0.333252 3.31337 0.333252 7.00004C0.333252 10.6867 3.31325 13.6667 6.99992 13.6667C10.6866 13.6667 13.6666 10.6867 13.6666 7.00004C13.6666 3.31337 10.6866 0.333374 6.99992 0.333374ZM10.3333 9.39337L9.39325 10.3334L6.99992 7.94004L4.60659 10.3334L3.66659 9.39337L6.05992 7.00004L3.66659 4.60671L4.60659 3.66671L6.99992 6.06004L9.39325 3.66671L10.3333 4.60671L7.93992 7.00004L10.3333 9.39337Z"
+                              fill="#DB3328"/>
+                          </svg>&nbsp;電話號碼格式不正確 </p>
+                      </error-message>
                     </div>
                   </div>
                   <!-- 驗證碼輸入 -->
@@ -285,8 +295,8 @@
                     </div>
                   </div>
                   <!-- 按鈕 -->
-                  <button data-bs-toggle="modal" data-bs-target="#welcomeModal" type="button" class="btn btn-dark">註冊</button>
-                </form>
+                  <button data-bs-toggle="modal" data-bs-target="#welcomeModal"  class="btn btn-dark">註冊</button>
+                </v-form>
               </div>
             </div>
           </div>
@@ -333,7 +343,26 @@ import modalMixin from '@/mixins/modalMixin'
 export default {
   data () {
     return {
-      modal: {}
+      modal: {},
+      user: {
+        email: '',
+        password: ''
+      }
+
+    }
+  },
+  methods: {
+    checkPassword (value) {
+      if (this.user.password === value) {
+        return true
+      }
+    },
+    isPhone (value) {
+      const phoneNumber = /^(09)[0-9]{8}$/
+      return phoneNumber.test(value)
+    },
+    onSubmit () {
+      console.log('submit')
     }
   },
   mixins: [modalMixin]

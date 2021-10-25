@@ -10,6 +10,9 @@ import { Form, Field, ErrorMessage, defineRule, configure } from 'vee-validate'
 import rules from '@vee-validate/rules'
 import { localize } from '@vee-validate/i18n'
 import TW from './util/i18n/VeeValidateI18n'
+import PrimeVue from 'primevue/config'
+import Rating from 'primevue/rating'
+import PrimeIcons from 'primeicons/primeicons.css'
 
 // Veevalidate 加入所有規則
 Object.keys(rules).forEach((rule) => {
@@ -25,6 +28,9 @@ localize('./zh_TW', TW)
 const app = createApp(App)
 app.use(router)
 app.component('Loading', Loading)
+app.use(PrimeVue)
+app.component('Rating', Rating)
+app.use(PrimeIcons)
 app.use(VueAxios, axios)
 app.component('VForm', Form)
 app.component('VField', Field)

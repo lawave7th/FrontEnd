@@ -21,76 +21,92 @@
         <div class="modal-body">
           <div class="col col-md-8 offset-md-2  px-4">
             <div class="enter-password">
-              <form>
+              <v-form class="row" v-slot="{ errors }" @submit="onSubmit">
+                <!-- 信箱 -->
                 <div class="mb-3">
-                  <div class="d-flex justify-content-between">
-                    <label for="emailCheck" class="form-label">輸入您的電子信箱</label>
-                    <span class="form-text">
-                                                <svg width="15" height="14" viewBox="0 0 15 14" fill="none"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                      d="M7.50016 0.250977C3.8135 0.250977 0.833496 3.23098 0.833496 6.91764C0.833496 10.6043 3.8135 13.5843 7.50016 13.5843C11.1868 13.5843 14.1668 10.6043 14.1668 6.91764C14.1668 3.23098 11.1868 0.250977 7.50016 0.250977ZM10.8335 9.31098L9.8935 10.251L7.50016 7.85764L5.10683 10.251L4.16683 9.31098L6.56016 6.91764L4.16683 4.52431L5.10683 3.58431L7.50016 5.97764L9.8935 3.58431L10.8335 4.52431L8.44016 6.91764L10.8335 9.31098Z"
-                                                      fill="#DB3328"/>
-                                                </svg>
-                                                此欄位必填
-                                            </span>
+                  <label for="changePasswordEmail" class="form-label">輸入您的電子信箱</label>
+                  <v-field name="email" type="email"  :class="{ 'is-invalid': errors['email'] }" placeholder="請輸入 Email" rules="email|required" class="form-control"
+                           id="changePasswordEmail"></v-field>
+                  <!-- 信箱錯誤提示 -->
+                  <div class="d-flex align-items-center mt-1">
+                    <error-message name="email" class="invalid-feedback">
+                      <p class="text-danger m-0 ms-1">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M6.99992 0.333374C3.31325 0.333374 0.333252 3.31337 0.333252 7.00004C0.333252 10.6867 3.31325 13.6667 6.99992 13.6667C10.6866 13.6667 13.6666 10.6867 13.6666 7.00004C13.6666 3.31337 10.6866 0.333374 6.99992 0.333374ZM10.3333 9.39337L9.39325 10.3334L6.99992 7.94004L4.60659 10.3334L3.66659 9.39337L6.05992 7.00004L3.66659 4.60671L4.60659 3.66671L6.99992 6.06004L9.39325 3.66671L10.3333 4.60671L7.93992 7.00004L10.3333 9.39337Z"
+                            fill="#DB3328"/>
+                        </svg>&nbsp;{{ errors.email }}</p>
+                    </error-message>
                   </div>
-                  <input type="email" class="form-control" id="emailCheck">
                 </div>
+                <!-- 電子信箱驗證 -->
                 <div class="mb-3">
-                    <div class="row d-flex justify-content-between align-items-center">
-                      <div class="col-12 d-flex justify-content-between">
-                        <label for="verifyCode" class="form-label">電子郵件驗證碼</label>
-                        <span class="form-text">
-                        <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7.50016 0.250977C3.8135 0.250977 0.833496 3.23098 0.833496 6.91764C0.833496 10.6043 3.8135 13.5843 7.50016 13.5843C11.1868 13.5843 14.1668 10.6043 14.1668 6.91764C14.1668 3.23098 11.1868 0.250977 7.50016 0.250977ZM10.8335 9.31098L9.8935 10.251L7.50016 7.85764L5.10683 10.251L4.16683 9.31098L6.56016 6.91764L4.16683 4.52431L5.10683 3.58431L7.50016 5.97764L9.8935 3.58431L10.8335 4.52431L8.44016 6.91764L10.8335 9.31098Z"
-                              fill="#DB3328"/> </svg> 此欄位必填 </span>
-                      </div>
-
-                      <div class="col-7 pe-0">
-                        <input type="number" placeholder="請輸入驗證碼" class="form-control" id="verifyCode">
-                      </div>
-                      <div class="col-5 m-0 d-flex justify-content-end">
-                        <button type="button"
-                                class="btn btn-dark">取得驗證
-                        </button>
-                      </div>
+                  <div class="row d-flex align-items-center justify-content-between">
+                    <div class="col-12">
+                      <label for="verificationCodeEmail" class="form-label">輸入您的電子郵件驗證碼</label>
+                    </div>
+                    <div class="col-7">
+                      <input type="text" class="form-control"  id="verificationCodeEmail" placeholder="請輸入驗證碼">
+                    </div>
+                    <div class="col-5">
+                      <button type="button"
+                              class="btn btn-dark">送出驗證
+                      </button>
+                    </div>
                   </div>
-
+                  <!-- 電子信箱錯誤提示 -->
+                  <div class="d-flex align-items-center mt-1">
+                      <p class="text-danger m-0 ms-1">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M6.99992 0.333374C3.31325 0.333374 0.333252 3.31337 0.333252 7.00004C0.333252 10.6867 3.31325 13.6667 6.99992 13.6667C10.6866 13.6667 13.6666 10.6867 13.6666 7.00004C13.6666 3.31337 10.6866 0.333374 6.99992 0.333374ZM10.3333 9.39337L9.39325 10.3334L6.99992 7.94004L4.60659 10.3334L3.66659 9.39337L6.05992 7.00004L3.66659 4.60671L4.60659 3.66671L6.99992 6.06004L9.39325 3.66671L10.3333 4.60671L7.93992 7.00004L10.3333 9.39337Z"
+                            fill="#DB3328"/>
+                        </svg>&nbsp;驗證碼輸入不正確 </p>
+                  </div>
                 </div>
+                <!--  輸入新密碼-->
                 <div class="mb-3">
-                  <div class="d-flex justify-content-between mb-2">
-                    <label for="new-email" class="form-label">輸入您的新密碼</label>
-                    <span class="form-text">
-                                                  <svg width="15" height="14" viewBox="0 0 15 14" fill="none"
-                                                       xmlns="http://www.w3.org/2000/svg">
-                                                      <path
-                                                        d="M7.50016 0.250977C3.8135 0.250977 0.833496 3.23098 0.833496 6.91764C0.833496 10.6043 3.8135 13.5843 7.50016 13.5843C11.1868 13.5843 14.1668 10.6043 14.1668 6.91764C14.1668 3.23098 11.1868 0.250977 7.50016 0.250977ZM10.8335 9.31098L9.8935 10.251L7.50016 7.85764L5.10683 10.251L4.16683 9.31098L6.56016 6.91764L4.16683 4.52431L5.10683 3.58431L7.50016 5.97764L9.8935 3.58431L10.8335 4.52431L8.44016 6.91764L10.8335 9.31098Z"
-                                                        fill="#DB3328" />
-                                                  </svg>
-                                                  此欄位必填
-                                              </span>
+                  <label for="newEmail" class="form-label">輸入您的新密碼</label>
+                  <v-field name="密碼" type="password"  :class="{ 'is-invalid': errors['密碼'] }" rules="required|min:8" placeholder="至少 8 位數密碼，請區分大小寫"  class="form-control"
+                       v-model="user.password"    id="newEmail"></v-field>
+                  <!-- 信箱錯誤提示 -->
+                  <div class="d-flex align-items-center mt-1">
+                    <error-message name="密碼" class="invalid-feedback">
+                      <p class="text-danger m-0 ms-1">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M6.99992 0.333374C3.31325 0.333374 0.333252 3.31337 0.333252 7.00004C0.333252 10.6867 3.31325 13.6667 6.99992 13.6667C10.6866 13.6667 13.6666 10.6867 13.6666 7.00004C13.6666 3.31337 10.6866 0.333374 6.99992 0.333374ZM10.3333 9.39337L9.39325 10.3334L6.99992 7.94004L4.60659 10.3334L3.66659 9.39337L6.05992 7.00004L3.66659 4.60671L4.60659 3.66671L6.99992 6.06004L9.39325 3.66671L10.3333 4.60671L7.93992 7.00004L10.3333 9.39337Z"
+                            fill="#DB3328"/>
+                        </svg>&nbsp;{{ errors.密碼 }}</p>
+                    </error-message>
                   </div>
-                  <input type="email" class="form-control" id="new-email">
                 </div>
-                <div class="d-flex justify-content-between mb-2">
-                  <label for="new-email-check" class="form-label">再次輸入您的新密碼</label>
-                  <span class="form-text">
-                                              <svg width="15" height="14" viewBox="0 0 15 14" fill="none"
-                                                   xmlns="http://www.w3.org/2000/svg">
-                                                  <path
-                                                    d="M7.50016 0.250977C3.8135 0.250977 0.833496 3.23098 0.833496 6.91764C0.833496 10.6043 3.8135 13.5843 7.50016 13.5843C11.1868 13.5843 14.1668 10.6043 14.1668 6.91764C14.1668 3.23098 11.1868 0.250977 7.50016 0.250977ZM10.8335 9.31098L9.8935 10.251L7.50016 7.85764L5.10683 10.251L4.16683 9.31098L6.56016 6.91764L4.16683 4.52431L5.10683 3.58431L7.50016 5.97764L9.8935 3.58431L10.8335 4.52431L8.44016 6.91764L10.8335 9.31098Z"
-                                                    fill="#DB3328" />
-                                              </svg>
-                                              此欄位必填
-                                          </span>
+                <!--  再次輸入您的新密碼-->
+                <div class="mb-3">
+                  <label for="checkNewPassword" class="form-label">再次輸入您的新密碼</label>
+                  <v-field type="password" name="確認密碼" :rules="checkPassword"  :class="{ 'is-invalid': errors['確認密碼'] }"  placeholder="再次輸入您的密碼" class="form-control"
+                           id="checkNewPassword"></v-field>
+                  <!-- 密碼錯誤提示 -->
+                  <div class="d-flex align-items-center mt-1">
+                    <error-message name="確認密碼" class="invalid-feedback">
+                      <p class="text-danger m-0 ms-1">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M6.99992 0.333374C3.31325 0.333374 0.333252 3.31337 0.333252 7.00004C0.333252 10.6867 3.31325 13.6667 6.99992 13.6667C10.6866 13.6667 13.6666 10.6867 13.6666 7.00004C13.6666 3.31337 10.6866 0.333374 6.99992 0.333374ZM10.3333 9.39337L9.39325 10.3334L6.99992 7.94004L4.60659 10.3334L3.66659 9.39337L6.05992 7.00004L3.66659 4.60671L4.60659 3.66671L6.99992 6.06004L9.39325 3.66671L10.3333 4.60671L7.93992 7.00004L10.3333 9.39337Z"
+                            fill="#DB3328"/>
+                        </svg>&nbsp;密碼輸入不一致</p>
+                    </error-message>
+                  </div>
                 </div>
-                <input type="email" class="form-control" id="new-email-check">
                 <div class="d-grid gap-2 my-5">
                   <button class="btn btn-dark" type="button"  data-bs-dismiss="modal">確定
                   </button>
                 </div>
-              </form>
+              </v-form>
             </div>
           </div>
         </div>
@@ -105,7 +121,20 @@ import modalMixin from '@/mixins/modalMixin'
 export default {
   data () {
     return {
-      modal: {}
+      modal: {},
+      user: {
+        password: ''
+      }
+    }
+  },
+  methods: {
+    checkPassword (value) {
+      if (this.user.password === value) {
+        return true
+      }
+    },
+    onSubmit () {
+      console.log('submit')
     }
   },
   mixins: [modalMixin]

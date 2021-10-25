@@ -127,9 +127,8 @@ export default {
   },
   methods: {
     getData () {
-      // const api = `${process.env.VUE_APP_API}`
-      console.log('http://studycircle.rocket-coding.com/get/1')
-      this.axios.get('https://lawave.rocket-coding.com/get/1')
+      const api = `${process.env.VUE_APP_API}`
+      this.axios.get(`${api}/get/1`)
         .then((res) => {
           console.log(res)
           if (res.data.success) {

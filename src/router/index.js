@@ -26,6 +26,14 @@ const routes = [
       name: 'Knowledge',
       component: () => import('../views/Knowledge')
     }]
+  },
+  {
+    path: '/lawyer-center',
+    name: 'LawyerCenter',
+    component: () => import('../views/lawyerCenter/LawyerHome'),
+    children: [{
+      path: '/lawyer-center'
+    }]
   }
 ]
 
