@@ -40,9 +40,7 @@
                   </clipPath>
                 </defs>
               </svg>
-              <a class="navbar-brand ps-3 fs-2 d-none d-md-block" href="#">
-                法學電波
-              </a>
+              <router-link class="navbar-brand ps-3 fs-2 d-none d-md-block" to="/index">法學電波</router-link>
             </h1>
             <!-- PC版左側選單 -->
             <ul class="title-bar d-none d-md-flex">
@@ -78,13 +76,13 @@
             </button>
             <ul class="dropdown-menu dropdown-menu rounded rounded-3" aria-labelledby="dropdownMenuButton2">
               <li>
-                <router-link class="dropdown-item ps-4 pe-11 fs-4" to="lawyer-center/lawyer-certification">資格認證
+                <a class="dropdown-item ps-4 pe-11 fs-4" href="#" >資格認證
                 <span class="align-top">
                   <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 19H22L11 0L0 19ZM12 16H10V14H12V16ZM12 12H10V8H12V12Z" fill="black"/>
                   </svg>
                 </span>
-                </router-link>
+                </a>
               </li>
               <li><a class="dropdown-item fs-4  ps-4 pe-11 fs-4" href="#">會員中心</a></li>
               <li><a class="dropdown-item fs-4  ps-4 pe-11 fs-4" href="#">預約管理</a></li>

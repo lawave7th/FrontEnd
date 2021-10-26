@@ -6,8 +6,9 @@ const routes = [
     path: '/',
     name: Layout,
     component: Layout,
+    redirect: 'index',
     children: [{
-      path: '/',
+      path: 'index',
       name: 'Index',
       component: () => import('../views/Index.vue')
     },
@@ -30,19 +31,27 @@ const routes = [
   {
     path: '/lawyer-center',
     name: 'LawyerCenter',
+    redirect: { name: 'lawyerCenterWelcome' },
     component: () => import('../views/lawyerCenter/LawyerLayout'),
     children: [{
-      path: '/lawyer-center',
+      path: 'lawyer-center-welcome',
+      name: 'lawyerCenterWelcome',
       component: () => import('../views/lawyerCenter/LawyerHome')
     },
     {
-      path: '/lawyer-certification',
+      path: 'lawyer-certification',
       name: 'lawyerCertification',
       component: () => import('../views/lawyerCenter/LawyerCertification')
-    }, {
-      path: '/lawyer-edit-page',
+    },
+    {
+      path: 'lawyer-edit-page',
       name: 'lawyerEditPage',
       component: () => import('../views/lawyerCenter/LawyerEditPage')
+    },
+    {
+      path: 'lawyer-password-setting',
+      name: 'lawyerPasswordSetting',
+      component: () => import('../views/lawyerCenter/LawyerPasswordSetting')
     }]
   }
 ]
