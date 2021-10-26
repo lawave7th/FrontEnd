@@ -58,6 +58,27 @@ const routes = [
       name: 'lawyerAppointmentCenter',
       component: () => import('../views/lawyerCenter/LawyerAppointmentCenter')
     }]
+  },
+  {
+    path: '/people-center',
+    name: 'PeopleCenter',
+    redirect: { name: 'peopleEditPage' },
+    component: () => import('../views/peopleCenter/PeopleLayout'),
+    children: [{
+      path: 'people-edit-page',
+      name: 'peopleEditPage',
+      component: () => import('../views/peopleCenter/PeopleEditPage')
+    },
+    {
+      path: 'people-password-setting',
+      name: 'peoplePasswordSetting',
+      component: () => import('../views/peopleCenter/PeoplePasswordSetting')
+    },
+    {
+      path: 'people-appointment-center',
+      name: 'peopleAppointmentCenter',
+      component: () => import('../views/peopleCenter/PeopleAppointmentCenter')
+    }]
   }
 ]
 

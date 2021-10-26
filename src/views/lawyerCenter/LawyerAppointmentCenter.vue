@@ -971,7 +971,6 @@
     </ul>
   </div>
   <!-- 預約記錄 -->
-  <!-- 注意：此頁格局不同，且不是外推內是內推左右間距 -->
   <div class="appointment-record" :class="activeClass === 'appointmentRecord' ? 'active':'d-none' ">
     <ul class="accordion accordion-flush" id="accordionScore">
       <li id="lawyer-score-one">
@@ -986,12 +985,12 @@
             加入封鎖</a>
         </p>
         <div
-          class="row border m-0 justify-content-between rounded rounded-3  mb-md-4 py-md-3 align-items-center">
+          class="row border m-0 justify-content-between rounded rounded-3  px-md-7 mb-md-4 py-md-3 align-items-center">
           <div class="col-3">
-            <h4 class="mb-2 ms-md-4">
+            <h4 class="mb-2 ">
               Tim Turner
             </h4>
-            <p class="m-0 ms-md-4">02/21 14:00-15:00</p>
+            <p class="m-0 ">02/21 14:00-15:00</p>
           </div>
           <div class="col-5">
             <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
@@ -1026,28 +1025,14 @@
           </div>
           <div id="flush-collapseOne" class="accordion-collapse collapse"
                aria-labelledby="lawyer-score-one" data-bs-parent="#accordionScore">
-            <div class="accordion-body">
+            <div class="accordion-body px-0">
               <div class="d-flex border-top border-3 pt-3">
 
                 <div class="pe-md-7">
 
                   <div class="d-flex justify-content-between align-items-center mb-3">
 
-                    <svg width="108" height="24" viewBox="0 0 108 24" fill="none"
-                         xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z"
-                        fill="black" />
-                      <path
-                        d="M40 17.27L46.18 21L44.54 13.97L50 9.24L42.81 8.63L40 2L37.19 8.63L30 9.24L35.46 13.97L33.82 21L40 17.27Z"
-                        fill="black" />
-                      <path
-                        d="M68 17.27L74.18 21L72.54 13.97L78 9.24L70.81 8.63L68 2L65.19 8.63L58 9.24L63.46 13.97L61.82 21L68 17.27Z"
-                        fill="black" />
-                      <path
-                        d="M96 17.27L102.18 21L100.54 13.97L106 9.24L98.81 8.63L96 2L93.19 8.63L86 9.24L91.46 13.97L89.82 21L96 17.27Z"
-                        fill="black" />
-                    </svg>
+                    <Rating class="text-warning" :modelValue="5" :readonly="true" :stars="5" :cancel="false" />
                     <p class="fs-7 mb-1">2021/10/03</p>
                   </div>
                   <p>目前已經是離婚狀態了，但是前夫並未照約定付撫養費，上網搜尋相關方式才發現法學電波的法律線上諮詢媒合律師的方式，嘗試預約媒合後，感謝律師的回覆，目前也委託律師解決問題中
@@ -1061,8 +1046,8 @@
       </li>
       <li id="lawyer-score-two">
         <p class="text-end">
-          <a href="#" data-bs-toggle="modal" data-bs-target="#blockMembersModal"><svg width="20"
-                                                                                      height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <a href="#" data-bs-toggle="modal" data-bs-target="#blockMembersModal">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM2 10C2 5.58 5.58 2 10 2C11.85 2 13.55 2.63 14.9 3.69L3.69 14.9C2.63 13.55 2 11.85 2 10ZM10 18C8.15 18 6.45 17.37 5.1 16.31L16.31 5.1C17.37 6.45 18 8.15 18 10C18 14.42 14.42 18 10 18Z"
               fill="black" />
@@ -1071,12 +1056,12 @@
         </p>
 
         <div
-          class="row border m-0 justify-content-between rounded rounded-3  mb-md-4 py-md-3 align-items-center">
+          class="row border m-0 justify-content-between rounded rounded-3 px-md-7 mb-md-4 py-md-3 align-items-center">
           <div class="col-3">
-            <h4 class="mb-2 ms-md-4">
+            <h4 class="mb-2">
               Tim Turner
             </h4>
-            <p class="m-0 ms-md-4">02/21 14:00-15:00</p>
+            <p class="m-0">02/21 14:00-15:00</p>
           </div>
           <div class="col-5">
             <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
@@ -1111,28 +1096,14 @@
           </div>
           <div id="flush-collapseTwo" class="accordion-collapse collapse"
                aria-labelledby="lawyer-score-two" data-bs-parent="#accordionScore">
-            <div class="accordion-body">
+            <div class="accordion-body px-0">
               <div class="d-flex border-top border-3 pt-3">
 
                 <div class="pe-md-7">
 
                   <div class="d-flex justify-content-between align-items-center mb-3">
 
-                    <svg width="108" height="24" viewBox="0 0 108 24" fill="none"
-                         xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z"
-                        fill="black" />
-                      <path
-                        d="M40 17.27L46.18 21L44.54 13.97L50 9.24L42.81 8.63L40 2L37.19 8.63L30 9.24L35.46 13.97L33.82 21L40 17.27Z"
-                        fill="black" />
-                      <path
-                        d="M68 17.27L74.18 21L72.54 13.97L78 9.24L70.81 8.63L68 2L65.19 8.63L58 9.24L63.46 13.97L61.82 21L68 17.27Z"
-                        fill="black" />
-                      <path
-                        d="M96 17.27L102.18 21L100.54 13.97L106 9.24L98.81 8.63L96 2L93.19 8.63L86 9.24L91.46 13.97L89.82 21L96 17.27Z"
-                        fill="black" />
-                    </svg>
+                    <Rating class="text-warning" :modelValue="5" :readonly="true" :stars="5" :cancel="false" />
                     <p class="fs-7 mb-1">2021/10/03</p>
                   </div>
                   <p>目前已經是離婚狀態了，但是前夫並未照約定付撫養費，上網搜尋相關方式才發現法學電波的法律線上諮詢媒合律師的方式，嘗試預約媒合後，感謝律師的回覆，目前也委託律師解決問題中
@@ -1157,12 +1128,12 @@
         </p>
 
         <div
-          class="row border m-0 justify-content-between rounded rounded-3  mb-md-4 py-md-3 align-items-center">
+          class="row border m-0 justify-content-between rounded rounded-3 px-md-7 mb-md-4 py-md-3 align-items-center">
           <div class="col-3">
-            <h4 class="mb-2 ms-md-4">
+            <h4 class="mb-2">
               Tim Turner
             </h4>
-            <p class="m-0 ms-md-4">02/21 14:00-15:00</p>
+            <p class="m-0">02/21 14:00-15:00</p>
           </div>
           <div class="col-5">
             <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
@@ -1196,28 +1167,14 @@
           </div>
           <div id="flush-collapseThree" class="accordion-collapse collapse"
                aria-labelledby="lawyer-score-three" data-bs-parent="#accordionScore">
-            <div class="accordion-body">
+            <div class="accordion-body px-0">
               <div class="d-flex border-top border-3 pt-3">
 
                 <div class="pe-md-7">
 
                   <div class="d-flex justify-content-between align-items-center mb-3">
 
-                    <svg width="108" height="24" viewBox="0 0 108 24" fill="none"
-                         xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27Z"
-                        fill="black" />
-                      <path
-                        d="M40 17.27L46.18 21L44.54 13.97L50 9.24L42.81 8.63L40 2L37.19 8.63L30 9.24L35.46 13.97L33.82 21L40 17.27Z"
-                        fill="black" />
-                      <path
-                        d="M68 17.27L74.18 21L72.54 13.97L78 9.24L70.81 8.63L68 2L65.19 8.63L58 9.24L63.46 13.97L61.82 21L68 17.27Z"
-                        fill="black" />
-                      <path
-                        d="M96 17.27L102.18 21L100.54 13.97L106 9.24L98.81 8.63L96 2L93.19 8.63L86 9.24L91.46 13.97L89.82 21L96 17.27Z"
-                        fill="black" />
-                    </svg>
+                    <Rating class="text-warning" :modelValue="5" :readonly="true" :stars="5" :cancel="false" />
                     <p class="fs-7 mb-1">2021/10/03</p>
                   </div>
                   <p>目前已經是離婚狀態了，但是前夫並未照約定付撫養費，上網搜尋相關方式才發現法學電波的法律線上諮詢媒合律師的方式，嘗試預約媒合後，感謝律師的回覆，目前也委託律師解決問題中
