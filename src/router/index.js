@@ -52,6 +52,11 @@ const routes = [
       path: 'lawyer-password-setting',
       name: 'lawyerPasswordSetting',
       component: () => import('../views/lawyerCenter/LawyerPasswordSetting')
+    },
+    {
+      path: 'lawyer-appointment-center',
+      name: 'lawyerAppointmentCenter',
+      component: () => import('../views/lawyerCenter/LawyerAppointmentCenter')
     }]
   }
 ]
