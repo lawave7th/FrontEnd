@@ -4,7 +4,13 @@ body{
     //為了解決 bootstrap Modal 開啟時會 padding-right
     padding-right: 0 !important;
 }
+p{
+    opacity:0.8;
+}
 /*通用樣式*/
+.bg-primary-shallow{
+    background-color: rgba(226, 186, 164, 0.2);
+}
 .line{
     height: 2px;
     width: 20%;

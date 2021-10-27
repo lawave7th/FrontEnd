@@ -126,19 +126,19 @@ export default {
     }
   },
   methods: {
-    // getData () {
-    //   const api = `${process.env.VUE_APP_API}`
-    //   this.axios.get(`${api}/get/1`)
-    //     .then((res) => {
-    //       console.log(res)
-    //       if (res.data.success) {
-    //         console.log(res.data.success)
-    //       }
-    //     })
-    // }
+    getData () {
+      const api = `${process.env.VUE_APP_API}`
+      this.axios.get(`${api}get/1`)
+        .then((res) => {
+          console.log(res)
+          if (res.data.success) {
+            console.log(res.data.success)
+          }
+        })
+    }
   },
   created () {
-
+    this.getData()
   }
 }
 </script>

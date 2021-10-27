@@ -7,11 +7,11 @@
             class="col-8 col-lg-6 rounded-pill shadow-sm bg-white p-1  mt-md-4 mb-md-xxl"
           >
             <!-- banner 上下拉式選單 -->
-            <div class="banner-select">
+            <div class="banner-select ">
               <div class="row">
                 <div class="col-4 banner-select-area">
                   <select
-                    class=" border-0 bg-secondary py-3 fs-2 rounded-pill px-4"
+                    class=" border-0 bg-primary py-3 text-secondary fs-2 rounded-pill px-4 "
                   >
                     <option>地區</option>
                     <option>臺北市</option>
@@ -39,7 +39,7 @@
                   </select>
                 </div>
                 <div class="col-5 banner-select-case col-lg-6">
-                  <select class=" border-0 py-3 fs-2 pe-5">
+                  <select class=" border-0 py-3 fs-2 text-secondary pe-5">
                     <option>訴訟類型</option>
                     <option>民事訴訟</option>
                     <option>刑事訴訟</option>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-2">
                   <button
-                    class="search-btn d-block ms-4 ms-lg-0 border-0 rounded-circle p-4 mt-1"
+                    class="search-btn d-block ms-4 ms-lg-0 border-0 rounded-circle p-4 mt-1 bg-secondary"
                     type="button"
                   >
                     <svg
@@ -72,10 +72,11 @@
           </div>
           <!-- banner下方按鈕區塊 -->
           <div class="text-center">
-            <h2 class="fs-4 mb-md-4">
-              想知道該如何在這些法律問題中保障自己權益嗎？
+            <h2 class="fs-4 mb-4 text-white">
+              最快速便利的律師媒合平台 <br> 找律師就來法學電波
             </h2>
-            <button class="btn btn-primary rounded-pill py-4" type="button">
+
+            <button class="btn btn-primary rounded-pill py-4 text-white" type="button">
               立即前往與律師諮詢
             </button>
           </div>
@@ -87,8 +88,8 @@
       <div class="pain-points">
         <div class="row">
           <div class="col-md-6 offset-md-3 text-center mb-2">
-            <h3>牽涉到法律糾紛，該怎麼辦？</h3>
-            <div class="line bg-dark mb-3"></div>
+            <h3 class="text-secondary">牽涉到法律糾紛，該怎麼辦？</h3>
+            <div class="line bg-dark text-primary mb-3"></div>
             <p class="mb-md-7">
               生活中所見的一切事物，都跟法律有關係，與家人、朋友、職場甚至陌生人都可能會牽涉到法律糾紛，這些情境年是否也遇到過？或者正困擾著你？
             </p>

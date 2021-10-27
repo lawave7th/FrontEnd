@@ -13,20 +13,20 @@
                 fill="black"/>
             </svg>
           </button>
-          <h2 class="modal-title text-center mt-3 mt-md-7 mb-2" id="loginModalLabel">會員註冊</h2>
-          <div class="line bg-dark mb-3 mb-md-5"></div>
+          <h2 class="modal-title text-center mt-3 mt-md-7 mb-2 text-secondary" id="loginModalLabel">會員註冊</h2>
+          <div class="line bg-primary mb-3 mb-md-5"></div>
         </div>
         <div class="modal-body">
           <!-- active 功能切換 tabs 顏色手寫 -->
           <ul class="nav row g-0" id="myTab" role="tablist">
             <li class="nav-item col col-md-5 d-grid gap-2 offset-md-1" role="presentation">
-              <button class="nav-link border-0 rounded-top  text-dark" id="member-tab"
+              <button class="nav-link border-0 rounded-top  border-top border-start border-end bg-primary-shallow border-primary text-dark"  id="member-tab" @click="isLawyer = false"
                       data-bs-toggle="tab" data-bs-target="#member" type="button" role="tab"
                       aria-controls="member" aria-selected="true">一般會員
               </button>
             </li>
             <li class="nav-item col col-md-5 d-grid gap-2" role="presentation">
-              <button class="nav-link border-0 rounded-top  text-dark" id="lawyer-tab"
+              <button class="nav-link border-0 rounded-top border-top border-start border-end border-primary  text-dark" id="lawyer-tab" @click="isLawyer = true"
                       data-bs-toggle="tab" data-bs-target="#lawyer" type="button" role="tab"
                       aria-controls="lawyer" aria-selected="false">律師會員
               </button>
@@ -37,8 +37,8 @@
                  aria-labelledby="member-tab">
               <!-- 下方 modal 內容外層 -->
               <div
-                class="col col-md-10 bg-light border border-2 border-top-0 border-light rounded-bottom offset-md-1 py-3 px-4">
-                <v-form class="row" v-slot="{ errors }" @submit="onSubmit(value)">
+                class="col col-md-10 bg-primary-shallow border-primary border border-1 border-top-0 rounded-bottom offset-md-1 py-3 px-4">
+                <v-form class="row " v-slot="{ errors }" @submit="onSubmit(value)">
                   <!-- google 按鈕 -->
                   <div class="my-3">
                     <a href="#" class="btn d-block btn-outline-secondary">
@@ -90,7 +90,7 @@
                   <!-- 信箱 -->
                   <div class="mb-3">
                     <v-field name="email" type="email" :class="{ 'is-invalid': errors['email'] }" placeholder="請輸入 Email" rules="email|required" class="form-control"
-                          v-model="user.email"   id="registerEmail"></v-field>
+                          v-model="user.mail"   id="registerEmail"></v-field>
                     <!-- 信箱錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
                       <error-message name="email" class="invalid-feedback">
@@ -141,15 +141,14 @@
                   </div>
 
                   <!-- 按鈕 -->
-                  <button data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#welcomeModal"
-                          class="btn btn-dark">註冊
+                  <button  class="btn btn-secondary text-white">註冊
                   </button>
                 </v-form>
               </div>
             </div>
             <div class="tab-pane fade" id="lawyer" role="tabpanel" aria-labelledby="lawyer-tab">
               <div
-                class="col col-md-10 bg-light border border-2 border-top-0 border-light rounded-bottom offset-md-1 py-3 px-4">
+                class="col col-md-10 bg-primary-shallow border-primary border border-1 border-top-0 rounded-bottom offset-md-1 py-3 px-4">
                 <v-form class="row" v-slot="{ errors }" @submit="onSubmit">
                   <!-- google 按鈕 -->
                   <div class="my-3">
@@ -202,7 +201,7 @@
                   <!-- 信箱 -->
                   <div class="mb-3">
                     <v-field name="email" type="email"  :class="{ 'is-invalid': errors['email'] }" placeholder="請輸入 Email" rules="email|required" class="form-control"
-                             id="lawyerRegisterEmail"></v-field>
+                             v-model="user.mail"  id="lawyerRegisterEmail"></v-field>
                     <!-- 信箱錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
                       <error-message name="email" class="invalid-feedback">
@@ -256,7 +255,7 @@
                   <div class="mb-3">
                     <div class="row d-flex align-items-center">
                       <div class="col-8">
-                        <v-field  name="電話" type="text" class="form-control" :class="{ 'is-invalid': errors['電話'] }" id="lawyerPhone"  placeholder="請輸入電話" :rules="isPhone"></v-field>
+                        <v-field v-model="user.phone"  name="電話" type="text" class="form-control" :class="{ 'is-invalid': errors['電話'] }" id="lawyerPhone"  placeholder="請輸入電話" :rules="isPhone"></v-field>
 
                       </div>
                       <div class="col-4">
@@ -281,7 +280,7 @@
                   <!-- 驗證碼輸入 -->
                   <div class="mb-3">
                     <label for="lawyerVerificationCode" class="form-label d-none"></label>
-                    <input type="password" placeholder="輸入您的驗證碼" class="form-control"
+                    <input v-model="user.veriCode" type="number" placeholder="輸入您的驗證碼" class="form-control"
                            id="lawyerVerificationCode">
                     <!-- 驗證碼錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
@@ -295,7 +294,7 @@
                     </div>
                   </div>
                   <!-- 按鈕 -->
-                  <button data-bs-toggle="modal" data-bs-target="#welcomeModal"  class="btn btn-dark">註冊</button>
+                  <button  class="btn  btn-secondary text-white">註冊</button>
                 </v-form>
               </div>
             </div>
@@ -345,8 +344,13 @@ export default {
     return {
       modal: {},
       user: {
-        email: '',
-        password: ''
+        isLawyer: false,
+        isCommunity: false,
+        mail: '',
+        password: '',
+        uid: '',
+        phone: '',
+        veriCode: ''
       }
 
     }
@@ -362,7 +366,17 @@ export default {
       return phoneNumber.test(value)
     },
     onSubmit () {
-      console.log('submit')
+      // console.log(this.user.isLawyer, this.user.isCommunity, this.user.email, this.user.password, this.user.uid, this.user.phone, this.user.veriCode)
+      console.log(this.user)
+      const api = `${process.env.VUE_APP_API}`
+      this.axios.post(`${api}api/signUp`, this.user)
+        .then((res) => {
+          console.log(res)
+          if (res.data.success) {
+            console.log(res.data.success)
+          }
+        })
+        .catch((error) => { console.error(error) })
     }
   },
   mixins: [modalMixin]
