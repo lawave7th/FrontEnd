@@ -144,7 +144,7 @@
               <li class="rounded-pill border border-1 me-2 py-1 px-3">其他</li>
             </ul>
           </div>
-        </li>
+          </li>
         <li
           class="col d-flex  flex-column align-items-center lawyer-card py-md-5 mb-md-4 rounded border border-1 rounded-2 position-relative">
           <a href="#" class="position-absolute top-0 end-0 m-4">

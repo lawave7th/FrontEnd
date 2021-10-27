@@ -13,7 +13,8 @@ import TW from './util/i18n/VeeValidateI18n'
 import PrimeVue from 'primevue/config'
 import Rating from 'primevue/rating'
 import PrimeIcons from 'primeicons/primeicons.css'
-
+// 引入全領域方法
+import Public from './util/public'
 // Veevalidate 加入所有規則
 Object.keys(rules).forEach((rule) => {
   defineRule(rule, rules[rule])
@@ -26,6 +27,7 @@ configure({
 localize('./zh_TW', TW)
 
 const app = createApp(App)
+app.config.globalProperties.$public = Public
 app.use(router)
 app.component('Loading', Loading)
 app.use(PrimeVue)

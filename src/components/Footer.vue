@@ -2,7 +2,7 @@
   <footer>
     <div class="footer-logo text-center">
       <div class="container">
-        <h3 class="p-md-7 pb-md-3">
+        <h3 class="pt-7 pb-md-3">
           <svg
             width="32"
             height="45"
@@ -53,9 +53,9 @@
           法學電波
         </h3>
         <p class="pb-8">電波傳遞讓我跟法律零距離</p>
-        <div class="d-flex justify-content-between">
-          <ul class="contact d-flex align-content-center">
-            <li class="pe-5">
+        <div class="d-flex justify-content-md-between flex-column flex-lg-row  justify-content-center pb-7">
+          <ul class="contact d-flex flex-column flex-lg-row align-content-center mb-3 mb-md-0">
+            <li>
               <a href="#">
                 <span class="material-icons align-middle">
                   local_phone
@@ -63,7 +63,7 @@
                 02-3456-7890</a
               >
             </li>
-            <li>
+            <li class="ps-md-5">
               <a href="#">
                 <span class="material-icons align-middle">
                   email
@@ -73,7 +73,7 @@
             </li>
           </ul>
           <div class="copyright">
-            © 2021 公司名稱 All Rights Reserved.
+            © 2021 法學電波 All Rights Reserved.
           </div>
         </div>
       </div>

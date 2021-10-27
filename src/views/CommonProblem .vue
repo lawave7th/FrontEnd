@@ -1,12 +1,12 @@
 <template>
   <main class="pt-md-11">
     <div class="container  py-10">
-      <h2 class="text-center pb-2">Q&A 常見問題專區</h2>
-      <div class="line bg-dark mb-3"></div>
+      <h2 class="text-center pb-2 text-secondary">Q&A 常見問題專區</h2>
+      <div class="line bg-primary mb-3"></div>
       <p class="question-text mb-md-7">選擇您需要的支援服務類型指南，有任何問題都歡迎透過客服信箱（service@mail.com）或者服務專線（02-3456-7890）
         ，我們聯繫做詢問。</p>
       <ul class="accordion accordion-flush" id="accordionFlushExample">
-        <li class="accordion-item border border-1 mb-md-6 rounded shadow-sm bg-body rounded bg-secondary">
+        <li class="accordion-item border border-1 mb-md-6 rounded shadow-sm bg-body rounded rounded-3 bg-primary">
           <h2 class="accordion-header" id="flush-headingOne">
             <button class="accordion-button collapsed fs-2" type="button" data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
@@ -33,7 +33,7 @@
             </div>
           </div>
         </li>
-        <li class="accordion-item border border-1 mb-md-6 rounded shadow-sm bg-body rounded bg-secondary">
+        <li class="accordion-item border border-1 mb-md-6 rounded shadow-sm bg-body rounded rounded-3 bg-primary">
           <h2 class="accordion-header" id="flush-headingTwo">
             <button class="accordion-button collapsed fs-2" type="button" data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
@@ -60,7 +60,7 @@
             </div>
           </div>
         </li>
-        <li class="accordion-item border border-1 mb-md-6 rounded shadow-sm bg-body rounded bg-secondary">
+        <li class="accordion-item border border-1 mb-md-6 rounded shadow-sm bg-body rounded rounded-3 bg-primary">
           <h2 class="accordion-header" id="flush-headingThree">
             <button class="accordion-button collapsed fs-2" type="button" data-bs-toggle="collapse"
                     data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
@@ -126,19 +126,19 @@ export default {
     }
   },
   methods: {
-    getData () {
-      const api = `${process.env.VUE_APP_API}`
-      this.axios.get(`${api}/get/1`)
-        .then((res) => {
-          console.log(res)
-          if (res.data.success) {
-            console.log(res.data.success)
-          }
-        })
-    }
+    // getData () {
+    //   const api = `${process.env.VUE_APP_API}`
+    //   this.axios.get(`${api}/get/1`)
+    //     .then((res) => {
+    //       console.log(res)
+    //       if (res.data.success) {
+    //         console.log(res.data.success)
+    //       }
+    //     })
+    // }
   },
   created () {
-    this.getData()
+
   }
 }
 </script>
