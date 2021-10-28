@@ -37,7 +37,7 @@
               <!-- 下方 modal 內容外層 -->
               <div
                 class="col col-md-10 bg-primary-shallow border-primary-light border border-1 border-top-0 rounded-bottom offset-md-1 py-3 px-4">
-                <v-form class="row " v-slot="{ errors }" @submit="onSubmit(value)">
+                <v-form ref="peopleRegisterForm" class="row " v-slot="{ errors }" @submit="onSubmit(value)">
                   <!-- google 按鈕 -->
                   <div class="my-3">
                     <a href="#" class="btn d-block btn-light">
@@ -55,7 +55,7 @@
                     <!-- 信箱錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
                       <error-message name="email" class="invalid-feedback">
-                        <p class="text-danger m-0 ms-1">
+                        <p class="text-danger m-0 ms-1 fs-7">
                           <span class="material-icons align-middle">cancel</span>{{ errors.email }}</p>
                       </error-message>
                     </div>
@@ -76,7 +76,7 @@
                   <!-- 確認密碼 -->
                   <div class="mb-3">
                     <v-field type="password" name="確認密碼" :rules="checkPassword"  :class="{ 'is-invalid': errors['確認密碼'] }"  placeholder="再次輸入您的密碼" class="form-control"
-                           id="registerCheckPassword"></v-field>
+                        v-model="passwordVerifyValue"   id="registerCheckPassword"></v-field>
                     <!-- 密碼錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
                       <error-message name="確認密碼" class="invalid-feedback">
@@ -95,7 +95,7 @@
             <div class="tab-pane fade" id="lawyer" role="tabpanel" aria-labelledby="lawyer-tab">
               <div
                 class="col col-md-10 bg-primary-shallow border-primary-light border border-1 border-top-0 rounded-bottom offset-md-1 py-3 px-4">
-                <v-form class="row" v-slot="{ errors }" @submit="onSubmit">
+                <v-form ref="lawyerRegisterForm" class="row" v-slot="{ errors }" @submit="onSubmit">
                   <!-- google 按鈕 -->
                   <div class="my-3">
                     <a href="#" class="btn d-block btn-light">
@@ -134,7 +134,7 @@
                   <!-- 確認密碼 -->
                   <div class="mb-3">
                     <v-field type="password" name="確認密碼" :rules="checkPassword"  :class="{ 'is-invalid': errors['確認密碼'] }"  placeholder="再次輸入您的密碼" class="form-control"
-                             id="lawyerCheckPassword"></v-field>
+                             v-model="passwordVerifyValue"   id="lawyerCheckPassword"></v-field>
                     <!-- 密碼錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
                       <error-message name="確認密碼" class="invalid-feedback">
@@ -167,13 +167,13 @@
                   </div>
                   <!-- 驗證碼輸入 -->
                   <div class="mb-3">
-                    <label for="lawyerVerificationCode" class="form-label d-none"></label>
-                    <input v-model="user.veriCode" type="text" placeholder="輸入您的驗證碼" class="form-control"
-                           id="lawyerVerificationCode">
+                    <v-field v-model="user.veriCode" type="text" placeholder="輸入您的驗證碼" name="驗證碼" class="form-control" :class="{ 'is-invalid': errors['驗證碼'] }" rules="required|max:4"
+                           id="lawyerVerificationCode"></v-field>
                     <!-- 驗證碼錯誤提示 -->
                     <div class="d-flex align-items-center mt-1">
-                      <span class="material-icons align-middle text-danger">cancel</span>
-                      <p class="text-danger fs-7 m-0 ms-1">請輸入您的驗證碼</p>
+                      <error-message name="驗證碼" class="invalid-feedback">
+                      <p class="text-danger fs-7 m-0 ms-1"> <span class="material-icons align-middle text-danger">cancel</span> {{ errors.驗證碼 }}</p>
+                      </error-message>
                     </div>
                   </div>
                   <!-- 按鈕 -->
@@ -188,7 +188,7 @@
     </div>
   </div>
   <!-- 歡迎 Modal -->
-  <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
+  <div class="modal fade" ref="welcomeModal" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="position-relative">
@@ -200,8 +200,8 @@
                 fill="black"/>
             </svg>
           </button>
-          <h2 class="modal-title text-center mt-3 mt-md-7 mb-2" id="welcomeModalLabel">建立個人資料</h2>
-          <div class="line bg-dark mb-3"></div>
+          <h2 class="modal-title text-center mt-3 mt-md-7 mb-2 text-secondary" id="welcomeModalLabel">建立個人資料</h2>
+          <div class="line bg-primary mb-3"></div>
         </div>
         <div class="modal-body">
           <div class="row ">
@@ -210,7 +210,7 @@
               <h3 class="fs-4">歡迎使用法學電波</h3>
               <p>了解自身法律權益與周遭可使用的法律資源</p>
               <div class="d-grid gap-2 mb-md-7 mb-5">
-                <button type="button" class="btn btn-dark">繼續</button>
+                <button type="button" class="btn btn-secondary">繼續</button>
               </div>
             </div>
           </div>
@@ -221,13 +221,25 @@
 </template>
 <script>
 import modalMixin from '@/mixins/modalMixin'
+import Modal from 'bootstrap/js/dist/modal'
 
 export default {
   data () {
     return {
       modal: {},
+      welcomeModal: {},
       api: `${process.env.VUE_APP_API}`,
-      user: {
+      user: null,
+      passwordVerifyValue: ''
+    }
+  },
+  mounted () {
+    this.user = this.reset()
+    this.welcomeModal = new Modal(this.$refs.welcomeModal)
+  },
+  methods: {
+    reset () {
+      this.user = {
         isLawyer: false,
         isCommunity: false,
         mail: '',
@@ -235,11 +247,11 @@ export default {
         uid: '',
         phone: '',
         veriCode: ''
-      },
-      passwordVerifyValue: ''
-    }
-  },
-  methods: {
+      }
+      this.passwordVerifyValue = ''
+      this.$refs.lawyerRegisterForm.resetForm()
+      this.$refs.peopleRegisterForm.resetForm()
+    },
     checkPassword (value) {
       if (this.user.password === value) {
         this.passwordVerifyValue = value
@@ -253,35 +265,28 @@ export default {
     onSubmit () {
       this.axios.post(`${this.api}api/signUp`, this.user)
         .then((res) => {
-          console.log(res)
-          if (res.data.success) {
-            console.log(res.data.success)
+          if (res.data.status) {
+            console.log(res)
+            const token = res.data.token
+            this.$public.addCookie(token)
+            this.$public.setToken()
+            this.hideModal()
+            this.welcomeModal.show()
+            this.reset()
           }
         })
         .catch((error) => { console.error(error) })
-      // this.user = {
-      //   isLawyer: false,
-      //   isCommunity: false,
-      //   mail: '',
-      //   password: '',
-      //   uid: '',
-      //   phone: '',
-      //   veriCode: ''
-      // }
-      // this.passwordVerifyValue = ''
     },
     verifyPhone () {
       const toaddr = this.user.phone
       this.axios.post(`${this.api}api/snsVeriCode`, toaddr)
         .then((res) => {
           console.log(res)
-          if (res.data.success) {
-            console.log(res.data.success)
-          }
         })
         .catch((error) => { console.error(error) })
     }
   },
   mixins: [modalMixin]
 }
+
 </script>
