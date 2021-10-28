@@ -86,7 +86,8 @@ $theme-colors: (
   "warning":    #F9E6A5,
   "danger":     $danger,
   "light":      $light,
-  "dark":       $dark
+  "dark":       $dark,
+  "primary-light": rgba(226, 186, 164, 0.2),
 );
 // scss-docs-end theme-colors-map
 
