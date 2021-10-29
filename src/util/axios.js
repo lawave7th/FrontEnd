@@ -8,10 +8,10 @@ const instance = axios.create({
 instance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-    // const token = document.cookie.replace(/(?:(?:^|.*;\s*)lawavaToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
-    // if (token) {
-    //   config.headers.Authorization = token
-    // }
+    const token = document.cookie.replace(/(?:(?:^|.*;\s*)lawavaToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
+    if (token) {
+      config.headers.Authorization = token
+    }
     return config
   },
   function (error) {
