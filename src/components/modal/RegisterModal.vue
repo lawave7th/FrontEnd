@@ -37,7 +37,7 @@
               <!-- 下方 modal 內容外層 -->
               <div
                 class="col col-md-10 bg-primary-shallow border-primary-light border border-1 border-top-0 rounded-bottom offset-md-1 py-3 px-4">
-                <v-form ref="peopleRegisterForm" class="row " v-slot="{ errors }" @submit="onSubmit(value)">
+                <v-form ref="peopleRegisterForm" class="row " v-slot="{ errors }" @submit.prevent="onSubmit(value)">
                   <!-- google 按鈕 -->
                   <div class="my-3">
                     <a href="#" class="btn d-block btn-light">
@@ -56,7 +56,7 @@
                     <div class="d-flex align-items-center mt-1">
                       <error-message name="email" class="invalid-feedback">
                         <p class="text-danger m-0 ms-1 fs-7">
-                          <span class="material-icons align-middle">cancel</span>{{ errors.email }}</p>
+                          <span class="material-icons align-middle fs-7">cancel</span>{{ errors.email }}</p>
                       </error-message>
                     </div>
                   </div>
@@ -68,7 +68,7 @@
                     <div class="d-flex align-items-center mt-1">
                       <error-message name="密碼" class="invalid-feedback">
                         <p class="text-danger fs-7 m-0 ms-1">
-                          <span class="material-icons align-middle">cancel</span>&nbsp;{{ errors.密碼 }}</p>
+                          <span class="material-icons align-middle fs-7">cancel</span>&nbsp;{{ errors.密碼 }}</p>
                       </error-message>
                     </div>
                   </div>
@@ -81,7 +81,7 @@
                     <div class="d-flex align-items-center mt-1">
                       <error-message name="確認密碼" class="invalid-feedback">
                         <p class="text-danger fs-7  m-0 ms-1">
-                          <span class="material-icons align-middle">cancel</span>&nbsp;密碼輸入不一致</p>
+                          <span class="material-icons align-middle fs-7">cancel</span>&nbsp;密碼輸入不一致</p>
                       </error-message>
                     </div>
                   </div>
@@ -95,7 +95,7 @@
             <div class="tab-pane fade" id="lawyer" role="tabpanel" aria-labelledby="lawyer-tab">
               <div
                 class="col col-md-10 bg-primary-shallow border-primary-light border border-1 border-top-0 rounded-bottom offset-md-1 py-3 px-4">
-                <v-form ref="lawyerRegisterForm" class="row" v-slot="{ errors }" @submit="onSubmit">
+                <v-form ref="lawyerRegisterForm" class="row" v-slot="{ errors }" @submit.prevent="onSubmit">
                   <!-- google 按鈕 -->
                   <div class="my-3">
                     <a href="#" class="btn d-block btn-light">
@@ -114,7 +114,7 @@
                     <div class="d-flex align-items-center mt-1">
                       <error-message name="email" class="invalid-feedback">
                         <p class="text-danger fs-7 m-0 ms-1">
-                          <span class="material-icons align-middle">cancel</span>&nbsp;{{ errors.email }}</p>
+                          <span class="material-icons align-middle fs-7">cancel</span>&nbsp;{{ errors.email }}</p>
                       </error-message>
                     </div>
                   </div>
@@ -126,7 +126,7 @@
                     <div class="d-flex align-items-center mt-1">
                       <error-message name="密碼" class="invalid-feedback">
                         <p class="text-danger fs-7 m-0 ms-1">
-                          <span class="material-icons align-middle">cancel</span>&nbsp;{{ errors.密碼 }}</p>
+                          <span class="material-icons align-middle fs-7">cancel</span>&nbsp;{{ errors.密碼 }}</p>
                       </error-message>
                     </div>
                   </div>
@@ -139,7 +139,7 @@
                     <div class="d-flex align-items-center mt-1">
                       <error-message name="確認密碼" class="invalid-feedback">
                         <p class="text-danger fs-7 m-0 ms-1">
-                          <span class="material-icons align-middle">cancel</span>密碼輸入不一致</p>
+                          <span class="material-icons align-middle fs-7">cancel</span>密碼輸入不一致</p>
                       </error-message>
                     </div>
                   </div>
@@ -161,7 +161,7 @@
                     <div class="d-flex align-items-center mt-1">
                       <error-message name="電話" class="invalid-feedback">
                         <p class="text-danger fs-7 m-0 ms-1">
-                          <span class="material-icons align-middle">cancel</span>&nbsp;電話號碼格式不正確 </p>
+                          <span class="material-icons align-middle fs-7">cancel</span>&nbsp;電話號碼格式不正確 </p>
                       </error-message>
                     </div>
                   </div>
@@ -170,10 +170,10 @@
                     <v-field v-model="user.veriCode" type="text" placeholder="輸入您的驗證碼" name="驗證碼" class="form-control" :class="{ 'is-invalid': errors['驗證碼'] }" rules="required|max:4"
                            id="lawyerVerificationCode"></v-field>
                     <!-- 驗證碼錯誤提示 -->
-                    <div class="d-flex align-items-center mt-1">
-                      <error-message name="驗證碼" class="invalid-feedback">
-                      <p class="text-danger fs-7 m-0 ms-1"> <span class="material-icons align-middle text-danger">cancel</span> {{ errors.驗證碼 }}</p>
-                      </error-message>
+                      <div class="d-flex align-items-center mt-1">
+                        <error-message name="驗證碼" class="invalid-feedback">
+                          <p class="text-danger fs-7 m-0 ms-1"> <span class="material-icons align-middle text-danger fs-7">cancel</span> {{ errors.驗證碼 }}</p>
+                        </error-message>
                     </div>
                   </div>
                   <!-- 按鈕 -->
@@ -229,12 +229,19 @@ export default {
       modal: {},
       welcomeModal: {},
       api: `${process.env.VUE_APP_API}`,
-      user: null,
+      user: {
+        isLawyer: false,
+        isCommunity: false,
+        mail: '',
+        password: '',
+        uid: '',
+        phone: '',
+        veriCode: ''
+      },
       passwordVerifyValue: ''
     }
   },
   mounted () {
-    this.user = this.reset()
     this.welcomeModal = new Modal(this.$refs.welcomeModal)
   },
   methods: {
@@ -265,15 +272,11 @@ export default {
     onSubmit () {
       this.axios.post(`${this.api}api/signUp`, this.user)
         .then((res) => {
-          if (res.data.status) {
-            console.log(res)
-            const token = res.data.token
-            this.$public.addCookie(token)
-            this.$public.setToken()
-            this.hideModal()
-            this.welcomeModal.show()
-            this.reset()
-          }
+          const token = res.data.token
+          this.$public.addCookie(token)
+          this.hideModal()
+          this.welcomeModal.show()
+          this.reset()
         })
         .catch((error) => { console.error(error) })
     },

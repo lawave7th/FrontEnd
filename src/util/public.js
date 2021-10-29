@@ -8,8 +8,11 @@ export default {
     weekDate = weekDate.setDate(weekDate.getDate() + 7)
     document.cookie = `lawavaToken=${token};expires=${new Date(weekDate)};`
   },
-  setToken () {
-    const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
-    this.$http.defaults.headers.common.Authorization = `${token}`
+  getToken () {
+    return document.cookie.replace(/(?:(?:^|.*;\s*)lawavaToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
+  },
+  isLogin () {
+    const token = document.cookie.replace(/(?:(?:^|.*;\s*)lawavaToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
+    return token !== undefined
   }
 }

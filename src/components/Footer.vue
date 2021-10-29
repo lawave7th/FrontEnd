@@ -52,7 +52,7 @@
           </svg>
           法學電波
         </h3>
-        <p class="pb-8">電波傳遞讓我跟法律零距離</p>
+        <p class="pb-8 text-white">電波傳遞讓我跟法律零距離</p>
         <div class="d-flex justify-content-md-between flex-column flex-lg-row  justify-content-center pb-7">
           <ul class="contact d-flex flex-column flex-lg-row align-content-center mb-3 mb-md-0">
             <li>
