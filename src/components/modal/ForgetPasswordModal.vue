@@ -143,6 +143,7 @@
 <script>
 import modalMixin from '@/mixins/modalMixin'
 import Modal from 'bootstrap/js/dist/modal'
+import { userForgetPassword, userVerifyMail } from '@/util/api'
 
 export default {
   data () {
@@ -179,7 +180,7 @@ export default {
       }
     },
     onSubmit () {
-      this.axios.post(`${this.api}api/resetPwd`, this.user)
+      userForgetPassword(this.user)
         .then((res) => {
           console.log(res)
           this.reset()
@@ -190,8 +191,10 @@ export default {
     },
     verifyMail () {
       const toaddr = this.user.mail
-      console.log(toaddr)
-      this.axios.post(`${this.api}api/mailVeriCode`, toaddr)
+      if (!toaddr) {
+        return
+      }
+      userVerifyMail(toaddr)
         .then((res) => {
           console.log(res)
         })

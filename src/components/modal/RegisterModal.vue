@@ -37,7 +37,7 @@
               <!-- 下方 modal 內容外層 -->
               <div
                 class="col col-md-10 bg-primary-shallow border-primary-light border border-1 border-top-0 rounded-bottom offset-md-1 py-3 px-4">
-                <v-form ref="peopleRegisterForm" class="row " v-slot="{ errors }" @submit.prevent="onSubmit(value)">
+                <v-form ref="peopleRegisterForm" class="row " v-slot="{ errors }" @submit="onSubmit(value)">
                   <!-- google 按鈕 -->
                   <div class="my-3">
                     <a href="#" class="btn d-block btn-light">
@@ -95,7 +95,7 @@
             <div class="tab-pane fade" id="lawyer" role="tabpanel" aria-labelledby="lawyer-tab">
               <div
                 class="col col-md-10 bg-primary-shallow border-primary-light border border-1 border-top-0 rounded-bottom offset-md-1 py-3 px-4">
-                <v-form ref="lawyerRegisterForm" class="row" v-slot="{ errors }" @submit.prevent="onSubmit">
+                <v-form ref="lawyerRegisterForm" class="row" v-slot="{ errors }" @submit="onSubmit">
                   <!-- google 按鈕 -->
                   <div class="my-3">
                     <a href="#" class="btn d-block btn-light">
@@ -222,6 +222,7 @@
 <script>
 import modalMixin from '@/mixins/modalMixin'
 import Modal from 'bootstrap/js/dist/modal'
+import { userRegister, userVerifyPhone } from '@/util/api'
 
 export default {
   data () {
@@ -270,7 +271,7 @@ export default {
       return phoneNumber.test(value)
     },
     onSubmit () {
-      this.axios.post(`${this.api}api/signUp`, this.user)
+      userRegister(this.user)
         .then((res) => {
           const token = res.data.token
           this.$public.addCookie(token)
@@ -282,7 +283,10 @@ export default {
     },
     verifyPhone () {
       const toaddr = this.user.phone
-      this.axios.post(`${this.api}api/snsVeriCode`, toaddr)
+      if (!toaddr) {
+        return
+      }
+      userVerifyPhone(toaddr)
         .then((res) => {
           console.log(res)
         })
