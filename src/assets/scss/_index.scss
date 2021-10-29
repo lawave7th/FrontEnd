@@ -1,6 +1,12 @@
 .mb-md-xxl{
     margin-bottom: 402px;
 }
+.mt-xxl{
+    padding-top: 0px;
+    @include md-size{
+        padding-top: 580px;
+    }
+}
 .index-banner{
     height: 810px;
     background: url("assets/img/index-img/index-banner.png");
@@ -33,9 +39,27 @@ img{
     background: url("assets/img/index-img/situational-photo.png");
     border-radius: 1rem;
     height: 627px;
+    background-position: center center;
+    background-size:cover ;
+    object-fit: contain;
+    @include md-size{
+        height: 300px;
+        background-position: center center;
+        background-size:cover ;
+        object-fit: contain;
+    }
+    @include mobile480{
+        height: 200px;
+    }
 }
 .service-box{
     height: 728px;
+    background-position: center center;
+    background-size:cover ;
+    object-fit: contain;
+    @include mobile480{
+        height: 436px;
+    }
 }
 .praise-content {
    max-width: 736px;
@@ -43,8 +67,11 @@ img{
 .case-introduction-banner{
     background: url("assets/img/index-img/index-background.jpeg") no-repeat;
     background-position: center center;
-    background-size:cover ;
+    background-size: cover;
     object-fit: contain;
+    @include md-size {
+        background:rgba(226, 186, 164, 0.2);
+    }
    }
 .member-photo{
     background: url("assets/img/lawyer-photo.jpeg");
@@ -56,7 +83,14 @@ img{
 
 .join-photo{
     background: url("https://fakeimg.pl/1116x467/");
+    border-radius:1rem;
     height: 467px;
+    background-position: center center;
+    background-size:cover ;
+    object-fit: contain;
+    @include mobile480{
+        height: 245px;
+    }
 }
 //確認驗證標籤內能不能放 class ，先放
 //email

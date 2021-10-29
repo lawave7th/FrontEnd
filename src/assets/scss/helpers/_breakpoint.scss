@@ -4,6 +4,12 @@
     }
 } ;
 
+@mixin md-size{
+    @media(max-width:753px){
+        @content
+    }
+};
+
 @mixin mobile600{
     @media(max-width:600px){
         @content

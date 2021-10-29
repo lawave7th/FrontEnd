@@ -40,19 +40,52 @@
               </li>
             </ul>
           </div>
-          <div class="header-search d-block d-md-none">
-            <input
-              class="p-2 ps-5 rounded-pill border border-secondary border-1"
-              Placeholder="尋找合作律師"
-              type="search"
-            />
+<!--          <div class="header-search d-block d-md-none">-->
+<!--            <input-->
+<!--              class="p-2 ps-5 rounded-pill border border-secondary border-1"-->
+<!--              Placeholder="尋找合作律師"-->
+<!--              type="search"-->
+<!--            />-->
+<!--          </div>-->
+          <div class="dropdown d-md-flex align-items-md-center" v-if="this.$public.isLogin()">
+            <button
+              class="d-flex  align-items-center justify-content-between
+ btn  py-2 px-3 btn-primary rounded-pill"
+              type="button"
+              id="dropdownMenuButton2"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span class="align-middle material-icons text-white">
+                menu
+              </span>
+              <div class="photo-icons-wrap bg-white border rounded-pill position-relative">
+            <span><svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16 17V17.67H0V17C0.00180427 15.364 0.505093 13.768 1.44203 12.427C2.37897 11.0859 3.70452 10.0644 5.24 9.49996C4.55194 9.04447 3.98731 8.42577 3.59646 7.69904C3.20561 6.9723 3.0007 6.16013 3 5.33496C3 4.00888 3.52678 2.73711 4.46446 1.79943C5.40214 0.861749 6.67392 0.334961 8 0.334961C9.32608 0.334961 10.5978 0.861749 11.5355 1.79943C12.4732 2.73711 13 4.00888 13 5.33496C12.9988 6.16058 12.7931 6.97305 12.4013 7.69982C12.0096 8.42659 11.444 9.04504 10.755 9.49996C12.2914 10.0635 13.618 11.0848 14.5559 12.4259C15.4938 13.767 15.9978 15.3634 16 17Z" fill="#C4C4C4"/>
+</svg> </span>
+              </div>
+            </button>
+            <ul class="dropdown-menu dropdown-menu rounded rounded-3" aria-labelledby="dropdownMenuButton2">
+              <li>
+                <a class="dropdown-item ps-4 pe-11 fs-4" href="#" >資格認證
+                  <span class="align-top">
+                  <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 19H22L11 0L0 19ZM12 16H10V14H12V16ZM12 12H10V8H12V12Z" fill="black"/>
+                  </svg>
+                </span>
+                </a>
+              </li>
+              <li><a class="dropdown-item fs-4  ps-4 pe-11 fs-4" href="#">會員中心</a></li>
+              <li><a class="dropdown-item fs-4  ps-4 pe-11 fs-4" href="#">預約管理</a></li>
+              <li><a class="dropdown-item fs-4  ps-4 pe-11 fs-4" href="#">登出帳戶</a></li>
+            </ul>
           </div>
-          <div class="dropdown">
+          <div class="dropdown" v-else>
             <button
               class="d-flex  align-items-center justify-content-between
  btn  py-2 px-3 btn rounded-pill text-white"
               type="button"
-              id="dropdownMenuButton2"
+              id="dropdownMenuNotLogin"
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
@@ -62,17 +95,10 @@
               <span class=" ms-2 text-white">
                 Join now
               </span>
-<!--              <div class="person-icons-wrap">-->
-<!--                    <span><svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--<path d="M16 17V17.67H0V17C0.00180427 15.364 0.505093 13.768 1.44203 12.427C2.37897 11.0859 3.70452 10.0644 5.24 9.49996C4.55194 9.04447 3.98731 8.42577 3.59646 7.69904C3.20561 6.9723 3.0007 6.16013 3 5.33496C3 4.00888 3.52678 2.73711 4.46446 1.79943C5.40214 0.861749 6.67392 0.334961 8 0.334961C9.32608 0.334961 10.5978 0.861749 11.5355 1.79943C12.4732 2.73711 13 4.00888 13 5.33496C12.9988 6.16058 12.7931 6.97305 12.4013 7.69982C12.0096 8.42659 11.444 9.04504 10.755 9.49996C12.2914 10.0635 13.618 11.0848 14.5559 12.4259C15.4938 13.767 15.9978 15.3634 16 17Z" fill="#C4C4C4"/>-->
-<!--</svg>-->
-<!--</span>-->
-<!--              </div>-->
-
             </button>
             <ul
               class="dropdown-menu dropdown-menu rounded rounded-3"
-              aria-labelledby="dropdownMenuButton2"
+              aria-labelledby="dropdownMenuNotLogin"
             >
               <li class="mt-2">
                 <a @click="$refs.registerModal.showModal()"
@@ -95,7 +121,8 @@
               <li><a class="dropdown-item fs-4 ps-4 pe-11" href="#">會員中心</a></li>
               <li class="mb-2"><a class="dropdown-item fs-4 ps-4 pe-11" href="#">預約管理</a></li>
             </ul>
-          </div>
+          </div >
+
         </div>
       </nav>
       <ul class="title-bar d-flex d-md-none justify-content-center">

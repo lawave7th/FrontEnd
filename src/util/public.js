@@ -13,6 +13,6 @@ export default {
   },
   isLogin () {
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)lawavaToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
-    return token !== undefined
+    return token !== ''
   }
 }

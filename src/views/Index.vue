@@ -1,13 +1,12 @@
 <template>
   <main>
-    <div class="index-banner mb-md-7 pt-md-11" >
+    <div class="index-banner mb-7 pt-md-11" >
       <div class="container">
         <div class="row d-none d-md-flex justify-content-center ">
           <div
             class="col-8 col-lg-6 rounded-pill shadow-sm bg-white p-1 py-0  mt-md-4 mb-md-xxl "
           >
             <!-- banner 上下拉式選單 -->
-
               <div class="row">
                 <div class="col-4 banner-select-area bg-primary py-4  rounded-pill ">
                   <select
@@ -69,17 +68,16 @@
                 </div>
               </div>
             </div>
-
-          <!-- banner下方按鈕區塊 -->
-          <div class="text-center">
-            <h2 class="fs-4 mb-4 text-white">
+          </div>
+        <!-- banner下方按鈕區塊 -->
+          <div class="text-center mt-xxl">
+            <h2 class="fs-4 mb-4 text-white ">
               最快速便利的律師媒合平台 <br> 找律師就來法學電波
             </h2>
 
-            <button class="btn btn-primary rounded-pill py-4 text-white" type="button">
+            <button class="btn btn-primary rounded-pill p-4 text-white" type="button">
               立即前往與律師諮詢
             </button>
-          </div>
         </div>
       </div>
     </div>
@@ -90,39 +88,39 @@
           <div class="col-md-6 offset-md-3 text-center mb-2">
             <h3 class="text-secondary">牽涉到法律糾紛，該怎麼辦？</h3>
             <div class="line bg-primary mb-3"></div>
-            <p class="mb-md-7">
+            <p class="mb-5">
               生活中所見的一切事物，都跟法律有關係，與家人、朋友、職場甚至陌生人都可能會牽涉到法律糾紛，這些情境年是否也遇到過？或者正困擾著你？
             </p>
           </div>
         </div>
-        <ul class="row">
-          <li class="col-md-3 mb-md-6">
+        <ul class="row justify-content-center justify-content-md-between mb-7">
+          <li class="col-6 col-md-3 mb-md-6">
             <img
-              class="rounded  mb-3"
+              class="rounded rounded-3  mb-3"
               src="../assets/img/index-img/index-pain-point-1.png"
               alt="痛點區塊"
             />
             <p>被告了，需不需要請律師？</p>
           </li>
-          <li class="col-md-3 mb-md-6">
+          <li class="col-6 col-md-3 mb-md-6">
             <img
-              class="rounded  mb-3"
+              class="rounded rounded-3  mb-3"
               src="../assets/img/index-img/index-pain-point-2.png"
               alt="痛點區塊"
             />
             <p>打官司一定要找律師處理嗎？</p>
           </li>
-          <li class="col-md-3 mb-md-6">
+          <li class="col-6 col-md-3 mb-md-6">
             <img
-              class="rounded  mb-3"
+              class="rounded rounded-3  mb-3"
               src="../assets/img/index-img/index-pain-point-3.png"
               alt="痛點區塊"
             />
             <p>怎麼找契合的律師？能配合外縣市?</p>
           </li>
-          <li class="col-md-3 mb-md-6">
+          <li class="col-6 col-md-3 mb-md-6">
             <img
-              class="rounded  mb-3"
+              class="rounded rounded-3  mb-3"
               src="../assets/img/index-img/index-pain-point-4.png"
               alt="痛點區塊"
             />
@@ -132,10 +130,10 @@
       </div>
     </div>
     <!-- 案件量介紹區塊 -->
-    <div class="case-introduction-banner">
-      <div class="container">
+    <div class="case-introduction-banner pb-4 pb-md-0">
+      <div class="container px-4 px-md-0 ">
         <div class="row">
-          <div class="col-md-6  offset-md-3 text-center mb-2 mt-md-7">
+          <div class="col-md-6  offset-md-3 text-center mb-2 mt-7">
             <h3 class="text-secondary">法學電波與你一同面對法律糾紛</h3>
             <div class="line bg-primary mb-3"></div>
             <p class="mb-md-7">
@@ -143,40 +141,40 @@
             </p>
           </div>
         </div>
-        <ul class="row text-center text-white mb-md-5 ">
-          <li class="col-md-3 mb-md-5 ">
-            <div class="introduce-card py-4 bg-secondary rounded">
+        <ul class="row text-center text-white mb-md-5 justify-content-around justify-content-md-between ">
+          <li class="col-6 col-sm-5 col-md-3 mb-4">
+            <div class="introduce-card py-4 bg-secondary rounded rounded-3">
               <h3>52</h3>
-              <p>媒合的案件數</p>
+              <p class="text-white">媒合的案件數</p>
             </div>
           </li>
-          <li class="col-md-3 mb-md-5">
-            <div class="introduce-card py-4 bg-secondary rounded">
+          <li class="col-6 col-sm-5 col-md-3 mb-4">
+            <div class="introduce-card py-4 bg-secondary rounded rounded-3">
               <h3>2000</h3>
-              <p>線上諮詢總時數</p>
+              <p class="text-white">線上諮詢總時數</p>
             </div>
           </li>
-          <li class="col-md-3 mb-md-5">
-            <div class="introduce-card py-4 bg-secondary rounded">
+          <li class="col-6 col-sm-5 col-md-3 mb-4">
+            <div class="introduce-card py-4 bg-secondary rounded rounded-3">
               <h3>34</h3>
-              <p>會員回饋數量</p>
+              <p class="text-white">會員回饋數量</p>
             </div>
           </li>
-          <li class="col-md-3 mb-md-5">
-            <div class="introduce-card py-4 bg-secondary rounded">
+          <li class="col-6 col-sm-5 col-md-3 mb-4">
+            <div class="introduce-card py-4 bg-secondary rounded rounded-3">
               <h3>47</h3>
-              <p>合作律師人數</p>
+              <p class="text-white">合作律師人數</p>
             </div>
           </li>
         </ul>
         <!-- 情境照大圖 -->
-        <div class="situational-photo mb-md-7"></div>
+        <div class="situational-photo "></div>
 
     </div>
 
       </div>
     <!--      電波零距離-->
-    <div class="container">
+    <div class="container mt-7">
       <div class="row ">
         <div
           class="col-md-6 text-center d-flex flex-column align-content-center justify-content-center"
@@ -184,34 +182,34 @@
           <div>
             <h3 class="text-secondary">電波傳遞讓我跟法律零距離</h3>
             <div class="line bg-primary mb-3"></div>
-            <p class="mb-md-5">
+            <p class="mb-4 mb-md-5">
               從互利的角度切入創造羈絆的聯繫，透過線上平台帶來的便利性，陪伴遇見法律困境的人們，建立與律師溝通的橋樑，讓我們在這裡，沒有距離。
             </p>
           </div>
           <div>
             <h3 class="text-secondary">服務優勢</h3>
-            <ul>
-              <li>
-                  <span class="material-icons text-primary"> check_circle </span
+            <ul class="row">
+              <li class="col-6 col-md-12 mb-3">
+                  <span class="material-icons text-primary align-middle"> check_circle </span
                   >&nbsp;&nbsp;可跨縣市律師媒合
               </li>
-              <li>
-                  <span class="material-icons text-primary"> check_circle </span
+              <li class="col-6 col-md-12 mb-3">
+                  <span class="material-icons text-primary align-middle"> check_circle </span
                   >&nbsp;&nbsp;把關律師資格審查
               </li>
-              <li>
-                  <span class="material-icons text-primary"> check_circle </span
+              <li class="col-6 col-md-12 mb-3">
+                  <span class="material-icons text-primary align-middle"> check_circle </span
                   >&nbsp;&nbsp;會員專屬諮詢系統
               </li>
-              <li>
-                  <span class="material-icons text-primary"> check_circle </span
+              <li class="col-6 col-md-12 mb-3">
+                  <span class="material-icons text-primary align-middle"> check_circle </span
                   >&nbsp;&nbsp;法律時事資訊補充
               </li>
             </ul>
           </div>
         </div>
-        <div class="col-md-6 mb-md-7">
-          <div class="rounded bg-secondary service-box"></div>
+        <div class="col-md-6 mb-11">
+          <div class="rounded rounded-3 bg-secondary service-box"></div>
         </div>
       </div>
     </div>
@@ -219,11 +217,11 @@
     <div class="popular-lawyers">
       <div class="container">
         <h3 class="text-center mt-md-7 text-secondary">熱門律師</h3>
-        <div class="line bg-primary mb-md-5"></div>
+        <div class="line bg-primary mb-5"></div>
         <ul class="row text-center">
           <li class="col-md-3 mb-md-6">
            <img
-              class="rounded mb-3"
+              class="rounded rounded-3 mb-3"
               src="../assets/img/index-img/popular-lawyers-1.png"
               alt="熱門律師"
             />
@@ -232,7 +230,7 @@
           </li>
           <li class="col-md-3 mb-md-6">
             <img
-              class="rounded mb-3"
+              class="rounded rounded-3 mb-3"
               src="../assets/img/index-img/popular-lawyers-2.png"
               alt="熱門律師"
             />
@@ -241,7 +239,7 @@
           </li>
           <li class="col-md-3 mb-md-6">
             <img
-              class="rounded mb-3"
+              class="rounded rounded-3 mb-3"
               src="../assets/img/index-img/popular-lawyers-3.png"
               alt="熱門律師"
             />
@@ -250,7 +248,7 @@
           </li>
           <li class="col-md-3 mb-md-6">
             <img
-              class="rounded mb-3"
+              class="rounded rounded-3 mb-3"
               src="../assets/img/index-img/popular-lawyers-4.png"
               alt="熱門律師"
             />
@@ -261,31 +259,31 @@
       </div>
     </div>
     <!-- 會員推薦區 -->
-    <div class="member-praise mb-md-7 ">
-      <div class="bg-primary-shallow">
+    <div class="member-praise mb-7 ">
+      <div class="bg-primary-shallow pb-11 pb-md-0">
         <div class="container">
-          <h3 class="text-center text-secondary pt-md-7">會員好評推薦</h3>
-          <div class="line bg-primary mb-md-2"></div>
+          <h3 class="text-center text-secondary pt-7">會員好評推薦</h3>
+          <div class="line bg-primary mb-2"></div>
           <!-- 輪播功能 -->
           <div
             id="carouselExampleControls"
-            class="carousel slide d-flex justify-content-center"
+            class="carousel slide d-flex justify-content-center px-4 px-md-0"
             data-bs-ride="carousel"
           >
             <div class="carousel-inner praise-content mb-md-5">
               <div class="carousel-item active">
                 <div class="p-4"></div>
                 <div
-                  class="text-dark py-md-7 px-md-5 position-relative  bg-white rounded"
+                  class="text-dark py-md-7 px-md-5 position-relative  bg-white rounded rounded-3"
                 >
                   <div
                     class="rounded-pill
                                     member-photo position-absolute top-0 start-50 translate-middle"
                   ></div>
-                  <p>
+                  <p class="pt-6 px-5 pb-1 p-md-0">
                     我在上班途中發生小碰撞車禍，還好雙方都沒受傷，但是車損的費用，對方的保險公司僅憑著初判表就要我負全責，還好有在法學電波上與律師線上諮詢，才知道應該要去申請車禍鑑定，並且後續按照責任比例處理協調雙方賠償都可接受的價格範圍。
                   </p>
-                  <p class="text-end fs-4">
+                  <p class="text-end fs-4 px-5 pb-6 p-md-0">
                     -- 李利敬
                   </p>
                 </div>
@@ -299,10 +297,10 @@
                     class="rounded-pill
                                     member-photo position-absolute top-0 start-50 translate-middle"
                   ></div>
-                  <p>
+                  <p class="pt-6 px-5 pb-1 p-md-0">
                     我在上班途中發生小碰撞車禍，還好雙方都沒受傷，但是車損的費用，對方的保險公司僅憑著初判表就要我負全責，還好有在法學電波上與律師線上諮詢，才知道應該要去申請車禍鑑定，並且後續按照責任比例處理協調雙方賠償都可接受的價格範圍。
                   </p>
-                  <p class="text-end fs-4">
+                  <p class="text-end fs-4 px-5 pb-6 p-md-0">
                     -- 李利敬
                   </p>
                 </div>
@@ -316,10 +314,10 @@
                     class="rounded-pill
                                     member-photo position-absolute top-0 start-50 translate-middle"
                   ></div>
-                  <p>
+                  <p class="pt-6 px-5 pb-1 p-md-0">
                     我在上班途中發生小碰撞車禍，還好雙方都沒受傷，但是車損的費用，對方的保險公司僅憑著初判表就要我負全責，還好有在法學電波上與律師線上諮詢，才知道應該要去申請車禍鑑定，並且後續按照責任比例處理協調雙方賠償都可接受的價格範圍。
                   </p>
-                  <p class="text-end fs-4">
+                  <p class="text-end fs-4 px-5 pb-6 p-md-0">
                     -- 李利敬
                   </p>
                 </div>
@@ -333,7 +331,7 @@
             >
               <span aria-hidden="true"
               >
-                <span class="material-icons text-secondary fs-1">arrow_circle_left</span>
+                <span class="d-none d-lg-inline-block material-icons text-secondary icon-size-xl">arrow_circle_left</span>
 
               </span>
 
@@ -346,7 +344,7 @@
             >
               <span aria-hidden="true"
               >
-                <span class="material-icons text-secondary fs-1">arrow_circle_right</span>
+                <span class="d-none d-lg-inline-block material-icons text-secondary icon-size-xl">arrow_circle_right</span>
 
               </span>
               <span class="visually-hidden">Next</span>
@@ -356,24 +354,35 @@
       </div>
     </div>
     <!-- 加入會員區塊 -->
-    <div class="join-member mb-md-7 ">
-      <div class="container">
+    <div class="join-member mb-11 ">
+      <div class="container px-4 px-md-0">
         <div class="row ">
           <div class="col-md-6 offset-md-3 text-center mb-2">
             <h3 class="text-secondary">立即加入會員一解煩惱</h3>
             <div class="line bg-primary mb-3"></div>
             <p class="mb-md-7">
-              生活中所見的一切事物，都跟法律有關係，與家人、朋友、職場甚至陌生人都可能會牽涉到法律糾紛，這些情境你是否也遇到過？或者正困擾著你？
+              立即加入會員，快速媒合想要的律師 ，幫助你走過所有法律訴訟上的困境。
             </p>
           </div>
         </div>
         <div
-          class="row join-photo d-flex flex-column justify-content-md-center  "
+          class="row join-photo d-flex flex-column justify-content-center align-items-center"
         >
-          <div class="col-md-3 offset-md-8">
+          <div class="col-6 col-md-3 offset-5 offset-md-8 text-center">
+            <div class="mb-4">
+              <img src="../assets/img/index-img/giftbox.png" class="d-none d-sm-inline-block mb-4"/>
+              <h4 class="text-primary">會員獨家獻禮</h4>
+              <div class="line bg-primary mb-2"></div>
+              <p class="text-white mb-1"><span class="material-icons text-white align-middle">done</span>
+                初次諮詢免費</p>
+              <p class="text-white mb-1"><span class="material-icons text-white align-middle">done</span>
+                無限次數配對</p>
+              <p class="text-white mb-1"><span class="material-icons text-white align-middle">done</span>
+                律師資格把關</p>
+            </div>
             <button
               type="button"
-              class="join-btn py-4 fw-bold btn btn-dark rounded-pill btn-lg me-md-9"
+              class="join-btn py-2 px-3 p-sm-4 fw-bold btn btn-primary text-white rounded-pill"
             >
               註冊成為會員
             </button>
