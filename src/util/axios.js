@@ -5,10 +5,13 @@ const instance = axios.create({
   headers: { 'Content-Type': 'application/json' }
 })
 
-// 此處的instance為我們create的實體
 instance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
+    // const token = document.cookie.replace(/(?:(?:^|.*;\s*)lawavaToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
+    // if (token) {
+    //   config.headers.Authorization = token
+    // }
     return config
   },
   function (error) {

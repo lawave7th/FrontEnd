@@ -135,9 +135,10 @@
   <ForgetPasswordModal ref="forgetPasswordModal"></ForgetPasswordModal>
 </template>
 <script>
+
 import modalMixin from '@/mixins/modalMixin'
 import ForgetPasswordModal from './ForgetPasswordModal'
-
+import req from '@/util/axios'
 export default {
   components: {
     ForgetPasswordModal
@@ -168,7 +169,10 @@ export default {
       this.$refs.peopleLoginForm.resetForm()
     },
     onSubmit () {
-      this.axios.post(`${this.api}api/login`, this.user)
+      const userLogin = (userData) => {
+        return req('post', 'api/login', userData)
+      }
+      userLogin(this.user)
         .then((res) => {
           console.log(res)
           const token = res.data.token
@@ -177,6 +181,15 @@ export default {
           this.hideModal()
         })
         .catch((error) => { console.error(error) })
+    //   this.axios.post(`${this.api}api/login`, this.user)
+    //     .then((res) => {
+    //       console.log(res)
+    //       const token = res.data.token
+    //       this.$public.addCookie(token)
+    //       this.reset()
+    //       this.hideModal()
+    //     })
+    //     .catch((error) => { console.error(error) })
     }
   },
   mixins: [modalMixin]
