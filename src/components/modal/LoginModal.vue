@@ -168,6 +168,9 @@ export default {
       this.$refs.lawyerLoginForm.resetForm()
       this.$refs.peopleLoginForm.resetForm()
     },
+    changeTab () {
+
+    },
     onSubmit () {
       userLogin(this.user)
         .then((res) => {

@@ -1,5 +1,5 @@
 <template>
-  <main class="pt-md-11">
+  <main>
     <div class="container  py-10">
       <h2 class="text-center pb-2 text-secondary">Q&A 常見問題專區</h2>
       <div class="line bg-primary mb-3"></div>

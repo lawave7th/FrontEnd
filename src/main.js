@@ -15,6 +15,8 @@ import Rating from 'primevue/rating'
 import PrimeIcons from 'primeicons/primeicons.css'
 // 引入全領域方法
 import Public from './util/public'
+import store from './store/store'
+
 // Veevalidate 加入所有規則
 Object.keys(rules).forEach((rule) => {
   defineRule(rule, rules[rule])
@@ -33,6 +35,7 @@ app.component('Loading', Loading)
 app.use(PrimeVue)
 app.component('Rating', Rating)
 app.use(PrimeIcons)
+app.use(store)
 app.use(VueAxios, axios)
 app.component('VForm', Form)
 app.component('VField', Field)
