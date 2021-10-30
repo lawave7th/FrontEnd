@@ -229,7 +229,6 @@ export default {
     return {
       modal: {},
       welcomeModal: {},
-      api: `${process.env.VUE_APP_API}`,
       user: {
         isLawyer: false,
         isCommunity: false,

@@ -5,8 +5,9 @@
         <div class="container">
           <div class="d-flex align-items-center">
             <!-- logo -->
-            <h1 class="d-flex">
-              <svg width="32" height="45" viewBox="0 0 32 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <h1>
+              <router-link class="navbar-brand ps-3 fs-2 text-white" to="/">
+                <svg width="32" height="45" viewBox="0 0 32 45" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_1305:10861)">
                   <path d="M23.0899 40.8233H9.21373C9.06121 40.8233 8.91494 40.7627 8.8071 40.6549C8.69925 40.547 8.63867 40.4008 8.63867 40.2482C8.63867 40.0957 8.69925 39.9495 8.8071 39.8416C8.91494 39.7338 9.06121 39.6732 9.21373 39.6732H23.0899C23.2424 39.6732 23.3886 39.7338 23.4965 39.8416C23.6043 39.9495 23.6649 40.0957 23.6649 40.2482C23.6649 40.4008 23.6043 40.547 23.4965 40.6549C23.3886 40.7627 23.2424 40.8233 23.0899 40.8233Z" fill="white"/>
                   <path d="M20.3766 44.082H11.7316C11.5282 44.082 11.3332 44.0012 11.1894 43.8574C11.0456 43.7136 10.9648 43.5186 10.9648 43.3152C10.9648 43.1119 11.0456 42.9168 11.1894 42.773C11.3332 42.6292 11.5282 42.5485 11.7316 42.5485H20.3766C20.58 42.5485 20.775 42.6292 20.9188 42.773C21.0626 42.9168 21.1433 43.1119 21.1433 43.3152C21.1433 43.5186 21.0626 43.7136 20.9188 43.8574C20.775 44.0012 20.58 44.082 20.3766 44.082Z" fill="white"/>
@@ -23,9 +24,7 @@
                   </clipPath>
                 </defs>
 
-              </svg>
-
-              <router-link class="navbar-brand ps-3 fs-2 d-none d-md-block text-white" to="/">法學電波</router-link>
+              </svg><span class="d-none d-md-inline-block align-middle ps-3">法學電波</span></router-link>
             </h1>
             <!-- PC版左側選單 -->
             <ul class="title-bar d-none d-md-flex">

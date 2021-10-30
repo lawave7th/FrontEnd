@@ -1123,11 +1123,11 @@ $accordion-button-color:                  $accordion-color !default;
 $accordion-button-bg:                     $accordion-bg !default;
 $accordion-transition:                    $btn-transition, border-radius .15s ease !default;
 //手風琴要改的地方 ～ accordion-button-focus-box-shadow
-$accordion-button-active-bg:              tint-color($component-active-bg, 90%) !default;
-$accordion-button-active-color:           shade-color($primary, 10%) !default;
+$accordion-button-active-bg:              rgba(226, 186, 164, 0.2) !default;
+$accordion-button-active-color:           #172A39 !default;
 
-$accordion-button-focus-border-color:     $input-focus-border-color !default;
-$accordion-button-focus-box-shadow:       $btn-focus-box-shadow !default;
+$accordion-button-focus-border-color:     rgba(226, 186, 164, 0.2) !default;
+$accordion-button-focus-box-shadow:       rgba(226, 186, 164, 0.2) !default;
 
 $accordion-icon-width:                    1.25rem !default;
 $accordion-icon-color:                    $accordion-color !default;

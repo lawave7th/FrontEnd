@@ -24,3 +24,17 @@ export const userVerifyPhone = (data) => {
 export const userForgetPassword = (data) => {
   return request('post', 'api/resetPwd', data)
 }
+
+// 首頁
+
+// 取得儀表板資料
+
+export const getIndexDashboard = () => {
+  return request('get', 'api/indexDashboard')
+}
+
+// 常見問題
+
+export const getCommonProblem = () => {
+  return request('get', 'api/faq/1')
+}

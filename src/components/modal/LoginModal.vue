@@ -146,7 +146,6 @@ export default {
   data () {
     return {
       modal: {},
-      api: `${process.env.VUE_APP_API}`,
       user: {
         isLawyer: false,
         mail: '',

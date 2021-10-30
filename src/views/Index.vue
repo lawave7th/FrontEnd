@@ -144,25 +144,25 @@
         <ul class="row text-center text-white mb-md-5 justify-content-around justify-content-md-between ">
           <li class="col-6 col-sm-5 col-md-3 mb-4">
             <div class="introduce-card py-4 bg-secondary rounded rounded-3">
-              <h3>52</h3>
+              <h3>{{dashboardData.caseload}}</h3>
               <p class="text-white">媒合的案件數</p>
             </div>
           </li>
           <li class="col-6 col-sm-5 col-md-3 mb-4">
             <div class="introduce-card py-4 bg-secondary rounded rounded-3">
-              <h3>2000</h3>
+              <h3>{{dashboardData.totaltime}}</h3>
               <p class="text-white">線上諮詢總時數</p>
             </div>
           </li>
           <li class="col-6 col-sm-5 col-md-3 mb-4">
             <div class="introduce-card py-4 bg-secondary rounded rounded-3">
-              <h3>34</h3>
+              <h3>{{dashboardData.OpinionCount}}</h3>
               <p class="text-white">會員回饋數量</p>
             </div>
           </li>
           <li class="col-6 col-sm-5 col-md-3 mb-4">
             <div class="introduce-card py-4 bg-secondary rounded rounded-3">
-              <h3>47</h3>
+              <h3>{{dashboardData.cooperationLawyer}}</h3>
               <p class="text-white">合作律師人數</p>
             </div>
           </li>
@@ -392,3 +392,30 @@
     </div>
   </main>
 </template>
+<script>
+
+import { getIndexDashboard } from '@/util/api'
+export default {
+  components: {},
+  data () {
+    return {
+      dashboardData: {}
+    }
+  },
+  created () {
+    this.getData()
+  },
+  methods: {
+    getData () {
+      getIndexDashboard()
+        .then((res) => {
+          console.log(res)
+          this.dashboardData = res.data
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    }
+  }
+}
+</script>

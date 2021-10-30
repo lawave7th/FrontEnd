@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="container-fluid g-0">
-      <div class="lawyer-solvation-banner pt-md-11 mb-md-7">
+      <div class="lawyer-solvation-banner pt-11 mb-7">
         <div class="container">
           <div class="row d-none d-md-flex justify-content-center">
             <div
@@ -9,7 +9,7 @@
             >
               <!-- banner 上下拉式選單 -->
               <div class="row">
-                <div class="col-4 banner-select-area bg-primary py-4  rounded-pill ">
+                <div class="col-4 banner-select-area bg-primary-shallow py-4  rounded-pill ">
                   <select
                     class="border-0 text-secondary ps-2 pt-1 banner-select pe-8 select-area-position"
                   >
@@ -79,13 +79,13 @@
         <div class="col-md-6  offset-md-3 text-center mb-2">
           <h3 class="text-secondary">與律師媒合的小眉角</h3>
           <div class="line bg-primary mb-3"></div>
-          <p class="mb-md-7">
+          <p class="mb-7">
             別人推薦厲害的律師不一定真的「適合」你的情況。 我們整理出在找律師時，要把握的3大重點，協助您順利、快速媒合到合適您的好律師！
           </p>
         </div>
       </div>
       <ul class="row mb-md-7 justify-content-between">
-        <li class="col-md-4 row">
+        <li class="col-12 col-md-4 row justify-content-center mb-4 mb-md-0">
           <div class="col-6 ">
             <img src="../assets/img/lawyer-solvation-img/lawyer-pain-point-1.png" class="img-fluid rounded " alt="律師媒合痛點">
           </div>
@@ -94,7 +94,7 @@
             <p>建議先確認律師身份，可透過法務部的律師查詢系統。在法學電波上面的律師，都是經過認證資格審核有律師資格</p>
           </div>
         </li>
-        <li class="col-md-4 row ">
+        <li class="col-12 col-md-4 row justify-content-center mb-4 mb-md-0">
           <div class="col-6">
             <img src="../assets/img/lawyer-solvation-img/lawyer-pain-point-2.png" class="img-fluid rounded " alt="律師媒合痛點">
           </div>
@@ -103,7 +103,7 @@
             <p>建議先確認律師身份，可透過法務部的律師查詢系統。在法學電波上面的律師，都是經過認證資格審核有律師資格</p>
           </div>
         </li>
-        <li class="col-md-4 row ">
+        <li class="col-12 col-md-4 row justify-content-center mb-4 mb-md-0">
           <div class="col-6">
             <img src="../assets/img/lawyer-solvation-img/lawyer-pain-point-3.png" class="img-fluid rounded " alt="律師媒合痛點">
           </div>
@@ -119,11 +119,12 @@
       <ul class="row  row-cols-1 row-cols-md-3 justify-content-center justify-content-md-between">
         <!-- 卡片內容 -->
         <li
-          class="col d-flex  flex-column align-items-center lawyer-card py-md-5 mb-md-4 rounded border border-1  position-relative border-primary">
+          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">
           <a href="#" class="position-absolute top-0 end-0 m-4">
-            <span class="material-icons text-info">  favorite_border </span>
+            <span class="material-icons text-info" v-if="true">  favorite_border </span>
+            <span class="material-icons" v-else>favorite</span>
           </a>
-          <div class="lawyer-img mb-md-4">
+          <div class="lawyer-img mb-4">
             <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">
           </div>
           <div class="lawyer-card-content text-center">
@@ -143,11 +144,11 @@
           </div>
           </li>
         <li
-          class="col d-flex  flex-column align-items-center lawyer-card py-md-5 mb-md-4 rounded border border-1  position-relative border-primary">
+          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">
           <a href="#" class="position-absolute top-0 end-0 m-4">
             <span class="material-icons text-info">  favorite_border </span>
           </a>
-          <div class="lawyer-img mb-md-4">
+          <div class="lawyer-img mb-4">
             <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">
           </div>
           <div class="lawyer-card-content text-center">
@@ -167,11 +168,11 @@
           </div>
         </li>
         <li
-          class="col d-flex  flex-column align-items-center lawyer-card py-md-5 mb-md-4 rounded border border-1  position-relative border-primary">
+          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">
           <a href="#" class="position-absolute top-0 end-0 m-4">
             <span class="material-icons text-info">  favorite_border </span>
           </a>
-          <div class="lawyer-img mb-md-4">
+          <div class="lawyer-img mb-4">
             <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">
           </div>
           <div class="lawyer-card-content text-center">
@@ -191,11 +192,11 @@
           </div>
         </li>
         <li
-          class="col d-flex  flex-column align-items-center lawyer-card py-md-5 mb-md-4 rounded border border-1  position-relative border-primary">
+          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">
           <a href="#" class="position-absolute top-0 end-0 m-4">
             <span class="material-icons text-info">  favorite_border </span>
           </a>
-          <div class="lawyer-img mb-md-4">
+          <div class="lawyer-img mb-4">
             <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">
           </div>
           <div class="lawyer-card-content text-center">
@@ -215,11 +216,11 @@
           </div>
         </li>
         <li
-          class="col d-flex  flex-column align-items-center lawyer-card py-md-5 mb-md-4 rounded border border-1  position-relative border-primary">
+          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">
           <a href="#" class="position-absolute top-0 end-0 m-4">
             <span class="material-icons text-info">  favorite_border </span>
           </a>
-          <div class="lawyer-img mb-md-4">
+          <div class="lawyer-img mb-4">
             <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">
           </div>
           <div class="lawyer-card-content text-center">
@@ -239,11 +240,11 @@
           </div>
         </li>
         <li
-          class="col d-flex  flex-column align-items-center lawyer-card py-md-5 mb-md-4 rounded border border-1  position-relative border-primary">
+          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">
           <a href="#" class="position-absolute top-0 end-0 m-4">
             <span class="material-icons text-info">  favorite_border </span>
           </a>
-          <div class="lawyer-img mb-md-4">
+          <div class="lawyer-img mb-4">
             <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">
           </div>
           <div class="lawyer-card-content text-center">
@@ -263,11 +264,11 @@
           </div>
         </li>
         <li
-          class="col d-flex  flex-column align-items-center lawyer-card py-md-5 mb-md-4 rounded border border-1  position-relative border-primary">
+          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">
           <a href="#" class="position-absolute top-0 end-0 m-4">
             <span class="material-icons text-info">  favorite_border </span>
           </a>
-          <div class="lawyer-img mb-md-4">
+          <div class="lawyer-img mb-4">
             <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">
           </div>
           <div class="lawyer-card-content text-center">
@@ -287,11 +288,11 @@
           </div>
         </li>
         <li
-          class="col d-flex  flex-column align-items-center lawyer-card py-md-5 mb-md-4 rounded border border-1  position-relative border-primary">
+          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">
           <a href="#" class="position-absolute top-0 end-0 m-4">
             <span class="material-icons text-info">  favorite_border </span>
           </a>
-          <div class="lawyer-img mb-md-4">
+          <div class="lawyer-img mb-4">
             <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">
           </div>
           <div class="lawyer-card-content text-center">
@@ -311,11 +312,11 @@
           </div>
         </li>
         <li
-          class="col d-flex  flex-column align-items-center lawyer-card py-md-5 mb-md-4 rounded border border-1  position-relative border-primary">
+          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">
           <a href="#" class="position-absolute top-0 end-0 m-4">
             <span class="material-icons text-info">  favorite_border </span>
           </a>
-          <div class="lawyer-img mb-md-4">
+          <div class="lawyer-img mb-4">
             <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">
           </div>
           <div class="lawyer-card-content text-center">
@@ -336,24 +337,21 @@
         </li>
       </ul>
     </div>
-    <div class="container d-flex justify-content-center mb-7">
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-            </a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+    <div class="container d-flex justify-content-end mb-7">
+      <!-- 分頁按鈕 -->
+      <ul class="appointment-pagination d-flex justify-content-md-end align-items-center">
+        <li class="me-2">
+          <a class="d-block text-white  btn-primary rounded-pill text-center fs-7" href="#">1</a>
+        </li>
+        <li class="me-2">
+          <a class="d-block text-secondary  btn-primary bg-primary-shallow rounded-pill text-center fs-7" href="#">2</a>
+        </li>
+        <li>
+          <a class="d-block pagination-next text-white btn-primary bg-primary-shallow rounded-pill text-center"
+             href="#">
+            <img src="../assets/img/next-page.png" class="mb-2" height="8" width="10"/></a>
+        </li>
+      </ul>
     </div>
   </main>
 </template>
