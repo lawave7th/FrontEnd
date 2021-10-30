@@ -33,7 +33,13 @@ export const getIndexDashboard = () => {
   return request('get', 'api/indexDashboard')
 }
 
-// 常見問題
+// 律師媒合頁
+
+export const getLawyerList = () => {
+  return request('get', 'api/lawyerlist/1')
+}
+
+// 常見問題頁
 
 export const getCommonProblem = () => {
   return request('get', 'api/faq/1')

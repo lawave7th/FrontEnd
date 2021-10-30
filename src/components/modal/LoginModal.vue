@@ -142,6 +142,7 @@ import { userLogin } from '@/util/api'
 export default {
   components: {
     ForgetPasswordModal
+
   },
   data () {
     return {

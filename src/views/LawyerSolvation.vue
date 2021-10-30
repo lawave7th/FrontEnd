@@ -355,3 +355,28 @@
     </div>
   </main>
 </template>
+<script>
+import { getLawyerList } from '@/util/api'
+export default {
+  data () {
+    return {
+      lawyerData: {}
+    }
+  },
+  created () {
+    this.getData()
+  },
+  methods: {
+    getData () {
+      getLawyerList()
+        .then((res) => {
+          console.log(res)
+          this.lawyerData = res.data
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    }
+  }
+}
+</script>

@@ -100,14 +100,14 @@
               aria-labelledby="dropdownMenuNotLogin"
             >
               <li class="mt-2">
-                <a @click="$refs.registerModal.showModal()"
+                <a @click.prevent="$refs.registerModal.showModal()"
                   class="dropdown-item fs-4 ps-4 pe-11"
                   href="#"
                 >註冊</a
                 >
               </li>
               <li>
-                <a @click="$refs.loginModal.showModal()"
+                <a @click.prevent="$refs.loginModal.showModal()"
                   class="dropdown-item fs-4 ps-4 pe-11"
                   href="#"
                 >登入</a
