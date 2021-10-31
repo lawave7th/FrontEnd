@@ -8,7 +8,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-    const token = document.cookie.replace(/(?:(?:^|.*;\s*)lawavaToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
+    const token = localStorage.getItem('lawavaToken')
     if (token) {
       config.headers.Authorization = token
     }

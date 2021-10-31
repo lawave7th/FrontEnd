@@ -143,7 +143,7 @@
 <script>
 import modalMixin from '@/mixins/modalMixin'
 import Modal from 'bootstrap/js/dist/modal'
-import { userForgetPassword, userVerifyMail } from '@/util/api'
+import { userResetPassword, userVerifyMail } from '@/util/api'
 
 export default {
   data () {
@@ -179,7 +179,7 @@ export default {
       }
     },
     onSubmit () {
-      userForgetPassword(this.user)
+      userResetPassword(this.user)
         .then((res) => {
           console.log(res)
           this.reset()

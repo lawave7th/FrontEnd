@@ -1,14 +1,14 @@
 <template>
   <main>
-    <div class="index-banner mb-7 pt-md-11" >
+    <div class="index-banner mb-7 pt-11" >
       <div class="container">
-        <div class="row d-none d-md-flex justify-content-center ">
+        <div class="row  d-flex justify-content-center">
           <div
-            class="col-8 col-lg-6 rounded-pill shadow-sm bg-white p-1 py-0  mt-md-4 mb-md-xxl "
+            class="col-10 col-sm-8 col-lg-6 rounded-pill shadow-sm pe-1 bg-white mt-7 mt-md-4 mb-md-xxl "
           >
             <!-- banner 上下拉式選單 -->
               <div class="row">
-                <div class="col-4 banner-select-area bg-primary py-4  rounded-pill ">
+                <div class="col-4 bg-primary-shallow py-2 py-md-4  rounded-pill ">
                   <select
                     class="border-0 text-secondary ps-2 pt-1 banner-select pe-8 select-area-position"
                   >
@@ -37,8 +37,8 @@
                     <option>連江縣</option>
                   </select>
                 </div>
-                <div class="col-5 banner-select-case col-lg-6 py-4">
-                  <select class="border-0 text-secondary px-7 banner-select select-case-position">
+                <div class="col-4 col-md-5 b col-lg-6 py-2 py-md-4">
+                  <select class="border-0 text-secondary ps-2 pe-5 px-md-7 pt-1 banner-select select-case-position">
                     <option>訴訟類型</option>
                     <option>民事訴訟</option>
                     <option>刑事訴訟</option>
@@ -47,9 +47,9 @@
                     <option>消費糾紛</option>
                   </select>
                 </div>
-                <div class="col-2">
+                <div class="col-4 col-md-2 d-flex justify-content-end">
                   <button
-                    class="search-btn d-block ms-4 ms-lg-0 border-0 rounded-circle p-4 my-1 bg-secondary"
+                    class="search-btn d-block ms-4 ms-lg-0 border-0 rounded-circle p-2 p-md-4 my-1 bg-secondary"
                     type="button"
                   >
                     <svg
@@ -70,12 +70,12 @@
             </div>
           </div>
         <!-- banner下方按鈕區塊 -->
-          <div class="text-center mt-xxl">
+          <div class="text-center">
             <h2 class="fs-4 mb-4 text-white ">
               最快速便利的律師媒合平台 <br> 找律師就來法學電波
             </h2>
 
-            <button class="btn btn-primary rounded-pill p-4 text-white" type="button">
+            <button class="btn btn-primary rounded-pill py-2 py-md-3 px-3 px-md-4 text-white" type="button">
               立即前往與律師諮詢
             </button>
         </div>

@@ -273,7 +273,7 @@ export default {
       userRegister(this.user)
         .then((res) => {
           const token = res.data.token
-          this.$public.addCookie(token)
+          this.$public.setToken(token)
           this.hideModal()
           this.welcomeModal.show()
           this.reset()

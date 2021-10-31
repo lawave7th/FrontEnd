@@ -56,14 +56,14 @@
               </li>
             </ul>
           </div>
-          <!--          <div class="header-search d-block d-md-none">-->
-          <!--            <input-->
-          <!--              class="p-2 ps-5 rounded-pill border border-secondary border-1"-->
-          <!--              Placeholder="尋找合作律師"-->
-          <!--              type="search"-->
-          <!--            />-->
-          <!--          </div>-->
+
           <div class="dropdown d-md-flex align-items-md-center" v-if="false">
+            <div class="header-search d-none d-lg-block me-4" :class="isBottomBanner === true ?'d-lg-none ':''">
+            <input class="p-2 ps-5 rounded-pill border border-primary border-1 text-primary"
+                   Placeholder="尋找合作律師"
+                   type="search"
+            />
+          </div>
             <button
               class="d-flex  align-items-center justify-content-between
  btn  py-2 px-3 btn-primary rounded-pill"
@@ -83,7 +83,7 @@
 </svg> </span>
               </div>
             </button>
-            <ul class="dropdown-menu dropdown-menu rounded rounded-3" aria-labelledby="dropdownMenuButton2">
+            <ul class="dropdown-menu dropdown-menu rounded rounded-3"  aria-labelledby="dropdownMenuButton2">
               <li>
                 <a class="dropdown-item ps-4 pe-11 fs-4" href="#">資格認證
                   <span class="align-top">
@@ -95,10 +95,16 @@
               </li>
               <li><a class="dropdown-item fs-4  ps-4 pe-11 fs-4" href="#">會員中心</a></li>
               <li><a class="dropdown-item fs-4  ps-4 pe-11 fs-4" href="#">預約管理</a></li>
-              <li><a class="dropdown-item fs-4  ps-4 pe-11 fs-4" href="#">登出帳戶</a></li>
+              <li><a class="dropdown-item fs-4  ps-4 pe-11 fs-4" href="#" @click.prevent="logout">登出帳戶</a></li>
             </ul>
           </div>
-          <div class="dropdown" v-else>
+          <div class="dropdown d-flex" v-else>
+            <div class="header-search d-none d-lg-block m4-2" :class="isBottomBanner === true ?'d-lg-none ':''">
+              <input class="p-2 ps-5 rounded-pill border border-primary border-1 text-primary"
+                     Placeholder="尋找合作律師"
+                     type="search"
+              />
+            </div>
             <button
               class="d-flex  align-items-center justify-content-between
  btn  py-2 px-3 btn rounded-pill text-white"
@@ -137,15 +143,15 @@
 
         </div>
       </nav>
-      <ul class="title-bar d-flex d-md-none justify-content-center">
+      <ul class="title-bar d-flex d-md-none justify-content-center" :class="isBottomBanner === true ?'':'title-bar-primary'">
         <li>
-          <router-link class="fs-4 d-block pt-2 me-4 text-decoration-none" to="/lawyer-solvation">律師媒合</router-link>
+          <router-link class="fs-4 d-block pt-2 me-4 text-decoration-none mb-2" to="/lawyer-solvation">律師媒合</router-link>
         </li>
         <li>
-          <router-link class="fs-4 d-block pt-2 me-4 text-decoration-none" to="/knowledge">法律知識+</router-link>
+          <router-link class="fs-4 d-block pt-2 me-4 text-decoration-none mb-2" to="/knowledge">法律知識+</router-link>
         </li>
         <li>
-          <router-link class="fs-4 d-block pt-2 me-4 text-decoration-none" to="/common-problem">常見問題</router-link>
+          <router-link class="fs-4 d-block pt-2 me-4 text-decoration-none mb-2" to="/common-problem">常見問題</router-link>
         </li>
       </ul>
     </div>
@@ -168,6 +174,7 @@ export default {
   data () {
     return {
       isBottomBanner: true,
+      isLawyer: false,
       pages: ['/index', '/knowledge', '/lawyer-solvation'],
       scrollPosition: null
     }
@@ -188,6 +195,9 @@ export default {
       } else {
         this.isBottomBanner = false
       }
+    },
+    logout () {
+      localStorage.clear()
     }
   },
   watch: {

@@ -1,6 +1,6 @@
 <template>
-  <CenterHeader></CenterHeader>
-  <main>
+  <Header></Header>
+  <main class="pt-7 pt-md-11">
     <div class="container pb-md-11">
       <div class="row justify-content-between">
         <div class="col-3">
@@ -17,11 +17,11 @@
 
 <script>
 import PeopleSidebar from '../../components/centerComponents/people/PeopleSidebar'
-import CenterHeader from '../../components/centerComponents/CenterHeader'
+import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 
 export default {
   name: 'LawyerHome.vue',
-  components: { CenterHeader, PeopleSidebar, Footer }
+  components: { Header, PeopleSidebar, Footer }
 }
 </script>

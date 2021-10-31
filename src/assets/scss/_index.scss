@@ -4,12 +4,13 @@
 .mt-xxl{
     padding-top: 0px;
     @include md-size{
-        padding-top: 580px;
+        padding-top: 480px;
     }
 }
 .scroll-style{
     background: #172A39;
 }
+
 .index-banner{
     height: 810px;
     background: url("assets/img/index-img/index-banner.png");
@@ -22,10 +23,16 @@
 }
 .select-area-position{
     background-position: 100px;
+    @include md-size{
+        background-position: 70px;
+    }
 
 }
 .select-case-position {
     background-position: 140px;
+    @include md-size{
+        background-position: 80px;
+    }
 
 }
 .search-btn{
@@ -132,6 +139,10 @@ img{
     background-position: center center;
     background-size:cover ;
     object-fit: contain;
+    @include mobile375{
+        background: url("assets/img/lawyer-solvation-img/lawyer-solvation-mobile.png") no-repeat;
+        height: 500px;
+    }
 }
 .lawyer-card{
     max-width: 356px;
@@ -158,6 +169,10 @@ img{
     background-position: center center;
     background-size:cover ;
     object-fit: contain;
+    @include mobile375{
+        background: url("assets/img/knowledge-img/knowledge-mobile.png") no-repeat;
+        height: 500px;
+    }
 }
 .knowledge-card{
     max-width: 356px;

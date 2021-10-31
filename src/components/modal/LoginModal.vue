@@ -168,15 +168,12 @@ export default {
       this.$refs.lawyerLoginForm.resetForm()
       this.$refs.peopleLoginForm.resetForm()
     },
-    changeTab () {
-
-    },
     onSubmit () {
       userLogin(this.user)
         .then((res) => {
           console.log(res)
           const token = res.data.token
-          this.$public.addCookie(token)
+          this.$public.setToken(token)
           this.reset()
           this.hideModal()
         })

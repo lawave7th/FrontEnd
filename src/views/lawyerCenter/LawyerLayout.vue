@@ -1,6 +1,6 @@
 <template>
   <Header></Header>
-  <main>
+  <main class="pt-7 pt-md-11">
     <div class="container pb-md-11">
       <div class="row justify-content-between">
         <div class="col-3">

@@ -21,7 +21,7 @@ export const userVerifyPhone = (data) => {
 
 // 忘記密碼 api
 
-export const userForgetPassword = (data) => {
+export const userResetPassword = (data) => {
   return request('post', 'api/resetPwd', data)
 }
 

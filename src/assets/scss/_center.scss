@@ -1,7 +1,7 @@
 .center-side-menu{
     li{
         &:hover{
-        background:gray;
+        background:rgba(226, 186, 164, 0.2);
     }
     }
 }
@@ -9,6 +9,7 @@
     width: 32px;
     height: 32px;
 }
+
 //更換頭像
 .lawyer-photo label{
     cursor:pointer;

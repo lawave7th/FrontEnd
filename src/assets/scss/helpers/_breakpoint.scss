@@ -5,7 +5,7 @@
 } ;
 
 @mixin md-size{
-    @media(max-width:753px){
+    @media(max-width:740px){
         @content
     }
 };
