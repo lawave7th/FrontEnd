@@ -174,6 +174,7 @@ export default {
           console.log(res)
           const token = res.data.token
           this.$public.setToken(token)
+          this.$store.commit('updateToken', token)
           this.reset()
           this.hideModal()
         })

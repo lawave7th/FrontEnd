@@ -4,9 +4,5 @@ export default {
   },
   setToken (token) {
     localStorage.setItem('lawavaToken', token)
-  },
-  isLogin () {
-    const token = localStorage.getItem('lawavaToken')
-    return token !== ''
   }
 }

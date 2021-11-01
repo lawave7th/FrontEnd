@@ -57,7 +57,7 @@
             </ul>
           </div>
 
-          <div class="dropdown d-md-flex align-items-md-center" v-if="false">
+          <div class="dropdown d-md-flex align-items-md-center" v-if="isLogin()">
             <div class="header-search d-none d-lg-block me-4" :class="isBottomBanner === true ?'d-lg-none ':''">
             <input class="p-2 ps-5 rounded-pill border border-primary border-1 text-primary"
                    Placeholder="尋找合作律師"
@@ -173,6 +173,7 @@ export default {
   },
   data () {
     return {
+      token: '',
       isBottomBanner: true,
       isLawyer: false,
       pages: ['/index', '/knowledge', '/lawyer-solvation'],
@@ -198,11 +199,20 @@ export default {
     },
     logout () {
       localStorage.clear()
+      this.$store.commit('updateToken', '')
+    },
+    isLogin () {
+      this.token = localStorage.getItem('lawavaToken')
+      return this.token !== null
     }
   },
   watch: {
     '$store.state.nowPage': function () {
       this.changeNavColor(this.$store.state.nowPage)
+    },
+    '$store.state.token': function () {
+      console.log(this.$store.state.token)
+      this.isLogin()
     }
   }
 }
