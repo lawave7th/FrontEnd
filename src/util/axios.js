@@ -10,7 +10,7 @@ instance.interceptors.request.use(
     // Do something before request is sent
     const token = localStorage.getItem('lawavaToken')
     if (token) {
-      config.headers.Authorization = token
+      config.headers.Authorization = `Bearer ${token}`
     }
     return config
   },
@@ -19,14 +19,13 @@ instance.interceptors.request.use(
     return Promise.reject(error)
   }
 )
-
 instance.interceptors.response.use(
   function (response) {
     // Do something with response data
     return response
   },
   function (error) {
-    console.log(error)
+    window.showToast.showToast(error.response.data.Message)
     return Promise.reject(error)
   }
 )

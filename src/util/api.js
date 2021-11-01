@@ -44,3 +44,13 @@ export const getLawyerList = () => {
 export const getCommonProblem = () => {
   return request('get', 'api/faq/1')
 }
+
+// 律師會員中心
+// 側邊欄
+export const getLawyerSidebar = () => {
+  return request('get', 'mem/lsideInfo')
+}
+// 會員資料
+export const getLawyerData = () => {
+  return request('get', 'mem/Info')
+}

@@ -1,5 +1,5 @@
 <template>
-  <div class="border rounded rounded-3 px-md-7 py-md-5">
+  <div class="border border-primary rounded rounded-3 px-md-7 py-md-5">
     <form>
       <!-- 上方切換開關 -->
       <div
@@ -45,7 +45,7 @@
               <input type="text" class="form-control" id="jobTitle">
             </div>
           </div>
-          <button class="btn btn-secondary rounded-pill fs-7">
+          <button class="btn btn-primary-light rounded-pill fs-7">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z" fill="black"/>
             </svg>
@@ -66,14 +66,17 @@
               <input type="text" class="form-control" id="departmentName">
             </div>
             <div class="col-3">
-              <label for="degree" class="form-label">學位：</label>
+              <label for="degree" class="form-label">學歷：</label>
               <select class="form-select select-icon" id="degree">
-                <option value="dog">Dog</option>
-                <option value="cat">Cat</option>
+                <option value="博士">博士</option>
+                <option value="碩士">碩士</option>
+                <option value="大學">大學</option>
+                <option value="四技">四技</option>
+                <option value="二技">二技</option>
               </select>
             </div>
           </div>
-          <button class="btn btn-secondary rounded-pill fs-7">
+          <button class="btn btn-primary-light rounded-pill fs-7">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z" fill="black"/>
             </svg>
@@ -300,7 +303,7 @@
           </div>
         </div>
         <div class="d-flex flex-column align-items-end">
-          <button class="btn btn-dark mb-md-3 py-md-4 px-md-10 rounded-pill" type="button">儲存修改</button>
+          <button class="btn btn-secondary mb-md-3 py-md-4 px-md-10 " type="button">儲存修改</button>
           <p>通過資格審核便可開啟上方公開資料核取鈕</p></div>
       </div>
     </form>
@@ -308,7 +311,20 @@
 </template>
 
 <script>
+import { getLawyerData } from '@/util/api'
 export default {
-  name: 'LawyerEditPage'
+  mounted () {
+    this.getDeta()
+  },
+  methods: {
+    getDeta () {
+      getLawyerData()
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((error) => { console.error(error) })
+    }
+  }
+
 }
 </script>

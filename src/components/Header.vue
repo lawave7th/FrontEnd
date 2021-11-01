@@ -162,7 +162,6 @@
 </template>
 
 <script>
-
 import RegisterModal from './modal/RegisterModal'
 import LoginModal from './modal/LoginModal'
 
@@ -200,6 +199,7 @@ export default {
     logout () {
       localStorage.clear()
       this.$store.commit('updateToken', '')
+      this.$router.push({ name: 'Index' })
     },
     isLogin () {
       this.token = localStorage.getItem('lawavaToken')
@@ -211,7 +211,6 @@ export default {
       this.changeNavColor(this.$store.state.nowPage)
     },
     '$store.state.token': function () {
-      console.log(this.$store.state.token)
       this.isLogin()
     }
   }

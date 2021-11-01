@@ -1,10 +1,11 @@
 <template>
-  <router-view />
+  <router-view/>
+  <Toast/>
 </template>
 
 <style lang="scss">
 
-@import '@/assets/scss/all';
+  @import '@/assets/scss/all';
 </style>
 <script>
 
@@ -14,10 +15,21 @@ export default {
       nowPage: ''
     }
   },
+  mounted () {
+    window.showToast = this
+  },
+  methods: {
+    showToast (response) {
+      this.$toast.add({
+        severity: 'error',
+        detail: response,
+        life: 2000
+      })
+    }
+  },
   watch: {
     $route (to, from) {
       this.nowPage = to.path
-      // console.log(this.nowPage)
       this.$store.commit('updatePage', {
         nowPage: this.nowPage
       })
