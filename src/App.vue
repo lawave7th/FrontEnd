@@ -1,11 +1,11 @@
 <template>
+  <Loading v-model:active="isLoading"></Loading>
   <router-view/>
   <Toast/>
 </template>
 
 <style lang="scss">
-
-  @import '@/assets/scss/all';
+ @import '@/assets/scss/all';
 </style>
 <script>
 
@@ -17,6 +17,11 @@ export default {
   },
   mounted () {
     window.showToast = this
+  },
+  computed: {
+    isLoading () {
+      return this.$store.state.isLoading
+    }
   },
   methods: {
     showToast (response) {

@@ -79,6 +79,8 @@ export default {
           this.lawyerData = res.data
           if (this.lawyerData.starAvg === null) {
             this.lawyerData.starAvg = 0
+          } else {
+            this.lawyerData.starAvg = Math.ceil(res.data.starAvg)
           }
         })
         .catch((error) => { console.error(error) })

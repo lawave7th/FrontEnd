@@ -1,4 +1,5 @@
 import axios from 'axios'
+import store from '@/store/store.js'
 
 const instance = axios.create({
   baseURL: process.env.VUE_APP_API,
@@ -8,6 +9,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
+    store.commit('setLoading', true)
     const token = localStorage.getItem('lawavaToken')
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
@@ -22,6 +24,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   function (response) {
     // Do something with response data
+    store.commit('setLoading', false)
     return response
   },
   function (error) {

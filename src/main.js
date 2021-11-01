@@ -12,12 +12,11 @@ import { localize } from '@vee-validate/i18n'
 import TW from './util/i18n/VeeValidateI18n'
 import PrimeVue from 'primevue/config'
 import Rating from 'primevue/rating'
-// import PrimeIcons from 'primeicons/primeicons.css'
+import PrimeIcons from 'primeicons/primeicons.css'
 import ToastService from 'primevue/toastservice'
 import Toast from 'primevue/toast'
-import 'primevue/resources/themes/saga-blue/theme.css'
+import './assets/scss/helpers/prime-style.css'
 import 'primevue/resources/primevue.min.css'
-import 'primeicons/primeicons.css'
 
 // 引入全領域方法
 import Public from './util/public'
@@ -39,8 +38,8 @@ app.config.globalProperties.$public = Public
 app.use(router)
 app.component('Loading', Loading)
 app.use(PrimeVue)
+app.use(PrimeIcons)
 app.component('Rating', Rating)
-// app.use(PrimeIcons)
 app.component('Toast', Toast)
 app.use(store)
 app.use(VueAxios, axios)

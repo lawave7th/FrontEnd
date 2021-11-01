@@ -7,7 +7,7 @@
           <div class="d-flex align-items-center">
             <!-- logo -->
             <h1>
-              <router-link class="navbar-brand ps-3 fs-2 text-white" to="/">
+              <router-link class="navbar-brand ps-3 fs-2 text-white" :to="{ name: 'Index' }">
                 <svg width="32" height="45" viewBox="0 0 32 45" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g clip-path="url(#clip0_1305:10861)">
                     <path
@@ -46,13 +46,13 @@
             <!-- PC版左側選單 -->
             <ul class="title-bar d-none d-md-flex">
               <li>
-                <router-link class="fs-4 d-block  me-4 text-decoration-none" to="/lawyer-solvation">律師媒合</router-link>
+                <router-link class="fs-4 d-block  me-4 text-decoration-none" :to="{ name: 'LawyerSolvation' }">律師媒合</router-link>
               </li>
               <li>
-                <router-link class="fs-4 d-block  me-4 text-decoration-none" to="/knowledge">法律知識+</router-link>
+                <router-link class="fs-4 d-block  me-4 text-decoration-none" :to="{ name: 'Knowledge' }">法律知識+</router-link>
               </li>
               <li>
-                <router-link class="fs-4 d-block  text-decoration-none" to="/common-problem">常見問題</router-link>
+                <router-link class="fs-4 d-block  text-decoration-none" :to="{ name: 'CommonProblem' }">常見問題</router-link>
               </li>
             </ul>
           </div>
@@ -145,13 +145,13 @@
       </nav>
       <ul class="title-bar d-flex d-md-none justify-content-center" :class="isBottomBanner === true ?'':'title-bar-primary'">
         <li>
-          <router-link class="fs-4 d-block pt-2 me-4 text-decoration-none mb-2" to="/lawyer-solvation">律師媒合</router-link>
+          <router-link class="fs-4 d-block pt-2 me-4 text-decoration-none mb-2"  :to="{ name: 'LawyerSolvation' }">律師媒合</router-link>
         </li>
         <li>
-          <router-link class="fs-4 d-block pt-2 me-4 text-decoration-none mb-2" to="/knowledge">法律知識+</router-link>
+          <router-link class="fs-4 d-block pt-2 me-4 text-decoration-none mb-2" :to="{ name: 'Knowledge' }">法律知識+</router-link>
         </li>
         <li>
-          <router-link class="fs-4 d-block pt-2 me-4 text-decoration-none mb-2" to="/common-problem">常見問題</router-link>
+          <router-link class="fs-4 d-block pt-2 me-4 text-decoration-none mb-2" :to="{ name: 'CommonProblem' }">常見問題</router-link>
         </li>
       </ul>
     </div>
