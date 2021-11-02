@@ -24,30 +24,32 @@
         <div class="col-12">
           <div class="row">
             <div class="col-md-4">
-            <label for="lawyerPhoneNumber" class="form-label fw-bold">電話號碼</label>
-            <input type="text" class="form-control" id="lawyerPhoneNumber">
-          </div>
+              <label for="lawyerPhoneNumber" class="form-label fw-bold">電話號碼</label>
+              <input type="text" class="form-control" id="lawyerPhoneNumber">
+            </div>
             <div class="col-md-4">
               <label for="lawyerEmail" class="form-label fw-bold">電子信箱</label>
               <input type="email" class="form-control" id="lawyerEmail">
             </div>
           </div>
         </div>
-        <div class="col-12">
+        <div class="col-12" >
           <p class="fw-bold">工作經歷</p>
-          <div class="row">
+          <div class="row" v-for="(item,index) in experienceList" :key="index">
             <div class="col-md-4 mb-md-3">
               <label for="companyName" class="form-label">公司名稱：</label>
-              <input type="text" class="form-control" id="companyName">
+              <input type="text" class="form-control" id="companyName" v-model="item.companyName">
             </div>
             <div class="col-md-4 mb-md-3">
               <label for="jobTitle" class="form-label">職位名稱：</label>
-              <input type="text" class="form-control" id="jobTitle">
+              <input type="text" class="form-control" id="jobTitle" v-model="item.jobTitle">
             </div>
           </div>
-          <button class="btn btn-primary-light rounded-pill fs-7">
+          <button class="btn btn-primary-light rounded-pill fs-7" @click="addExperience">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z" fill="black"/>
+              <path
+                d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z"
+                fill="black"/>
             </svg>
             <span class="align-middle">
               新增經歷
@@ -56,18 +58,18 @@
         </div>
         <div class="col-12">
           <p class="fw-bold">個人學歷</p>
-          <div class="row">
+          <div class="row" v-for="(item,index) in education" :key="index" >
             <div class="col-md-4 mb-md-3">
               <label for="schoolName" class="form-label">學校名稱：</label>
-              <input type="text" class="form-control" id="schoolName">
+              <input type="text" class="form-control" id="schoolName" v-model="item.schoolName">
             </div>
             <div class="col-md-4 mb-md-3">
               <label for="departmentName" class="form-label">科系名稱：</label>
-              <input type="text" class="form-control" id="departmentName">
+              <input type="text" class="form-control" id="departmentName" v-model="item.departmentName">
             </div>
             <div class="col-3">
-              <label for="degree" class="form-label">學歷：</label>
-              <select class="form-select select-icon" id="degree">
+              <label for="degree" class="form-label" >學歷：</label>
+              <select class="form-select select-icon" id="degree" v-model="item.degree">
                 <option value="博士">博士</option>
                 <option value="碩士">碩士</option>
                 <option value="大學">大學</option>
@@ -76,9 +78,11 @@
               </select>
             </div>
           </div>
-          <button class="btn btn-primary-light rounded-pill fs-7">
+          <button class="btn btn-primary-light rounded-pill fs-7" @click.prevent="addEducation">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z" fill="black"/>
+              <path
+                d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z"
+                fill="black"/>
             </svg>
             <span class="align-middle">
               新增學歷
@@ -121,24 +125,24 @@
               </label>
             </div>
             <div class="col-auto">
-              <input class="form-check-input" type="checkbox" value="消費糾紛"
+              <input class="form-check-input me-2" type="checkbox" value="消費糾紛"
                      id="consumerDisputes">
               <label class="form-check-label" for="consumerDisputes">
                 消費糾紛
               </label>
             </div>
           </div>
-          <div class="row align-items-center">
-            <div class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="其他" id="other">
-              <label class="form-check-label" for="other">
-                其他
-              </label>
-            </div>
-            <div class="col-auto">
-              <input type="text" class="form-control">
-            </div>
+          <!--          <div class="row align-items-center">-->
+          <div class="col-auto">
+            <input class="form-check-input me-2" type="checkbox" value="其他" id="other">
+            <label class="form-check-label" for="other">
+              其他
+            </label>
           </div>
+          <!--            <div class="col-auto">-->
+          <!--              <input type="text" class="form-control">-->
+          <!--            </div>-->
+          <!--          </div>-->
         </div>
         <div class="col-12">
           <label for="lawyerIntroduction" class="form-label fw-bold">律師介紹</label>
@@ -283,7 +287,7 @@
               <input type="password" id="onSitePrice" class="form-control">
             </div>
             <div class="col-auto">
-             <span >
+             <span>
              元/小時
             </span>
             </div>
@@ -311,18 +315,47 @@
 </template>
 
 <script>
-import { getLawyerData } from '@/util/api'
+import { getMemberData } from '@/util/api'
+
 export default {
+  data () {
+    return {
+      data: {},
+      experienceList: [{
+        companyName: '',
+        jobTitle: ''
+      }],
+      education: [{
+        schoolName: '',
+        departmentName: '',
+        degree: ''
+      }]
+    }
+  },
   mounted () {
     this.getDeta()
   },
   methods: {
     getDeta () {
-      getLawyerData()
+      getMemberData()
         .then((res) => {
           console.log(res)
         })
-        .catch((error) => { console.error(error) })
+        .catch((error) => {
+          console.error(error)
+        })
+    },
+    addExperience () {
+      this.experienceList.push({
+        companyName: '',
+        departmentName: ''
+      })
+    },
+    addEducation () {
+      this.education.push({
+        schoolName: '',
+        jobName: ''
+      })
     }
   }
 

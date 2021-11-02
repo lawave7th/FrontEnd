@@ -1,9 +1,8 @@
 <template>
-
     <div class="border d-none d-md-block border-primary d-flex flex-column align-items-center rounded rounded-3 shadow-md px-4">
       <div class="lawyer-photo img-fluid position-relative mx-4 my-5">
         <label for="photo-upload">
-          <img class="rounded-pill" src="../../../assets/img/lawyer-photo.jpeg" alt="律師照片">
+          <img class="rounded-pill" src="../../../assets/img/center/member-logo.png" alt="律師照片">
         </label>
         <input class="d-none" type="file" id="photo-upload"/>
       </div>
@@ -11,7 +10,7 @@
         <p class="fs-7 mb-1 text-info">
           Welcome
         </p>
-        <h3 class="fs-4 text-secondary">Emma Corrin</h3>
+        <h3 class="fs-4 text-secondary">{{ lawyerData.firstName }}{{ lawyerData.lastName }}</h3>
         <div class="star_box d-flex align-items-center justify-content-center mb-md-6">
           <Rating class="text-primary" :modelValue="lawyerData.starAvg" :readonly="true" :stars="5" :cancel="false" />
           <span class="fs-7 ms-1">({{ lawyerData.starAvg }})</span>
@@ -61,7 +60,7 @@
 </template>
 
 <script>
-import { getLawyerSidebar } from '@/util/api'
+import { getMemberSidebar } from '@/util/api'
 export default {
   data () {
     return {
@@ -73,17 +72,24 @@ export default {
   },
   methods: {
     getDeta () {
-      getLawyerSidebar()
+      getMemberSidebar()
         .then((res) => {
           console.log(res)
           this.lawyerData = res.data
-          if (this.lawyerData.starAvg === null) {
-            this.lawyerData.starAvg = 0
-          } else {
-            this.lawyerData.starAvg = Math.ceil(res.data.starAvg)
-          }
+          this.presetDataStatus(res)
         })
         .catch((error) => { console.error(error) })
+    },
+    presetDataStatus (res) {
+      if (this.lawyerData.firstName === null && this.lawyerData.lastName === null) {
+        this.lawyerData.firstName = '尚未填寫名稱'
+        this.lawyerData.lastName = ''
+      }
+      if (this.lawyerData.starAvg === null) {
+        this.lawyerData.starAvg = 0
+      } else {
+        this.lawyerData.starAvg = Math.ceil(res.data.starAvg)
+      }
     }
   }
 }

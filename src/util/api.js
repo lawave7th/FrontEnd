@@ -47,10 +47,15 @@ export const getCommonProblem = () => {
 
 // 律師會員中心
 // 側邊欄
-export const getLawyerSidebar = () => {
+export const getMemberSidebar = () => {
   return request('get', 'mem/lsideInfo')
 }
 // 會員資料
-export const getLawyerData = () => {
+// 取得
+export const getMemberData = () => {
   return request('get', 'mem/Info')
+}
+// 修改
+export const reviseMemberData = (data) => {
+  return request('put', 'mem/Info', data)
 }

@@ -1,7 +1,7 @@
 <template>
   <div
     class="border border-primary d-flex flex-column align-items-center justify-content-center rounded rounded-3 px-md-7 py-md-10">
-    <img class="rounded mb-md-7" src="../../assets/img/center/changePassword.png" alt="更換密碼圖片">
+    <img class="rounded mb-md-7" src="../../assets/img/center/change-password.png" alt="更換密碼圖片">
     <!-- 輸入舊密碼 -->
     <div class="enter-password" v-if="!isVerify">
       <div class="text-center mb-md-5 ">

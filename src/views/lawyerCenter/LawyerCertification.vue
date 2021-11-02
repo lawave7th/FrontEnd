@@ -1,134 +1,133 @@
 <template>
-  <div class="border rounded rounded-3 px-md-7 py-md-5">
+  <div class="border border-primary rounded rounded-3 px-4 px-md-7 py-md-5 mb-11 mb-md-0">
     <!-- 上傳檔案欄位 -->
-    <ul class="mb-md-4">
-      <li class="d-flex justify-content-between mb-md-5">
+    <ul class="my-4 my-md-0 mb-md-4">
+      <li class="d-flex flex-column flex-md-row align-items-center align-items-md-start justify-content-center justify-content-md-between mb-4 mb-md-5">
         <div>
           <div class="d-flex">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M21 19V5C21 3.9 20.1 3 19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19ZM8.5 13.5L11 16.51L14.5 12L19 18H5L8.5 13.5Z"
-                fill="black" />
-            </svg>
-            <h3 class="fs-4 mb-md-4">請上傳律師證明檔案</h3>
+            <span class="material-icons text-secondary">
+image
+</span>
+            <h3 class="fs-4  mb-md-4 text-secondary">請上傳律師證明檔案</h3>
           </div>
-          <p>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M7.00004 0.333496C3.31337 0.333496 0.333374 3.3135 0.333374 7.00016C0.333374 10.6868 3.31337 13.6668 7.00004 13.6668C10.6867 13.6668 13.6667 10.6868 13.6667 7.00016C13.6667 3.3135 10.6867 0.333496 7.00004 0.333496ZM10.3334 9.3935L9.39337 10.3335L7.00004 7.94016L4.60671 10.3335L3.66671 9.3935L6.06004 7.00016L3.66671 4.60683L4.60671 3.66683L7.00004 6.06016L9.39337 3.66683L10.3334 4.60683L7.94004 7.00016L10.3334 9.3935Z"
-                fill="#DB3328" />
-            </svg>
+          <p v-show="errorMessage">
+            <span class="material-icons text-danger  align-middle fs-7">cancel</span>
             <span class="text-danger align-middle fs-7">
-              請重新上傳</span>
+              圖片格式不符，請重新上傳</span>
           </p>
-
         </div>
         <div>
           <div class="upload-image-box">
-            <label for="img-upload">
-              <svg width="400" height="300" viewBox="0 0 400 300" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <rect x="0.5" y="0.5" width="399" height="299" rx="15.5" fill="#E5E5E5"
-                      stroke="black" stroke-linecap="round" stroke-dasharray="10 10" />
-                <line x1="160" y1="149.5" x2="240" y2="149.5" stroke="black"
-                      stroke-dasharray="10 10" />
-                <line x1="200.5" y1="110" x2="200.5" y2="190" stroke="black"
-                      stroke-dasharray="10 10" />
-              </svg>
+            <label for="certificateImg"  >
+              <img v-if="!image[0].imgNum" src="../../assets/img/center/lawyer/photo-preview.png" alt="預覽圖">
+              <img v-else  class="rounded rounded-3" :src="image[0].imgNum" alt="預覽圖" width="400">
             </label>
-            <input class="d-none" type="file" id="img-upload"/>
+            <input class="d-none" name="fileOne" @change="uploadFile($event , 0)" ref="fileInputOne" type="file" id="certificateImg"/>
           </div>
         </div>
       </li>
-      <li class="d-flex justify-content-between mb-md-5">
+      <li class="d-flex flex-column flex-md-row align-items-center align-items-md-start justify-content-center justify-content-md-between mb-4 mb-md-5">
         <div>
           <div class="d-flex">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M21 19V5C21 3.9 20.1 3 19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19ZM8.5 13.5L11 16.51L14.5 12L19 18H5L8.5 13.5Z"
-                fill="black" />
-            </svg>
-            <h3 class="fs-4 mb-md-4">請上傳個人身分證檔案</h3>
+          <span class="material-icons text-secondary">
+image
+</span>
+            <h3 class="fs-4 mb-md-4 text-secondary">請上傳個人身分證檔案</h3>
           </div>
-          <p>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M7.00004 0.333496C3.31337 0.333496 0.333374 3.3135 0.333374 7.00016C0.333374 10.6868 3.31337 13.6668 7.00004 13.6668C10.6867 13.6668 13.6667 10.6868 13.6667 7.00016C13.6667 3.3135 10.6867 0.333496 7.00004 0.333496ZM10.3334 9.3935L9.39337 10.3335L7.00004 7.94016L4.60671 10.3335L3.66671 9.3935L6.06004 7.00016L3.66671 4.60683L4.60671 3.66683L7.00004 6.06016L9.39337 3.66683L10.3334 4.60683L7.94004 7.00016L10.3334 9.3935Z"
-                fill="#DB3328" />
-            </svg>
+          <p v-show="errorMessage">
+            <span class="material-icons text-danger  align-middle fs-7">cancel</span>
             <span class="text-danger align-middle fs-7">
-              請重新上傳</span>
+              圖片格式不符，請重新上傳</span>
           </p>
         </div>
         <div>
           <div class="upload-image-box">
-            <label for="img-upload">
-              <svg width="400" height="300" viewBox="0 0 400 300" fill="none"
-                   xmlns="http://www.w3.org/2000/svg">
-                <rect x="0.5" y="0.5" width="399" height="299" rx="15.5" fill="#E5E5E5"
-                      stroke="black" stroke-linecap="round" stroke-dasharray="10 10" />
-                <line x1="160" y1="149.5" x2="240" y2="149.5" stroke="black"
-                      stroke-dasharray="10 10" />
-                <line x1="200.5" y1="110" x2="200.5" y2="190" stroke="black"
-                      stroke-dasharray="10 10" />
-              </svg>
+            <label for="identityCardImg">
+              <img v-if="!image[1].imgNum" src="../../assets/img/center/lawyer/photo-preview.png" alt="預覽圖">
+              <img v-else  class="rounded rounded-3" :src="image[1].imgNum" alt="預覽圖" width="400">
             </label>
-            <input class="d-none" type="file" id="img-upload"/>
+            <input class="d-none" name="fileTwo" @change="uploadFile($event , 1)" ref="fileInputTwo" type="file" id="identityCardImg"/>
           </div>
         </div>
       </li>
-      <li class="d-flex justify-content-between mb-md-5">
+      <li class="d-flex flex-column flex-md-row align-items-center align-items-md-start justify-content-center justify-content-md-between mb-md-5">
         <div>
           <div class="d-flex">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M21 19V5C21 3.9 20.1 3 19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19ZM8.5 13.5L11 16.51L14.5 12L19 18H5L8.5 13.5Z"
-                fill="black" />
-            </svg>
-            <h3 class="fs-4 mb-md-4">請上傳身份證明第二證件</h3>
+            <span class="material-icons text-secondary">
+image
+</span>
+            <h3 class="fs-4 mb-md-4 text-secondary">請上傳身份證明第二證件</h3>
           </div>
-          <p>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M7.00004 0.333496C3.31337 0.333496 0.333374 3.3135 0.333374 7.00016C0.333374 10.6868 3.31337 13.6668 7.00004 13.6668C10.6867 13.6668 13.6667 10.6868 13.6667 7.00016C13.6667 3.3135 10.6867 0.333496 7.00004 0.333496ZM10.3334 9.3935L9.39337 10.3335L7.00004 7.94016L4.60671 10.3335L3.66671 9.3935L6.06004 7.00016L3.66671 4.60683L4.60671 3.66683L7.00004 6.06016L9.39337 3.66683L10.3334 4.60683L7.94004 7.00016L10.3334 9.3935Z"
-                fill="#DB3328" />
-            </svg>
+          <p v-show="errorMessage">
+            <span class="material-icons text-danger  align-middle fs-7">cancel</span>
             <span class="text-danger align-middle fs-7">
-              請重新上傳</span>
+              圖片格式不符，請重新上傳</span>
           </p>
         </div>
         <div>
           <div class="upload-image-box">
-            <label for="img-upload">
-            <svg width="400" height="300" viewBox="0 0 400 300" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-              <rect x="0.5" y="0.5" width="399" height="299" rx="15.5" fill="#E5E5E5"
-                    stroke="black" stroke-linecap="round" stroke-dasharray="10 10" />
-              <line x1="160" y1="149.5" x2="240" y2="149.5" stroke="black"
-                    stroke-dasharray="10 10" />
-              <line x1="200.5" y1="110" x2="200.5" y2="190" stroke="black"
-                    stroke-dasharray="10 10" />
-            </svg>
+            <label for="secondCertificateImg">
+              <img v-if="!image[2].imgNum" src="../../assets/img/center/lawyer/photo-preview.png" alt="預覽圖">
+              <img v-else  class="rounded rounded-3" :src="image[2].imgNum" alt="預覽圖" width="400">
             </label>
-            <input class="d-none" type="file" id="img-upload"/>
+            <input class="d-none" name="fileThree" @change="uploadFile($event , 2)" ref="fileInputThree" type="file" id="secondCertificateImg"/>
           </div>
         </div>
       </li>
     </ul>
     <div class="d-flex flex-column align-items-end">
-      <button class="btn btn-dark mb-md-3 py-md-4 px-md-10 rounded-pill" type="button">送出審核</button>
+      <button class="btn btn-secondary mb-3 py-md-4 px-md-10 rounded" @click="onSubmit" type="button">送出審核</button>
       <p>需待 5 個工作天審核，通過即可開始媒合</p></div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'LawyerCertification'
+  data () {
+    return {
+      tempProduct: {},
+      image: [{ imgNum: '' }, { imgNum: '' }, { imgNum: '' }],
+      errorMessage: false
+    }
+  },
+  methods: {
+    uploadFile (event, num) {
+      const file = event.target.files.item(0)
+      console.log(event.target.files)
+      const reader = new FileReader()
+      if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
+        reader.addEventListener('load', (event) => {
+          this.image[num].imgNum = event.target.result
+        })
+        reader.readAsDataURL(file)
+      } else {
+        this.errorMessage = true
+      }
+    },
+    onSubmit () {
+      const formData = new FormData()
+      formData.append('fileOne', this.$refs.fileInputOne.files[0])
+      console.log(this.$refs.fileInputOne.files[0])
+      formData.append('fileTwo', this.$refs.fileInputTwo.files[0])
+      console.log(this.$refs.fileInputTwo.files[0])
+      formData.append('fileThree', this.$refs.fileInputThree.files[0])
+      console.log(this.$refs.fileInputThree.files[0])
+      console.log(Object.fromEntries(formData))
+      const token = localStorage.getItem('lawavaToken')
+      this.axios({
+        method: 'post',
+        url: 'https://lawave.rocket-coding.com/lawyer/veriPhoto/',
+        data: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`
+        }
+      }).then((response) => {
+        console.log(response.data)
+      }).catch((error) => {
+        window.showToast.showToast(error.response.data.Message)
+      })
+    }
+  }
 }
 </script>
