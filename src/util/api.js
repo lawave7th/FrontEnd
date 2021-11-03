@@ -1,5 +1,7 @@
 import request from './axios'
 
+// 扣除 formData 格式外的 api 皆透過此頁面管理
+
 // 登入註冊 api
 export const userLogin = (data) => {
   return request('post', 'api/login', data)
@@ -31,6 +33,18 @@ export const userResetPassword = (data) => {
 
 export const getIndexDashboard = () => {
   return request('get', 'api/indexDashboard')
+}
+
+// 取得熱門律師
+
+export const getIndexHotLawyer = () => {
+  return request('get', 'api/indexhotlawyer')
+}
+
+// 取得會員回饋
+
+export const getMemberPraise = () => {
+  return request('get', 'api/hotPublic/')
 }
 
 // 律師媒合頁

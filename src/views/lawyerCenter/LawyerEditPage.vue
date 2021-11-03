@@ -35,7 +35,7 @@
         </div>
         <div class="col-12" >
           <p class="fw-bold">工作經歷</p>
-          <div class="row" v-for="(item,index) in experienceList" :key="index">
+          <div class="row" v-for="(item,index) in data.experienceList" :key="index">
             <div class="col-md-4 mb-md-3">
               <label for="companyName" class="form-label">公司名稱：</label>
               <input type="text" class="form-control" id="companyName" v-model="item.companyName">
@@ -58,7 +58,7 @@
         </div>
         <div class="col-12">
           <p class="fw-bold">個人學歷</p>
-          <div class="row" v-for="(item,index) in education" :key="index" >
+          <div class="row" v-for="(item,index) in data.education" :key="index" >
             <div class="col-md-4 mb-md-3">
               <label for="schoolName" class="form-label">學校名稱：</label>
               <input type="text" class="form-control" id="schoolName" v-model="item.schoolName">
@@ -98,175 +98,170 @@
           <div class="row mb-2">
             <div class="col-auto">
               <input class="form-check-input me-2" type="checkbox" value="民事訴訟"
-                     id="civilAction" v-model="data.goodAttype" @change="controlNum">
+                     id="civilAction" v-model="data.goodAtItem" @change="controlNum">
               <label class="form-check-label" for="civilAction">
                 民事訴訟
               </label>
             </div>
             <div class="col-auto">
               <input class="form-check-input me-2" type="checkbox" value="刑事訴訟"
-                     id="criminalSuit" v-model="data.goodAttype" @change="controlNum">
+                     id="criminalSuit" v-model="data.goodAtItem" @change="controlNum">
               <label class="form-check-label" for="criminalSuit">
                 刑事訴訟
               </label>
             </div>
             <div class="col-auto">
               <input class="form-check-input me-2" type="checkbox" value="家事訴訟"
-                     id="familyLitigation" v-model="data.goodAttype" @change="controlNum">
+                     id="familyLitigation" v-model="data.goodAtItem" @change="controlNum">
               <label class="form-check-label" for="familyLitigation">
                 家事訴訟
               </label>
             </div>
             <div class="col-auto">
               <input class="form-check-input me-2" type="checkbox" value="勞資爭議"
-                     id="laborDispute" v-model="data.goodAttype" @change="controlNum">
+                     id="laborDispute" v-model="data.goodAtItem" @change="controlNum">
               <label class="form-check-label" for="laborDispute">
                 勞資爭議
               </label>
             </div>
             <div class="col-auto">
               <input class="form-check-input me-2" type="checkbox" value="消費糾紛"
-                     id="consumerDisputes" v-model="data.goodAttype" @change="controlNum">
+                     id="consumerDisputes" v-model="data.goodAtItem" @change="controlNum">
               <label class="form-check-label" for="consumerDisputes">
                 消費糾紛
               </label>
             </div>
           </div>
-          <!--          <div class="row align-items-center">-->
           <div class="col-auto">
-            <input class="form-check-input me-2" type="checkbox" v-model="data.goodAttype" @change="controlNum" value="其他" id="other">
+            <input class="form-check-input me-2" type="checkbox" v-model="data.goodAtItem" @change="controlNum" value="其他" id="other">
             <label class="form-check-label" for="other">
               其他
             </label>
           </div>
-          <!--            <div class="col-auto">-->
-          <!--              <input type="text" class="form-control">-->
-          <!--            </div>-->
-          <!--          </div>-->
         </div>
         <div class="col-12">
           <label for="lawyerIntroduction" class="form-label fw-bold">律師介紹</label>
-          <textarea class="form-control" id="lawyerIntroduction" rows="3"></textarea>
+          <textarea class="form-control" id="lawyerIntroduction" v-model="data.introduction" rows="3"></textarea>
         </div>
         <div class="col-12">
           <p class="fw-bold">具有各縣市律師公會執業登入地區</p>
           <ul class="row mb-2">
             <li class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="台北" id="taipei">
+              <input class="form-check-input me-2" type="checkbox" v-model="data.areaItem" value="台北" id="taipei">
               <label class="form-check-label" for="taipei">
                 台北
               </label>
             </li>
             <li class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="新北" id="new-taipei">
+              <input class="form-check-input me-2" type="checkbox" v-model="data.areaItem" value="新北" id="new-taipei">
               <label class="form-check-label" for="new-taipei">
                 新北
               </label>
             </li>
             <li class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="桃園" id="taoyuan">
+              <input class="form-check-input me-2" type="checkbox" v-model="data.areaItem" value="桃園" id="taoyuan">
               <label class="form-check-label" for="taoyuan">
                 桃園
               </label>
             </li>
             <li class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="台中" id="taichung">
+              <input class="form-check-input me-2" type="checkbox" v-model="data.areaItem"  value="台中" id="taichung">
               <label class="form-check-label" for="taichung">
                 台中
               </label>
             </li>
             <li class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="台南" id="tainan">
+              <input class="form-check-input me-2" type="checkbox" v-model="data.areaItem" value="台南" id="tainan">
               <label class="form-check-label" for="tainan">
                 台南
               </label>
             </li>
             <li class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="高雄" id="kaohsiung">
+              <input class="form-check-input me-2" type="checkbox" v-model="data.areaItem" value="高雄" id="kaohsiung">
               <label class="form-check-label" for="kaohsiung">
                 高雄
               </label>
             </li>
             <li class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="新竹" id="hsinchu">
+              <input class="form-check-input me-2" type="checkbox" v-model="data.areaItem" value="新竹" id="hsinchu">
               <label class="form-check-label" for="hsinchu">
                 新竹
               </label>
             </li>
             <li class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="苗栗" id="miaoli">
+              <input class="form-check-input me-2" type="checkbox" v-model="data.areaItem"  value="苗栗" id="miaoli">
               <label class="form-check-label" for="miaoli">
                 苗栗
               </label>
             </li>
             <li class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="彰化" id="changhua">
+              <input class="form-check-input me-2" type="checkbox" v-model="data.areaItem" value="彰化" id="changhua">
               <label class="form-check-label" for="changhua">
                 彰化
               </label>
             </li>
             <li class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="南投" id="nantou">
+              <input class="form-check-input me-2" type="checkbox" v-model="data.areaItem" value="南投" id="nantou">
               <label class="form-check-label" for="nantou">
                 南投
               </label>
             </li>
             <li class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="雲林" id="yunlin">
+              <input class="form-check-input me-2" type="checkbox" v-model="data.areaItem" value="雲林" id="yunlin">
               <label class="form-check-label" for="yunlin">
                 雲林
               </label>
             </li>
             <li class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="嘉義" id="chiayi">
+              <input class="form-check-input me-2" type="checkbox" v-model="data.areaItem" value="嘉義" id="chiayi">
               <label class="form-check-label" for="chiayi">
                 嘉義
               </label>
             </li>
             <li class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="屏東" id="pingtung">
+              <input class="form-check-input me-2" type="checkbox" v-model="data.areaItem" value="屏東" id="pingtung">
               <label class="form-check-label" for="pingtung">
                 屏東
               </label>
             </li>
             <li class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="宜蘭" id="yilan">
+              <input class="form-check-input me-2" type="checkbox" v-model="data.areaItem" value="宜蘭" id="yilan">
               <label class="form-check-label" for="yilan">
                 宜蘭
               </label>
             </li>
             <li class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="花蓮" id="hualien">
+              <input class="form-check-input me-2" type="checkbox" v-model="data.areaItem" value="花蓮" id="hualien">
               <label class="form-check-label" for="hualien">
                 花蓮
               </label>
             </li>
             <li class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="台東" id="taitung">
+              <input class="form-check-input me-2" type="checkbox" v-model="data.areaItem" value="台東" id="taitung">
               <label class="form-check-label" for="taitung">
                 台東
               </label>
             </li>
             <li class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="澎湖" id="penghu">
+              <input class="form-check-input me-2" type="checkbox" v-model="data.areaItem" value="澎湖" id="penghu">
               <label class="form-check-label" for="penghu">
                 澎湖
               </label>
             </li>
             <li class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="金門" id="kinmen">
+              <input class="form-check-input me-2" type="checkbox" v-model="data.areaItem" value="金門" id="kinmen">
               <label class="form-check-label" for="kinmen">
                 金門
               </label>
             </li>
             <li class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="連江" id="lienchiang">
+              <input class="form-check-input me-2" type="checkbox" v-model="data.areaItem" value="連江" id="lienchiang">
               <label class="form-check-label" for="lienchiang">
                 連江
               </label>
             </li>
             <li class="col-auto">
-              <input class="form-check-input me-2" type="checkbox" value="其他" id="area-other">
+              <input class="form-check-input me-2" type="checkbox" v-model="data.areaItem" value="其他" id="area-other">
               <label class="form-check-label" for="area-other">
                 其他
               </label>
@@ -275,7 +270,7 @@
         </div>
         <div class="col-12">
           <label for="professionalField" class="form-label fw-bold">專業領域</label>
-          <textarea class="form-control" id="professionalField" rows="3"></textarea>
+          <textarea class="form-control" id="professionalField" rows="3"  v-model="data.professional" ></textarea>
         </div>
         <div class="col-12">
           <p class="fw-bold">諮詢費用</p>
@@ -315,21 +310,14 @@
 </template>
 
 <script>
-import { getMemberData } from '@/util/api'
+// 防呆
+
+import { getMemberData, reviseMemberData } from '@/util/api'
 
 export default {
   data () {
     return {
-      data: {},
-      experienceList: [{
-        companyName: '',
-        jobTitle: ''
-      }],
-      education: [{
-        schoolName: '',
-        departmentName: '',
-        degree: ''
-      }]
+      data: {}
     }
   },
   mounted () {
@@ -346,25 +334,30 @@ export default {
           console.error(error)
         })
     },
+    // 這邊要加三個檔的條件
     controlNum () {
-      console.log(this.data.goodAttype)
+      if (this.data.goodAtItem.length > 3) {
+      }
     },
     addExperience () {
-      this.experienceList.push({
+      this.data.experienceList.push({
         companyName: '',
         jobTitle: ''
       })
     },
     addEducation () {
-      this.education.push({
+      this.data.education.push({
         schoolName: '',
         departmentName: '',
         degree: ''
       })
     },
     onSubmit () {
-      console.log(this.education, this.experienceList)
-      console.log(this.data)
+      reviseMemberData(this.data)
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((error) => { console.error(error) })
     }
   }
 
