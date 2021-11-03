@@ -82,6 +82,7 @@ image
 </template>
 
 <script>
+import { lawyerCertificationData } from '@/util/api'
 export default {
   data () {
     return {
@@ -90,7 +91,21 @@ export default {
       errorMessage: false
     }
   },
+  created () {
+    this.getData()
+  },
   methods: {
+    getData () {
+      lawyerCertificationData()
+        .then((response) => {
+          console.log(response.data)
+          this.image[0].imgNum = response.data.verifyPhotolawyer
+          this.image[1].imgNum = response.data.verifyPhotoFir
+          this.image[2].imgNum = response.data.verifyPhotoSec
+        }).catch((error) => {
+          console.log(error)
+        })
+    },
     uploadFile (event, num) {
       const file = event.target.files.item(0)
       console.log(event.target.files)

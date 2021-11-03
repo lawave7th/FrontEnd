@@ -13,11 +13,11 @@
           <div class="row">
             <div class="col-md-4">
               <label for="lawyerName" class="form-label fw-bold">名字</label>
-              <input type="text" class="form-control" id="lawyerName">
+              <input type="text" class="form-control" id="lawyerName" v-model="data.firstName">
             </div>
             <div class="col-md-4">
               <label for="lawyerLastName" class="form-label fw-bold">姓氏</label>
-              <input type="text" class="form-control" id="lawyerLastName">
+              <input type="text" class="form-control" id="lawyerLastName" v-model="data.lastName">
             </div>
           </div>
         </div>
@@ -25,11 +25,11 @@
           <div class="row">
             <div class="col-md-4">
               <label for="lawyerPhoneNumber" class="form-label fw-bold">電話號碼</label>
-              <input type="text" class="form-control" id="lawyerPhoneNumber">
+              <input type="text" class="form-control" id="lawyerPhoneNumber" v-model="data.phone">
             </div>
             <div class="col-md-4">
               <label for="lawyerEmail" class="form-label fw-bold">電子信箱</label>
-              <input type="email" class="form-control" id="lawyerEmail">
+              <input type="email" class="form-control" id="lawyerEmail" v-model="data.mail" readonly >
             </div>
           </div>
         </div>
@@ -45,7 +45,7 @@
               <input type="text" class="form-control" id="jobTitle" v-model="item.jobTitle">
             </div>
           </div>
-          <button class="btn btn-primary-light rounded-pill fs-7" @click="addExperience">
+          <button class="btn btn-primary-light rounded-pill fs-7" @click.prevent="addExperience">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z"
@@ -91,42 +91,42 @@
         </div>
         <div class="col-12">
           <label for="lawyerSaying" class="form-label">律師名言</label>
-          <input type="text" class="form-control" id="lawyerSaying">
+          <input type="text" class="form-control" id="lawyerSaying" v-model="data.saying">
         </div>
         <div class="col-12">
           <p class="fw-bold">領域類別（最多選取三個）</p>
           <div class="row mb-2">
             <div class="col-auto">
               <input class="form-check-input me-2" type="checkbox" value="民事訴訟"
-                     id="civilAction">
+                     id="civilAction" v-model="data.goodAttype" @change="controlNum">
               <label class="form-check-label" for="civilAction">
                 民事訴訟
               </label>
             </div>
             <div class="col-auto">
               <input class="form-check-input me-2" type="checkbox" value="刑事訴訟"
-                     id="criminalSuit">
+                     id="criminalSuit" v-model="data.goodAttype" @change="controlNum">
               <label class="form-check-label" for="criminalSuit">
                 刑事訴訟
               </label>
             </div>
             <div class="col-auto">
               <input class="form-check-input me-2" type="checkbox" value="家事訴訟"
-                     id="familyLitigation">
+                     id="familyLitigation" v-model="data.goodAttype" @change="controlNum">
               <label class="form-check-label" for="familyLitigation">
                 家事訴訟
               </label>
             </div>
             <div class="col-auto">
               <input class="form-check-input me-2" type="checkbox" value="勞資爭議"
-                     id="laborDispute">
+                     id="laborDispute" v-model="data.goodAttype" @change="controlNum">
               <label class="form-check-label" for="laborDispute">
                 勞資爭議
               </label>
             </div>
             <div class="col-auto">
               <input class="form-check-input me-2" type="checkbox" value="消費糾紛"
-                     id="consumerDisputes">
+                     id="consumerDisputes" v-model="data.goodAttype" @change="controlNum">
               <label class="form-check-label" for="consumerDisputes">
                 消費糾紛
               </label>
@@ -134,7 +134,7 @@
           </div>
           <!--          <div class="row align-items-center">-->
           <div class="col-auto">
-            <input class="form-check-input me-2" type="checkbox" value="其他" id="other">
+            <input class="form-check-input me-2" type="checkbox" v-model="data.goodAttype" @change="controlNum" value="其他" id="other">
             <label class="form-check-label" for="other">
               其他
             </label>
@@ -284,7 +284,7 @@
               <label for="onSitePrice" class="col-form-label">現場諮詢：</label>
             </div>
             <div class="col-auto">
-              <input type="password" id="onSitePrice" class="form-control">
+              <input type="number" id="onSitePrice" class="form-control" v-model="data.faceCost">
             </div>
             <div class="col-auto">
              <span>
@@ -297,7 +297,7 @@
               <label for="telephonePrice" class="col-form-label">電話諮詢：</label>
             </div>
             <div class="col-auto">
-              <input type="password" id="telephonePrice" class="form-control">
+              <input type="number" id="telephonePrice" class="form-control" v-model="data.phoneCost">
             </div>
             <div class="col-auto">
              <span>
@@ -307,7 +307,7 @@
           </div>
         </div>
         <div class="d-flex flex-column align-items-end">
-          <button class="btn btn-secondary mb-md-3 py-md-4 px-md-10 " type="button">儲存修改</button>
+          <button class="btn btn-secondary mb-md-3 py-md-4 px-md-10" @click="onSubmit" type="button">儲存修改</button>
           <p>通過資格審核便可開啟上方公開資料核取鈕</p></div>
       </div>
     </form>
@@ -340,22 +340,31 @@ export default {
       getMemberData()
         .then((res) => {
           console.log(res)
+          this.data = res.data
         })
         .catch((error) => {
           console.error(error)
         })
     },
+    controlNum () {
+      console.log(this.data.goodAttype)
+    },
     addExperience () {
       this.experienceList.push({
         companyName: '',
-        departmentName: ''
+        jobTitle: ''
       })
     },
     addEducation () {
       this.education.push({
         schoolName: '',
-        jobName: ''
+        departmentName: '',
+        degree: ''
       })
+    },
+    onSubmit () {
+      console.log(this.education, this.experienceList)
+      console.log(this.data)
     }
   }
 

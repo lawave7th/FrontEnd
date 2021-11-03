@@ -1,10 +1,20 @@
 <template>
     <div class="border d-none d-md-block border-primary d-flex flex-column align-items-center rounded rounded-3 shadow-md px-4">
       <div class="lawyer-photo img-fluid position-relative mx-4 my-5">
-        <label for="photo-upload">
-          <img class="rounded-pill" src="../../../assets/img/center/member-logo.png" alt="律師照片">
+        <label for="photoUpload">
+          <div class="photoUpload">
+            <img v-if="!image" class="rounded rounded-pill" src="../../../assets/img/member-logo.png" alt="律師照片">
+            <img v-else  name="file" class="rounded rounded-pill"  :src="image" alt="律師照片" width="200" height="200">
+<!--            <cropper-->
+<!--              v-else-->
+<!--              :src="image"-->
+<!--              :stencil-props="{handlers: {},movable: false,scalable: false,}"-->
+<!--              :stencil-size="{width: 200, height: 200}"-->
+<!--              image-restriction="stencil"-->
+<!--            />-->
+          </div>
         </label>
-        <input class="d-none" type="file" id="photo-upload"/>
+        <input class="d-none" type="file" id="photoUpload" ref="lawyerPhoto" @change="uploadFile" />
       </div>
       <div class="lawyer-information text-center">
         <p class="fs-7 mb-1 text-info">
@@ -60,18 +70,35 @@
 </template>
 
 <script>
-import { getMemberSidebar } from '@/util/api'
+import { getMemberSidebar, getMemberPhoto } from '@/util/api'
+// import { Cropper } from 'vue-advanced-cropper'
+// import 'vue-advanced-cropper/dist/style.css'
+
 export default {
+  components: {
+    // Cropper
+  },
   data () {
     return {
-      lawyerData: {}
+      lawyerData: {},
+      image: ''
     }
   },
   mounted () {
-    this.getDeta()
+    this.getData()
+    this.getPhotoData()
   },
   methods: {
-    getDeta () {
+    getPhotoData () {
+      getMemberPhoto()
+        .then((response) => {
+          console.log(response.data)
+          this.image = response.data.shot
+        }).catch((error) => {
+          console.log(error)
+        })
+    },
+    getData () {
       getMemberSidebar()
         .then((res) => {
           console.log(res)
@@ -90,6 +117,36 @@ export default {
       } else {
         this.lawyerData.starAvg = Math.ceil(res.data.starAvg)
       }
+    },
+    uploadFile (event) {
+      const file = event.target.files.item(0)
+      const reader = new FileReader()
+      if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
+        reader.addEventListener('load', (event) => {
+          this.image = event.target.result
+        })
+        reader.readAsDataURL(file)
+        this.onSubmit()
+      }
+    },
+    onSubmit () {
+      const formData = new FormData()
+      formData.append('file', this.$refs.lawyerPhoto.files[0])
+      console.log(Object.fromEntries(formData))
+      const token = localStorage.getItem('lawavaToken')
+      this.axios({
+        method: 'put',
+        url: 'https://lawave.rocket-coding.com/mem/shotPhoto',
+        data: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`
+        }
+      }).then((response) => {
+        console.log(response.data)
+      }).catch((error) => {
+        window.showToast.showToast(error.response.data.Message)
+      })
     }
   }
 }

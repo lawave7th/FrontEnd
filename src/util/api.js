@@ -59,3 +59,13 @@ export const getMemberData = () => {
 export const reviseMemberData = (data) => {
   return request('put', 'mem/Info', data)
 }
+
+// 會員中心側邊欄位圖像
+export const getMemberPhoto = () => {
+  return request('get', 'mem/shotPhoto')
+}
+
+// 律師驗證資料 get
+export const lawyerCertificationData = () => {
+  return request('get', 'lawyer/veriPhoto/')
+}

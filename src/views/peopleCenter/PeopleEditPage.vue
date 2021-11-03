@@ -23,7 +23,7 @@
           <div class="row">
             <div class="col-12 col-md-auto">
               <label for="peopleEmail" class="form-label">電子信箱</label>
-              <input type="text" class="form-control" id="peopleEmail" v-model="data.mail">
+              <input type="text" class="form-control" id="peopleEmail" v-model="data.mail" readonly>
             </div>
           </div>
         </div>

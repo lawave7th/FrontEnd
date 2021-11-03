@@ -183,26 +183,26 @@
     </div>
     <!-- 律師卡片區塊 -->
     <div class="container py-md-7">
-      <ul class="row  row-cols-1 row-cols-md-3 justify-content-center justify-content-md-between">
+      <ul  class="row  row-cols-1 row-cols-md-3 justify-content-center justify-content-md-between">
         <!-- 卡片內容 -->
-        <li
+        <li v-for="item in lawyerData" :key="item"
           class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">
           <a href="#" class="position-absolute top-0 end-0 m-4">
-            <span class="material-icons text-info" v-if="true">  favorite_border </span>
-            <span class="material-icons" v-else>favorite</span>
+            <span class="material-icons text-info text-primary" v-if="!item.collection">  favorite_border </span>
+            <span class="material-icons text-primary" v-else>favorite</span>
           </a>
           <div class="lawyer-img mb-4">
             <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">
           </div>
           <div class="lawyer-card-content text-center">
-            <h3 class="text-center mb-2 text-secondary">邱彩恆</h3>
+            <h3 class="text-center mb-2 text-secondary">{{item.name}}</h3>
             <div class="line bg-primary mb-2"></div>
-            <p class="mb-3">恆采律師事務所</p>
+            <p class="mb-3">{{item.office}}</p>
             <p class="fs-7 px-10">「我不是在開庭，就是在跟當事人開會，我會為您做好一切準備。」</p>
             <ul class="lawyer-tags mb-3">
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">民事訴訟</li>
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">刑事訴訟</li><br>
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">其他</li>
+              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">{{item.goodAtItem[0]['name']}}</li>
+              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">{{item.goodAtItem[1]}}</li><br>
+              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">{{item.goodAtItem[2]}}</li>
             </ul>
             <a class="text-center text-info" href="#">瞭解更多
               <span class="material-icons align-baseline fs-7"> arrow_forward_ios</span>
@@ -210,198 +210,198 @@
             </a>
           </div>
           </li>
-        <li
-          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">
-          <a href="#" class="position-absolute top-0 end-0 m-4">
-            <span class="material-icons text-info">  favorite_border </span>
-          </a>
-          <div class="lawyer-img mb-4">
-            <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">
-          </div>
-          <div class="lawyer-card-content text-center">
-            <h3 class="text-center mb-2 text-secondary">邱彩恆</h3>
-            <div class="line bg-primary mb-2"></div>
-            <p class="mb-3">恆采律師事務所</p>
-            <p class="fs-7 px-10">「我不是在開庭，就是在跟當事人開會，我會為您做好一切準備。」</p>
-            <ul class="lawyer-tags mb-3">
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">民事訴訟</li>
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">刑事訴訟</li><br>
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">其他</li>
-            </ul>
-            <a class="text-center text-info" href="#">瞭解更多
-              <span class="material-icons align-baseline fs-7"> arrow_forward_ios</span>
-              <span class="material-icons align-baseline fs-7">arrow_forward_ios</span>
-            </a>
-          </div>
-        </li>
-        <li
-          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">
-          <a href="#" class="position-absolute top-0 end-0 m-4">
-            <span class="material-icons text-info">  favorite_border </span>
-          </a>
-          <div class="lawyer-img mb-4">
-            <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">
-          </div>
-          <div class="lawyer-card-content text-center">
-            <h3 class="text-center mb-2 text-secondary">邱彩恆</h3>
-            <div class="line bg-primary mb-2"></div>
-            <p class="mb-3">恆采律師事務所</p>
-            <p class="fs-7 px-10">「我不是在開庭，就是在跟當事人開會，我會為您做好一切準備。」</p>
-            <ul class="lawyer-tags mb-3">
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">民事訴訟</li>
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">刑事訴訟</li><br>
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">其他</li>
-            </ul>
-            <a class="text-center text-info" href="#">瞭解更多
-              <span class="material-icons align-baseline fs-7"> arrow_forward_ios</span>
-              <span class="material-icons align-baseline fs-7">arrow_forward_ios</span>
-            </a>
-          </div>
-        </li>
-        <li
-          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">
-          <a href="#" class="position-absolute top-0 end-0 m-4">
-            <span class="material-icons text-info">  favorite_border </span>
-          </a>
-          <div class="lawyer-img mb-4">
-            <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">
-          </div>
-          <div class="lawyer-card-content text-center">
-            <h3 class="text-center mb-2 text-secondary">邱彩恆</h3>
-            <div class="line bg-primary mb-2"></div>
-            <p class="mb-3">恆采律師事務所</p>
-            <p class="fs-7 px-10">「我不是在開庭，就是在跟當事人開會，我會為您做好一切準備。」</p>
-            <ul class="lawyer-tags mb-3">
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">民事訴訟</li>
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">刑事訴訟</li><br>
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">其他</li>
-            </ul>
-            <a class="text-center text-info" href="#">瞭解更多
-              <span class="material-icons align-baseline fs-7"> arrow_forward_ios</span>
-              <span class="material-icons align-baseline fs-7">arrow_forward_ios</span>
-            </a>
-          </div>
-        </li>
-        <li
-          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">
-          <a href="#" class="position-absolute top-0 end-0 m-4">
-            <span class="material-icons text-info">  favorite_border </span>
-          </a>
-          <div class="lawyer-img mb-4">
-            <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">
-          </div>
-          <div class="lawyer-card-content text-center">
-            <h3 class="text-center mb-2 text-secondary">邱彩恆</h3>
-            <div class="line bg-primary mb-2"></div>
-            <p class="mb-3">恆采律師事務所</p>
-            <p class="fs-7 px-10">「我不是在開庭，就是在跟當事人開會，我會為您做好一切準備。」</p>
-            <ul class="lawyer-tags mb-3">
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">民事訴訟</li>
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">刑事訴訟</li><br>
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">其他</li>
-            </ul>
-            <a class="text-center text-info" href="#">瞭解更多
-              <span class="material-icons align-baseline fs-7"> arrow_forward_ios</span>
-              <span class="material-icons align-baseline fs-7">arrow_forward_ios</span>
-            </a>
-          </div>
-        </li>
-        <li
-          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">
-          <a href="#" class="position-absolute top-0 end-0 m-4">
-            <span class="material-icons text-info">  favorite_border </span>
-          </a>
-          <div class="lawyer-img mb-4">
-            <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">
-          </div>
-          <div class="lawyer-card-content text-center">
-            <h3 class="text-center mb-2 text-secondary">邱彩恆</h3>
-            <div class="line bg-primary mb-2"></div>
-            <p class="mb-3">恆采律師事務所</p>
-            <p class="fs-7 px-10">「我不是在開庭，就是在跟當事人開會，我會為您做好一切準備。」</p>
-            <ul class="lawyer-tags mb-3">
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">民事訴訟</li>
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">刑事訴訟</li><br>
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">其他</li>
-            </ul>
-            <a class="text-center text-info" href="#">瞭解更多
-              <span class="material-icons align-baseline fs-7"> arrow_forward_ios</span>
-              <span class="material-icons align-baseline fs-7">arrow_forward_ios</span>
-            </a>
-          </div>
-        </li>
-        <li
-          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">
-          <a href="#" class="position-absolute top-0 end-0 m-4">
-            <span class="material-icons text-info">  favorite_border </span>
-          </a>
-          <div class="lawyer-img mb-4">
-            <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">
-          </div>
-          <div class="lawyer-card-content text-center">
-            <h3 class="text-center mb-2 text-secondary">邱彩恆</h3>
-            <div class="line bg-primary mb-2"></div>
-            <p class="mb-3">恆采律師事務所</p>
-            <p class="fs-7 px-10">「我不是在開庭，就是在跟當事人開會，我會為您做好一切準備。」</p>
-            <ul class="lawyer-tags mb-3">
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">民事訴訟</li>
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">刑事訴訟</li><br>
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">其他</li>
-            </ul>
-            <a class="text-center text-info" href="#">瞭解更多
-              <span class="material-icons align-baseline fs-7"> arrow_forward_ios</span>
-              <span class="material-icons align-baseline fs-7">arrow_forward_ios</span>
-            </a>
-          </div>
-        </li>
-        <li
-          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">
-          <a href="#" class="position-absolute top-0 end-0 m-4">
-            <span class="material-icons text-info">  favorite_border </span>
-          </a>
-          <div class="lawyer-img mb-4">
-            <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">
-          </div>
-          <div class="lawyer-card-content text-center">
-            <h3 class="text-center mb-2 text-secondary">邱彩恆</h3>
-            <div class="line bg-primary mb-2"></div>
-            <p class="mb-3">恆采律師事務所</p>
-            <p class="fs-7 px-10">「我不是在開庭，就是在跟當事人開會，我會為您做好一切準備。」</p>
-            <ul class="lawyer-tags mb-3">
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">民事訴訟</li>
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">刑事訴訟</li><br>
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">其他</li>
-            </ul>
-            <a class="text-center text-info" href="#">瞭解更多
-              <span class="material-icons align-baseline fs-7"> arrow_forward_ios</span>
-              <span class="material-icons align-baseline fs-7">arrow_forward_ios</span>
-            </a>
-          </div>
-        </li>
-        <li
-          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">
-          <a href="#" class="position-absolute top-0 end-0 m-4">
-            <span class="material-icons text-info">  favorite_border </span>
-          </a>
-          <div class="lawyer-img mb-4">
-            <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">
-          </div>
-          <div class="lawyer-card-content text-center">
-            <h3 class="text-center mb-2 text-secondary">邱彩恆</h3>
-            <div class="line bg-primary mb-2"></div>
-            <p class="mb-3">恆采律師事務所</p>
-            <p class="fs-7 px-10">「我不是在開庭，就是在跟當事人開會，我會為您做好一切準備。」</p>
-            <ul class="lawyer-tags mb-3">
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">民事訴訟</li>
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">刑事訴訟</li><br>
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">其他</li>
-            </ul>
-            <a class="text-center text-info" href="#">瞭解更多
-              <span class="material-icons align-baseline fs-7"> arrow_forward_ios</span>
-              <span class="material-icons align-baseline fs-7">arrow_forward_ios</span>
-            </a>
-          </div>
-        </li>
+<!--        <li-->
+<!--          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">-->
+<!--          <a href="#" class="position-absolute top-0 end-0 m-4">-->
+<!--            <span class="material-icons text-info">  favorite_border </span>-->
+<!--          </a>-->
+<!--          <div class="lawyer-img mb-4">-->
+<!--            <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">-->
+<!--          </div>-->
+<!--          <div class="lawyer-card-content text-center">-->
+<!--            <h3 class="text-center mb-2 text-secondary">邱彩恆</h3>-->
+<!--            <div class="line bg-primary mb-2"></div>-->
+<!--            <p class="mb-3">恆采律師事務所</p>-->
+<!--            <p class="fs-7 px-10">「我不是在開庭，就是在跟當事人開會，我會為您做好一切準備。」</p>-->
+<!--            <ul class="lawyer-tags mb-3">-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">民事訴訟</li>-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">刑事訴訟</li><br>-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">其他</li>-->
+<!--            </ul>-->
+<!--            <a class="text-center text-info" href="#">瞭解更多-->
+<!--              <span class="material-icons align-baseline fs-7"> arrow_forward_ios</span>-->
+<!--              <span class="material-icons align-baseline fs-7">arrow_forward_ios</span>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li-->
+<!--          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">-->
+<!--          <a href="#" class="position-absolute top-0 end-0 m-4">-->
+<!--            <span class="material-icons text-info">  favorite_border </span>-->
+<!--          </a>-->
+<!--          <div class="lawyer-img mb-4">-->
+<!--            <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">-->
+<!--          </div>-->
+<!--          <div class="lawyer-card-content text-center">-->
+<!--            <h3 class="text-center mb-2 text-secondary">邱彩恆</h3>-->
+<!--            <div class="line bg-primary mb-2"></div>-->
+<!--            <p class="mb-3">恆采律師事務所</p>-->
+<!--            <p class="fs-7 px-10">「我不是在開庭，就是在跟當事人開會，我會為您做好一切準備。」</p>-->
+<!--            <ul class="lawyer-tags mb-3">-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">民事訴訟</li>-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">刑事訴訟</li><br>-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">其他</li>-->
+<!--            </ul>-->
+<!--            <a class="text-center text-info" href="#">瞭解更多-->
+<!--              <span class="material-icons align-baseline fs-7"> arrow_forward_ios</span>-->
+<!--              <span class="material-icons align-baseline fs-7">arrow_forward_ios</span>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li-->
+<!--          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">-->
+<!--          <a href="#" class="position-absolute top-0 end-0 m-4">-->
+<!--            <span class="material-icons text-info">  favorite_border </span>-->
+<!--          </a>-->
+<!--          <div class="lawyer-img mb-4">-->
+<!--            <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">-->
+<!--          </div>-->
+<!--          <div class="lawyer-card-content text-center">-->
+<!--            <h3 class="text-center mb-2 text-secondary">邱彩恆</h3>-->
+<!--            <div class="line bg-primary mb-2"></div>-->
+<!--            <p class="mb-3">恆采律師事務所</p>-->
+<!--            <p class="fs-7 px-10">「我不是在開庭，就是在跟當事人開會，我會為您做好一切準備。」</p>-->
+<!--            <ul class="lawyer-tags mb-3">-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">民事訴訟</li>-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">刑事訴訟</li><br>-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">其他</li>-->
+<!--            </ul>-->
+<!--            <a class="text-center text-info" href="#">瞭解更多-->
+<!--              <span class="material-icons align-baseline fs-7"> arrow_forward_ios</span>-->
+<!--              <span class="material-icons align-baseline fs-7">arrow_forward_ios</span>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li-->
+<!--          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">-->
+<!--          <a href="#" class="position-absolute top-0 end-0 m-4">-->
+<!--            <span class="material-icons text-info">  favorite_border </span>-->
+<!--          </a>-->
+<!--          <div class="lawyer-img mb-4">-->
+<!--            <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">-->
+<!--          </div>-->
+<!--          <div class="lawyer-card-content text-center">-->
+<!--            <h3 class="text-center mb-2 text-secondary">邱彩恆</h3>-->
+<!--            <div class="line bg-primary mb-2"></div>-->
+<!--            <p class="mb-3">恆采律師事務所</p>-->
+<!--            <p class="fs-7 px-10">「我不是在開庭，就是在跟當事人開會，我會為您做好一切準備。」</p>-->
+<!--            <ul class="lawyer-tags mb-3">-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">民事訴訟</li>-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">刑事訴訟</li><br>-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">其他</li>-->
+<!--            </ul>-->
+<!--            <a class="text-center text-info" href="#">瞭解更多-->
+<!--              <span class="material-icons align-baseline fs-7"> arrow_forward_ios</span>-->
+<!--              <span class="material-icons align-baseline fs-7">arrow_forward_ios</span>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li-->
+<!--          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">-->
+<!--          <a href="#" class="position-absolute top-0 end-0 m-4">-->
+<!--            <span class="material-icons text-info">  favorite_border </span>-->
+<!--          </a>-->
+<!--          <div class="lawyer-img mb-4">-->
+<!--            <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">-->
+<!--          </div>-->
+<!--          <div class="lawyer-card-content text-center">-->
+<!--            <h3 class="text-center mb-2 text-secondary">邱彩恆</h3>-->
+<!--            <div class="line bg-primary mb-2"></div>-->
+<!--            <p class="mb-3">恆采律師事務所</p>-->
+<!--            <p class="fs-7 px-10">「我不是在開庭，就是在跟當事人開會，我會為您做好一切準備。」</p>-->
+<!--            <ul class="lawyer-tags mb-3">-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">民事訴訟</li>-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">刑事訴訟</li><br>-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">其他</li>-->
+<!--            </ul>-->
+<!--            <a class="text-center text-info" href="#">瞭解更多-->
+<!--              <span class="material-icons align-baseline fs-7"> arrow_forward_ios</span>-->
+<!--              <span class="material-icons align-baseline fs-7">arrow_forward_ios</span>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li-->
+<!--          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">-->
+<!--          <a href="#" class="position-absolute top-0 end-0 m-4">-->
+<!--            <span class="material-icons text-info">  favorite_border </span>-->
+<!--          </a>-->
+<!--          <div class="lawyer-img mb-4">-->
+<!--            <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">-->
+<!--          </div>-->
+<!--          <div class="lawyer-card-content text-center">-->
+<!--            <h3 class="text-center mb-2 text-secondary">邱彩恆</h3>-->
+<!--            <div class="line bg-primary mb-2"></div>-->
+<!--            <p class="mb-3">恆采律師事務所</p>-->
+<!--            <p class="fs-7 px-10">「我不是在開庭，就是在跟當事人開會，我會為您做好一切準備。」</p>-->
+<!--            <ul class="lawyer-tags mb-3">-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">民事訴訟</li>-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">刑事訴訟</li><br>-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">其他</li>-->
+<!--            </ul>-->
+<!--            <a class="text-center text-info" href="#">瞭解更多-->
+<!--              <span class="material-icons align-baseline fs-7"> arrow_forward_ios</span>-->
+<!--              <span class="material-icons align-baseline fs-7">arrow_forward_ios</span>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li-->
+<!--          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">-->
+<!--          <a href="#" class="position-absolute top-0 end-0 m-4">-->
+<!--            <span class="material-icons text-info">  favorite_border </span>-->
+<!--          </a>-->
+<!--          <div class="lawyer-img mb-4">-->
+<!--            <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">-->
+<!--          </div>-->
+<!--          <div class="lawyer-card-content text-center">-->
+<!--            <h3 class="text-center mb-2 text-secondary">邱彩恆</h3>-->
+<!--            <div class="line bg-primary mb-2"></div>-->
+<!--            <p class="mb-3">恆采律師事務所</p>-->
+<!--            <p class="fs-7 px-10">「我不是在開庭，就是在跟當事人開會，我會為您做好一切準備。」</p>-->
+<!--            <ul class="lawyer-tags mb-3">-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">民事訴訟</li>-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">刑事訴訟</li><br>-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">其他</li>-->
+<!--            </ul>-->
+<!--            <a class="text-center text-info" href="#">瞭解更多-->
+<!--              <span class="material-icons align-baseline fs-7"> arrow_forward_ios</span>-->
+<!--              <span class="material-icons align-baseline fs-7">arrow_forward_ios</span>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li-->
+<!--          class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">-->
+<!--          <a href="#" class="position-absolute top-0 end-0 m-4">-->
+<!--            <span class="material-icons text-info">  favorite_border </span>-->
+<!--          </a>-->
+<!--          <div class="lawyer-img mb-4">-->
+<!--            <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">-->
+<!--          </div>-->
+<!--          <div class="lawyer-card-content text-center">-->
+<!--            <h3 class="text-center mb-2 text-secondary">邱彩恆</h3>-->
+<!--            <div class="line bg-primary mb-2"></div>-->
+<!--            <p class="mb-3">恆采律師事務所</p>-->
+<!--            <p class="fs-7 px-10">「我不是在開庭，就是在跟當事人開會，我會為您做好一切準備。」</p>-->
+<!--            <ul class="lawyer-tags mb-3">-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">民事訴訟</li>-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">刑事訴訟</li><br>-->
+<!--              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 ">其他</li>-->
+<!--            </ul>-->
+<!--            <a class="text-center text-info" href="#">瞭解更多-->
+<!--              <span class="material-icons align-baseline fs-7"> arrow_forward_ios</span>-->
+<!--              <span class="material-icons align-baseline fs-7">arrow_forward_ios</span>-->
+<!--            </a>-->
+<!--          </div>-->
+<!--        </li>-->
       </ul>
     </div>
     <div class="container d-flex justify-content-end mb-7">
@@ -437,8 +437,9 @@ export default {
     getData () {
       getLawyerList()
         .then((res) => {
-          console.log(res)
-          this.lawyerData = res.data
+          // console.log(res.data)
+          this.lawyerData = res.data.data
+          console.log(this.lawyerData)
         })
         .catch((error) => {
           console.error(error)
