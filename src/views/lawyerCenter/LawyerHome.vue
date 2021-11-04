@@ -24,8 +24,8 @@
           <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-2">
             <Rating class="text-primary" :modelValue="5" :readonly="true" :stars="5" :cancel="false" />
             <ul class="lawyer-tags d-flex flex-wrap justify-content-center text-white">
-              <li class="rounded-pill border border-1 bg-secondary me-2 py-1 px-3">民事訴訟</li>
-              <li class="rounded-pill border border-1 me-2 bg-secondary py-1 px-3">刑事訴訟</li>
+              <li class="rounded-pill border border-1 bg-secondary me-2 py-1 fs-7 px-3">民事訴訟</li>
+              <li class="rounded-pill border border-1 me-2 bg-secondary py-1 fs-7 px-3">刑事訴訟</li>
             </ul>
           </div>
           <p>目前已經是離婚狀態了，但是前夫並未照約定付撫養費，上網搜尋相關方式才發現法學電波的法律線上諮詢媒合律師的方式，嘗試預約媒合後，感謝律師的回覆，目前也委託律師解決問題中

@@ -49,8 +49,20 @@ export const getMemberPraise = () => {
 
 // 律師媒合頁
 
-export const getLawyerList = () => {
-  return request('get', 'api/lawyerlist/1')
+export const getLawyerList = (url) => {
+  return request('get', url)
+}
+
+// 收藏律師
+
+export const collectLawyer = (url) => {
+  return request('post', url)
+}
+
+// 律師詳細資訊頁
+
+export const getLawyerDetailed = (url) => {
+  return request('get', url)
 }
 
 // 常見問題頁

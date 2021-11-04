@@ -96,6 +96,15 @@
               <li><a class="dropdown-item fs-4  ps-4 pe-11 fs-4" href="#">會員中心</a></li>
               <li><a class="dropdown-item fs-4  ps-4 pe-11 fs-4" href="#">預約管理</a></li>
               <li><a class="dropdown-item fs-4  ps-4 pe-11 fs-4" href="#" @click.prevent="logout">登出帳戶</a></li>
+              <li class="d-block d-md-none">
+                <router-link class="dropdown-item border-top fs-4 ps-4 pe-7"  :to="{ name: 'LawyerSolvation' }">律師媒合</router-link>
+              </li>
+              <li class="d-block d-md-none">
+                <router-link class="dropdown-item fs-4 ps-4 pe-7" :to="{ name: 'Knowledge' }">法律知識+</router-link>
+              </li>
+              <li class="d-block d-md-none">
+                <router-link class="dropdown-item fs-4 ps-4 pe-7" :to="{ name: 'CommonProblem' }">常見問題</router-link>
+              </li>
             </ul>
           </div>
           <div class="dropdown d-flex" v-else>
@@ -107,7 +116,7 @@
             </div>
             <button
               class="d-flex  align-items-center justify-content-between
- btn  py-2 px-3 btn rounded-pill text-white"
+ btn  py-2 px-3 btn  btn-dark rounded-pill text-white"
               type="button"
               id="dropdownMenuNotLogin"
               data-bs-toggle="dropdown"
@@ -117,7 +126,7 @@
                 menu
               </span>
               <span class=" ms-2 text-white">
-                Join now
+                未登入
               </span>
             </button>
             <ul
@@ -131,29 +140,30 @@
                 >註冊</a
                 >
               </li>
-              <li class="mb-2">
+              <li class="mb-2 ">
                 <a @click.prevent="$refs.loginModal.showModal()"
                    class="dropdown-item fs-4 ps-4 pe-11"
                    href="#"
                 >登入</a
                 >
               </li>
+              <li class="d-block d-md-none">
+                <router-link class="dropdown-item border-top fs-4 ps-4 pe-7"  :to="{ name: 'LawyerSolvation' }">律師媒合</router-link>
+              </li>
+              <li class="d-block d-md-none">
+                <router-link class="dropdown-item fs-4 ps-4 pe-7" :to="{ name: 'Knowledge' }">法律知識+</router-link>
+              </li>
+              <li class="d-block d-md-none">
+                <router-link class="dropdown-item fs-4 ps-4 pe-7" :to="{ name: 'CommonProblem' }">常見問題</router-link>
+              </li>
             </ul>
           </div>
 
         </div>
       </nav>
-      <ul class="title-bar d-flex d-md-none justify-content-center" :class="isBottomBanner === true ?'':'title-bar-primary'">
-        <li>
-          <router-link class="fs-4 d-block pt-2 me-4 text-decoration-none mb-2"  :to="{ name: 'LawyerSolvation' }">律師媒合</router-link>
-        </li>
-        <li>
-          <router-link class="fs-4 d-block pt-2 me-4 text-decoration-none mb-2" :to="{ name: 'Knowledge' }">法律知識+</router-link>
-        </li>
-        <li>
-          <router-link class="fs-4 d-block pt-2 me-4 text-decoration-none mb-2" :to="{ name: 'CommonProblem' }">常見問題</router-link>
-        </li>
-      </ul>
+<!--      <ul class="title-bar d-flex d-md-none justify-content-center" :class="isBottomBanner === true ?'':'title-bar-primary'">-->
+<!--       -->
+<!--      </ul>-->
     </div>
   </header>
   <RegisterModal ref="registerModal"></RegisterModal>

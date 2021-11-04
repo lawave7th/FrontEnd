@@ -26,7 +26,18 @@ const routes = [
       path: 'knowledge',
       name: 'Knowledge',
       component: () => import('../views/Knowledge')
-    }]
+    },
+    {
+      path: 'lawyer-detailed/:lawyerId',
+      name: 'lawyerDetailed',
+      component: () => import('../views/LawyerDetailed'),
+      props: (route) => {
+        return {
+          lawyerId: route.params.lawyerId
+        }
+      }
+    }
+    ]
   },
   {
     path: '/lawyer-center',

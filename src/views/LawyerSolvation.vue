@@ -187,9 +187,9 @@
         <!-- 卡片內容 -->
         <li v-for="item in lawyerData" :key="item"
           class="col d-flex  flex-column align-items-center lawyer-card py-4 py-md-5 mb-4 rounded rounded-3 border border-1  position-relative border-primary">
-          <a href="#" class="position-absolute top-0 end-0 m-4">
+          <a href="#" @click.prevent="collectHeart(item.id)" class="position-absolute top-0 end-0 m-4">
             <span class="material-icons text-info text-primary" v-if="!item.collection">  favorite_border </span>
-            <span class="material-icons text-primary" v-else>favorite</span>
+            <span class="material-icons text-danger" v-else>favorite</span>
           </a>
           <div class="lawyer-img mb-4">
             <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">
@@ -199,12 +199,12 @@
             <div class="line bg-primary mb-2"></div>
             <p class="mb-3">{{item.office}}</p>
             <p class="fs-7 px-10">「我不是在開庭，就是在跟當事人開會，我會為您做好一切準備。」</p>
-            <ul class="lawyer-tags mb-3">
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 " v-show="!item.lawyerGoodAtType.length >= 0">{{item.lawyerGoodAtType[0]}}</li>
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 " v-show="item.lawyerGoodAtType[1]">{{item.lawyerGoodAtType[1]}}</li><br>
-              <li class="rounded-pill d-inline-block border px-3 py-1 text-white bg-secondary border-1 " v-show="item.lawyerGoodAtType[2]">{{item.lawyerGoodAtType[2]}}</li>
+            <ul class="lawyer-tags mb-3" >
+              <li v-if="item.lawyerGoodAtType.length > 0" class="rounded-pill d-inline-block border px-3 py-1 fs-7 text-white bg-secondary border-1 " >{{item.lawyerGoodAtType[0]}}</li>
+              <li v-if="item.lawyerGoodAtType.length > 1" class="rounded-pill d-inline-block border px-3 py-1 fs-7 text-white bg-secondary border-1 " >{{item.lawyerGoodAtType[1]}}</li><br>
+              <li v-if="item.lawyerGoodAtType.length > 2" class="rounded-pill d-inline-block border px-3 py-1 fs-7 text-white bg-secondary border-1 " >{{item.lawyerGoodAtType[2]}}</li>
             </ul>
-            <a class="text-center text-info" href="#">瞭解更多
+            <a class="text-center text-info" @click.prevent="getLawyerDetailed(item.id)" href="#">瞭解更多
               <span class="material-icons align-baseline fs-7"> arrow_forward_ios</span>
               <span class="material-icons align-baseline fs-7">arrow_forward_ios</span>
             </a>
@@ -216,14 +216,14 @@
       <!-- 分頁按鈕 -->
       <ul class="appointment-pagination d-flex justify-content-md-end align-items-center">
         <li class="me-2">
-          <a class="d-block text-white  btn-primary rounded-pill text-center fs-7" href="#">1</a>
+          <a class="d-block   btn-primary rounded-pill text-center fs-7" :class="nowPage === 1 ? 'text-white' :'bg-primary-shallow'" @click.prevent="getData(1)" href="#">1</a>
         </li>
         <li class="me-2">
-          <a class="d-block text-secondary  btn-primary bg-primary-shallow rounded-pill text-center fs-7" href="#">2</a>
+          <a class="d-block text-secondary  btn-primary  rounded-pill text-center fs-7" :class="nowPage === 2 ? 'text-white' :'bg-primary-shallow '" @click.prevent="getData(2)" href="#">2</a>
         </li>
         <li>
           <a class="d-block pagination-next text-white btn-primary bg-primary-shallow rounded-pill text-center"
-             href="#">
+             href="#" >
             <img src="../assets/img/next-page.png" class="mb-2" height="8" width="10"/></a>
         </li>
       </ul>
@@ -231,27 +231,44 @@
   </main>
 </template>
 <script>
-import { getLawyerList } from '@/util/api'
+import { getLawyerList, collectLawyer } from '@/util/api'
 export default {
   data () {
     return {
-      lawyerData: {}
+      lawyerData: {},
+      nowPage: ''
     }
   },
   created () {
     this.getData()
   },
   methods: {
-    getData () {
-      getLawyerList()
+    getData (page = 1) {
+      getLawyerList(`api/lawyerlist/${page}`)
         .then((res) => {
-          // console.log(res.data)
+          this.nowPage = page
           this.lawyerData = res.data.data
-          console.log(this.lawyerData)
         })
         .catch((error) => {
           console.error(error)
         })
+    },
+    collectHeart (id) {
+      collectLawyer(`api/PublicCollection/${id}`)
+        .then((res) => {
+          const index = this.lawyerData.findIndex(item => item.id === id)
+          if (this.lawyerData[index].collection === true) {
+            this.lawyerData[index].collection = false
+          } else {
+            this.lawyerData[index].collection = true
+          }
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    },
+    getLawyerDetailed (id) {
+      this.$router.push(`/lawyer-detailed/${id}`)
     }
   }
 }
