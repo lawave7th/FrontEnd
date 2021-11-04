@@ -36,6 +36,7 @@
     }
 
 }
+
 //律師資格認證頁
 .upload-image-box label{
     cursor:pointer;
@@ -55,9 +56,26 @@
 .appointment-menu li{
         a{
         &:hover{
-            border-bottom: 1px solid #000;
+            border-bottom: 1px solid #172A39;
             }
         }
+}
+.appointment-bar-active{
+    background: url("assets/img/center/appointment-icon.png") no-repeat;
+    background-color: rgba(226, 186, 164, 0.2);
+    background-position: 0;
+    @include mobile600{
+        background: none;
+        a {
+            background-color: rgba(226, 186, 164, 0.2);
+        }
+    }
+}
+.appointment-bar-fs{
+    font-size: 24px;
+    @include mobile600{
+        font-size: 12px;
+    }
 }
 //預約中心 modal select
 .system-default{

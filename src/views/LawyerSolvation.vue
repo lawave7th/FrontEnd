@@ -192,13 +192,14 @@
             <span class="material-icons text-danger" v-else>favorite</span>
           </a>
           <div class="lawyer-img mb-4">
-            <img class="rounded-pill" src="../assets/img/lawyer-solvation-img/lawyer-solvation-photo.png" alt="律師照片">
+            <img v-if="item.shot === null" class="rounded rounded-pill mug-shot" src="../assets/img/member-logo.png" alt="律師照片">
+            <img v-else  class="rounded rounded-pill mug-shot"  :src="item.shot" alt="熱門律師照片" >
           </div>
           <div class="lawyer-card-content text-center">
             <h3 class="text-center mb-2 text-secondary">{{item.name}}</h3>
             <div class="line bg-primary mb-2"></div>
             <p class="mb-3">{{item.office}}</p>
-            <p class="fs-7 px-10">「我不是在開庭，就是在跟當事人開會，我會為您做好一切準備。」</p>
+            <p class="fs-7 px-10">{{item.saying}}</p>
             <ul class="lawyer-tags mb-3" >
               <li v-if="item.lawyerGoodAtType.length > 0" class="rounded-pill d-inline-block border px-3 py-1 fs-7 text-white bg-secondary border-1 " >{{item.lawyerGoodAtType[0]}}</li>
               <li v-if="item.lawyerGoodAtType.length > 1" class="rounded-pill d-inline-block border px-3 py-1 fs-7 text-white bg-secondary border-1 " >{{item.lawyerGoodAtType[1]}}</li><br>

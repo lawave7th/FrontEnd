@@ -9,7 +9,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-    store.commit('setLoading', true)
+    // store.commit('setLoading', true)
     const token = localStorage.getItem('lawavaToken')
     if (token) {
       config.headers.Authorization = `Bearer ${token}`

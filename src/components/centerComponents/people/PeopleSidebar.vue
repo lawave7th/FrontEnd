@@ -1,9 +1,9 @@
 <template>
-  <div class="border d-none d-md-block border-primary d-flex flex-column align-items-center rounded rounded-3 shadow-md px-4">
-    <div class="people-photo img-fluid position-relative mx-4 my-5 ">
+  <div class="border d-none d-md-block border-primary d-flex flex-column align-items-center rounded rounded-3 shadow-md ">
+    <div class="people-photo img-fluid text-center my-5 ">
       <label for="photo-upload">
-        <img v-if="!image" class="rounded rounded-pill" src="../../../assets/img/member-logo.png" alt="民眾照片">
-        <img v-else  name="file" class="rounded rounded-pill"  :src="image" alt="民眾照片" width="200" height="200">
+        <img v-if="!image" class="rounded rounded-pill mug-shot-sm" src="../../../assets/img/member-logo.png" alt="民眾照片">
+        <img v-else  name="file" class="rounded rounded-pill mug-shot-sm"  :src="image" alt="民眾照片" width="200" height="200">
       </label>
       <input class="d-none" type="file" id="photo-upload" ref="peoplePhoto" @change="uploadFile"/>
     </div>
@@ -15,7 +15,7 @@
       <p class="text-secondary">我的關注 <span class="fs-7">({{this.peopleData.collection}})</span></p>
     </div>
     <!-- 會員中心點擊欄位 -->
-    <ul class="center-side-menu mb-5">
+    <ul class="center-side-menu mb-5 px-4">
       <li>
         <router-link class="d-block px-2 py-4 border-bottom border-2" to="people-edit-page">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">

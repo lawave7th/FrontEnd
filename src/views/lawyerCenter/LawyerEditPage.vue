@@ -4,8 +4,8 @@
       <!-- 上方切換開關 -->
       <div
         class="form-check form-switch ms-0 d-flex justify-content-end align-items-center pb-4 border-bottom mb-4">
-        <label class="form-check-label me-3" for="lawyer-open">公開資料供媒合搜尋使用</label>
-        <input class="fs-3 form-check-input ms-0" type="checkbox" id="lawyer-open">
+        <label class="form-check-label me-3" for="lawyerOpen">公開資料供媒合搜尋使用</label>
+        <input class="fs-3 form-check-input ms-0" type="checkbox" id="lawyerOpen" v-model="data.isPublic" @change="changePublic" >
       </div>
       <!-- 表單填寫區塊 -->
       <div class="row g-3">
@@ -312,7 +312,7 @@
 <script>
 // 防呆
 
-import { getMemberData, reviseMemberData } from '@/util/api'
+import { getMemberData, reviseMemberData, lawyerChangePublic } from '@/util/api'
 
 export default {
   data () {
@@ -337,6 +337,8 @@ export default {
     // 這邊要加三個檔的條件
     controlNum () {
       if (this.data.goodAtItem.length > 3) {
+        window.showToast.showToast('不能選許超過3個')
+        this.data.goodAtItem.pop()
       }
     },
     addExperience () {
@@ -352,12 +354,26 @@ export default {
         degree: ''
       })
     },
+    changePublic () {
+      lawyerChangePublic({ isPublic: this.data.isPublic })
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((error) => {
+          console.error(error.response)
+          if (error.response.data.Message === '未驗證不能修改') {
+            this.data.isPublic = false
+          }
+        })
+    },
     onSubmit () {
       reviseMemberData(this.data)
         .then((res) => {
           console.log(res)
         })
-        .catch((error) => { console.error(error) })
+        .catch((error) => {
+          console.log(error.response)
+        })
     }
   }
 

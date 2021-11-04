@@ -12,10 +12,8 @@
         <h2 class="fs-4 d-inline-block text-secondary mb-6 border-start border-2 border-secondary ps-2">聯絡資訊</h2>
         <div class="row ">
           <div class="col-12 col-md-6 mb-4 mb-md-0 ">
-            <img v-if="lawyerData.shot === null" class="rounded rounded-3" src="../assets/img/member-logo.png" alt="律師照片">
-            <img v-else  class="rounded rounded-3"  :src="lawyerData.shot" alt="熱門律師照片" >
-<!--            <img class="rounded rounded-3 d-none d-sm-block " src="https://fakeimg.pl/548x411/" alt="律師照片">-->
-<!--            <img class="rounded rounded-3 d-block d-sm-none " src="https://fakeimg.pl/328x246/" alt="律師照片">-->
+            <img v-if="lawyerData.shot === null" class="rounded rounded-3 mug-shot-square" src="../assets/img/member-logo.png" alt="律師照片">
+            <img v-else  class="rounded rounded-3 mug-shot-square"  :src="lawyerData.shot" alt="熱門律師照片" >
           </div>
           <div class="col-12 col-md-6  d-flex flex-column justify-content-between">
             <div>
@@ -23,20 +21,20 @@
             </div>
             <div class="d-flex flex-column flex-md-row justify-content-md-between">
               <div>
-                <p class="text-primary">恆采律師事務所</p>
+                <p class="text-primary">{{lawyerData.office}}</p>
                 <h3 class="text-secondary">{{lawyerData.firstName}}{{lawyerData.lastName}}</h3>
                 <p>
                   <span class="material-icons text-dark-shallow align-middle">local_phone</span>
-                  02-3456-7890
+                  {{lawyerData.phone}}
                 </p>
                 <p>
                   <span class="material-icons text-dark-shallow align-middle">local_post_office</span>
-                  service@mail.com
+                  {{lawyerData.mail}}
                 </p>
-                <ul class="lawyer-tags d-flex mb-4 mb-md-0">
-<!--                  <li v-if="lawyerData.goodAtItem.length > 0" class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-3">{{lawyerData.goodAtItem[0]}}</li>-->
-<!--                  <li v-if="lawyerData.goodAtItem.length > 1" class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-3">{{lawyerData.goodAtItem[1]}}</li>-->
-<!--                  <li v-if="lawyerData.goodAtItem.length > 2" class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-3">{{lawyerData.goodAtItem[2]}}</li>-->
+                <ul   class="lawyer-tags d-flex mb-4 mb-md-0">
+                  <li  v-for="(item , index ) in lawyerData.goodAtItem" :key="index"  class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-3">
+                    <div v-if="lawyerData.goodAtItem.length > index">{{lawyerData.goodAtItem[index]}}</div>
+                  </li>
                 </ul>
               </div>
               <div class="d-grid gap-2 d-md-flex flex-md-column justify-content-md-end align-items-md-end mb-7 mb-md-0">
@@ -61,7 +59,7 @@
                 <p class="fs-7 text-primary">Introduce</p>
               </div>
             </div>
-            <p>我能夠用法律思維考慮、解決實際問題。熟悉行政法、公司法、合同法、勞動法、金融法、房地產法、智慧財產權法等實用性法律法規，我熱愛法律事業，對企業法務、合規及反洗錢管理有實際操作經驗和較深的理解，希望能在崗位上實現自己的人生價值。
+            <p>{{lawyerData.introduction}}
             </p>
           </li>
           <li class="col-md-6  mb-md-5">
@@ -75,21 +73,9 @@
               </div>
             </div>
             <ul class="d-flex flex-wrap">
-              <li class="mb-4 me-3">
+              <li class="mb-4 me-3"  v-for="(item , index ) in lawyerData.areaItem" :key="index">
                 <span class="material-icons align-middle text-secondary">place</span>
-                <span  class="text-dark-shallow">桃園</span>
-              </li>
-              <li class="mb-4 me-3">
-                <span class="material-icons align-middle text-secondary">place</span>
-                <span  class="text-dark-shallow">桃園</span>
-              </li>
-              <li class="mb-4 me-3">
-                <span class="material-icons align-middle text-secondary">place</span>
-                <span  class="text-dark-shallow">桃園</span>
-              </li>
-              <li class="mb-4 me-3">
-                <span class="material-icons align-middle text-secondary">place</span>
-                <span  class="text-dark-shallow">桃園</span>
+                <span  class="text-dark-shallow">{{item}}</span>
               </li>
             </ul>
           </li>
@@ -103,8 +89,7 @@
                 <p class="fs-7 text-primary">Education </p>
               </div>
             </div>
-            <p>國立oo大學法律學系 法學碩士</p>
-            <p>國立oo大學法律學系法律學系 學士</p>
+            <p v-for="(item , index ) in lawyerData.education" :key="index">{{item.schoolName}}  {{item.departmentName}}  {{item.degree}}</p>
           </li>
           <li class="col-md-6  mb-md-5">
             <div class="d-flex mb-3 align-items-center">
@@ -116,12 +101,7 @@
                 <p class="fs-7 text-primary">Work experience</p>
               </div>
             </div>
-            <p>oo律師事務所-律師</p>
-            <p>oo法律事務所-律師 </p>
-            <p>統一法律職業資格考試 合格</p>
-            <p>oo市政府 法律諮詢服務律師</p>
-            <p>有形資產 評價管理師</p>
-            <p>勞資事務師</p>
+            <p v-for="(item , index ) in lawyerData.experienceList" :key="index">{{item.companyName}}  {{item.jobTitle}} </p>
           </li>
           <li class="col-md-6  mb-md-5">
             <div class="d-flex mb-3 align-items-center">
@@ -133,7 +113,7 @@
                 <p class="fs-7 text-primary">Professional field</p>
               </div>
             </div>
-            <p>不動產、土地 、 企業商務 、債務糾紛 、 刑事犯罪 、勞動問題 、婚姻、監護、家事 、政府採購、工程爭議 、消費糾紛 、車禍事故 、 遺產、繼承
+            <p>{{lawyerData.professional}}
             </p>
           </li>
           <li class="col-md-6  mb-md-5">
@@ -148,11 +128,11 @@
             </div>
             <p>
               <span class="material-icons align-middle">monetization_on</span>
-              現場諮詢：3000元/小時
+              現場諮詢：{{lawyerData.faceCost}}元/小時
             </p>
             <p>
               <span class="material-icons align-middle">monetization_on</span>
-              電話諮詢：3000元/小時
+              電話諮詢：{{lawyerData.phoneCost}}元/小時
             </p>
           </li>
         </ul>
@@ -179,7 +159,7 @@ chevron_right
               <p class="fs-7 mb-1 text-info">2021/10/03</p>
               <h3>Clara</h3>
               <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-2">
-                <Rating class="text-primary" :modelValue="5" :readonly="true" :stars="5" :cancel="false" />
+                <Rating class="text-primary" :modelValue="starAvg" :readonly="true" :stars="5" :cancel="false" />
                 <ul class="lawyer-tags d-flex flex-wrap justify-content-center text-white">
                   <li class="rounded-pill border border-1 bg-secondary me-2 fs-7 py-1 px-3">民事訴訟</li>
                   <li class="rounded-pill border border-1 me-2 bg-secondary fs-7 py-1 px-3">刑事訴訟</li>
@@ -197,23 +177,37 @@ chevron_right
 </template>
 
 <script>
-import { getLawyerDetailed } from '@/util/api'
+import { getLawyerDetailed, getLawyerEvaluation } from '@/util/api'
 export default {
   props: ['lawyerId'],
   data () {
     return {
-      lawyerData: {}
+      lawyerData: {},
+      evaluationData: {},
+      starAvg: 0
     }
   },
   created () {
     this.getLawyerData()
+    this.getLawyerEvaluation()
   },
   methods: {
     getLawyerData () {
       getLawyerDetailed(`lawyerlist/Info/${this.lawyerId}`)
         .then((res) => {
-          console.log(res)
+          console.log(res.data)
           this.lawyerData = res.data
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    },
+    getLawyerEvaluation () {
+      getLawyerEvaluation(`lawyerlist/lawyerReview/${this.lawyerId}`)
+        .then((res) => {
+          console.log(res.data)
+          this.evaluationData = res.data
+          this.starAvg = res.data.totalScore[0]
         })
         .catch((error) => {
           console.error(error)

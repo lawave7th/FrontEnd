@@ -1,18 +1,9 @@
 <template>
-    <div class="border d-none d-md-block border-primary d-flex flex-column align-items-center rounded rounded-3 shadow-md px-4">
-      <div class="lawyer-photo img-fluid position-relative mx-4 my-5">
-        <label for="photoUpload">
-          <div class="photoUpload">
-            <img v-if="!image" class="rounded rounded-pill" src="../../../assets/img/member-logo.png" alt="律師照片">
-            <img v-else  name="file" class="rounded rounded-pill"  :src="image" alt="律師照片" width="200" height="200">
-<!--            <cropper-->
-<!--              v-else-->
-<!--              :src="image"-->
-<!--              :stencil-props="{handlers: {},movable: false,scalable: false,}"-->
-<!--              :stencil-size="{width: 200, height: 200}"-->
-<!--              image-restriction="stencil"-->
-<!--            />-->
-          </div>
+    <div class="border d-none d-md-block border-primary d-flex flex-column align-items-center rounded rounded-3 shadow-md ">
+      <div class="lawyer-photo img-fluid text-center my-5">
+        <label for="photoUpload" class="photoUpload">
+            <img v-if="image === null" class="rounded rounded-pill mug-shot-sm" src="../../../assets/img/member-logo.png" alt="律師照片">
+            <img v-else  name="file" class="rounded rounded-pill mug-shot-sm"  :src="image" alt="律師照片">
         </label>
         <input class="d-none" type="file" id="photoUpload" ref="lawyerPhoto" @change="uploadFile" />
       </div>
@@ -27,7 +18,7 @@
         </div>
       </div>
       <!-- 會員中心點擊欄位 -->
-      <ul class="center-side-menu mb-5">
+      <ul class="center-side-menu mb-5 px-4">
         <li>
           <router-link class="d-block px-3 py-4 border-bottom border-top border-2" to="lawyer-certification">
             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -81,7 +72,7 @@ export default {
   data () {
     return {
       lawyerData: {},
-      image: ''
+      image: null
     }
   },
   mounted () {

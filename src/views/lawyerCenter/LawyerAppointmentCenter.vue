@@ -1,12 +1,12 @@
 <template>
-  <div class="border rounded rounded-3 px-md-7 py-md-3 mb-md-7">
+  <div class="border border-primary rounded rounded-3 py-2 px-3 px-md-7 py-md-3 mb-md-7 ">
     <!-- 預約中心點擊按鈕 -->
-    <ul class="row appointment-menu">
-      <li class="col border-end text-center"><a class="fs-4" @click.prevent="changeTabs('appointmentTime')" href="#">可被預約</a></li>
-      <li class="col border-end text-center"><a class="fs-4" @click.prevent="changeTabs('pendingReview')" href="#">未審核</a></li>
-      <li class="col border-end text-center"><a class="fs-4" @click.prevent="changeTabs('booked')" href="#">已預約</a></li>
-      <li class="col border-end text-center"><a class="fs-4" @click.prevent="changeTabs('appointmentRecord')" href="#">預約紀錄</a></li>
-      <li class="col text-center"><a class="fs-4" @click.prevent="changeTabs('blockMembersList')" href="#">封鎖名單</a></li>
+    <ul class="row appointment-menu justify-content-between">
+      <li class="col border-end text-center " :class="activeClass === 'appointmentTime' ? 'appointment-bar-active' : ''"><a class="appointment-bar-fs rounded-start-3 text-secondary"  @click.prevent="changeTabs('appointmentTime')" href="#">可被預約</a></li>
+      <li class="col border-end text-center ps-1" :class="activeClass === 'pendingReview' ? 'appointment-bar-active' : ''"><a class="appointment-bar-fs text-secondary" @click.prevent="changeTabs('pendingReview')" href="#">未審核</a></li>
+      <li class="col border-end text-center ps-1" :class="activeClass === 'booked' ? 'appointment-bar-active' : ''"><a class="appointment-bar-fs text-secondary" @click.prevent="changeTabs('booked')" href="#">已預約</a></li>
+      <li class="col border-end text-center ps-1" :class="activeClass === 'appointmentRecord' ? 'appointment-bar-active' : ''"><a class="appointment-bar-fs text-secondary" @click.prevent="changeTabs('appointmentRecord')" href="#">預約紀錄</a></li>
+      <li class="col text-center ps-1" :class="activeClass === 'blockMembersList' ? 'appointment-bar-active' : ''"><a class="appointment-bar-fs" @click.prevent="changeTabs('blockMembersList')" href="#">封鎖名單</a></li>
     </ul>
   </div>
   <!-- 可被預約頁面 -->
@@ -24,7 +24,7 @@
       </button>
     </div>
 
-    <div class="border d-none rounded rounded-3 px-md-7 py-md-4 mb-md-7">
+    <div class="border rounded rounded-3 px-md-7 py-md-4 mb-md-7">
       <ul>
         <li class="mb-4">
           <h3 class="fs-2 border-bottom pb-3 mb-3">星期一</h3>
@@ -420,7 +420,7 @@
       </ul>
     </div>
 
-    <div class="border rounded rounded-3 px-md-3 py-md-4 mb-md-7">
+    <div class="border d-none rounded rounded-3 px-md-3 py-md-4 mb-md-7">
       <table class="table table-bordered">
         <thead>
         <tr class="border-top-0">

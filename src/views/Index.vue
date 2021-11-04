@@ -429,7 +429,7 @@ export default {
       getIndexHotLawyer()
         .then((res) => {
           console.log(res.data)
-          // this.hotLawyerData = res.data.slice(0, 4)
+          this.hotLawyerData = res.data.slice(0, 4)
         })
         .catch((error) => {
           console.error(error)

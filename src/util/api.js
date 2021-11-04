@@ -65,6 +65,12 @@ export const getLawyerDetailed = (url) => {
   return request('get', url)
 }
 
+// 律師詳細資料頁評價
+
+export const getLawyerEvaluation = (url) => {
+  return request('get', url)
+}
+
 // 常見問題頁
 
 export const getCommonProblem = () => {
@@ -91,7 +97,13 @@ export const getMemberPhoto = () => {
   return request('get', 'mem/shotPhoto')
 }
 
-// 律師驗證資料 get
+// 律師驗證圖片 get
 export const lawyerCertificationData = () => {
   return request('get', 'lawyer/veriPhoto/')
+}
+
+// 律師公開個人檔案
+
+export const lawyerChangePublic = (data) => {
+  return request('put', 'mem/publicInfo/', data)
 }

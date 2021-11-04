@@ -16,20 +16,7 @@
           <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                data-bs-parent="#accordionFlushExample">
             <div class="accordion-body">
-              <ol>
-                <li>
-                  <h3 class="fs-4">1. 是否有律師資格</h3>
-                  <p>建議先確認律師身份，可透過法務部的律師查詢系統。在法學電波上面的律師，都是經過認證資格審核有律師資格</p>
-                </li>
-                <li>
-                  <h3 class="fs-4">2.瞭解律師經驗</h3>
-                  <p>律師透過在特定領域累積一定的案件處理經驗，在處理上較能快速進入狀況，甚至懂得一些與法官應對的眉角！</p>
-                </li>
-                <li>
-                  <h3 class="fs-4">3.直接與律師諮詢</h3>
-                  <p>律師諮詢是最能夠精確瞭解的方式，透過法律諮詢，可以在溝通的過程中感受到律師對你的案件是否能夠精準掌握</p>
-                </li>
-              </ol>
+    <p>{{item.ans}}</p>
             </div>
           </div>
         </li>
@@ -131,9 +118,7 @@ export default {
     getData () {
       getCommonProblem()
         .then((res) => {
-          console.log(res)
-          this.problemData = res.data
-          console.log(this.problemData.title)
+          this.problemData = res.data.data
         })
         .catch((error) => {
           console.error(error)
