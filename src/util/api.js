@@ -107,3 +107,9 @@ export const lawyerCertificationData = () => {
 export const lawyerChangePublic = (data) => {
   return request('put', 'mem/publicInfo/', data)
 }
+
+// 律師設定可預約時間
+
+export const getLawyerReservationSet = () => {
+  return request('get', 'mem/lawyerReservationSet')
+}

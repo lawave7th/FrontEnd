@@ -1,419 +1,444 @@
 <template>
-  <div class="border border-primary rounded rounded-3 py-2 px-3 px-md-7 py-md-3 mb-md-7 ">
+  <div class="border border-primary rounded rounded-3 py-2 px-3 px-md-7 py-md-3 mb-6 mb-md-7 ">
     <!-- 預約中心點擊按鈕 -->
     <ul class="row appointment-menu justify-content-between">
-      <li class="col border-end text-center " :class="activeClass === 'appointmentTime' ? 'appointment-bar-active' : ''"><a class="appointment-bar-fs rounded-start-3 text-secondary"  @click.prevent="changeTabs('appointmentTime')" href="#">可被預約</a></li>
-      <li class="col border-end text-center ps-1" :class="activeClass === 'pendingReview' ? 'appointment-bar-active' : ''"><a class="appointment-bar-fs text-secondary" @click.prevent="changeTabs('pendingReview')" href="#">未審核</a></li>
-      <li class="col border-end text-center ps-1" :class="activeClass === 'booked' ? 'appointment-bar-active' : ''"><a class="appointment-bar-fs text-secondary" @click.prevent="changeTabs('booked')" href="#">已預約</a></li>
-      <li class="col border-end text-center ps-1" :class="activeClass === 'appointmentRecord' ? 'appointment-bar-active' : ''"><a class="appointment-bar-fs text-secondary" @click.prevent="changeTabs('appointmentRecord')" href="#">預約紀錄</a></li>
-      <li class="col text-center ps-1" :class="activeClass === 'blockMembersList' ? 'appointment-bar-active' : ''"><a class="appointment-bar-fs" @click.prevent="changeTabs('blockMembersList')" href="#">封鎖名單</a></li>
+      <li class="col border-end text-center "
+          :class="activeClass === 'appointmentTime' ? 'appointment-bar-active' : ''"><a
+        class="appointment-bar-fs rounded-start-3 text-secondary" @click.prevent="changeTabs('appointmentTime')"
+        href="#">可被預約</a></li>
+      <li class="col border-end text-center ps-1"
+          :class="activeClass === 'pendingReview' ? 'appointment-bar-active' : ''"><a
+        class="appointment-bar-fs text-secondary" @click.prevent="changeTabs('pendingReview')" href="#">未審核</a></li>
+      <li class="col border-end text-center ps-1" :class="activeClass === 'booked' ? 'appointment-bar-active' : ''"><a
+        class="appointment-bar-fs text-secondary" @click.prevent="changeTabs('booked')" href="#">已預約</a></li>
+      <li class="col border-end text-center ps-1"
+          :class="activeClass === 'appointmentRecord' ? 'appointment-bar-active' : ''"><a
+        class="appointment-bar-fs text-secondary" @click.prevent="changeTabs('appointmentRecord')" href="#">預約紀錄</a>
+      </li>
+      <li class="col text-center ps-1" :class="activeClass === 'blockMembersList' ? 'appointment-bar-active' : ''"><a
+        class="appointment-bar-fs" @click.prevent="changeTabs('blockMembersList')" href="#">封鎖名單</a></li>
     </ul>
   </div>
   <!-- 可被預約頁面 -->
-  <div class="appointment-time" :class="activeClass === 'appointmentTime' ? 'active':'d-none' " >
-    <div class="d-flex justify-content-between pb-2 border-bottom mb-md-4">
+  <div class="appointment-time" :class="activeClass === 'appointmentTime' ? 'active':'d-none' ">
+    <div class="d-flex justify-content-between pb-2 border-bottom border-info mb-4">
       <h2 class="fs-4">設定可被預約時段表</h2>
-      <button type="button" class="btn btn-secondary rounded-pill">
-        <svg width="19" height="19" viewBox="0 0 19 19" fill="none"
-             xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M0 15.2505V19.0005H3.75L14.81 7.94055L11.06 4.19055L0 15.2505ZM17.71 5.04055C18.1 4.65055 18.1 4.02055 17.71 3.63055L15.37 1.29055C14.98 0.900547 14.35 0.900547 13.96 1.29055L12.13 3.12055L15.88 6.87055L17.71 5.04055V5.04055Z"
-            fill="black" />
-        </svg>
-        編輯
-      </button>
+<!--      先不做有時間在做-->
+<!--      <button type="button" class="btn btn-secondary rounded-pill">-->
+<!--        <svg width="19" height="19" viewBox="0 0 19 19" fill="none"-->
+<!--             xmlns="http://www.w3.org/2000/svg">-->
+<!--          <path-->
+<!--            d="M0 15.2505V19.0005H3.75L14.81 7.94055L11.06 4.19055L0 15.2505ZM17.71 5.04055C18.1 4.65055 18.1 4.02055 17.71 3.63055L15.37 1.29055C14.98 0.900547 14.35 0.900547 13.96 1.29055L12.13 3.12055L15.88 6.87055L17.71 5.04055V5.04055Z"-->
+<!--            fill="black"/>-->
+<!--        </svg>-->
+<!--        編輯-->
+<!--      </button>-->
     </div>
 
-    <div class="border rounded rounded-3 px-md-7 py-md-4 mb-md-7">
+    <div class="appointment-time-border rounded rounded-3 px-md-7 py-md-4 mb-md-7">
       <ul>
         <li class="mb-4">
-          <h3 class="fs-2 border-bottom pb-3 mb-3">星期一</h3>
-          <h4>營業時段</h4>
-          <div class="d-flex align-items-center justify-content-between mb-3">
-            <span class="m-0">設定營業時段</span>
-            <select class="rounded select-icon border ps-3 pe-6 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">上午</option>
-              <option value="下午">下午</option>
+          <h3 class="fs-2 border-bottom pb-3 mb-3 text-secondary">星期一</h3>
+          <h4 class="fs-6">營業時段</h4>
+          <div v-for="( item , index ) in timeData.mon" :key="index" class="d-flex align-items-center justify-content-between mb-3">
+            <span class="m-0 d-none d-md-block">設定營業時段</span>
+            <select v-model = "item.time" class="rounded select-icon border ps-1 pe-5  ps-md-3 pe-md-6 py-2">
+              <option  value="未選擇">－－</option>
+              <option  value="上午" >上午</option>
+              <option  value="下午">下午</option>
             </select>
-            <span class="m-0">開始</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
+            <span class="m-0 d-none d-md-inline-block">開始</span>
+            <span class="m-0 fs-7 d-inline-block d-md-none">起</span>
+            <select v-if="item.time === '上午'" v-model = "item.startTime" class="rounded select-icon border ps-1 pe-5 ps-md-3 pe-md-8 py-2">
               <option value="未選擇">－－</option>
-              <option value="上午">10:00</option>
+              <option value="9:00">9:00</option>
+              <option value="10:00">10:00</option>
+              <option value="11:00">11:00</option>
             </select>
-            <span class="m-0">結束</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
+            <select v-else v-model = "item.startTime" class="rounded select-icon border ps-1 pe-5 ps-md-3 pe-md-8 py-2">
               <option value="未選擇">－－</option>
-              <option value="上午">11:00</option>
+              <option value="12:00">12:00</option>
+              <option value="13:00">13:00</option>
+              <option value="14:00">14:00</option>
+              <option value="15:00">15:00</option>
+              <option value="16:00">16:00</option>
+              <option value="17:00">17:00</option>
+              <option value="18:00">18:00</option>
+              <option value="19:00">19:00</option>
+              <option value="20:00">20:00</option>
             </select>
-            <button type="button" class="btn"><svg width="20" height="20"
-                                                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M5 9V11H15V9H5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"
-                fill="black" />
-            </svg>
-            </button>
-          </div>
-          <div class="d-flex align-items-center justify-content-between mb-3">
-            <span class="m-0">設定營業時段</span>
-            <select class="rounded select-icon border ps-3 pe-6 py-2">
+            <span class="m-0 d-none d-md-inline-block">結束</span>
+            <span class="m-0 fs-7 d-inline-block d-md-none">止</span>
+            <select v-if="item.time === '上午'" v-model = "item.endTime" class="rounded select-icon border ps-1 pe-5 ps-md-3 pe-md-8 py-2">
               <option value="未選擇">－－</option>
-              <option value="上午">上午</option>
-              <option value="下午">下午</option>
+              <option value="10:00">10:00</option>
+              <option value="11:00">11:00</option>
+              <option value="12:00">12:00</option>
             </select>
-            <span class="m-0">開始</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
+            <select v-else v-model = "item.endTime" class="rounded select-icon border ps-md-3 ps-1 pe-5 pe-md-8 py-2">
               <option value="未選擇">－－</option>
-              <option value="上午">10:00</option>
+              <option value="13:00">13:00</option>
+              <option value="14:00">14:00</option>
+              <option value="15:00">15:00</option>
+              <option value="16:00">16:00</option>
+              <option value="17:00">17:00</option>
+              <option value="18:00">18:00</option>
+              <option value="19:00">19:00</option>
+              <option value="20:00">20:00</option>
+              <option value="21:00">21:00</option>
             </select>
-            <span class="m-0">結束</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">11:00</option>
-            </select>
-            <button type="button" class="btn"><svg width="20" height="20"
-                                                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z"
-                fill="black" />
-            </svg>
-
-            </button>
-          </div>
-        </li>
-        <li class="mb-4">
-          <h3 class="fs-2 border-bottom pb-3 mb-3">星期二</h3>
-          <h4>營業時段</h4>
-          <div class="d-flex align-items-center justify-content-between mb-3">
-            <span class="m-0">設定營業時段</span>
-            <select class="rounded select-icon border ps-3 pe-6 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">上午</option>
-              <option value="下午">下午</option>
-            </select>
-            <span class="m-0">開始</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">10:00</option>
-            </select>
-            <span class="m-0">結束</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">11:00</option>
-            </select>
-            <button type="button" class="btn"><svg width="20" height="20"
-                                                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M5 9V11H15V9H5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"
-                fill="black" />
-            </svg>
-            </button>
-          </div>
-          <div class="d-flex align-items-center justify-content-between mb-3">
-            <span class="m-0">設定營業時段</span>
-            <select class="rounded select-icon border ps-3 pe-6 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">上午</option>
-              <option value="下午">下午</option>
-            </select>
-            <span class="m-0">開始</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">10:00</option>
-            </select>
-            <span class="m-0">結束</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">11:00</option>
-            </select>
-            <button type="button" class="btn"><svg width="20" height="20"
-                                                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z"
-                fill="black" />
-            </svg>
-
-            </button>
-          </div>
-        </li>
-        <li class="mb-4">
-          <h3 class="fs-2 border-bottom pb-3 mb-3">星期三</h3>
-          <h4>營業時段</h4>
-          <div class="d-flex align-items-center justify-content-between mb-3">
-            <span class="m-0">設定營業時段</span>
-            <select class="rounded select-icon border ps-3 pe-6 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">上午</option>
-              <option value="下午">下午</option>
-            </select>
-            <span class="m-0">開始</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">10:00</option>
-            </select>
-            <span class="m-0">結束</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">11:00</option>
-            </select>
-            <button type="button" class="btn"><svg width="20" height="20"
-                                                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M5 9V11H15V9H5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"
-                fill="black" />
-            </svg>
-            </button>
-          </div>
-          <div class="d-flex align-items-center justify-content-between mb-3">
-            <span class="m-0">設定營業時段</span>
-            <select class="rounded select-icon border ps-3 pe-6 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">上午</option>
-              <option value="下午">下午</option>
-            </select>
-            <span class="m-0">開始</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">10:00</option>
-            </select>
-            <span class="m-0">結束</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">11:00</option>
-            </select>
-            <button type="button" class="btn"><svg width="20" height="20"
-                                                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z"
-                fill="black" />
-            </svg>
-
-            </button>
-          </div>
-        </li>
-        <li class="mb-4">
-          <h3 class="fs-2 border-bottom pb-3 mb-3">星期四</h3>
-          <h4>營業時段</h4>
-          <div class="d-flex align-items-center justify-content-between mb-3">
-            <span class="m-0">設定營業時段</span>
-            <select class="rounded select-icon border ps-3 pe-6 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">上午</option>
-              <option value="下午">下午</option>
-            </select>
-            <span class="m-0">開始</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">10:00</option>
-            </select>
-            <span class="m-0">結束</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">11:00</option>
-            </select>
-            <button type="button" class="btn"><svg width="20" height="20"
-                                                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M5 9V11H15V9H5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"
-                fill="black" />
-            </svg>
-            </button>
-          </div>
-          <div class="d-flex align-items-center justify-content-between mb-3">
-            <span class="m-0">設定營業時段</span>
-            <select class="rounded select-icon border ps-3 pe-6 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">上午</option>
-              <option value="下午">下午</option>
-            </select>
-            <span class="m-0">開始</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">10:00</option>
-            </select>
-            <span class="m-0">結束</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">11:00</option>
-            </select>
-            <button type="button" class="btn"><svg width="20" height="20"
-                                                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z"
-                fill="black" />
-            </svg>
-
-            </button>
-          </div>
-        </li>
-        <li class="mb-4">
-          <h3 class="fs-2 border-bottom pb-3 mb-3">星期五</h3>
-          <h4>營業時段</h4>
-          <div class="d-flex align-items-center justify-content-between mb-3">
-            <span class="m-0">設定營業時段</span>
-            <select class="rounded select-icon border ps-3 pe-6 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">上午</option>
-              <option value="下午">下午</option>
-            </select>
-            <span class="m-0">開始</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">10:00</option>
-            </select>
-            <span class="m-0">結束</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">11:00</option>
-            </select>
-            <button type="button" class="btn"><svg width="20" height="20"
-                                                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M5 9V11H15V9H5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"
-                fill="black" />
-            </svg>
-            </button>
-          </div>
-          <div class="d-flex align-items-center justify-content-between mb-3">
-            <span class="m-0">設定營業時段</span>
-            <select class="rounded select-icon border ps-3 pe-6 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">上午</option>
-              <option value="下午">下午</option>
-            </select>
-            <span class="m-0">開始</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">10:00</option>
-            </select>
-            <span class="m-0">結束</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">11:00</option>
-            </select>
-            <button type="button" class="btn"><svg width="20" height="20"
-                                                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z"
-                fill="black" />
-            </svg>
-
-            </button>
-          </div>
-        </li>
-        <li class="mb-4">
-          <h3 class="fs-2 border-bottom pb-3 mb-3">星期六</h3>
-          <h4>營業時段</h4>
-          <div class="d-flex align-items-center justify-content-between mb-3">
-            <span class="m-0">設定營業時段</span>
-            <select class="rounded select-icon border ps-3 pe-6 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">上午</option>
-              <option value="下午">下午</option>
-            </select>
-            <span class="m-0">開始</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">10:00</option>
-            </select>
-            <span class="m-0">結束</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">11:00</option>
-            </select>
-            <button type="button" class="btn"><svg width="20" height="20"
-                                                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M5 9V11H15V9H5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"
-                fill="black" />
-            </svg>
-            </button>
-          </div>
-          <div class="d-flex align-items-center justify-content-between mb-3">
-            <span class="m-0">設定營業時段</span>
-            <select class="rounded select-icon border ps-3 pe-6 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">上午</option>
-              <option value="下午">下午</option>
-            </select>
-            <span class="m-0">開始</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">10:00</option>
-            </select>
-            <span class="m-0">結束</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">11:00</option>
-            </select>
-            <button type="button" class="btn"><svg width="20" height="20"
-                                                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z"
-                fill="black" />
-            </svg>
-
-            </button>
-          </div>
-        </li>
-        <li class="mb-4">
-          <h3 class="fs-2 border-bottom pb-3 mb-3">星期日</h3>
-          <h4>營業時段</h4>
-          <div class="d-flex align-items-center justify-content-between mb-3">
-            <span class="m-0">設定營業時段</span>
-            <select class="rounded select-icon border ps-3 pe-6 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">上午</option>
-              <option value="下午">下午</option>
-            </select>
-            <span class="m-0">開始</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">10:00</option>
-            </select>
-            <span class="m-0">結束</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">11:00</option>
-            </select>
-            <button type="button" class="btn"><svg width="20" height="20"
-                                                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M5 9V11H15V9H5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"
-                fill="black" />
-            </svg>
-            </button>
-          </div>
-          <div class="d-flex align-items-center justify-content-between mb-3">
-            <span class="m-0">設定營業時段</span>
-            <select class="rounded select-icon border ps-3 pe-6 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">上午</option>
-              <option value="下午">下午</option>
-            </select>
-            <span class="m-0">開始</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">10:00</option>
-            </select>
-            <span class="m-0">結束</span>
-            <select class="rounded select-icon border ps-3 pe-8 py-2">
-              <option value="未選擇">－－</option>
-              <option value="上午">11:00</option>
-            </select>
-            <button type="button" class="btn"><svg width="20" height="20"
-                                                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z"
-                fill="black" />
-            </svg>
-
+            <button type="button" class="btn">
+              <span v-if="item.endTime === '未選擇'" class="material-icons text-secondary">add_circle</span>
+              <span  v-else class="material-icons text-secondary">remove_circle_outline</span>
             </button>
           </div>
 
         </li>
-        <li class="d-flex justify-content-end">
-          <button type="button" class="btn rounded-pill btn-dark py-3 px-6">
+<!--        <li class="mb-4">-->
+<!--          <h3 class="fs-2 border-bottom pb-3 mb-3">星期二</h3>-->
+<!--          <h4 >營業時段</h4>-->
+<!--          <div class="d-flex align-items-center justify-content-between mb-3">-->
+<!--            <span class="m-0">設定營業時段</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-6 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">上午</option>-->
+<!--              <option value="下午">下午</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">開始</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">10:00</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">結束</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">11:00</option>-->
+<!--            </select>-->
+<!--            <button type="button" class="btn">-->
+<!--              <svg width="20" height="20"-->
+<!--                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                <path-->
+<!--                  d="M5 9V11H15V9H5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"-->
+<!--                  fill="black"/>-->
+<!--              </svg>-->
+<!--            </button>-->
+<!--          </div>-->
+<!--          <div class="d-flex align-items-center justify-content-between mb-3">-->
+<!--            <span class="m-0">設定營業時段</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-6 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">上午</option>-->
+<!--              <option value="下午">下午</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">開始</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">10:00</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">結束</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">11:00</option>-->
+<!--            </select>-->
+<!--            <button type="button" class="btn">-->
+<!--              <svg width="20" height="20"-->
+<!--                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                <path-->
+<!--                  d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z"-->
+<!--                  fill="black"/>-->
+<!--              </svg>-->
+
+<!--            </button>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li class="mb-4">-->
+<!--          <h3 class="fs-2 border-bottom pb-3 mb-3">星期三</h3>-->
+<!--          <h4>營業時段</h4>-->
+<!--          <div class="d-flex align-items-center justify-content-between mb-3">-->
+<!--            <span class="m-0">設定營業時段</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-6 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">上午</option>-->
+<!--              <option value="下午">下午</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">開始</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">10:00</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">結束</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">11:00</option>-->
+<!--            </select>-->
+<!--            <button type="button" class="btn">-->
+<!--              <svg width="20" height="20"-->
+<!--                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                <path-->
+<!--                  d="M5 9V11H15V9H5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"-->
+<!--                  fill="black"/>-->
+<!--              </svg>-->
+<!--            </button>-->
+<!--          </div>-->
+<!--          <div class="d-flex align-items-center justify-content-between mb-3">-->
+<!--            <span class="m-0">設定營業時段</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-6 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">上午</option>-->
+<!--              <option value="下午">下午</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">開始</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">10:00</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">結束</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">11:00</option>-->
+<!--            </select>-->
+<!--            <button type="button" class="btn">-->
+<!--              <svg width="20" height="20"-->
+<!--                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                <path-->
+<!--                  d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z"-->
+<!--                  fill="black"/>-->
+<!--              </svg>-->
+
+<!--            </button>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li class="mb-4">-->
+<!--          <h3 class="fs-2 border-bottom pb-3 mb-3">星期四</h3>-->
+<!--          <h4>營業時段</h4>-->
+<!--          <div class="d-flex align-items-center justify-content-between mb-3">-->
+<!--            <span class="m-0">設定營業時段</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-6 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">上午</option>-->
+<!--              <option value="下午">下午</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">開始</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">10:00</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">結束</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">11:00</option>-->
+<!--            </select>-->
+<!--            <button type="button" class="btn">-->
+<!--              <svg width="20" height="20"-->
+<!--                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                <path-->
+<!--                  d="M5 9V11H15V9H5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"-->
+<!--                  fill="black"/>-->
+<!--              </svg>-->
+<!--            </button>-->
+<!--          </div>-->
+<!--          <div class="d-flex align-items-center justify-content-between mb-3">-->
+<!--            <span class="m-0">設定營業時段</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-6 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">上午</option>-->
+<!--              <option value="下午">下午</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">開始</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">10:00</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">結束</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">11:00</option>-->
+<!--            </select>-->
+<!--            <button type="button" class="btn">-->
+<!--              <svg width="20" height="20"-->
+<!--                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                <path-->
+<!--                  d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z"-->
+<!--                  fill="black"/>-->
+<!--              </svg>-->
+
+<!--            </button>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li class="mb-4">-->
+<!--          <h3 class="fs-2 border-bottom pb-3 mb-3">星期五</h3>-->
+<!--          <h4>營業時段</h4>-->
+<!--          <div class="d-flex align-items-center justify-content-between mb-3">-->
+<!--            <span class="m-0">設定營業時段</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-6 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">上午</option>-->
+<!--              <option value="下午">下午</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">開始</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">10:00</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">結束</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">11:00</option>-->
+<!--            </select>-->
+<!--            <button type="button" class="btn">-->
+<!--              <svg width="20" height="20"-->
+<!--                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                <path-->
+<!--                  d="M5 9V11H15V9H5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"-->
+<!--                  fill="black"/>-->
+<!--              </svg>-->
+<!--            </button>-->
+<!--          </div>-->
+<!--          <div class="d-flex align-items-center justify-content-between mb-3">-->
+<!--            <span class="m-0">設定營業時段</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-6 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">上午</option>-->
+<!--              <option value="下午">下午</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">開始</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">10:00</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">結束</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">11:00</option>-->
+<!--            </select>-->
+<!--            <button type="button" class="btn">-->
+<!--              <svg width="20" height="20"-->
+<!--                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                <path-->
+<!--                  d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z"-->
+<!--                  fill="black"/>-->
+<!--              </svg>-->
+
+<!--            </button>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li class="mb-4">-->
+<!--          <h3 class="fs-2 border-bottom pb-3 mb-3">星期六</h3>-->
+<!--          <h4>營業時段</h4>-->
+<!--          <div class="d-flex align-items-center justify-content-between mb-3">-->
+<!--            <span class="m-0">設定營業時段</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-6 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">上午</option>-->
+<!--              <option value="下午">下午</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">開始</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">10:00</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">結束</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">11:00</option>-->
+<!--            </select>-->
+<!--            <button type="button" class="btn">-->
+<!--              <svg width="20" height="20"-->
+<!--                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                <path-->
+<!--                  d="M5 9V11H15V9H5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"-->
+<!--                  fill="black"/>-->
+<!--              </svg>-->
+<!--            </button>-->
+<!--          </div>-->
+<!--          <div class="d-flex align-items-center justify-content-between mb-3">-->
+<!--            <span class="m-0">設定營業時段</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-6 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">上午</option>-->
+<!--              <option value="下午">下午</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">開始</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">10:00</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">結束</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">11:00</option>-->
+<!--            </select>-->
+<!--            <button type="button" class="btn">-->
+<!--              <svg width="20" height="20"-->
+<!--                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                <path-->
+<!--                  d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z"-->
+<!--                  fill="black"/>-->
+<!--              </svg>-->
+
+<!--            </button>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li class="mb-4">-->
+<!--          <h3 class="fs-2 border-bottom pb-3 mb-3">星期日</h3>-->
+<!--          <h4>營業時段</h4>-->
+<!--          <div class="d-flex align-items-center justify-content-between mb-3">-->
+<!--            <span class="m-0">設定營業時段</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-6 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">上午</option>-->
+<!--              <option value="下午">下午</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">開始</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">10:00</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">結束</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">11:00</option>-->
+<!--            </select>-->
+<!--            <button type="button" class="btn">-->
+<!--              <svg width="20" height="20"-->
+<!--                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                <path-->
+<!--                  d="M5 9V11H15V9H5ZM10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM10 18C5.59 18 2 14.41 2 10C2 5.59 5.59 2 10 2C14.41 2 18 5.59 18 10C18 14.41 14.41 18 10 18Z"-->
+<!--                  fill="black"/>-->
+<!--              </svg>-->
+<!--            </button>-->
+<!--          </div>-->
+<!--          <div class="d-flex align-items-center justify-content-between mb-3">-->
+<!--            <span class="m-0">設定營業時段</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-6 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">上午</option>-->
+<!--              <option value="下午">下午</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">開始</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">10:00</option>-->
+<!--            </select>-->
+<!--            <span class="m-0">結束</span>-->
+<!--            <select class="rounded select-icon border ps-3 pe-8 py-2">-->
+<!--              <option value="未選擇">－－</option>-->
+<!--              <option value="上午">11:00</option>-->
+<!--            </select>-->
+<!--            <button type="button" class="btn">-->
+<!--              <svg width="20" height="20"-->
+<!--                   viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                <path-->
+<!--                  d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z"-->
+<!--                  fill="black"/>-->
+<!--              </svg>-->
+
+<!--            </button>-->
+<!--          </div>-->
+
+<!--        </li>-->
+        <li class="d-flex justify-content-end mb-11 mb-md-0">
+          <button type="button" class="btn-secondary rounded btn-secondary py-2 px-3 py-md-3 px-md-6">
             新增此時段
           </button>
         </li>
@@ -574,13 +599,16 @@
           <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              車禍調解</li>
+              車禍調解
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              金錢糾紛</li>
+              金錢糾紛
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              其他</li>
+              其他
+            </li>
           </ul>
           <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
         </div>
@@ -592,7 +620,7 @@
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
-                fill="#C4C4C4" />
+                fill="#C4C4C4"/>
             </svg>
 
             拒絕
@@ -602,7 +630,7 @@
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M6.00039 11.1996L1.80039 6.99961L0.400391 8.39961L6.00039 13.9996L18.0004 1.99961L16.6004 0.599609L6.00039 11.1996Z"
-                fill="white" />
+                fill="white"/>
             </svg>
             確認
           </button>
@@ -621,13 +649,16 @@
           <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              車禍調解</li>
+              車禍調解
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              金錢糾紛</li>
+              金錢糾紛
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              其他</li>
+              其他
+            </li>
           </ul>
           <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
         </div>
@@ -639,7 +670,7 @@
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
-                fill="#C4C4C4" />
+                fill="#C4C4C4"/>
             </svg>
 
             拒絕
@@ -649,7 +680,7 @@
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M6.00039 11.1996L1.80039 6.99961L0.400391 8.39961L6.00039 13.9996L18.0004 1.99961L16.6004 0.599609L6.00039 11.1996Z"
-                fill="white" />
+                fill="white"/>
             </svg>
             確認
           </button>
@@ -668,13 +699,16 @@
           <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              車禍調解</li>
+              車禍調解
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              金錢糾紛</li>
+              金錢糾紛
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              其他</li>
+              其他
+            </li>
           </ul>
           <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
         </div>
@@ -686,7 +720,7 @@
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
-                fill="#C4C4C4" />
+                fill="#C4C4C4"/>
             </svg>
 
             拒絕
@@ -696,7 +730,7 @@
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M6.00039 11.1996L1.80039 6.99961L0.400391 8.39961L6.00039 13.9996L18.0004 1.99961L16.6004 0.599609L6.00039 11.1996Z"
-                fill="white" />
+                fill="white"/>
             </svg>
             確認
           </button>
@@ -711,12 +745,13 @@
         <div class="modal-content">
           <div class="position-relative">
             <button type="button" class="m-1 m-md-3 btn  fs-4 position-absolute top-0 end-0"
-                    data-bs-dismiss="modal" aria-label="Close"><svg width="14" height="14"
-                                                                    viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
-                fill="black" />
-            </svg>
+                    data-bs-dismiss="modal" aria-label="Close">
+              <svg width="14" height="14"
+                   viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+                  fill="black"/>
+              </svg>
             </button>
             <h2 class="modal-title text-center mt-3 mt-md-7 mb-2" id="loginModalLabel">
               確定要婉拒此次諮詢？</h2>
@@ -745,7 +780,7 @@
                    xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
-                  fill="#C4C4C4" />
+                  fill="#C4C4C4"/>
               </svg>
 
               取消
@@ -755,7 +790,7 @@
                    xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M6.00039 11.1996L1.80039 6.99961L0.400391 8.39961L6.00039 13.9996L18.0004 1.99961L16.6004 0.599609L6.00039 11.1996Z"
-                  fill="white" />
+                  fill="white"/>
               </svg>
               確認送出
             </button>
@@ -779,24 +814,29 @@
           <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              車禍調解</li>
+              車禍調解
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              金錢糾紛</li>
+              金錢糾紛
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              其他</li>
+              其他
+            </li>
           </ul>
           <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
         </div>
         <div class="col-3 d-flex">
-          <button type="button" class="btn btn-dark"><svg width="24" height="24"
-                                                          viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M21 6H19V15H6V17C6 17.55 6.45 18 7 18H18L22 22V7C22 6.45 21.55 6 21 6ZM17 12V3C17 2.45 16.55 2 16 2H3C2.45 2 2 2.45 2 3V17L6 13H16C16.55 13 17 12.55 17 12Z"
-              fill="white" />
-          </svg>
-            線上諮詢</button>
+          <button type="button" class="btn btn-dark">
+            <svg width="24" height="24"
+                 viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M21 6H19V15H6V17C6 17.55 6.45 18 7 18H18L22 22V7C22 6.45 21.55 6 21 6ZM17 12V3C17 2.45 16.55 2 16 2H3C2.45 2 2 2.45 2 3V17L6 13H16C16.55 13 17 12.55 17 12Z"
+                fill="white"/>
+            </svg>
+            線上諮詢
+          </button>
         </div>
 
       </li>
@@ -812,13 +852,16 @@
           <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              車禍調解</li>
+              車禍調解
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              金錢糾紛</li>
+              金錢糾紛
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              其他</li>
+              其他
+            </li>
           </ul>
           <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
         </div>
@@ -828,7 +871,7 @@
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 18.5C11.17 18.5 10.5 17.83 10.5 17H13.5C13.5 17.83 12.83 18.5 12 18.5ZM17 16H7V15L8 14V11.39C8 9.27 9.03 7.47 11 7V6.5C11 5.93 11.43 5.5 12 5.5C12.57 5.5 13 5.93 13 6.5V7C14.97 7.47 16 9.28 16 11.39V14L17 15V16Z"
-                fill="black" />
+                fill="black"/>
             </svg>
 
             預約提醒
@@ -848,13 +891,16 @@
           <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              車禍調解</li>
+              車禍調解
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              金錢糾紛</li>
+              金錢糾紛
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              其他</li>
+              其他
+            </li>
           </ul>
           <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
         </div>
@@ -864,7 +910,7 @@
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 18.5C11.17 18.5 10.5 17.83 10.5 17H13.5C13.5 17.83 12.83 18.5 12 18.5ZM17 16H7V15L8 14V11.39C8 9.27 9.03 7.47 11 7V6.5C11 5.93 11.43 5.5 12 5.5C12.57 5.5 13 5.93 13 6.5V7C14.97 7.47 16 9.28 16 11.39V14L17 15V16Z"
-                fill="black" />
+                fill="black"/>
             </svg>
 
             預約提醒
@@ -884,13 +930,16 @@
           <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              車禍調解</li>
+              車禍調解
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              金錢糾紛</li>
+              金錢糾紛
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              其他</li>
+              其他
+            </li>
           </ul>
           <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
         </div>
@@ -900,7 +949,7 @@
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 18.5C11.17 18.5 10.5 17.83 10.5 17H13.5C13.5 17.83 12.83 18.5 12 18.5ZM17 16H7V15L8 14V11.39C8 9.27 9.03 7.47 11 7V6.5C11 5.93 11.43 5.5 12 5.5C12.57 5.5 13 5.93 13 6.5V7C14.97 7.47 16 9.28 16 11.39V14L17 15V16Z"
-                fill="black" />
+                fill="black"/>
             </svg>
 
             預約提醒
@@ -920,13 +969,16 @@
           <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              車禍調解</li>
+              車禍調解
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              金錢糾紛</li>
+              金錢糾紛
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              其他</li>
+              其他
+            </li>
           </ul>
           <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
         </div>
@@ -936,7 +988,7 @@
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 18.5C11.17 18.5 10.5 17.83 10.5 17H13.5C13.5 17.83 12.83 18.5 12 18.5ZM17 16H7V15L8 14V11.39C8 9.27 9.03 7.47 11 7V6.5C11 5.93 11.43 5.5 12 5.5C12.57 5.5 13 5.93 13 6.5V7C14.97 7.47 16 9.28 16 11.39V14L17 15V16Z"
-                fill="black" />
+                fill="black"/>
             </svg>
 
             預約提醒
@@ -960,10 +1012,10 @@
                xmlns="http://www.w3.org/2000/svg">
             <path
               d="M1.27398 0L0.333984 0.94L3.38732 4L0.333984 7.06L1.27398 8L5.27398 4L1.27398 0Z"
-              fill="white" />
+              fill="white"/>
             <path
               d="M5.66656 0L4.72656 0.94L7.7799 4L4.72656 7.06L5.66656 8L9.66656 4L5.66656 0Z"
-              fill="white" />
+              fill="white"/>
           </svg>
 
         </a>
@@ -980,7 +1032,7 @@
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM2 10C2 5.58 5.58 2 10 2C11.85 2 13.55 2.63 14.9 3.69L3.69 14.9C2.63 13.55 2 11.85 2 10ZM10 18C8.15 18 6.45 17.37 5.1 16.31L16.31 5.1C17.37 6.45 18 8.15 18 10C18 14.42 14.42 18 10 18Z"
-                fill="black" />
+                fill="black"/>
             </svg>
             加入封鎖</a>
         </p>
@@ -996,13 +1048,16 @@
             <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
               <li
                 class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-                車禍調解</li>
+                車禍調解
+              </li>
               <li
                 class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-                金錢糾紛</li>
+                金錢糾紛
+              </li>
               <li
                 class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-                其他</li>
+                其他
+              </li>
             </ul>
             <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
           </div>
@@ -1018,7 +1073,7 @@
                    xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M10.59 0.589844L6 5.16984L1.41 0.589844L0 1.99984L6 7.99984L12 1.99984L10.59 0.589844Z"
-                  fill="white" />
+                  fill="white"/>
               </svg>
 
             </button>
@@ -1032,7 +1087,7 @@
 
                   <div class="d-flex justify-content-between align-items-center mb-3">
 
-                    <Rating class="text-warning" :modelValue="5" :readonly="true" :stars="5" :cancel="false" />
+                    <Rating class="text-warning" :modelValue="5" :readonly="true" :stars="5" :cancel="false"/>
                     <p class="fs-7 mb-1">2021/10/03</p>
                   </div>
                   <p>目前已經是離婚狀態了，但是前夫並未照約定付撫養費，上網搜尋相關方式才發現法學電波的法律線上諮詢媒合律師的方式，嘗試預約媒合後，感謝律師的回覆，目前也委託律師解決問題中
@@ -1048,10 +1103,10 @@
         <p class="text-end">
           <a href="#" data-bs-toggle="modal" data-bs-target="#blockMembersModal">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM2 10C2 5.58 5.58 2 10 2C11.85 2 13.55 2.63 14.9 3.69L3.69 14.9C2.63 13.55 2 11.85 2 10ZM10 18C8.15 18 6.45 17.37 5.1 16.31L16.31 5.1C17.37 6.45 18 8.15 18 10C18 14.42 14.42 18 10 18Z"
-              fill="black" />
-          </svg>
+              <path
+                d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM2 10C2 5.58 5.58 2 10 2C11.85 2 13.55 2.63 14.9 3.69L3.69 14.9C2.63 13.55 2 11.85 2 10ZM10 18C8.15 18 6.45 17.37 5.1 16.31L16.31 5.1C17.37 6.45 18 8.15 18 10C18 14.42 14.42 18 10 18Z"
+                fill="black"/>
+            </svg>
             加入封鎖</a>
         </p>
 
@@ -1067,13 +1122,16 @@
             <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
               <li
                 class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-                車禍調解</li>
+                車禍調解
+              </li>
               <li
                 class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-                金錢糾紛</li>
+                金錢糾紛
+              </li>
               <li
                 class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-                其他</li>
+                其他
+              </li>
             </ul>
             <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
           </div>
@@ -1089,7 +1147,7 @@
                    xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M10.59 0.589844L6 5.16984L1.41 0.589844L0 1.99984L6 7.99984L12 1.99984L10.59 0.589844Z"
-                  fill="white" />
+                  fill="white"/>
               </svg>
 
             </button>
@@ -1103,7 +1161,7 @@
 
                   <div class="d-flex justify-content-between align-items-center mb-3">
 
-                    <Rating class="text-warning" :modelValue="5" :readonly="true" :stars="5" :cancel="false" />
+                    <Rating class="text-warning" :modelValue="5" :readonly="true" :stars="5" :cancel="false"/>
                     <p class="fs-7 mb-1">2021/10/03</p>
                   </div>
                   <p>目前已經是離婚狀態了，但是前夫並未照約定付撫養費，上網搜尋相關方式才發現法學電波的法律線上諮詢媒合律師的方式，嘗試預約媒合後，感謝律師的回覆，目前也委託律師解決問題中
@@ -1122,7 +1180,7 @@
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM2 10C2 5.58 5.58 2 10 2C11.85 2 13.55 2.63 14.9 3.69L3.69 14.9C2.63 13.55 2 11.85 2 10ZM10 18C8.15 18 6.45 17.37 5.1 16.31L16.31 5.1C17.37 6.45 18 8.15 18 10C18 14.42 14.42 18 10 18Z"
-                fill="black" />
+                fill="black"/>
             </svg>
             加入封鎖</a>
         </p>
@@ -1139,13 +1197,16 @@
             <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
               <li
                 class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-                車禍調解</li>
+                車禍調解
+              </li>
               <li
                 class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-                金錢糾紛</li>
+                金錢糾紛
+              </li>
               <li
                 class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-                其他</li>
+                其他
+              </li>
             </ul>
             <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
           </div>
@@ -1161,7 +1222,7 @@
                    xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M10.59 0.589844L6 5.16984L1.41 0.589844L0 1.99984L6 7.99984L12 1.99984L10.59 0.589844Z"
-                  fill="white" />
+                  fill="white"/>
               </svg>
             </button>
           </div>
@@ -1174,7 +1235,7 @@
 
                   <div class="d-flex justify-content-between align-items-center mb-3">
 
-                    <Rating class="text-warning" :modelValue="5" :readonly="true" :stars="5" :cancel="false" />
+                    <Rating class="text-warning" :modelValue="5" :readonly="true" :stars="5" :cancel="false"/>
                     <p class="fs-7 mb-1">2021/10/03</p>
                   </div>
                   <p>目前已經是離婚狀態了，但是前夫並未照約定付撫養費，上網搜尋相關方式才發現法學電波的法律線上諮詢媒合律師的方式，嘗試預約媒合後，感謝律師的回覆，目前也委託律師解決問題中
@@ -1195,12 +1256,13 @@
         <div class="modal-content">
           <div class="position-relative">
             <button type="button" class="m-1 m-mb-3 btn  fs-4 position-absolute top-0 end-0"
-                    data-bs-dismiss="modal" aria-label="Close"><svg width="14" height="14"
-                                                                    viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
-                fill="black" />
-            </svg>
+                    data-bs-dismiss="modal" aria-label="Close">
+              <svg width="14" height="14"
+                   viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+                  fill="black"/>
+              </svg>
             </button>
             <h2 class="modal-title text-center mt-3 mt-md-7 mb-2" id="blockMembersModalLabel">
               是否確定要封鎖此會員</h2>
@@ -1219,7 +1281,7 @@
                    xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
-                  fill="#C4C4C4" />
+                  fill="#C4C4C4"/>
               </svg>
               取消
             </button>
@@ -1228,7 +1290,7 @@
                    xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M5.99844 11.1996L1.79844 6.99961L0.398438 8.39961L5.99844 13.9996L17.9984 1.99961L16.5984 0.599609L5.99844 11.1996Z"
-                  fill="white" />
+                  fill="white"/>
               </svg>
               確定封鎖
             </button>
@@ -1251,10 +1313,10 @@
                xmlns="http://www.w3.org/2000/svg">
             <path
               d="M1.27398 0L0.333984 0.94L3.38732 4L0.333984 7.06L1.27398 8L5.27398 4L1.27398 0Z"
-              fill="white" />
+              fill="white"/>
             <path
               d="M5.66656 0L4.72656 0.94L7.7799 4L4.72656 7.06L5.66656 8L9.66656 4L5.66656 0Z"
-              fill="white" />
+              fill="white"/>
           </svg>
 
         </a>
@@ -1276,13 +1338,16 @@
           <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              車禍調解</li>
+              車禍調解
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              金錢糾紛</li>
+              金錢糾紛
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              其他</li>
+              其他
+            </li>
           </ul>
           <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
         </div>
@@ -1292,10 +1357,11 @@
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M8 16C9.1 16 10 15.1 10 14C10 12.9 9.1 12 8 12C6.9 12 6 12.9 6 14C6 15.1 6.9 16 8 16ZM14 7H13V5C13 2.24 10.76 0 8 0C5.24 0 3 2.24 3 5H4.9C4.9 3.29 6.29 1.9 8 1.9C9.71 1.9 11.1 3.29 11.1 5V7H2C0.9 7 0 7.9 0 9V19C0 20.1 0.9 21 2 21H14C15.1 21 16 20.1 16 19V9C16 7.9 15.1 7 14 7ZM14 19H2V9H14V19Z"
-                fill="#C4C4C4" />
+                fill="#C4C4C4"/>
             </svg>
 
-            解除封鎖</button>
+            解除封鎖
+          </button>
         </div>
 
       </li>
@@ -1311,13 +1377,16 @@
           <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              車禍調解</li>
+              車禍調解
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              金錢糾紛</li>
+              金錢糾紛
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              其他</li>
+              其他
+            </li>
           </ul>
           <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
         </div>
@@ -1327,10 +1396,11 @@
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M8 16C9.1 16 10 15.1 10 14C10 12.9 9.1 12 8 12C6.9 12 6 12.9 6 14C6 15.1 6.9 16 8 16ZM14 7H13V5C13 2.24 10.76 0 8 0C5.24 0 3 2.24 3 5H4.9C4.9 3.29 6.29 1.9 8 1.9C9.71 1.9 11.1 3.29 11.1 5V7H2C0.9 7 0 7.9 0 9V19C0 20.1 0.9 21 2 21H14C15.1 21 16 20.1 16 19V9C16 7.9 15.1 7 14 7ZM14 19H2V9H14V19Z"
-                fill="#C4C4C4" />
+                fill="#C4C4C4"/>
             </svg>
 
-            解除封鎖</button>
+            解除封鎖
+          </button>
         </div>
 
       </li>
@@ -1346,13 +1416,16 @@
           <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              車禍調解</li>
+              車禍調解
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              金錢糾紛</li>
+              金錢糾紛
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              其他</li>
+              其他
+            </li>
           </ul>
           <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
         </div>
@@ -1362,10 +1435,11 @@
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M8 16C9.1 16 10 15.1 10 14C10 12.9 9.1 12 8 12C6.9 12 6 12.9 6 14C6 15.1 6.9 16 8 16ZM14 7H13V5C13 2.24 10.76 0 8 0C5.24 0 3 2.24 3 5H4.9C4.9 3.29 6.29 1.9 8 1.9C9.71 1.9 11.1 3.29 11.1 5V7H2C0.9 7 0 7.9 0 9V19C0 20.1 0.9 21 2 21H14C15.1 21 16 20.1 16 19V9C16 7.9 15.1 7 14 7ZM14 19H2V9H14V19Z"
-                fill="#C4C4C4" />
+                fill="#C4C4C4"/>
             </svg>
 
-            解除封鎖</button>
+            解除封鎖
+          </button>
         </div>
 
       </li>
@@ -1381,13 +1455,16 @@
           <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              車禍調解</li>
+              車禍調解
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              金錢糾紛</li>
+              金錢糾紛
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              其他</li>
+              其他
+            </li>
           </ul>
           <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
         </div>
@@ -1397,10 +1474,11 @@
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M8 16C9.1 16 10 15.1 10 14C10 12.9 9.1 12 8 12C6.9 12 6 12.9 6 14C6 15.1 6.9 16 8 16ZM14 7H13V5C13 2.24 10.76 0 8 0C5.24 0 3 2.24 3 5H4.9C4.9 3.29 6.29 1.9 8 1.9C9.71 1.9 11.1 3.29 11.1 5V7H2C0.9 7 0 7.9 0 9V19C0 20.1 0.9 21 2 21H14C15.1 21 16 20.1 16 19V9C16 7.9 15.1 7 14 7ZM14 19H2V9H14V19Z"
-                fill="#C4C4C4" />
+                fill="#C4C4C4"/>
             </svg>
 
-            解除封鎖</button>
+            解除封鎖
+          </button>
         </div>
 
       </li>
@@ -1416,13 +1494,16 @@
           <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              車禍調解</li>
+              車禍調解
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              金錢糾紛</li>
+              金錢糾紛
+            </li>
             <li
               class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-              其他</li>
+              其他
+            </li>
           </ul>
           <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
         </div>
@@ -1432,10 +1513,11 @@
                  xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M8 16C9.1 16 10 15.1 10 14C10 12.9 9.1 12 8 12C6.9 12 6 12.9 6 14C6 15.1 6.9 16 8 16ZM14 7H13V5C13 2.24 10.76 0 8 0C5.24 0 3 2.24 3 5H4.9C4.9 3.29 6.29 1.9 8 1.9C9.71 1.9 11.1 3.29 11.1 5V7H2C0.9 7 0 7.9 0 9V19C0 20.1 0.9 21 2 21H14C15.1 21 16 20.1 16 19V9C16 7.9 15.1 7 14 7ZM14 19H2V9H14V19Z"
-                fill="#C4C4C4" />
+                fill="#C4C4C4"/>
             </svg>
 
-            解除封鎖</button>
+            解除封鎖
+          </button>
         </div>
 
       </li>
@@ -1455,10 +1537,10 @@
                xmlns="http://www.w3.org/2000/svg">
             <path
               d="M1.27398 0L0.333984 0.94L3.38732 4L0.333984 7.06L1.27398 8L5.27398 4L1.27398 0Z"
-              fill="white" />
+              fill="white"/>
             <path
               d="M5.66656 0L4.72656 0.94L7.7799 4L4.72656 7.06L5.66656 8L9.66656 4L5.66656 0Z"
-              fill="white" />
+              fill="white"/>
           </svg>
 
         </a>
@@ -1468,15 +1550,34 @@
 </template>
 
 <script>
+import { getLawyerReservationSet } from '@/util/api'
+
 export default {
   data () {
     return {
-      activeClass: 'appointmentTime'
+      activeClass: 'appointmentTime',
+      timeData: {}
     }
+  },
+  created () {
+    this.getLawyerReservationSet()
   },
   methods: {
     changeTabs (item) {
       this.activeClass = item
+    },
+    getLawyerReservationSet () {
+      getLawyerReservationSet()
+        .then((res) => {
+          console.log(res)
+          this.timeData = res.data
+          //  step 2 綁定 v-for 迴圈顯示資料 & 並綁定資料 ex: v-model = res.data.mon[index].startTime
+          //  step 3 顯示上午或下午 使用v-if
+          //  step 4 建立 - 和 + 的 button 事件 , - 的事件 functionName(nowDataAry,index) , + 的事件 functionName(nowDataAry)
+        })
+        .catch((error) => {
+          console.error(error)
+        })
     }
   }
 }

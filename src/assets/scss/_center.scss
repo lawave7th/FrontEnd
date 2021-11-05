@@ -94,6 +94,12 @@
 }
 
 //預約中心-預約記錄下拉旋轉(沒用)
+.appointment-time-border{
+    border: 1px solid #E2BAA4;
+    @include mobile600{
+        border: none;
+    }
+}
 .score-drop-down{
     &::after{
         flex-shrink:0;
