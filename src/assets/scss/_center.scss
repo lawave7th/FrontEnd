@@ -5,6 +5,21 @@
     }
     }
 }
+.center-nav{
+    li{
+
+        a{
+            color:#fff;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 0.25rem;
+            &:hover{
+                color: #172A39;
+                border-bottom: 2px solid #172A39;
+            }
+        }
+    }
+
+}
 .photo-icons-wrap{
     width: 32px;
     height: 32px;

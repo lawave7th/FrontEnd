@@ -79,7 +79,7 @@ export const getLawyerEvaluation = (url) => {
 // 常見問題頁
 
 export const getCommonProblem = () => {
-  return request('get', 'api/faq/1')
+  return request('get', 'api/faq')
 }
 
 // 律師會員中心

@@ -194,7 +194,6 @@ export default {
   },
   created () {
     this.changeNavColor(this.$route.fullPath)
-    this.goMemberPage()
   },
   mounted () {
     window.addEventListener('scroll', this.updateScroll)
@@ -219,27 +218,12 @@ export default {
               this.isLawyer === true ? this.$router.push({ name: 'LawyerCenter' }) : this.$router.push({ name: 'PeopleCenter' })
               break
             case 'appointmentCenter':
-              this.isLawyer === true ? this.$router.push({ name: 'lawyerAppointmentCenter' }) : this.$router.push({ name: 'peopleAppointmentCenter' })
+              this.isLawyer === true ? this.$router.push({ name: 'LawyerAppointmentCenter' }) : this.$router.push({ name: 'PeopleAppointmentCenter' })
               break
             case 'certification':
-              this.$router.push({ name: 'lawyerCertification' })
+              this.$router.push({ name: 'LawyerCertification' })
               break
           }
-          // if (page === 'center') {
-          //   if (res.data.isLawyer) {
-          //     this.$router.push({ name: 'LawyerCenter' })
-          //   } else if (!res.data.isLawyer) {
-          //     this.$router.push({ name: 'PeopleCenter' })
-          //   }
-          // } else if (page === 'appointmentCenter') {
-          //   if (res.data.isLawyer) {
-          //     this.$router.push({ name: 'lawyerAppointmentCenter' })
-          //   } else if (!res.data.isLawyer) {
-          //     this.$router.push({ name: 'peopleAppointmentCenter' })
-          //   }
-          // }else if (page === 'appointmentCenter'){
-          //
-          // }
         })
         .catch((error) => {
           console.error(error)
@@ -261,6 +245,7 @@ export default {
     },
     '$store.state.token': function () {
       this.isLogin()
+      this.goMemberPage()
     }
   }
 }

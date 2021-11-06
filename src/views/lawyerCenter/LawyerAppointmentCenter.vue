@@ -4,7 +4,7 @@
     <ul class="row appointment-menu justify-content-between">
       <li class="col border-end text-center " @click.prevent="changeTabs('appointmentTime')"
           :class="activeClass === 'appointmentTime' ? 'appointment-bar-active' : ''"><router-link
-        class="appointment-bar-fs rounded-start-3 text-secondary" :to="{name:'lawyerAppointmentTime'}"
+        class="appointment-bar-fs rounded-start-3 text-secondary" :to="{name:'LawyerAppointmentTime'}"
         >可被預約</router-link></li>
       <li class="col border-end text-center ps-1"
           :class="activeClass === 'pendingReview' ? 'appointment-bar-active' : ''"><a

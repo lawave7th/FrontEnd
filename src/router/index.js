@@ -51,27 +51,27 @@ const routes = [
     },
     {
       path: 'lawyer-certification',
-      name: 'lawyerCertification',
+      name: 'LawyerCertification',
       component: () => import('../views/lawyerCenter/LawyerCertification')
     },
     {
       path: 'lawyer-edit-page',
-      name: 'lawyerEditPage',
+      name: 'LawyerEditPage',
       component: () => import('../views/lawyerCenter/LawyerEditPage')
     },
     {
       path: 'lawyer-password-setting',
-      name: 'lawyerPasswordSetting',
+      name: 'LawyerPasswordSetting',
       component: () => import('../views/lawyerCenter/LawyerPasswordSetting')
     },
     {
       path: 'lawyer-appointment-center',
-      name: 'lawyerAppointmentCenter',
-      redirect: { name: 'lawyerAppointmentTime' },
+      name: 'LawyerAppointmentCenter',
+      redirect: { name: 'LawyerAppointmentTime' },
       component: () => import('../views/lawyerCenter/LawyerAppointmentCenter'),
       children: [{
         path: 'lawyer-appointment-time',
-        name: 'lawyerAppointmentTime',
+        name: 'LawyerAppointmentTime',
         component: () => import('../views/lawyerCenter/LawyerAppointmentTime')
       }]
     }]
@@ -79,21 +79,21 @@ const routes = [
   {
     path: '/people-center',
     name: 'PeopleCenter',
-    redirect: { name: 'peopleEditPage' },
+    redirect: { name: 'PeopleEditPage' },
     component: () => import('../views/peopleCenter/PeopleLayout'),
     children: [{
       path: 'people-edit-page',
-      name: 'peopleEditPage',
+      name: 'PeopleEditPage',
       component: () => import('../views/peopleCenter/PeopleEditPage')
     },
     {
       path: 'people-password-setting',
-      name: 'peoplePasswordSetting',
+      name: 'PeoplePasswordSetting',
       component: () => import('../views/peopleCenter/PeoplePasswordSetting')
     },
     {
       path: 'people-appointment-center',
-      name: 'peopleAppointmentCenter',
+      name: 'PeopleAppointmentCenter',
       component: () => import('../views/peopleCenter/PeopleAppointmentCenter')
     }]
   }

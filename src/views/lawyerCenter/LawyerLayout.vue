@@ -1,9 +1,10 @@
 <template>
   <Header></Header>
-  <main class="pt-7 pt-md-11">
-    <div class="container pb-md-11 ">
-      <div class="row justify-content-between position-relative">
-        <div class="col-12 col-md-3">
+  <main>
+      <CenterNav ></CenterNav>
+    <div class="container pb-md-11">
+      <div class="row justify-content-between position-relative mt-md-11">
+        <div class="col-md-3">
           <LawyerSidebar></LawyerSidebar>
         </div>
         <div class="col-12 col-md-9">
@@ -19,9 +20,10 @@
 import LawyerSidebar from '../../components/centerComponents/lawyer/LawyerSidebar'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
+import CenterNav from '../../components/centerComponents/CenterNav'
 
 export default {
   name: 'LawyerHome.vue',
-  components: { Header, LawyerSidebar, Footer }
+  components: { Header, LawyerSidebar, Footer, CenterNav }
 }
 </script>

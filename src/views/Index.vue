@@ -220,43 +220,11 @@
         <div class="line bg-primary mb-5"></div>
         <ul class="row text-center">
           <li class="col-md-3 mb-md-6" v-for="item in hotLawyerData" :key="item">
-            <img v-if="item.shot === null" class="rounded rounded-3 mb-3" src="../assets/img/member-logo.png" alt="律師照片">
-            <img v-else  class="rounded rounded-3"  :src="item.shot" alt="熱門律師照片" >
-<!--           <img-->
-<!--              class="rounded rounded-3 mb-3"-->
-<!--              src="../assets/img/index-img/popular-lawyers-1.png"-->
-<!--              alt="熱門律師"-->
-<!--            />-->
+            <img v-if="item.shot === null" class="rounded rounded-3 mb-3 mug-shot-xl" src="../assets/img/member-logo.png" alt="律師照片">
+            <img v-else  class="rounded rounded-3 mb-3 mug-shot-xl"  :src="item.shot" alt="熱門律師照片" >
             <h3>{{item.name}}</h3>
             <p>{{item.office}}</p>
           </li>
-<!--          <li class="col-md-3 mb-md-6">-->
-<!--            <img-->
-<!--              class="rounded rounded-3 mb-3"-->
-<!--              src="../assets/img/index-img/popular-lawyers-2.png"-->
-<!--              alt="熱門律師"-->
-<!--            />-->
-<!--            <h3>田田律師事務所</h3>-->
-<!--            <p>田田律師事務所</p>-->
-<!--          </li>-->
-<!--          <li class="col-md-3 mb-md-6">-->
-<!--            <img-->
-<!--              class="rounded rounded-3 mb-3"-->
-<!--              src="../assets/img/index-img/popular-lawyers-3.png"-->
-<!--              alt="熱門律師"-->
-<!--            />-->
-<!--            <h3>田田律師事務所</h3>-->
-<!--            <p>田田律師事務所</p>-->
-<!--          </li>-->
-<!--          <li class="col-md-3 mb-md-6">-->
-<!--            <img-->
-<!--              class="rounded rounded-3 mb-3"-->
-<!--              src="../assets/img/index-img/popular-lawyers-4.png"-->
-<!--              alt="熱門律師"-->
-<!--            />-->
-<!--            <h3>田田律師事務所</h3>-->
-<!--            <p>田田律師事務所</p>-->
-<!--          </li>-->
         </ul>
       </div>
     </div>
@@ -294,40 +262,6 @@
                   </p>
                 </div>
               </div>
-<!--              <div class="carousel-item">-->
-<!--                <div class="p-4"></div>-->
-<!--                <div-->
-<!--                  class="text-dark py-md-7 px-md-5 position-relative  bg-white rounded"-->
-<!--                >-->
-<!--                  <div-->
-<!--                    class="rounded-pill-->
-<!--                                    member-photo position-absolute top-0 start-50 translate-middle"-->
-<!--                  ></div>-->
-<!--                  <p class="pt-6 px-5 pb-1 p-md-0">-->
-<!--                    我在上班途中發生小碰撞車禍，還好雙方都沒受傷，但是車損的費用，對方的保險公司僅憑著初判表就要我負全責，還好有在法學電波上與律師線上諮詢，才知道應該要去申請車禍鑑定，並且後續按照責任比例處理協調雙方賠償都可接受的價格範圍。-->
-<!--                  </p>-->
-<!--                  <p class="text-end fs-4 px-5 pb-6 p-md-0">-->
-<!--                    &#45;&#45; 李利敬-->
-<!--                  </p>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="carousel-item">-->
-<!--                <div class="p-4"></div>-->
-<!--                <div-->
-<!--                  class="text-dark py-md-7 px-md-5 position-relative  bg-white rounded"-->
-<!--                >-->
-<!--                  <div-->
-<!--                    class="rounded-pill-->
-<!--                                    member-photo position-absolute top-0 start-50 translate-middle"-->
-<!--                  ></div>-->
-<!--                  <p class="pt-6 px-5 pb-1 p-md-0">-->
-<!--                    我在上班途中發生小碰撞車禍，還好雙方都沒受傷，但是車損的費用，對方的保險公司僅憑著初判表就要我負全責，還好有在法學電波上與律師線上諮詢，才知道應該要去申請車禍鑑定，並且後續按照責任比例處理協調雙方賠償都可接受的價格範圍。-->
-<!--                  </p>-->
-<!--                  <p class="text-end fs-4 px-5 pb-6 p-md-0">-->
-<!--                    &#45;&#45; 李利敬-->
-<!--                  </p>-->
-<!--                </div>-->
-<!--              </div>-->
             </div>
             <button
               class="carousel-control-prev"
