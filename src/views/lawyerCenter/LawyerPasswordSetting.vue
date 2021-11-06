@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border border-primary d-flex flex-column align-items-center justify-content-center rounded rounded-3 px-md-7 py-md-10">
+    class="border border-primary d-flex flex-column align-items-center justify-content-center rounded rounded-3 mb-11 mb-md-0 py-3 px-md-7 py-md-10">
     <img class="rounded mb-md-7" src="../../assets/img/center/change-password.png" alt="更換密碼圖片">
     <!-- 輸入舊密碼 -->
     <div class="enter-password" v-if="!isVerify">
@@ -23,7 +23,7 @@
             </error-message>
           </div>
         </div>
-        <div class="d-grid gap-2 col mx-auto mt-5">
+        <div class="d-grid gap-2 col mx-auto mt-5 mb-3 mb-md-0">
           <button class="btn btn-secondary"
                   type="submit">繼續</button>
         </div>
@@ -66,7 +66,7 @@
             </div>
           </div>
           <div class="col-12">
-            <div class="d-grid gap-2 col mx-auto mt-5">
+            <div class="d-grid gap-2 col mx-auto mt-5 mb-3 mb-md-0">
               <button class="btn btn-secondary"
                       type="submit">更新密碼</button>
             </div>

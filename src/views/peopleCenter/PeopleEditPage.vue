@@ -1,5 +1,5 @@
 <template>
-  <div class="border border-primary rounded rounded-3 px-md-7 py-md-5 mb-11 mb-md-0">
+  <div class="border border-primary rounded rounded-3 px-md-7 py-md-5 mb-11 mb-md-0 py-3">
     <form>
       <!-- 表單填寫區塊 -->
       <div class="row g-3 justify-content-center ">

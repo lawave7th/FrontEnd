@@ -46,24 +46,27 @@
             <!-- PC版左側選單 -->
             <ul class="title-bar d-none d-md-flex">
               <li>
-                <router-link class="fs-4 d-block  me-4 text-decoration-none" :to="{ name: 'LawyerSolvation' }">律師媒合</router-link>
+                <router-link class="fs-4 d-block  me-4 text-decoration-none" :to="{ name: 'LawyerSolvation' }">律師媒合
+                </router-link>
               </li>
               <li>
-                <router-link class="fs-4 d-block  me-4 text-decoration-none" :to="{ name: 'Knowledge' }">法律知識+</router-link>
+                <router-link class="fs-4 d-block  me-4 text-decoration-none" :to="{ name: 'Knowledge' }">法律知識+
+                </router-link>
               </li>
               <li>
-                <router-link class="fs-4 d-block  text-decoration-none" :to="{ name: 'CommonProblem' }">常見問題</router-link>
+                <router-link class="fs-4 d-block  text-decoration-none" :to="{ name: 'CommonProblem' }">常見問題
+                </router-link>
               </li>
             </ul>
           </div>
 
           <div class="dropdown d-md-flex align-items-md-center" v-if="isLogin()">
             <div class="header-search d-none d-lg-block me-4" :class="isBottomBanner === true ?'d-lg-none ':''">
-            <input class="p-2 ps-5 rounded-pill border border-primary border-1 text-primary"
-                   Placeholder="尋找合作律師"
-                   type="search"
-            />
-          </div>
+              <input class="p-2 ps-5 rounded-pill border border-primary border-1 text-primary"
+                     Placeholder="尋找合作律師"
+                     type="search"
+              />
+            </div>
             <button
               class="d-flex  align-items-center justify-content-between
  btn  py-2 px-3 btn-primary rounded-pill"
@@ -83,9 +86,9 @@
 </svg> </span>
               </div>
             </button>
-            <ul class="dropdown-menu dropdown-menu rounded rounded-3"  aria-labelledby="dropdownMenuButton2">
+            <ul class="dropdown-menu dropdown-menu rounded rounded-3" aria-labelledby="dropdownMenuButton2">
               <li>
-                <a class="dropdown-item ps-4 pe-11 fs-4" href="#">資格認證
+                <a class="dropdown-item ps-4 pe-11 fs-4" href="#" v-show="isLawyer" @click.prevent="goMemberPage('certification')">資格認證
                   <span class="align-top">
                   <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 19H22L11 0L0 19ZM12 16H10V14H12V16ZM12 12H10V8H12V12Z" fill="black"/>
@@ -93,11 +96,12 @@
                 </span>
                 </a>
               </li>
-              <li><a class="dropdown-item fs-4  ps-4 pe-11 fs-4" href="#">會員中心</a></li>
-              <li><a class="dropdown-item fs-4  ps-4 pe-11 fs-4" href="#">預約管理</a></li>
+              <li><a class="dropdown-item fs-4  ps-4 pe-11 fs-4" href="#" @click.prevent="goMemberPage('center')">會員中心</a></li>
+              <li><a class="dropdown-item fs-4  ps-4 pe-11 fs-4" href="#" @click.prevent="goMemberPage('appointmentCenter')">預約管理</a></li>
               <li><a class="dropdown-item fs-4  ps-4 pe-11 fs-4" href="#" @click.prevent="logout">登出帳戶</a></li>
               <li class="d-block d-md-none">
-                <router-link class="dropdown-item border-top fs-4 ps-4 pe-7"  :to="{ name: 'LawyerSolvation' }">律師媒合</router-link>
+                <router-link class="dropdown-item border-top fs-4 ps-4 pe-7" :to="{ name: 'LawyerSolvation' }">律師媒合
+                </router-link>
               </li>
               <li class="d-block d-md-none">
                 <router-link class="dropdown-item fs-4 ps-4 pe-7" :to="{ name: 'Knowledge' }">法律知識+</router-link>
@@ -148,7 +152,8 @@
                 >
               </li>
               <li class="d-block d-md-none">
-                <router-link class="dropdown-item border-top fs-4 ps-4 pe-7"  :to="{ name: 'LawyerSolvation' }">律師媒合</router-link>
+                <router-link class="dropdown-item border-top fs-4 ps-4 pe-7" :to="{ name: 'LawyerSolvation' }">律師媒合
+                </router-link>
               </li>
               <li class="d-block d-md-none">
                 <router-link class="dropdown-item fs-4 ps-4 pe-7" :to="{ name: 'Knowledge' }">法律知識+</router-link>
@@ -161,9 +166,6 @@
 
         </div>
       </nav>
-<!--      <ul class="title-bar d-flex d-md-none justify-content-center" :class="isBottomBanner === true ?'':'title-bar-primary'">-->
-<!--       -->
-<!--      </ul>-->
     </div>
   </header>
   <RegisterModal ref="registerModal"></RegisterModal>
@@ -174,6 +176,7 @@
 <script>
 import RegisterModal from './modal/RegisterModal'
 import LoginModal from './modal/LoginModal'
+import { confirmStatus } from '@/util/api'
 
 export default {
   components: {
@@ -191,6 +194,7 @@ export default {
   },
   created () {
     this.changeNavColor(this.$route.fullPath)
+    this.goMemberPage()
   },
   mounted () {
     window.addEventListener('scroll', this.updateScroll)
@@ -205,6 +209,41 @@ export default {
       } else {
         this.isBottomBanner = false
       }
+    },
+    goMemberPage (page) {
+      confirmStatus()
+        .then((res) => {
+          this.isLawyer = res.data.isLawyer
+          switch (page) {
+            case 'center':
+              this.isLawyer === true ? this.$router.push({ name: 'LawyerCenter' }) : this.$router.push({ name: 'PeopleCenter' })
+              break
+            case 'appointmentCenter':
+              this.isLawyer === true ? this.$router.push({ name: 'lawyerAppointmentCenter' }) : this.$router.push({ name: 'peopleAppointmentCenter' })
+              break
+            case 'certification':
+              this.$router.push({ name: 'lawyerCertification' })
+              break
+          }
+          // if (page === 'center') {
+          //   if (res.data.isLawyer) {
+          //     this.$router.push({ name: 'LawyerCenter' })
+          //   } else if (!res.data.isLawyer) {
+          //     this.$router.push({ name: 'PeopleCenter' })
+          //   }
+          // } else if (page === 'appointmentCenter') {
+          //   if (res.data.isLawyer) {
+          //     this.$router.push({ name: 'lawyerAppointmentCenter' })
+          //   } else if (!res.data.isLawyer) {
+          //     this.$router.push({ name: 'peopleAppointmentCenter' })
+          //   }
+          // }else if (page === 'appointmentCenter'){
+          //
+          // }
+        })
+        .catch((error) => {
+          console.error(error)
+        })
     },
     logout () {
       localStorage.clear()

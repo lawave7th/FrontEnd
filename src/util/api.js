@@ -26,6 +26,11 @@ export const userVerifyPhone = (data) => {
 export const userResetPassword = (data) => {
   return request('post', 'api/resetPwd', data)
 }
+// 查詢是否為律師
+
+export const confirmStatus = () => {
+  return request('get', 'mem/isLawyer')
+}
 
 // 首頁
 

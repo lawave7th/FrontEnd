@@ -29,7 +29,7 @@ const routes = [
     },
     {
       path: 'lawyer-detailed/:lawyerId',
-      name: 'lawyerDetailed',
+      name: 'LawyerDetailed',
       component: () => import('../views/LawyerDetailed'),
       props: (route) => {
         return {
@@ -42,11 +42,11 @@ const routes = [
   {
     path: '/lawyer-center',
     name: 'LawyerCenter',
-    redirect: { name: 'lawyerCenterWelcome' },
+    redirect: { name: 'LawyerCenterWelcome' },
     component: () => import('../views/lawyerCenter/LawyerLayout'),
     children: [{
       path: 'lawyer-center-welcome',
-      name: 'lawyerCenterWelcome',
+      name: 'LawyerCenterWelcome',
       component: () => import('../views/lawyerCenter/LawyerHome')
     },
     {
