@@ -205,7 +205,7 @@
               <li v-if="item.lawyerGoodAtType.length > 1" class="rounded-pill d-inline-block border px-3 py-1 fs-7 text-white bg-secondary border-1 " >{{item.lawyerGoodAtType[1]}}</li><br>
               <li v-if="item.lawyerGoodAtType.length > 2" class="rounded-pill d-inline-block border px-3 py-1 fs-7 text-white bg-secondary border-1 " >{{item.lawyerGoodAtType[2]}}</li>
             </ul>
-            <a class="text-center text-info" @click.prevent="getLawyerDetailed(item.id)" href="#">瞭解更多
+            <a class="text-center text-info" @click.prevent="gotLawyerDetailedPage(item.id)" href="#">瞭解更多
               <span class="material-icons align-baseline fs-7"> arrow_forward_ios</span>
               <span class="material-icons align-baseline fs-7">arrow_forward_ios</span>
             </a>
@@ -268,7 +268,7 @@ export default {
           console.error(error)
         })
     },
-    getLawyerDetailed (id) {
+    gotLawyerDetailedPage (id) {
       this.$router.push(`/lawyer-detailed/${id}`)
     }
   }

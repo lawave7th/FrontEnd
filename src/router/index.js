@@ -36,6 +36,16 @@ const routes = [
           lawyerId: route.params.lawyerId
         }
       }
+    },
+    {
+      path: 'appointment-time/:lawyerId',
+      name: 'AppointmentTime',
+      component: () => import('../views/AppointmentTime'),
+      props: (route) => {
+        return {
+          lawyerId: route.params.lawyerId
+        }
+      }
     }
     ]
   },

@@ -38,7 +38,7 @@
                 </ul>
               </div>
               <div class="d-grid gap-2 d-md-flex flex-md-column justify-content-md-end align-items-md-end mb-7 mb-md-0">
-                <button type="button" class="btn btn-primary rounded rounded-3 px-md-6 py-3 py-md-4 text-white">預約此位律師</button>
+                <button type="button" class="btn btn-primary rounded rounded-3 px-md-6 py-3 py-md-4 text-white" @click="goAppointmentPage(lawyerData.id)">預約此位律師</button>
               </div>
             </div>
 
@@ -212,6 +212,9 @@ export default {
         .catch((error) => {
           console.error(error)
         })
+    },
+    goAppointmentPage (id) {
+      this.$router.push(`/appointment-time/${id}`)
     }
   }
 }

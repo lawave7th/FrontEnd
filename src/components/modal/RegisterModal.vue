@@ -210,7 +210,7 @@
               <h3 class="fs-4">歡迎使用法學電波</h3>
               <p>了解自身法律權益與周遭可使用的法律資源</p>
               <div class="d-grid gap-2 mb-md-7 mb-5">
-                <button type="button" class="btn btn-secondary">繼續</button>
+                <button type="button" data-bs-dismiss="modal" class="btn btn-secondary" @click="goMemberPage">繼續</button>
               </div>
             </div>
           </div>
@@ -291,6 +291,9 @@ export default {
           console.log(res)
         })
         .catch((error) => { console.error(error) })
+    },
+    goMemberPage () {
+      this.isLawyer === true ? this.$router.push({ name: 'LawyerCenter' }) : this.$router.push({ name: 'PeopleCenter' })
     }
   },
   mixins: [modalMixin]
