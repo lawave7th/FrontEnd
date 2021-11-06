@@ -108,7 +108,6 @@ export default {
     },
     uploadFile (event, num) {
       const file = event.target.files.item(0)
-      console.log(event.target.files)
       const reader = new FileReader()
       if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
         reader.addEventListener('load', (event) => {
@@ -122,12 +121,8 @@ export default {
     onSubmit () {
       const formData = new FormData()
       formData.append('fileOne', this.$refs.fileInputOne.files[0])
-      console.log(this.$refs.fileInputOne.files[0])
       formData.append('fileTwo', this.$refs.fileInputTwo.files[0])
-      console.log(this.$refs.fileInputTwo.files[0])
       formData.append('fileThree', this.$refs.fileInputThree.files[0])
-      console.log(this.$refs.fileInputThree.files[0])
-      console.log(Object.fromEntries(formData))
       const token = localStorage.getItem('lawavaToken')
       this.axios({
         method: 'post',

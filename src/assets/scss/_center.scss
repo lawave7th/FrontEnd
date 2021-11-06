@@ -75,6 +75,7 @@
     font-size: 24px;
     @include mobile600{
         font-size: 12px;
+        font-weight: bold;
     }
 }
 //預約中心 modal select
