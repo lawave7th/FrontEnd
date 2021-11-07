@@ -13,26 +13,24 @@
                   <!-- 日期 -->
                   <div class="col-12 mb-3">
                     <label for="date-start" class="form-label">選擇日期</label>
-                    <select id="date-start" class="form-select" aria-label="default-select">
-                      <option selected>mm/dd/yyyy</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
+                    <select id="date-start" v-model="selectTime" @change="filterShowTimeData" class="form-select"
+                            aria-label="default-select">
+                      <option v-for="(item,index) in selectTimeData" :key="index" :value="item.date">{{item.date}}
+                      </option>
                     </select>
-
                   </div>
                   <!-- 時段 -->
                   <div class="col-12 mb-3">
-                    <p class="mb-3">選擇時段 <span class="fs-7">(預約以 1hr 為上限）</span> </p>
+                    <p class="mb-3">選擇時段 <span class="fs-7">(預約以 1hr 為上限）</span></p>
                     <div class="row mb-3">
-                      <div class="col-7 d-flex align-items-center justify-content-between">
+                      <div class="col-7 d-flex align-items-center justify-content-around">
                         <label for="timeStart" class="me-3">起</label>
-                        <input type="text" placeholder="10:00 AM" class="form-control"
-                               id="timeStart">
+                        <input type="text" placeholder="10:00" class="form-control"
+                               id="timeStart" v-model="time" readonly>
                       </div>
-                      <div class="col-5 d-flex align-items-center justify-content-between">
+                      <div class="col-5 d-flex align-items-center justify-content-around">
                         <p class="m-0">止 </p>
-                        <p class="m-0">11:00 AM</p>
+                        <p class="m-0">{{endTime}}</p>
                       </div>
                     </div>
                   </div>
@@ -46,42 +44,42 @@
                     <ul class="row mb-2">
                       <li class="col-auto mb-2">
                         <input class="form-check-input me-1" type="checkbox" value="婚姻諮詢"
-                               id="carAccident">
+                               id="carAccident" @change="controlNum" v-model="postData.caseType">
                         <label class="form-check-label fs-7" for="carAccident">
                           婚姻諮詢
                         </label>
                       </li>
                       <li class="col-auto mb-2">
                         <input class="form-check-input me-1" type="checkbox" value="土地糾紛"
-                               id="personalDisputes">
+                               id="personalDisputes" @change="controlNum" v-model="postData.caseType">
                         <label class="form-check-label fs-7" for="personalDisputes">
                           土地糾紛
                         </label>
                       </li>
                       <li class="col-auto mb-2">
                         <input class="form-check-input me-1" type="checkbox" value="車禍調解"
-                               id="landDispute">
+                               id="landDispute" @change="controlNum" v-model="postData.caseType">
                         <label class="form-check-label fs-7" for="landDispute">
                           車禍調解
                         </label>
                       </li>
                       <li class="col-auto">
                         <input class="form-check-input me-1" type="checkbox" value="勞資糾紛"
-                               id="laborDispute">
+                               id="laborDispute" @change="controlNum" v-model="postData.caseType">
                         <label class="form-check-label fs-7" for="laborDispute">
                           金錢糾紛
                         </label>
                       </li>
                       <li class="col-auto">
                         <input class="form-check-input me-1" type="checkbox" value="金錢糾紛"
-                               id="civilDispute">
+                               id="civilDispute" @change="controlNum" v-model="postData.caseType">
                         <label class="form-check-label fs-7" for="civilDispute">
                           勞資糾紛
                         </label>
                       </li>
                       <li class="col-auto">
                         <input class="form-check-input me-1" type="checkbox" value="其它"
-                               id="criminalDispute">
+                               id="criminalDispute" @change="controlNum" v-model="postData.caseType">
                         <label class="form-check-label fs-7" for="criminalDispute">
                           其他事由
                         </label>
@@ -91,55 +89,49 @@
                   <div class="col-12 mb-3">
                     <label for="caseDescription" class="form-label">案件簡述</label>
                     <input type="text" class="form-control" placeholder="一句話簡述案件情形"
-                           id="caseDescription">
+                           id="caseDescription" v-model="postData.caseInfo">
                   </div>
 
                   <!-- 送出預約按鈕 -->
                   <div class="col-12">
                     <div class="d-grid gap-2">
-                      <button class="btn btn-secondary py-２" type="button" data-bs-toggle="modal"
-                              data-bs-target="#appointment">
+                      <button class="btn btn-secondary py-２" type="button" @click="onSubmit">
                         送出預約
                       </button>
                     </div>
                   </div>
                   <!-- Modal -->
                   <div class="modal fade" id="appointment" tabindex="-1"
-                       aria-labelledby="appointmentLabel" aria-hidden="true">
+                       aria-labelledby="appointmentLabel" aria-hidden="true" ref="appointmentModal">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="position-relative">
                           <button type="button"
                                   class="m-3 btn  fs-4 position-absolute top-0 end-0"
                                   data-bs-dismiss="modal" aria-label="Close">
-                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                              d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
-                              fill="black" />
-                          </svg>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+                                fill="black"/>
+                            </svg>
                           </button>
-                          <h2 class="modal-title text-center mt-3 mt-md-7 mb-2"
+                          <h2 class="modal-title text-center mt-3 mt-md-7 mb-2 text-secondary"
                               id="welcomeModalLabel">預約資料已送出</h2>
-                          <div class="line bg-dark mb-3"></div>
+                          <div class="line bg-primary mb-3"></div>
                         </div>
                         <div class="modal-body">
                           <div class="row ">
                             <div class="col-md-8 offset-md-2 text-center">
 
-                              <svg width="64" height="64" viewBox="0 0 64 64" fill="none"
-                                   xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                  d="M32.0002 5.3335C17.2802 5.3335 5.3335 17.2802 5.3335 32.0002C5.3335 46.7202 17.2802 58.6668 32.0002 58.6668C46.7202 58.6668 58.6668 46.7202 58.6668 32.0002C58.6668 17.2802 46.7202 5.3335 32.0002 5.3335ZM26.6668 45.3335L13.3335 32.0002L17.0935 28.2402L26.6668 37.7868L46.9068 17.5468L50.6668 21.3335L26.6668 45.3335Z"
-                                  fill="black" />
-                              </svg>
+                              <span class="material-icons icon-size-xl text-primary" >check_circle</span>
 
                               <h3 class="fs-4">感謝使用法學電波線上諮詢功能</h3>
                               <p>已送出您的預約申請，待律師審核通過後將以信件寄送預約成功通知您，近期請留意通知</p>
                               <div class="d-grid gap-2 mb-md-7 mb-5">
-                                <button type="button" class="btn btn-dark">繼續</button>
+                                <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">查看預約記錄</button>
                               </div>
                             </div>
-
                           </div>
                         </div>
                       </div>
@@ -155,18 +147,18 @@
           <div class="appointment-time-border shadow-sm rounded rounded-3 py-4 px-6">
             <div class="d-flex  flex-column flex-md-row justify-content-between">
               <div>
-                <p class="text-left text-primary">恆采律師事務所</p>
-                <h3 class="text-left mb-md-4 text-secondary">邱彩恆</h3>
+                <p class="text-left text-primary">{{lawyerData.office}}</p>
+                <h3 class="text-left mb-md-4 text-secondary">{{lawyerData.firstName}}{{lawyerData.lastName}}</h3>
                 <div class="d-none d-md-block line ms-0 bg-primary mb-md-2"></div>
               </div>
               <div>
                 <p class="fs-7 m-0">
                   <span class="material-icons align-middle">monetization_on</span>
-                  現場諮詢：3000元/小時
+                  現場諮詢：{{lawyerData.faceCost}}元/小時
                 </p>
                 <p class="fs-7">
                   <span class="material-icons align-middle">monetization_on</span>
-                  電話諮詢：3000元/小時
+                  電話諮詢：{{lawyerData.phoneCost}}元/小時
                 </p>
               </div>
               <div class="d-md-none line ms-0 bg-primary mb-md-2"></div>
@@ -175,29 +167,14 @@
             <h3 class="border-bottom border-2 mb-4">當日可預約時段</h3>
             <!-- 按鈕選取 -->
             <ul class="row row-cols-2 row-cols-md-5 align-items-center">
-              <li class="btn-group-vertical mb-4">
-                <button type="button" class="btn  btn-primary-light rounded-top-3 ">10/10</button>
-                <button type="button" class="btn btn-primary rounded-bottom-3">不開放</button>
-              </li>
-              <li class="btn-group-vertical mb-4">
-                <button type="button" class="btn  btn-primary-light rounded-top-3 py-2 ">10/10</button>
-                <button type="button" class="btn btn-primary rounded-bottom-3">不開放</button>
-              </li>
-              <li class="btn-group-vertical mb-4">
-                <button type="button" class="btn  btn-primary-light rounded-top-3 py-2 ">10/10</button>
-                <button type="button" class="btn btn-primary rounded-bottom-3">不開放</button>
-              </li>
-              <li class="btn-group-vertical mb-4">
-                <button type="button" class="btn  btn-primary-light rounded-top-3 py-2 ">10/10</button>
-                <button type="button" class="btn btn-primary rounded-bottom-3">不開放</button>
-              </li>
-              <li class="btn-group-vertical mb-4">
-                <button type="button" class="btn  btn-primary-light rounded-top-3 py-2 ">10/10</button>
-                <button type="button" class="btn btn-primary rounded-bottom-3">不開放</button>
-              </li>
-              <li class="btn-group-vertical mb-4">
-                <button type="button" class="btn  btn-primary-light rounded-top-3 py-2 px-6">10/10</button>
-                <button type="button" class="btn btn-primary rounded-bottom-3">不開放</button>
+              <li v-if="!selectTime" class="mb-4 fw-bold">請選擇日期</li>
+              <li v-else v-for="(item , index) in showTimeData" :key="index" class="mb-4 d-flex justify-content-around">
+                <div class="btn-group-vertical d-block">
+                  <button type="button" class="btn  btn-primary-light rounded-top-3 " disabled>{{item.date}}</button>
+                  <button type="button" class="btn  btn-primary rounded-bottom-3" @click="getTime(item.time)">
+                    {{item.time}}
+                  </button>
+                </div>
               </li>
             </ul>
             <p>待律師審核諮詢預約時段，預約成功將以會員註冊信箱進行通知，近期勞煩留意信箱信息。</p>
@@ -209,7 +186,105 @@
 </template>
 
 <script>
+import { getAppointmentTime, getLawyerDetailed, postAppointmentTime } from '@/util/api'
+import Modal from 'bootstrap/js/dist/modal'
+
 export default {
-  name: 'AppointmentTime'
+  props: ['lawyerId'],
+  data () {
+    return {
+      appointmentModal: {},
+      lawyerData: {},
+      timeData: {},
+      selectTimeData: [],
+      showTimeData: [],
+      selectTime: '',
+      time: '',
+      endTime: '',
+      postData: { caseType: [] }
+    }
+  },
+  created () {
+    this.getAppointmentTime()
+    this.getLawyerData()
+  },
+  mounted () {
+    this.appointmentModal = new Modal(this.$refs.appointmentModal)
+  },
+  methods: {
+    reset () {
+      this.selectTime = ''
+      this.time = ''
+      this.endTime = ''
+      this.postData = { caseType: [] }
+    },
+    getLawyerData () {
+      getLawyerDetailed(`lawyerlist/Info/${this.lawyerId}`)
+        .then((res) => {
+          this.lawyerData = res.data
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    },
+    getAppointmentTime () {
+      getAppointmentTime(`mem/publicReservationSet/${this.lawyerId}`)
+        .then((res) => {
+          console.log(res)
+          this.timeData = JSON.parse(JSON.stringify(res.data))
+          this.dataProcessing(this.timeData)
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    },
+    dataProcessing (timeData) {
+      // date 同值（同日期）時只取一個
+      const time = JSON.parse(JSON.stringify(timeData))
+      const set = new Set()
+      const result = time.filter((item) => !set.has(item.date) ? set.add(item.date) : false)
+      result.forEach((item) => {
+        delete item.time
+      })
+      this.selectTimeData = result
+    },
+    filterShowTimeData () {
+      // 按鈕資料顯示（刪除年份）
+      const filterData = JSON.parse(JSON.stringify(this.timeData))
+      const showTimeData = filterData.filter((item) => {
+        if (item.date === this.selectTime) {
+          item.date = item.date.substring(5, 10)
+          return item
+        }
+      })
+      this.showTimeData = showTimeData
+    },
+    getTime (time) {
+      // 日期顯示 +1 小時，去 :00 +1 再補回去
+      this.time = time
+      const regex = /\d+(?=:)/
+      const endTime = (Number(regex.exec(time)[0]) + 1).toString() + ':00'
+      this.endTime = endTime
+    },
+    controlNum () {
+      if (this.postData.caseType.length > 3) {
+        window.showToast.showToast('不能選許超過3個')
+        this.postData.caseType.pop()
+      }
+    },
+    onSubmit () {
+      this.postData.date = this.selectTime
+      this.postData.time = this.time
+      postAppointmentTime(`mem/publicReservationSet/${this.lawyerId}`, this.postData)
+        .then((res) => {
+          console.log(res.data)
+          this.appointmentModal.show()
+          this.reset()
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    }
+  }
 }
 </script>

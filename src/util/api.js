@@ -76,6 +76,16 @@ export const getLawyerEvaluation = (url) => {
   return request('get', url)
 }
 
+// 律師可供預約時間
+
+export const getAppointmentTime = (url) => {
+  return request('get', url)
+}
+
+export const postAppointmentTime = (url, data) => {
+  return request('post', url, data)
+}
+
 // 常見問題頁
 
 export const getCommonProblem = () => {
