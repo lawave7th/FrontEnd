@@ -129,7 +129,7 @@
                               <h3 class="fs-4">感謝使用法學電波線上諮詢功能</h3>
                               <p>已送出您的預約申請，待律師審核通過後將以信件寄送預約成功通知您，近期請留意通知</p>
                               <div class="d-grid gap-2 mb-md-7 mb-5">
-                                <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">查看預約記錄</button>
+                                <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">前往預約中心查看記錄</button>
                               </div>
                             </div>
                           </div>

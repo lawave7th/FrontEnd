@@ -142,30 +142,32 @@
         <div class="d-flex justify-content-between mb-3 align-items-end">
           <h3 class="text-secondary">
             <span class="material-icons fs-2 text-secondary align-top">star</span>
-            4.5 <span class="fs-7">(17 則評價)</span>
+            {{totalScore}} <span class="fs-7">({{evaluationData.lawercount}} 則評價)</span>
           </h3>
-          <button type="button" class="btn btn-outline-dark rounded-3 py-1 fs-7">查看更多評價
+          <button type="button" class="btn btn-outline-dark rounded-3 py-1 fs-7" @click="getAllEvaluation">查看更多評價
             <span class="material-icons align-middle fs-7">
 chevron_right
 </span>
           </button>
         </div>
-        <div class="border border-primary rounded rounded-3 px-4 px-md-7 py-3 py-md-4" >
+        <div v-for="(item , index) in lawyerlist" :key="index" class="border border-primary rounded rounded-3 px-4 px-md-7 py-3 py-md-4 mb-3" >
           <div class="row">
             <div class="col-12 col-md-3 d-flex justify-content-center d-md-block">
-              <img class="rounded-pill mb-4 mt-md-0"  src="https://fakeimg.pl/166x166/" alt="評價民眾照片">
+              <img v-if="item.shot === null" class="rounded rounded-pill mug-shot-sm" src="../assets/img/member-logo.png" alt="評價民眾照片">
+              <img v-else  class="rounded rounded-pill mug-shot"  :src="item.shot" alt="評價民眾照片" >
             </div>
             <div class="col-12 col-md-9 text-center text-md-start ">
               <p class="fs-7 mb-1 text-info">2021/10/03</p>
-              <h3>Clara</h3>
+              <h3>{{item.name}}</h3>
               <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-2">
-                <Rating class="text-primary" :modelValue="starAvg" :readonly="true" :stars="5" :cancel="false" />
+                <Rating class="text-primary" :modelValue="item.LawaveStar" :readonly="true" :stars="5" :cancel="false" />
                 <ul class="lawyer-tags d-flex flex-wrap justify-content-center text-white">
-                  <li class="rounded-pill border border-1 bg-secondary me-2 fs-7 py-1 px-3">民事訴訟</li>
-                  <li class="rounded-pill border border-1 me-2 bg-secondary fs-7 py-1 px-3">刑事訴訟</li>
+                  <li  v-for="(caseItem , index ) in item.caseType" :key="index"  class="rounded-pill border border-1 bg-secondary me-2 fs-7 py-1 px-3">
+                    <div v-if="item.caseType.length > index">{{item.caseType[index]}}</div>
+                  </li>
                 </ul>
               </div>
-              <p>目前已經是離婚狀態了，但是前夫並未照約定付撫養費，上網搜尋相關方式才發現法學電波的法律線上諮詢媒合律師的方式，嘗試預約媒合後，感謝律師的回覆，目前也委託律師解決問題中
+              <p>{{item.lawaveOpinion}}
               </p>
             </div>
           </div>
@@ -184,7 +186,8 @@ export default {
     return {
       lawyerData: {},
       evaluationData: {},
-      starAvg: 0
+      totalScore: 0,
+      lawyerlist: []
     }
   },
   created () {
@@ -205,13 +208,17 @@ export default {
     getLawyerEvaluation () {
       getLawyerEvaluation(`lawyerlist/lawyerReview/${this.lawyerId}`)
         .then((res) => {
-          console.log(res.data)
-          this.evaluationData = res.data
-          this.starAvg = res.data.totalScore[0]
+          this.evaluationData = JSON.parse(JSON.stringify(res.data))
+          this.lawyerlist = JSON.parse(JSON.stringify(res.data.lawyerlist.splice(0, 1)))
+          this.totalScore = res.data.totalScore[0]
         })
         .catch((error) => {
           console.error(error)
         })
+    },
+    getAllEvaluation () {
+      console.log(this.evaluationData.lawyerlist)
+      this.lawyerlist = JSON.parse(JSON.stringify(this.evaluationData.lawyerlist))
     },
     goAppointmentPage (id) {
       this.$router.push(`/appointment-time/${id}`)
