@@ -158,3 +158,15 @@ export const blockMembers = (url) => {
 export const sendRemindMail = (data) => {
   return request('post', 'lawyer/remindMail', data)
 }
+
+// 獲取封鎖名單
+
+export const getBlacklist = () => {
+  return request('get', 'lawyer/blackList/')
+}
+
+// 解除封鎖
+
+export const unblock = (url) => {
+  return request('post', url)
+}

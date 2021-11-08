@@ -2,8 +2,8 @@
   <div class="border d-none d-md-block border-primary d-flex flex-column align-items-center rounded rounded-3 shadow-md ">
     <div class="people-photo img-fluid text-center my-5 ">
       <label for="photo-upload">
-        <img v-if="!image" class="rounded rounded-pill mug-shot-sm" src="../../../assets/img/member-logo.png" alt="民眾照片">
-        <img v-else  name="file" class="rounded rounded-pill mug-shot-sm"  :src="image" alt="民眾照片" width="200" height="200">
+        <img v-if="!image" class="rounded rounded-pill mug-shot-md" src="../../../assets/img/member-logo.png" alt="民眾照片">
+        <img v-else  name="file" class="rounded rounded-pill mug-shot-md"  :src="image" alt="民眾照片" width="200" height="200">
       </label>
       <input class="d-none" type="file" id="photo-upload" ref="peoplePhoto" @change="uploadFile"/>
     </div>

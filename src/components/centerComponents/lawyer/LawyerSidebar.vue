@@ -2,8 +2,8 @@
     <div class="border d-none d-md-block border-primary d-flex flex-column align-items-center rounded rounded-3 shadow-md ">
       <div class="lawyer-photo img-fluid text-center my-5">
         <label for="photoUpload" class="photoUpload">
-            <img v-if="image === null" class="rounded rounded-pill mug-shot-sm" src="../../../assets/img/member-logo.png" alt="律師照片">
-            <img v-else  name="file" class="rounded rounded-pill mug-shot-sm"  :src="image" alt="律師照片">
+            <img v-if="image === null" class="rounded rounded-pill mug-shot-md" src="../../../assets/img/member-logo.png" alt="律師照片">
+            <img v-else  name="file" class="rounded rounded-pill mug-shot-md"  :src="image" alt="律師照片">
         </label>
         <input class="d-none" type="file" id="photoUpload" ref="lawyerPhoto" @change="uploadFile" />
       </div>

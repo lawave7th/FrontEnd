@@ -220,8 +220,8 @@
         <div class="line bg-primary mb-5"></div>
         <ul class="row text-center">
           <li class="col-md-3 mb-md-6" v-for="item in hotLawyerData" :key="item">
-            <img v-if="item.shot === null" class="rounded rounded-3 mb-3 mug-shot-xl" src="../assets/img/member-logo.png" alt="律師照片">
-            <img v-else  class="rounded rounded-3 mb-3 mug-shot-xl"  :src="item.shot" alt="熱門律師照片" >
+            <img v-if="item.shot === null" class="rounded rounded-3 mb-3 mug-shot-xxl" src="../assets/img/member-logo.png" alt="律師照片">
+            <img v-else  class="rounded rounded-3 mb-3 mug-shot-xxl"  :src="item.shot" alt="熱門律師照片" >
             <h3>{{item.name}}</h3>
             <p>{{item.office}}</p>
           </li>

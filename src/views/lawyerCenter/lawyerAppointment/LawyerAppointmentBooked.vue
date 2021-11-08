@@ -134,7 +134,6 @@ export default {
     },
     setTimestamp () {
       const nowDate = new Date().getTime()
-      console.log(nowDate)
       this.bookedData.data.forEach((item) => {
         item.timestamp = new Date(item.originalTime.replace('T', ' ')).getTime()
         item.timestamp -= nowDate

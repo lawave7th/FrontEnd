@@ -153,8 +153,8 @@ chevron_right
         <div v-for="(item , index) in lawyerlist" :key="index" class="border border-primary rounded rounded-3 px-4 px-md-7 py-3 py-md-4 mb-3" >
           <div class="row">
             <div class="col-12 col-md-3 d-flex justify-content-center d-md-block">
-              <img v-if="item.shot === null" class="rounded rounded-pill mug-shot-sm" src="../assets/img/member-logo.png" alt="評價民眾照片">
-              <img v-else  class="rounded rounded-pill mug-shot"  :src="item.shot" alt="評價民眾照片" >
+              <img v-if="item.shot === null" class="rounded rounded-pill mug-shot-md" src="../assets/img/member-logo.png" alt="評價民眾照片">
+              <img v-else  class="rounded rounded-pill mug-shot-xl"  :src="item.shot" alt="評價民眾照片" >
             </div>
             <div class="col-12 col-md-9 text-center text-md-start ">
               <p class="fs-7 mb-1 text-info">2021/10/03</p>

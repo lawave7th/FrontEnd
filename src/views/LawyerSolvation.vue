@@ -125,8 +125,8 @@
             <span class="material-icons text-danger" v-else>favorite</span>
           </a>
           <div class="lawyer-img mb-4">
-            <img v-if="item.shot === null" class="rounded rounded-pill mug-shot" src="../assets/img/member-logo.png" alt="律師照片">
-            <img v-else  class="rounded rounded-pill mug-shot"  :src="item.shot" alt="熱門律師照片" >
+            <img v-if="item.shot === null" class="rounded rounded-pill mug-shot-xl" src="../assets/img/member-logo.png" alt="律師照片">
+            <img v-else  class="rounded rounded-pill mug-shot-xl"  :src="item.shot" alt="熱門律師照片" >
           </div>
           <div class="lawyer-card-content text-center">
             <h3 class="text-center mb-2 text-secondary">{{item.name}}</h3>

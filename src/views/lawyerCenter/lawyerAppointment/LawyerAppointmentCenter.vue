@@ -15,8 +15,8 @@
           :class="activeClass === 'appointmentRecord' ? 'appointment-bar-active' : ''"><a
         class="appointment-bar-fs text-secondary" @click.prevent="changeTabs('appointmentRecord')" href="#">預約紀錄</a>
       </li>
-      <li class="col text-center ps-1" :class="activeClass === 'blockMembersList' ? 'appointment-bar-active' : ''"><a
-        class="appointment-bar-fs" @click.prevent="changeTabs('blockMembersList')" href="#">封鎖名單</a></li>
+      <li class="col text-center ps-1" :class="activeClass === 'blockMembersList' ? 'appointment-bar-active' : ''" @click.prevent="changeTabs('blockMembersList')"><router-link
+        class="appointment-bar-fs"  :to="{name:'LawyerBlacklist'}">封鎖名單</router-link></li>
     </ul>
   </div>
     <router-view />
@@ -264,230 +264,6 @@
 <!--      </li>-->
 <!--    </ul>-->
 <!--  </div>-->
-<!--  &lt;!&ndash; 封鎖名單 &ndash;&gt;-->
-<!--  <div class="block-members-list" :class="activeClass === 'blockMembersList' ? 'active':'d-none' ">-->
-<!--    <ul>-->
-<!--      <li-->
-<!--        class="row border m-0 justify-content-between rounded rounded-3 px-md-7 mb-md-4 py-md-3 align-items-center">-->
-<!--        <div class="col-3">-->
-<!--          <h4 class="mb-2">-->
-<!--            Tim Turner-->
-<!--          </h4>-->
-<!--          <p class="m-0">02/21 14:00-15:00</p>-->
-<!--        </div>-->
-<!--        <div class="col-6">-->
-<!--          <ul class="lawyer-tags d-flex flex-wrap justify-content-start">-->
-<!--            <li-->
-<!--              class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">-->
-<!--              車禍調解-->
-<!--            </li>-->
-<!--            <li-->
-<!--              class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">-->
-<!--              金錢糾紛-->
-<!--            </li>-->
-<!--            <li-->
-<!--              class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">-->
-<!--              其他-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--          <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>-->
-<!--        </div>-->
-<!--        <div class="col-3 d-flex">-->
-<!--          <button type="button" class="btn btn-outline-secondary">-->
-<!--            <svg width="16" height="21" viewBox="0 0 16 21" fill="none"-->
-<!--                 xmlns="http://www.w3.org/2000/svg">-->
-<!--              <path-->
-<!--                d="M8 16C9.1 16 10 15.1 10 14C10 12.9 9.1 12 8 12C6.9 12 6 12.9 6 14C6 15.1 6.9 16 8 16ZM14 7H13V5C13 2.24 10.76 0 8 0C5.24 0 3 2.24 3 5H4.9C4.9 3.29 6.29 1.9 8 1.9C9.71 1.9 11.1 3.29 11.1 5V7H2C0.9 7 0 7.9 0 9V19C0 20.1 0.9 21 2 21H14C15.1 21 16 20.1 16 19V9C16 7.9 15.1 7 14 7ZM14 19H2V9H14V19Z"-->
-<!--                fill="#C4C4C4"/>-->
-<!--            </svg>-->
-
-<!--            解除封鎖-->
-<!--          </button>-->
-<!--        </div>-->
-
-<!--      </li>-->
-<!--      <li-->
-<!--        class="row border m-0 justify-content-between rounded rounded-3 px-md-7  mb-md-4 py-md-3 align-items-center">-->
-<!--        <div class="col-3">-->
-<!--          <h4 class="mb-2">-->
-<!--            Tim Turner-->
-<!--          </h4>-->
-<!--          <p class="m-0">02/21 14:00-15:00</p>-->
-<!--        </div>-->
-<!--        <div class="col-6">-->
-<!--          <ul class="lawyer-tags d-flex flex-wrap justify-content-start">-->
-<!--            <li-->
-<!--              class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">-->
-<!--              車禍調解-->
-<!--            </li>-->
-<!--            <li-->
-<!--              class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">-->
-<!--              金錢糾紛-->
-<!--            </li>-->
-<!--            <li-->
-<!--              class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">-->
-<!--              其他-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--          <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>-->
-<!--        </div>-->
-<!--        <div class="col-3 d-flex">-->
-<!--          <button type="button" class="btn btn-outline-dark">-->
-<!--            <svg width="16" height="21" viewBox="0 0 16 21" fill="none"-->
-<!--                 xmlns="http://www.w3.org/2000/svg">-->
-<!--              <path-->
-<!--                d="M8 16C9.1 16 10 15.1 10 14C10 12.9 9.1 12 8 12C6.9 12 6 12.9 6 14C6 15.1 6.9 16 8 16ZM14 7H13V5C13 2.24 10.76 0 8 0C5.24 0 3 2.24 3 5H4.9C4.9 3.29 6.29 1.9 8 1.9C9.71 1.9 11.1 3.29 11.1 5V7H2C0.9 7 0 7.9 0 9V19C0 20.1 0.9 21 2 21H14C15.1 21 16 20.1 16 19V9C16 7.9 15.1 7 14 7ZM14 19H2V9H14V19Z"-->
-<!--                fill="#C4C4C4"/>-->
-<!--            </svg>-->
-
-<!--            解除封鎖-->
-<!--          </button>-->
-<!--        </div>-->
-
-<!--      </li>-->
-<!--      <li-->
-<!--        class="row border m-0 justify-content-between rounded rounded-3 px-md-7 mb-md-4 py-md-3 align-items-center">-->
-<!--        <div class="col-3">-->
-<!--          <h4 class="mb-2">-->
-<!--            Tim Turner-->
-<!--          </h4>-->
-<!--          <p class="m-0">02/21 14:00-15:00</p>-->
-<!--        </div>-->
-<!--        <div class="col-6">-->
-<!--          <ul class="lawyer-tags d-flex flex-wrap justify-content-start">-->
-<!--            <li-->
-<!--              class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">-->
-<!--              車禍調解-->
-<!--            </li>-->
-<!--            <li-->
-<!--              class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">-->
-<!--              金錢糾紛-->
-<!--            </li>-->
-<!--            <li-->
-<!--              class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">-->
-<!--              其他-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--          <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>-->
-<!--        </div>-->
-<!--        <div class="col-3 d-flex">-->
-<!--          <button type="button" class="btn btn-outline-dark">-->
-<!--            <svg width="16" height="21" viewBox="0 0 16 21" fill="none"-->
-<!--                 xmlns="http://www.w3.org/2000/svg">-->
-<!--              <path-->
-<!--                d="M8 16C9.1 16 10 15.1 10 14C10 12.9 9.1 12 8 12C6.9 12 6 12.9 6 14C6 15.1 6.9 16 8 16ZM14 7H13V5C13 2.24 10.76 0 8 0C5.24 0 3 2.24 3 5H4.9C4.9 3.29 6.29 1.9 8 1.9C9.71 1.9 11.1 3.29 11.1 5V7H2C0.9 7 0 7.9 0 9V19C0 20.1 0.9 21 2 21H14C15.1 21 16 20.1 16 19V9C16 7.9 15.1 7 14 7ZM14 19H2V9H14V19Z"-->
-<!--                fill="#C4C4C4"/>-->
-<!--            </svg>-->
-
-<!--            解除封鎖-->
-<!--          </button>-->
-<!--        </div>-->
-
-<!--      </li>-->
-<!--      <li-->
-<!--        class="row border m-0 justify-content-between rounded rounded-3 px-md-7 mb-md-4 py-md-3 align-items-center">-->
-<!--        <div class="col-3">-->
-<!--          <h4 class="mb-2">-->
-<!--            Tim Turner-->
-<!--          </h4>-->
-<!--          <p class="m-0">02/21 14:00-15:00</p>-->
-<!--        </div>-->
-<!--        <div class="col-6">-->
-<!--          <ul class="lawyer-tags d-flex flex-wrap justify-content-start">-->
-<!--            <li-->
-<!--              class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">-->
-<!--              車禍調解-->
-<!--            </li>-->
-<!--            <li-->
-<!--              class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">-->
-<!--              金錢糾紛-->
-<!--            </li>-->
-<!--            <li-->
-<!--              class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">-->
-<!--              其他-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--          <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>-->
-<!--        </div>-->
-<!--        <div class="col-3 d-flex">-->
-<!--          <button type="button" class="btn btn-outline-dark">-->
-<!--            <svg width="16" height="21" viewBox="0 0 16 21" fill="none"-->
-<!--                 xmlns="http://www.w3.org/2000/svg">-->
-<!--              <path-->
-<!--                d="M8 16C9.1 16 10 15.1 10 14C10 12.9 9.1 12 8 12C6.9 12 6 12.9 6 14C6 15.1 6.9 16 8 16ZM14 7H13V5C13 2.24 10.76 0 8 0C5.24 0 3 2.24 3 5H4.9C4.9 3.29 6.29 1.9 8 1.9C9.71 1.9 11.1 3.29 11.1 5V7H2C0.9 7 0 7.9 0 9V19C0 20.1 0.9 21 2 21H14C15.1 21 16 20.1 16 19V9C16 7.9 15.1 7 14 7ZM14 19H2V9H14V19Z"-->
-<!--                fill="#C4C4C4"/>-->
-<!--            </svg>-->
-
-<!--            解除封鎖-->
-<!--          </button>-->
-<!--        </div>-->
-
-<!--      </li>-->
-<!--      <li-->
-<!--        class="row border m-0 justify-content-between rounded rounded-3 px-md-7 mb-md-4 py-md-3 align-items-center">-->
-<!--        <div class="col-3">-->
-<!--          <h4 class="mb-2">-->
-<!--            Tim Turner-->
-<!--          </h4>-->
-<!--          <p class="m-0">02/21 14:00-15:00</p>-->
-<!--        </div>-->
-<!--        <div class="col-6">-->
-<!--          <ul class="lawyer-tags d-flex flex-wrap justify-content-start">-->
-<!--            <li-->
-<!--              class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">-->
-<!--              車禍調解-->
-<!--            </li>-->
-<!--            <li-->
-<!--              class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">-->
-<!--              金錢糾紛-->
-<!--            </li>-->
-<!--            <li-->
-<!--              class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">-->
-<!--              其他-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--          <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>-->
-<!--        </div>-->
-<!--        <div class="col-3 d-flex">-->
-<!--          <button type="button" class="btn btn-outline-dark">-->
-<!--            <svg width="16" height="21" viewBox="0 0 16 21" fill="none"-->
-<!--                 xmlns="http://www.w3.org/2000/svg">-->
-<!--              <path-->
-<!--                d="M8 16C9.1 16 10 15.1 10 14C10 12.9 9.1 12 8 12C6.9 12 6 12.9 6 14C6 15.1 6.9 16 8 16ZM14 7H13V5C13 2.24 10.76 0 8 0C5.24 0 3 2.24 3 5H4.9C4.9 3.29 6.29 1.9 8 1.9C9.71 1.9 11.1 3.29 11.1 5V7H2C0.9 7 0 7.9 0 9V19C0 20.1 0.9 21 2 21H14C15.1 21 16 20.1 16 19V9C16 7.9 15.1 7 14 7ZM14 19H2V9H14V19Z"-->
-<!--                fill="#C4C4C4"/>-->
-<!--            </svg>-->
-
-<!--            解除封鎖-->
-<!--          </button>-->
-<!--        </div>-->
-
-<!--      </li>-->
-<!--    </ul>-->
-<!--    &lt;!&ndash; 分頁按鈕 &ndash;&gt;-->
-<!--    <ul class="appointment-pagination d-flex justify-content-md-end">-->
-<!--      <li class="me-2">-->
-<!--        <a class="d-block text-white bg-dark btn-dark rounded-pill text-center fs-7" href="#">1</a>-->
-<!--      </li>-->
-<!--      <li class="me-2">-->
-<!--        <a class="d-block text-white bg-dark btn-dark rounded-pill text-center fs-7" href="#">2</a>-->
-<!--      </li>-->
-<!--      <li>-->
-<!--        <a class="d-block pagination-next text-white bg-dark btn-dark rounded-pill text-center"-->
-<!--           href="#">-->
-<!--          <svg class="mb-2" width="10" height="8" viewBox="0 0 10 8" fill="none"-->
-<!--               xmlns="http://www.w3.org/2000/svg">-->
-<!--            <path-->
-<!--              d="M1.27398 0L0.333984 0.94L3.38732 4L0.333984 7.06L1.27398 8L5.27398 4L1.27398 0Z"-->
-<!--              fill="white"/>-->
-<!--            <path-->
-<!--              d="M5.66656 0L4.72656 0.94L7.7799 4L4.72656 7.06L5.66656 8L9.66656 4L5.66656 0Z"-->
-<!--              fill="white"/>-->
-<!--          </svg>-->
-
-<!--        </a>-->
-<!--      </li>-->
-<!--    </ul>-->
-<!--  </div>-->
 </template>
 
 <script>
@@ -508,6 +284,9 @@ export default {
         break
       case '/lawyer-center/lawyer-appointment-center/lawyer-booked':
         this.activeClass = 'booked'
+        break
+      case '/lawyer-center/lawyer-appointment-center/lawyer-blacklist':
+        this.activeClass = 'blockMembersList'
         break
     }
   },

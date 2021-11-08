@@ -78,10 +78,13 @@
 .appointment-bar-active{
     background: url("assets/img/center/appointment-icon.png") no-repeat;
     background-color: rgba(226, 186, 164, 0.2);
+    border-radius: 0.5rem;
     background-position: 0;
     @include mobile600{
         background: none;
         a {
+            padding: 0.25rem 0.05rem;
+            border-radius: 0.5rem;
             background-color: rgba(226, 186, 164, 0.2);
         }
     }

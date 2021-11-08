@@ -93,6 +93,11 @@ const routes = [
         path: 'lawyer-booked',
         name: 'LawyerBooked',
         component: () => import('../views/lawyerCenter/lawyerAppointment/LawyerAppointmentBooked')
+      },
+      {
+        path: 'lawyer-blacklist',
+        name: 'LawyerBlacklist',
+        component: () => import('../views/lawyerCenter/lawyerAppointment/LawyerBlacklist')
       }]
     }]
   },
