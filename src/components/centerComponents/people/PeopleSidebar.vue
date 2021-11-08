@@ -11,7 +11,7 @@
       <p class="fs-7 mb-1 text-info">
         Welcome
       </p>
-      <h3 class="fs-4 text-secondary">{{peopleData.firstName}}  {{peopleData.lastName}}</h3>
+      <h3 class="fs-4 text-secondary">{{peopleData.lastName}}{{peopleData.firstName}}</h3>
       <p class="text-secondary">我的關注 <span class="fs-7">({{this.peopleData.collection}})</span></p>
     </div>
     <!-- 會員中心點擊欄位 -->
@@ -110,7 +110,7 @@ export default {
       }).then((response) => {
         console.log(response.data)
       }).catch((error) => {
-        window.showToast.showToast(error.response.data.Message)
+        window.showToast.showErrorToast(error.response.data.Message)
       })
     }
   }

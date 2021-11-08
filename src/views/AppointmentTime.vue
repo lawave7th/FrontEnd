@@ -78,7 +78,7 @@
                         </label>
                       </li>
                       <li class="col-auto">
-                        <input class="form-check-input me-1" type="checkbox" value="其它"
+                        <input class="form-check-input me-1" type="checkbox" value="其他事由"
                                id="criminalDispute" @change="controlNum" v-model="postData.caseType">
                         <label class="form-check-label fs-7" for="criminalDispute">
                           其他事由
@@ -148,7 +148,7 @@
             <div class="d-flex  flex-column flex-md-row justify-content-between">
               <div>
                 <p class="text-left text-primary">{{lawyerData.office}}</p>
-                <h3 class="text-left mb-md-4 text-secondary">{{lawyerData.firstName}}{{lawyerData.lastName}}</h3>
+                <h3 class="text-left mb-md-4 text-secondary">{{lawyerData.lastName}}{{lawyerData.firstName}}</h3>
                 <div class="d-none d-md-block line ms-0 bg-primary mb-md-2"></div>
               </div>
               <div>
@@ -268,7 +268,7 @@ export default {
     },
     controlNum () {
       if (this.postData.caseType.length > 3) {
-        window.showToast.showToast('不能選許超過3個')
+        window.showToast.showErrorToast('不能選許超過3個')
         this.postData.caseType.pop()
       }
     },

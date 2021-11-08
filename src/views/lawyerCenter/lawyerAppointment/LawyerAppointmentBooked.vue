@@ -2,107 +2,168 @@
     <!-- 已預約畫面 -->
     <div class="booked">
       <ul>
-        <li
-          class="row border m-0 justify-content-between rounded rounded-3 px-md-7  mb-md-4 py-md-3 align-items-center">
-          <div class="col-3">
-            <h4 class="mb-2">
-              Tim Turner
+        <li v-for="(item , index) in bookedData.data" :key="index"  :class="index%2===0? '':'bg-primary-shallow'"
+          class="row flex-column flex-md-row border border-primary m-0 justify-content-md-between rounded rounded-3 px-4 px-md-7  mb-4 py-3 align-items-md-center">
+          <div class="col-12 col-md-3">
+            <h4 class="mb-2 text-secondary">
+              {{item.lastName}}{{item.firstName}}
             </h4>
-            <p class="m-0">02/21 14:00-15:00</p>
+            <p class="m-0">{{item.date}} {{item.startTime}}-{{item.endTime}}</p>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-md-6">
             <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
-              <li
-                class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-                車禍調解
-              </li>
-              <li
-                class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-                金錢糾紛
-              </li>
-              <li
-                class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-                其他
+              <li v-for="(caseItem , index ) in item.caseType" :key="index"
+                  class="rounded-pill border border-1 bg-secondary me-2 fs-7 py-1 px-3 text-white">
+                <div v-if="item.caseType.length > index">{{item.caseType[index]}}</div>
               </li>
             </ul>
-            <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
+            <p>{{ item.caseInfo }}</p>
           </div>
-          <div class="col-3 d-flex">
-            <button type="button" class="btn btn-dark">
-              <svg width="24" height="24"
-                   viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M21 6H19V15H6V17C6 17.55 6.45 18 7 18H18L22 22V7C22 6.45 21.55 6 21 6ZM17 12V3C17 2.45 16.55 2 16 2H3C2.45 2 2 2.45 2 3V17L6 13H16C16.55 13 17 12.55 17 12Z"
-                  fill="white"/>
-              </svg>
-              線上諮詢
-            </button>
-          </div>
-
-        </li>
-        <li
-          class="row border m-0 justify-content-between rounded rounded-3 px-md-7  mb-md-4 py-md-3 align-items-center">
-          <div class="col-3">
-            <h4 class="mb-2">
-              Tim Turner
-            </h4>
-            <p class="m-0">02/21 14:00-15:00</p>
-          </div>
-          <div class="col-6">
-            <ul class="lawyer-tags d-flex flex-wrap justify-content-start">
-              <li
-                class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-                車禍調解
-              </li>
-              <li
-                class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-                金錢糾紛
-              </li>
-              <li
-                class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">
-                其他
-              </li>
-            </ul>
-            <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
-          </div>
-          <div class="col-3 d-flex">
-            <button type="button" class="btn btn-outline-dark">
-             <span class="material-icons">circle_notifications</span>
-              預約提醒
+          <div class="col-12 col-md-3 d-flex justify-content-end" >
+             <button v-if="item.timestamp / 1000 / 60 > 10" type="button" class="btn btn-outline-dark" @click="getId(item.id)">
+               <span class="material-icons align-middle">circle_notifications</span>
+               預約提醒
+             </button>
+            <button v-else type="button" class="btn btn-secondary">
+            <span class="material-icons align-middle">forum</span>
+            線上諮詢
             </button>
           </div>
 
         </li>
       </ul>
-      <!-- 分頁按鈕 -->
-      <ul class="appointment-pagination d-flex justify-content-md-end">
-        <li class="me-2">
-          <a class="d-block text-white bg-dark btn-dark rounded-pill text-center fs-7" href="#">1</a>
-        </li>
-        <li class="me-2">
-          <a class="d-block text-white bg-dark btn-dark rounded-pill text-center fs-7" href="#">2</a>
-        </li>
-        <li>
-          <a class="d-block pagination-next text-white bg-dark btn-dark rounded-pill text-center"
-             href="#">
-            <svg class="mb-2" width="10" height="8" viewBox="0 0 10 8" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M1.27398 0L0.333984 0.94L3.38732 4L0.333984 7.06L1.27398 8L5.27398 4L1.27398 0Z"
-                fill="white"/>
-              <path
-                d="M5.66656 0L4.72656 0.94L7.7799 4L4.72656 7.06L5.66656 8L9.66656 4L5.66656 0Z"
-                fill="white"/>
-            </svg>
-
-          </a>
-        </li>
-      </ul>
+      <!--   會員提醒 modal -->
+      <div class="modal fade" id="memberReminderModal" ref="memberReminderModal" tabindex="-1"  aria-labelledby="memberReminderModal"
+           aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="position-relative">
+              <button type="button" class="m-1 m-md-3 btn  fs-4 position-absolute top-0 end-0"
+                      data-bs-dismiss="modal" aria-label="Close">
+                <svg width="14" height="14"
+                     viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+                    fill="black"/>
+                </svg>
+              </button>
+              <h2 class="modal-title text-center mt-3 mt-md-7 mb-2 text-secondary" id="memberReminderLabel">
+              傳送預約提醒</h2>
+              <div class="line bg-primary mb-3"></div>
+            </div>
+            <div class="modal-body pt-5">
+              <div class="row">
+                <div class="col  d-flex  flex-column align-items-center offset-md-1 col-md-10">
+                  <div class="d-flex flex-wrap mb-3 justify-content-center">
+                    <h3 class="fs-4">預約提醒通知信：</h3>
+                    <select class="system-default rounded px-3" v-model="selected" @change="changeText">
+                      <option selected>系統預設</option>
+                      <option value="自行輸入">自行輸入</option>
+                    </select>
+                  </div>
+                  <textarea class="rounded" cols="30" rows="6" v-model="reminderData.mailBody">
+                    </textarea>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer border-0 text-center d-flex justify-content-center mb-7">
+              <button type="button" class="btn btn-outline-secondary " data-bs-dismiss="modal">
+                <span class="material-icons align-middle">close</span>
+                取消
+              </button>
+              <button type="button" class="btn btn-secondary" @click="sendRemindMail">
+                <span class="material-icons  align-middle">done</span>
+                確認送出
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 </template>
 
 <script>
+import { getReservationData, sendRemindMail } from '@/util/api'
+import Modal from 'bootstrap/js/dist/modal'
 export default {
-  name: 'LawyerBooked'
+  data () {
+    return {
+      bookedData: {},
+      memberReminderModal: {},
+      selected: '系統預設',
+      reminderData: {},
+      id: ''
+    }
+  },
+  created () {
+    this.getReservationData()
+  },
+  mounted () {
+    this.memberReminderModal = new Modal(this.$refs.memberReminderModal)
+  },
+  methods: {
+    reset () {
+      this.reminderData = {}
+    },
+    getReservationData () {
+      getReservationData('mem/reservation/booked')
+        .then((res) => {
+          console.log(res.data)
+          this.bookedData = res.data
+          this.bookedData.data.forEach((item) => {
+            if (item.firstName === null && item.lastName === null) {
+              item.firstName = '無名氏'
+            }
+          })
+          this.processingTime()
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    },
+    processingTime () {
+      this.bookedData.data.forEach((item) => {
+        item.originalTime = item.startTime
+        item.date = item.startTime.substring(5, 10).replace('-', '/')
+        item.startTime = item.startTime.substring(11, 16)
+        const regex = /\d+(?=:)/
+        item.endTime = (Number(regex.exec(item.startTime)) + 1).toString() + ':00'
+      }
+      )
+      this.setTimestamp()
+    },
+    setTimestamp () {
+      const nowDate = new Date().getTime()
+      console.log(nowDate)
+      this.bookedData.data.forEach((item) => {
+        item.timestamp = new Date(item.originalTime.replace('T', ' ')).getTime()
+        item.timestamp -= nowDate
+      })
+    },
+    changeText () {
+      const index = this.bookedData.data.findIndex((item) => item.id === Number(this.reminderData.id))
+      if (this.selected === '系統預設') {
+        this.reminderData.mailBody = `您好～感謝您預約${this.bookedData.data[index].date} ${this.bookedData.data[index].startTime} - ${this.bookedData.data[index].endTime}的媒合諮詢，提醒您時間將至，請記得準時赴約。`
+      } else if (this.selected === '自行輸入') {
+        this.reminderData.mailBody = ''
+      }
+    },
+    getId (id) {
+      this.reminderData.id = id
+      this.changeText()
+      this.memberReminderModal.show()
+    },
+    sendRemindMail () {
+      sendRemindMail(this.reminderData)
+        .then((res) => {
+          console.log(res.data)
+          this.memberReminderModal.hide()
+          this.reset()
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    }
+  }
 }
 </script>

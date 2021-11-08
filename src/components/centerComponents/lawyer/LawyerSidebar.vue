@@ -11,7 +11,7 @@
         <p class="fs-7 mb-1 text-info">
           Welcome
         </p>
-        <h3 class="fs-4 text-secondary">{{ lawyerData.firstName }}{{ lawyerData.lastName }}</h3>
+        <h3 class="fs-4 text-secondary"> {{lawyerData.lastName}}{{lawyerData.firstName}}</h3>
         <div class="star_box d-flex align-items-center justify-content-center mb-md-6">
           <Rating class="text-primary" :modelValue="lawyerData.starAvg" :readonly="true" :stars="5" :cancel="false" />
           <span class="fs-7 ms-1">({{ lawyerData.starAvg }})</span>
@@ -131,7 +131,8 @@ export default {
       }).then((response) => {
         console.log(response.data)
       }).catch((error) => {
-        window.showToast.showToast(error.response.data.Message)
+        console.log(error.response)
+        window.showToast.showErrorToast('圖片上傳失敗')
       })
     }
   }

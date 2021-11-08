@@ -22,7 +22,7 @@
             <div class="d-flex flex-column flex-md-row justify-content-md-between">
               <div>
                 <p class="text-primary">{{lawyerData.office}}</p>
-                <h3 class="text-secondary">{{lawyerData.firstName}}{{lawyerData.lastName}}</h3>
+                <h3 class="text-secondary">{{lawyerData.lastName}}{{lawyerData.firstName}}</h3>
                 <p>
                   <span class="material-icons text-dark-shallow align-middle">local_phone</span>
                   {{lawyerData.phone}}

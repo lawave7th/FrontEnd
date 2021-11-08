@@ -146,3 +146,15 @@ export const getReservationData = (url) => {
 export const putReservationAssent = (data) => {
   return request('put', 'mem/reservationAssent', data)
 }
+
+// 封鎖民眾
+
+export const blockMembers = (url) => {
+  return request('post', url)
+}
+
+// 寄送提醒信
+
+export const sendRemindMail = (data) => {
+  return request('post', 'lawyer/remindMail', data)
+}

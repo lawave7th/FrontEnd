@@ -28,7 +28,7 @@ instance.interceptors.response.use(
     return response
   },
   function (error) {
-    window.showToast.showToast(error.response.data.Message)
+    window.showToast.showErrorToast(error.response.data.Message)
     return Promise.reject(error)
   }
 )

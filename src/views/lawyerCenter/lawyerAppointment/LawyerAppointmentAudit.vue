@@ -5,7 +5,7 @@
       <li v-for="(item , index) in auditData.data" :key="index"
       >
         <p class="text-end">
-          <a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#blockMembersModal">
+          <a href="#" class="text-danger" @click.prevent="getId(item.id , 'blockMembers')">
             <span class="material-icons text-danger align-middle">block</span>
             加入封鎖</a>
         </p>
@@ -29,7 +29,7 @@
           </div>
           <div class="col-12 col-md-4 d-flex justify-content-end">
             <button type="button"
-                    class="btn btn-outline-secondary px-2 me-2" @click="getId(item.id)">
+                    class="btn btn-outline-secondary px-2 me-2" @click="getId(item.id ,'reject')">
               <span class="material-icons align-middle">close</span>
               拒絕
             </button>
@@ -121,7 +121,7 @@
             <span class="material-icons align-middle">close</span>
             取消
           </button>
-          <button type="button" class="btn btn-secondary">
+          <button type="button" class="btn btn-secondary" @click="blockMembers">
             <span class="material-icons  align-middle">done</span>
             確定封鎖
           </button>
@@ -132,7 +132,7 @@
 </template>
 
 <script>
-import { getReservationData, putReservationAssent } from '@/util/api'
+import { getReservationData, putReservationAssent, blockMembers } from '@/util/api'
 import Modal from 'bootstrap/js/dist/modal'
 
 export default {
@@ -142,7 +142,8 @@ export default {
       reservationData: {},
       selected: '系統預設',
       declineModal: {},
-      blockMembersModal: {}
+      blockMembersModal: {},
+      blockMembersId: ''
     }
   },
   created () {
@@ -155,6 +156,7 @@ export default {
   methods: {
     reset () {
       this.reservationData = {}
+      this.blockMembersId = ''
     },
     getReservationData () {
       getReservationData('mem/reservation/audit')
@@ -182,7 +184,17 @@ export default {
       )
     },
     blockMembers () {
-
+      console.log(this.blockMembersId)
+      blockMembers(`lawyer/blockReservation/add/${this.blockMembersId}`)
+        .then((res) => {
+          console.log(res.data)
+          this.blockMembersModal.hide()
+          this.reset()
+          this.getReservationData()
+        })
+        .catch((error) => {
+          console.error(error)
+        })
     },
     changeText () {
       if (this.selected === '系統預設') {
@@ -191,10 +203,15 @@ export default {
         this.reservationData.rejection = ''
       }
     },
-    getId (id) {
-      this.reservationData.id = id
-      this.changeText()
-      this.declineModal.show()
+    getId (id, status) {
+      if (status === 'reject') {
+        this.reservationData.id = id
+        this.changeText()
+        this.declineModal.show()
+      } else if (status === 'blockMembers') {
+        this.blockMembersId = id
+        this.blockMembersModal.show()
+      }
     },
     onSubmit (id, status, rejection = '') {
       this.reservationData = {
@@ -205,17 +222,9 @@ export default {
       putReservationAssent(this.reservationData)
         .then((res) => {
           if (status) {
-            this.$toast.add({
-              severity: 'success',
-              detail: '預約成功',
-              life: 2000
-            })
+            window.showToast.showSuccessToast('預約成功')
           } else if (!status) {
-            this.$toast.add({
-              severity: 'success',
-              detail: '拒絕成功',
-              life: 2000
-            })
+            window.showToast.showSuccessToast('拒絕成功')
             this.declineModal.hide()
           }
           console.log(res.data)

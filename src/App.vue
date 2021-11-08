@@ -24,9 +24,16 @@ export default {
     }
   },
   methods: {
-    showToast (response) {
+    showErrorToast (response) {
       this.$toast.add({
         severity: 'error',
+        detail: response,
+        life: 2000
+      })
+    },
+    showSuccessToast (response) {
+      this.$toast.add({
+        severity: 'success',
         detail: response,
         life: 2000
       })

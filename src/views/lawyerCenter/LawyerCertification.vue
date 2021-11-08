@@ -135,7 +135,8 @@ export default {
       }).then((response) => {
         console.log(response.data)
       }).catch((error) => {
-        window.showToast.showToast(error.response.data.Message)
+        console.log(error.response)
+        window.showToast.showErrorToast('圖片上傳失敗')
       })
     }
   }
