@@ -275,6 +275,7 @@ export default {
     onSubmit () {
       this.postData.date = this.selectTime
       this.postData.time = this.time
+      console.log(this.postData)
       postAppointmentTime(`mem/publicReservationSet/${this.lawyerId}`, this.postData)
         .then((res) => {
           console.log(res.data)

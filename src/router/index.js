@@ -78,11 +78,21 @@ const routes = [
       path: 'lawyer-appointment-center',
       name: 'LawyerAppointmentCenter',
       redirect: { name: 'LawyerAppointmentTime' },
-      component: () => import('../views/lawyerCenter/LawyerAppointmentCenter'),
+      component: () => import('../views/lawyerCenter/lawyerAppointment/LawyerAppointmentCenter'),
       children: [{
         path: 'lawyer-appointment-time',
         name: 'LawyerAppointmentTime',
-        component: () => import('../views/lawyerCenter/LawyerAppointmentTime')
+        component: () => import('../views/lawyerCenter/lawyerAppointment/LawyerAppointmentTime')
+      },
+      {
+        path: 'lawyer-pending-review',
+        name: 'LawyerPendingReview',
+        component: () => import('../views/lawyerCenter/lawyerAppointment/LawyerAppointmentAudit')
+      },
+      {
+        path: 'lawyer-booked',
+        name: 'LawyerBooked',
+        component: () => import('../views/lawyerCenter/lawyerAppointment/LawyerAppointmentBooked')
       }]
     }]
   },

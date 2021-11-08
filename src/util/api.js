@@ -134,3 +134,15 @@ export const getLawyerReservationSet = () => {
 export const lawyerReservationSet = (data) => {
   return request('put', 'mem/lawyerReservationSet', data)
 }
+
+// 會員審核資料/已預約/已完成
+
+export const getReservationData = (url) => {
+  return request('get', url)
+}
+
+// 審核通過/拒絕
+
+export const putReservationAssent = (data) => {
+  return request('put', 'mem/reservationAssent', data)
+}
