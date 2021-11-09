@@ -12,7 +12,7 @@
         Welcome
       </p>
       <h3 class="fs-4 text-secondary">{{peopleData.lastName}}{{peopleData.firstName}}</h3>
-      <p class="text-secondary">我的關注 <span class="fs-7">({{this.peopleData.collection}})</span></p>
+      <router-link :to="{ name : 'PeopleFocus'}" class="text-secondary">我的關注 <span class="fs-7">({{this.peopleData.collection}})</span></router-link>
     </div>
     <!-- 會員中心點擊欄位 -->
     <ul class="center-side-menu mb-5 px-4">

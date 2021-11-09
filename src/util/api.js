@@ -34,6 +34,18 @@ export const confirmStatus = () => {
 
 // 首頁
 
+// 獲得搜尋框資料
+
+export const getFilterCondition = () => {
+  return request('get', 'api/lawyerlist/selectlist')
+}
+
+// 獲得搜尋資料
+
+export const getSelectData = (url) => {
+  return request('get', url)
+}
+
 // 取得儀表板資料
 
 export const getIndexDashboard = () => {
@@ -169,4 +181,18 @@ export const getBlacklist = () => {
 
 export const unblock = (url) => {
   return request('post', url)
+}
+
+// 民眾會員中心
+
+// 收藏律師
+
+export const getCollection = () => {
+  return request('get', 'public/myCollection')
+}
+
+// 取消預約
+
+export const cancelAppointment = (url) => {
+  return request('delete', url)
 }

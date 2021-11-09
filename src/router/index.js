@@ -120,6 +120,11 @@ const routes = [
       path: 'people-appointment-center',
       name: 'PeopleAppointmentCenter',
       component: () => import('../views/peopleCenter/PeopleAppointmentCenter')
+    },
+    {
+      path: 'people-focus',
+      name: 'PeopleFocus',
+      component: () => import('../views/peopleCenter/PeopleFocus')
     }]
   }
 ]

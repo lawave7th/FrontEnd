@@ -41,7 +41,7 @@ export default {
   },
   watch: {
     $route (to, from) {
-      this.nowPage = to.path
+      this.nowPage = to.name
       this.$store.commit('updatePage', {
         nowPage: this.nowPage
       })

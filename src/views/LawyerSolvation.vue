@@ -10,46 +10,21 @@
               <!-- banner 上下拉式選單 -->
               <div class="row">
                 <div class="col-4 bg-primary-shallow py-2 py-md-4  rounded-pill ">
-                  <select
+                  <select   v-model="areaSelected"
                     class="border-0 text-secondary ps-2 pt-1 banner-select pe-8 select-area-position"
                   >
-                    <option>地區</option>
-                    <option>臺北市</option>
-                    <option>新北市</option>
-                    <option>桃園市</option>
-                    <option>臺中市</option>
-                    <option>臺南市</option>
-                    <option>高雄市</option>
-                    <option>基隆市</option>
-                    <option>新竹市</option>
-                    <option>嘉義市</option>
-                    <option>新竹縣</option>
-                    <option>苗栗縣</option>
-                    <option>彰化縣</option>
-                    <option>南投縣</option>
-                    <option>雲林縣</option>
-                    <option>嘉義縣</option>
-                    <option>屏東縣</option>
-                    <option>宜蘭縣</option>
-                    <option>花蓮縣</option>
-                    <option>臺東縣</option>
-                    <option>澎湖縣</option>
-                    <option>金門縣</option>
-                    <option>連江縣</option>
+                    <option selected :value="-1">地區</option>
+                    <option v-for="(item , index) in areaList" :key="index" :value="index">{{item}}</option>
                   </select>
                 </div>
-                <div class="col-4 col-md-5 b col-lg-6 py-2 py-md-4">
-                  <select class="border-0 text-secondary ps-2 pe-5 px-md-7 pt-1 banner-select select-case-position">
-                    <option>訴訟類型</option>
-                    <option>民事訴訟</option>
-                    <option>刑事訴訟</option>
-                    <option>家事訴訟</option>
-                    <option>勞資爭議</option>
-                    <option>消費糾紛</option>
+                <div class="col-4 col-md-5 b col-lg-6 py-2 py-md-4" >
+                  <select v-model="goodAtListSelected" class="border-0 text-secondary ps-2 pe-5 px-md-7 pt-1 banner-select select-case-position">
+                    <option selected :value="-1">訴訟類型</option>
+                    <option v-for="(item , index) in goodAtList" :key="index" :value="index">{{item}}</option>
                   </select>
                 </div>
                 <div class="col-4 col-md-2 d-flex justify-content-end">
-                  <button
+                  <button @click="getSelectData"
                     class="search-btn d-block ms-4 ms-lg-0 border-0 rounded-circle p-2 p-md-4 my-1 bg-secondary"
                     type="button"
                   >
@@ -138,7 +113,7 @@
               <li v-if="item.lawyerGoodAtType.length > 1" class="rounded-pill d-inline-block border px-3 py-1 fs-7 text-white bg-secondary border-1 " >{{item.lawyerGoodAtType[1]}}</li><br>
               <li v-if="item.lawyerGoodAtType.length > 2" class="rounded-pill d-inline-block border px-3 py-1 fs-7 text-white bg-secondary border-1 " >{{item.lawyerGoodAtType[2]}}</li>
             </ul>
-            <a class="text-center text-info" @click.prevent="gotLawyerDetailedPage(item.id)" href="#">瞭解更多
+            <a class="text-center text-info" @click.prevent="goLawyerDetailedPage(item.id)" href="#">瞭解更多
               <span class="material-icons align-baseline fs-7"> arrow_forward_ios</span>
               <span class="material-icons align-baseline fs-7">arrow_forward_ios</span>
             </a>
@@ -165,16 +140,27 @@
   </main>
 </template>
 <script>
-import { getLawyerList, collectLawyer } from '@/util/api'
+import { getLawyerList, collectLawyer, getFilterCondition, getSelectData } from '@/util/api'
 export default {
   data () {
     return {
       lawyerData: {},
-      nowPage: ''
+      nowPage: '',
+      areaList: '',
+      goodAtList: '',
+      areaSelected: -1,
+      goodAtListSelected: -1
     }
   },
   created () {
+    console.log(this.$route.query)
+    if ('goodAtListSelected' in this.$route.query) {
+      this.getSelectData()
+    } else {
+      this.getData()
+    }
     this.getData()
+    this.getFilterCondition()
   },
   methods: {
     getData (page = 1) {
@@ -182,6 +168,19 @@ export default {
         .then((res) => {
           this.nowPage = page
           this.lawyerData = res.data.data
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    },
+    getFilterCondition () {
+      getFilterCondition()
+        .then((res) => {
+          console.log(res)
+          this.areaList = res.data.areaList
+          this.areaList.shift()
+          this.goodAtList = res.data.goodAtList
+          this.goodAtList.shift()
         })
         .catch((error) => {
           console.error(error)
@@ -201,8 +200,20 @@ export default {
           console.error(error)
         })
     },
-    gotLawyerDetailedPage (id) {
+    goLawyerDetailedPage (id) {
       this.$router.push(`/lawyer-detailed/${id}`)
+    },
+    getSelectData () {
+      this.goodAtListSelected = this.$route.query.goodAtListSelected
+      this.areaSelected = this.$route.query.areaSelected
+      getSelectData(`api/lawyerlistsearch/${this.goodAtListSelected}/${this.areaSelected}/`)
+        .then((res) => {
+          console.log(res)
+          this.lawyerData = res.data.data
+        })
+        .catch((error) => {
+          console.error(error)
+        })
     }
   }
 }

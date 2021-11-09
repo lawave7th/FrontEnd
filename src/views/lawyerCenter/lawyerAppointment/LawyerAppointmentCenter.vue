@@ -274,18 +274,18 @@ export default {
     }
   },
   created () {
-    console.log(this.$route.fullPath)
-    switch (this.$route.fullPath) {
-      case '/lawyer-center/lawyer-appointment-center/lawyer-appointment-time':
+    console.log(this.$route.name)
+    switch (this.$route.name) {
+      case 'LawyerAppointmentTime':
         this.activeClass = 'appointmentTime'
         break
-      case '/lawyer-center/lawyer-appointment-center/lawyer-pending-review':
+      case 'LawyerPendingReview':
         this.activeClass = 'pendingReview'
         break
-      case '/lawyer-center/lawyer-appointment-center/lawyer-booked':
+      case 'LawyerBooked':
         this.activeClass = 'booked'
         break
-      case '/lawyer-center/lawyer-appointment-center/lawyer-blacklist':
+      case 'LawyerBlacklist':
         this.activeClass = 'blockMembersList'
         break
     }

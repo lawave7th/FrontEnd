@@ -15,6 +15,8 @@
                     <label for="date-start" class="form-label">選擇日期</label>
                     <select id="date-start" v-model="selectTime" @change="filterShowTimeData" class="form-select"
                             aria-label="default-select">
+                      <option :value="'preset'" selected>yyyy/mm/dd
+                      </option>
                       <option v-for="(item,index) in selectTimeData" :key="index" :value="item.date">{{item.date}}
                       </option>
                     </select>
@@ -129,7 +131,7 @@
                               <h3 class="fs-4">感謝使用法學電波線上諮詢功能</h3>
                               <p>已送出您的預約申請，待律師審核通過後將以信件寄送預約成功通知您，近期請留意通知</p>
                               <div class="d-grid gap-2 mb-md-7 mb-5">
-                                <button type="button" data-bs-dismiss="modal" class="btn btn-secondary">前往預約中心查看記錄</button>
+                                <button type="button" data-bs-dismiss="modal" class="btn btn-secondary" @click="goPeopleAppointmentCenter">前往預約中心查看記錄</button>
                               </div>
                             </div>
                           </div>
@@ -167,7 +169,7 @@
             <h3 class="border-bottom border-2 mb-4">當日可預約時段</h3>
             <!-- 按鈕選取 -->
             <ul class="row row-cols-2 row-cols-md-5 align-items-center">
-              <li v-if="!selectTime" class="mb-4 fw-bold">請選擇日期</li>
+              <li v-if="selectTime === 'preset'" class="mb-4 fw-bold">請選擇日期</li>
               <li v-else v-for="(item , index) in showTimeData" :key="index" class="mb-4 d-flex justify-content-around">
                 <div class="btn-group-vertical d-block">
                   <button type="button" class="btn  btn-primary-light rounded-top-3 " disabled>{{item.date}}</button>
@@ -198,7 +200,7 @@ export default {
       timeData: {},
       selectTimeData: [],
       showTimeData: [],
-      selectTime: '',
+      selectTime: 'preset',
       time: '',
       endTime: '',
       postData: { caseType: [] }
@@ -213,7 +215,7 @@ export default {
   },
   methods: {
     reset () {
-      this.selectTime = ''
+      this.selectTime = 'preset'
       this.time = ''
       this.endTime = ''
       this.postData = { caseType: [] }
@@ -285,6 +287,10 @@ export default {
         .catch((error) => {
           console.error(error)
         })
+    },
+    goPeopleAppointmentCenter () {
+      this.appointmentModal.hide()
+      this.$router.push({ name: 'PeopleAppointmentCenter' })
     }
   }
 }

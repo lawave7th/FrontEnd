@@ -72,7 +72,11 @@
         a{
         &:hover{
             border-bottom: 1px solid #172A39;
+            @include mobile600{
+                border-bottom: none;
             }
+            }
+
         }
 }
 .appointment-bar-active{
@@ -81,6 +85,7 @@
     border-radius: 0.5rem;
     background-position: 0;
     @include mobile600{
+        border-radius: 0rem;
         background: none;
         a {
             padding: 0.25rem 0.05rem;

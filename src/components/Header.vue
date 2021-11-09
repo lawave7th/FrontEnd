@@ -62,10 +62,10 @@
 
           <div class="dropdown d-md-flex align-items-md-center" v-if="isLogin()">
             <div class="header-search d-none d-lg-block me-4" :class="isBottomBanner === true ?'d-lg-none ':''">
-              <input class="p-2 ps-5 rounded-pill border border-primary border-1 text-primary"
-                     Placeholder="尋找合作律師"
-                     type="search"
-              />
+<!--              <input class="p-2 ps-5 rounded-pill border border-primary border-1 text-primary"-->
+<!--                     Placeholder="尋找合作律師"-->
+<!--                     type="search"-->
+<!--              />-->
             </div>
             <button
               class="d-flex  align-items-center justify-content-between
@@ -113,10 +113,10 @@
           </div>
           <div class="dropdown d-flex" v-else>
             <div class="header-search d-none d-lg-block m4-2" :class="isBottomBanner === true ?'d-lg-none ':''">
-              <input class="p-2 ps-5 rounded-pill border border-primary border-1 text-primary"
-                     Placeholder="尋找合作律師"
-                     type="search"
-              />
+<!--              <input class="p-2 ps-5 rounded-pill border border-primary border-1 text-primary"-->
+<!--                     Placeholder="尋找合作律師"-->
+<!--                     type="search"-->
+<!--              />-->
             </div>
             <button
               class="d-flex  align-items-center justify-content-between
@@ -188,12 +188,12 @@ export default {
       token: '',
       isBottomBanner: true,
       isLawyer: false,
-      pages: ['/index', '/knowledge', '/lawyer-solvation'],
+      pages: ['Index', 'Knowledge', 'LawyerSolvation'],
       scrollPosition: null
     }
   },
   created () {
-    this.changeNavColor(this.$route.fullPath)
+    this.changeNavColor(this.$route.name)
   },
   mounted () {
     window.addEventListener('scroll', this.updateScroll)
@@ -245,7 +245,9 @@ export default {
     },
     '$store.state.token': function () {
       this.isLogin()
-      this.goMemberPage()
+      if (this.$store.state.token) {
+        this.goMemberPage()
+      }
     }
   }
 }

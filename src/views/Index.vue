@@ -9,46 +9,21 @@
             <!-- banner 上下拉式選單 -->
               <div class="row">
                 <div class="col-4 bg-primary-shallow py-2 py-md-4  rounded-pill ">
-                  <select
+                  <select v-model="areaSelected"
                     class="border-0 text-secondary ps-2 pt-1 banner-select pe-8 select-area-position"
                   >
-                    <option>地區</option>
-                    <option>臺北市</option>
-                    <option>新北市</option>
-                    <option>桃園市</option>
-                    <option>臺中市</option>
-                    <option>臺南市</option>
-                    <option>高雄市</option>
-                    <option>基隆市</option>
-                    <option>新竹市</option>
-                    <option>嘉義市</option>
-                    <option>新竹縣</option>
-                    <option>苗栗縣</option>
-                    <option>彰化縣</option>
-                    <option>南投縣</option>
-                    <option>雲林縣</option>
-                    <option>嘉義縣</option>
-                    <option>屏東縣</option>
-                    <option>宜蘭縣</option>
-                    <option>花蓮縣</option>
-                    <option>臺東縣</option>
-                    <option>澎湖縣</option>
-                    <option>金門縣</option>
-                    <option>連江縣</option>
+                    <option selected :value="-1">地區</option>
+                    <option v-for="(item , index) in areaList" :key="index" :value="index">{{item}}</option>
                   </select>
                 </div>
                 <div class="col-4 col-md-5 b col-lg-6 py-2 py-md-4">
-                  <select class="border-0 text-secondary ps-2 pe-5 px-md-7 pt-1 banner-select select-case-position">
-                    <option>訴訟類型</option>
-                    <option>民事訴訟</option>
-                    <option>刑事訴訟</option>
-                    <option>家事訴訟</option>
-                    <option>勞資爭議</option>
-                    <option>消費糾紛</option>
+                  <select v-model="goodAtListSelected" class="border-0 text-secondary ps-2 pe-5 px-md-7 pt-1 banner-select select-case-position">
+                    <option selected :value="-1">訴訟類型</option>
+                    <option v-for="(item , index) in goodAtList" :key="index" :value="index">{{item}}</option>
                   </select>
                 </div>
                 <div class="col-4 col-md-2 d-flex justify-content-end">
-                  <button
+                  <button @click="goSelectPage"
                     class="search-btn d-block ms-4 ms-lg-0 border-0 rounded-circle p-2 p-md-4 my-1 bg-secondary"
                     type="button"
                   >
@@ -334,20 +309,25 @@
 </template>
 <script>
 
-import { getIndexDashboard, getIndexHotLawyer, getMemberPraise } from '@/util/api'
+import { getIndexDashboard, getIndexHotLawyer, getMemberPraise, getFilterCondition } from '@/util/api'
 export default {
   components: {},
   data () {
     return {
       dashboardData: {},
       hotLawyerData: {},
-      memberPraise: {}
+      memberPraise: {},
+      areaList: '',
+      goodAtList: '',
+      areaSelected: -1,
+      goodAtListSelected: -1
     }
   },
   created () {
     this.getIndexDashboard()
     this.getIndexHotLawyer()
     this.getMemberPraise()
+    this.getFilterCondition()
   },
   methods: {
     getIndexDashboard () {
@@ -379,8 +359,30 @@ export default {
         .catch((error) => {
           console.error(error)
         })
+    },
+    getFilterCondition () {
+      getFilterCondition()
+        .then((res) => {
+          console.log(res)
+          this.areaList = res.data.areaList
+          this.areaList.shift()
+          this.goodAtList = res.data.goodAtList
+          this.goodAtList.shift()
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    },
+    goSelectPage () {
+      console.log(this.areaSelected, this.goodAtListSelected)
+      this.$router.push({
+        name: 'LawyerSolvation',
+        query: {
+          goodAtListSelected: this.goodAtListSelected,
+          areaSelected: this.areaSelected
+        }
+      })
     }
-
   }
 }
 </script>
