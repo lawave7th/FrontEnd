@@ -141,7 +141,7 @@
     }
 }
 
-//律師聊天室
+//聊天室
 .send-btn{
     width: 56px;
     height: 56px;
@@ -157,4 +157,7 @@
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
+}
+.chatroom-content{
+    height: 600px;
 }

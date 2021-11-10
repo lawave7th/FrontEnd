@@ -62,7 +62,11 @@ p{
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
 }
-
+//改 input focus 樣式
+.form-control:focus {
+    border-color: #E2BAA4;
+    box-shadow: rgba(226, 186, 164, 0.2);
+}
 /*通用樣式結尾*/
 .title-bar {
     margin: 0;

@@ -155,6 +155,8 @@ export default {
   created () {
     console.log(this.$route.query)
     if ('goodAtListSelected' in this.$route.query) {
+      this.goodAtListSelected = this.$route.query.goodAtListSelected
+      this.areaSelected = this.$route.query.areaSelected
       this.getSelectData()
     } else {
       this.getData()
@@ -204,12 +206,11 @@ export default {
       this.$router.push(`/lawyer-detailed/${id}`)
     },
     getSelectData () {
-      this.goodAtListSelected = this.$route.query.goodAtListSelected
-      this.areaSelected = this.$route.query.areaSelected
       getSelectData(`api/lawyerlistsearch/${this.goodAtListSelected}/${this.areaSelected}/`)
         .then((res) => {
           console.log(res)
           this.lawyerData = res.data.data
+          this.$router.push({ query: {} })
         })
         .catch((error) => {
           console.error(error)

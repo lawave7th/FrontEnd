@@ -126,6 +126,11 @@ const routes = [
       name: 'PeopleFocus',
       component: () => import('../views/peopleCenter/PeopleFocus')
     }]
+  },
+  {
+    path: '/chatroom',
+    name: 'Chatroom',
+    component: () => import('../views/chatroom')
   }
 ]
 

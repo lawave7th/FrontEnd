@@ -24,7 +24,7 @@
                <span class="material-icons align-middle">circle_notifications</span>
                預約提醒
              </button>
-            <button v-else type="button" class="btn btn-secondary">
+            <button v-else type="button" class="btn btn-secondary" @click="goChatRoom">
             <span class="material-icons align-middle">forum</span>
             線上諮詢
             </button>
@@ -162,6 +162,9 @@ export default {
         .catch((error) => {
           console.error(error)
         })
+    },
+    goChatRoom () {
+
     }
   }
 }
