@@ -37,6 +37,7 @@ const app = createApp(App)
 app.config.globalProperties.$public = Public
 app.use(router)
 app.component('Loading', Loading)
+// app.use($)
 app.use(PrimeVue)
 app.use(PrimeIcons)
 app.component('Rating', Rating)

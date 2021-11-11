@@ -12,7 +12,7 @@
         <div class="col-12 col-md-9 d-flex flex-column justify-content-between border border-primary rounded rounded-3 shadow-sm g-0">
           <div
             class="d-flex  justify-content-between  align-items-center rounded-top-3 py-3 px-4 bg-primary shadow-sm">
-            <div class="chatroom-name d-flex align-items-center">
+            <div class="chatroom-name d-flex align-items-center" id="test">
               <svg width="48" height="48" viewBox="0 0 48 48" fill="none"
                    xmlns="http://www.w3.org/2000/svg">
                 <rect width="48" height="48" rx="24" fill="#C4C4C4" />
@@ -75,8 +75,8 @@
             </div>
           </div>
           <div class="chatroom-input d-flex rounded-bottom-3 py-3 px-4 bg-primary shadow-sm align-items-center">
-            <input type="text" class="form-control rounded rounded-3 py-2 me-3" placeholder="輸入訊息">
-            <button type="button" class="btn btn-secondary send-btn rounded-pill">
+            <input type="text" class="form-control rounded rounded-3 py-2 me-3" placeholder="輸入訊息" v-model="inputMessage">
+            <button type="button" class="btn btn-secondary send-btn rounded-pill" @click="sendMessage">
             <span class="material-icons align-middle"> send </span>
             </button>
           </div>
@@ -88,19 +88,37 @@
 </template>
 
 <script>
+// import $ from '../../node_modules/jquery'
 import LawyerSidebar from '../components/centerComponents/lawyer/LawyerSidebar'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import CenterNav from '../components/centerComponents/CenterNav'
 import PeopleSidebar from '../components/centerComponents/people/PeopleSidebar'
 import { confirmStatus } from '@/util/api'
+import { hubConnection } from 'signalr-no-jquery'
+// import hub from ''
 
 export default {
   components: { Header, PeopleSidebar, LawyerSidebar, Footer, CenterNav },
   data () {
     return {
-      isLawyer: false
+      isLawyer: false,
+      inputMessage: '',
+      proxy: [],
+      connection: ''
     }
+  },
+  mounted () {
+    const connection = hubConnection(
+      'https://lawave.rocket-coding.com/signalr'
+    )
+    this.connection = connection
+    const proxy = connection.createHubProxy('chatHub')
+    this.proxy = proxy
+    proxy.on('message', function (message) {
+      console.log(message)
+    })
+    connection.start().done(() => console.log('hub.start()：'), { jsonp: true })
   },
   created () {
     this.checkStatus()
@@ -114,6 +132,12 @@ export default {
         .catch((error) => {
           console.error(error)
         })
+    },
+    sendMessage () {
+      this.proxy.invoke('sendOne', '魚魚', this.inputMessage).then(() => console.log('123')).fail((error) => console.log(error))
+    },
+    connectHub () {
+
     }
   }
 
