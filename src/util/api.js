@@ -196,3 +196,11 @@ export const getCollection = () => {
 export const cancelAppointment = (url) => {
   return request('delete', url)
 }
+
+// 聊天室
+
+// 取得會員資料
+
+export const getChatRoomInformation = (url) => {
+  return request('get', url)
+}

@@ -20,11 +20,11 @@
             <p>{{ item.caseInfo }}</p>
           </div>
           <div class="col-12 col-md-3 d-flex justify-content-end" >
-             <button v-if="item.timestamp / 1000 / 60 > 10" type="button" class="btn btn-outline-dark" @click="getId(item.id)">
-               <span class="material-icons align-middle">circle_notifications</span>
-               預約提醒
-             </button>
-            <button v-else type="button" class="btn btn-secondary" @click="goChatRoom">
+<!--             <button v-if="item.timestamp / 1000 / 60 > 10" type="button" class="btn btn-outline-dark" @click="getId(item.id)">-->
+<!--               <span class="material-icons align-middle">circle_notifications</span>-->
+<!--               預約提醒-->
+<!--             </button>-->
+            <button  type="button" class="btn btn-secondary" @click="goChatRoom(item.id)">
             <span class="material-icons align-middle">forum</span>
             線上諮詢
             </button>
@@ -163,8 +163,8 @@ export default {
           console.error(error)
         })
     },
-    goChatRoom () {
-
+    goChatRoom (id) {
+      this.$router.push({ name: 'Chatroom', query: { id: id } })
     }
   }
 }
