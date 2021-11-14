@@ -3,7 +3,7 @@
   <Header></Header>
   <main>
     <CenterNav></CenterNav>
-    <div class="container pb-md-11">
+    <div class="container pb-11">
       <div class="row justify-content-between position-relative mt-md-11">
         <div class="col-md-3">
           <LawyerSidebar v-if="isLawyer"></LawyerSidebar>
@@ -31,41 +31,33 @@
               </button>
             </div>
           </div>
-          <div class="chatroom-content flex-grow-1 py-3 px-4 overflow-auto">
+          <div class="chatroom-content flex-grow-1 py-3 px-4" ref="chatroomContent">
             <div class="system-hint d-flex flex-column align-items-center" v-for="item in welcomeMessageList" :key="item">
               <p class="d-inline-block rounded-pill border border-1 me-2 py-1 px-3">{{item.welcomeMessage}}
               </p>
             </div>
-            <div class="row mb-3">
-              <div class="col-auto">
-                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect width="48" height="48" rx="24" fill="#C4C4C4"/>
-                  <path
-                    d="M34.6673 34.6663V35.5596H13.334V34.6663C13.3364 32.4851 14.0074 30.357 15.2567 28.569C16.5059 26.7809 18.2733 25.4188 20.3206 24.6663C19.4032 24.059 18.6504 23.234 18.1293 22.2651C17.6081 21.2961 17.3349 20.2132 17.334 19.113C17.334 17.3448 18.0364 15.6492 19.2866 14.3989C20.5368 13.1487 22.2325 12.4463 24.0007 12.4463C25.7688 12.4463 27.4644 13.1487 28.7147 14.3989C29.9649 15.6492 30.6673 17.3448 30.6673 19.113C30.6657 20.2138 30.3914 21.2971 29.8691 22.2661C29.3468 23.2351 28.5926 24.0597 27.674 24.6663C29.7225 25.4177 31.4914 26.7793 32.7419 28.5675C33.9924 30.3556 34.6644 32.4843 34.6673 34.6663Z"
-                    fill="white"/>
-                </svg>
-              </div>
-              <div class="col-auto">
-                <h4 class="fs-7">Tim Turner</h4>
-                <div class="message-txt">
-                  <p class="p-1 other-txt d-inline-block">哈摟～律師您好
-                  </p>
-                  <span class="fs-7">下午 2:00</span>
+            <div class="message-list" v-for="item in messageList" :key="item">
+              <div class="row mb-3"  v-if = "item.name === `${this.otherSideData.lastName}${this.otherSideData.firstName}`">
+                <div class="col-auto">
+                  <img v-if="item.shot === null" class="rounded rounded-pill chatroom-img" src="../assets/img/member-logo.png" alt="聊天室對方照片">
+                  <img v-else  class="rounded rounded-pill chatroom-img"  :src="item.shot" alt="聊天室對方照片" >
+                </div>
+                <div class="col-auto">
+                  <h4 class="fs-7">{{item.name}}</h4>
+                  <div class="message-txt">
+                    <p class="p-1 other-txt d-inline-block">{{item.message}}
+                    </p>
+                    <span class="fs-7">  {{item.msgTime}}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="row mb-3 flex-row-reverse text-end">
-              <!-- <div class="col-auto ">
-                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="48" height="48" rx="24" fill="#C4C4C4"/>
-                      <path d="M34.6673 34.6663V35.5596H13.334V34.6663C13.3364 32.4851 14.0074 30.357 15.2567 28.569C16.5059 26.7809 18.2733 25.4188 20.3206 24.6663C19.4032 24.059 18.6504 23.234 18.1293 22.2651C17.6081 21.2961 17.3349 20.2132 17.334 19.113C17.334 17.3448 18.0364 15.6492 19.2866 14.3989C20.5368 13.1487 22.2325 12.4463 24.0007 12.4463C25.7688 12.4463 27.4644 13.1487 28.7147 14.3989C29.9649 15.6492 30.6673 17.3448 30.6673 19.113C30.6657 20.2138 30.3914 21.2971 29.8691 22.2661C29.3468 23.2351 28.5926 24.0597 27.674 24.6663C29.7225 25.4177 31.4914 26.7793 32.7419 28.5675C33.9924 30.3556 34.6644 32.4843 34.6673 34.6663Z" fill="white"/>
-                      </svg>
-              </div> -->
-              <div class="col-8">
-                <h4 class="fs-7 d-none">Tim Turner</h4>
-                <div class="message-txt">
-                  <span class="fs-7">下午 2:00</span>
-                  <p class="p-1 user-txt d-inline-block">您好~感謝您前來諮詢</p>
+              <div class="row mb-3 flex-row-reverse text-end" v-else>
+                <div class="col-8">
+                  <h4 class="fs-7 d-none">{{item.name}}</h4>
+                  <div class="message-txt">
+                    <span class="fs-7">  {{item.msgTime}}</span>
+                    <p class="p-1 user-txt d-inline-block">{{item.message}}</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -82,6 +74,7 @@
     </div>
   </main>
   <Footer></Footer>
+
 </template>
 
 <script>
@@ -110,11 +103,9 @@ export default {
       id: '',
       userData: {},
       otherSideData: {},
-      welcomeMessageList: []
+      welcomeMessageList: [],
+      name: ''
     }
-  },
-  mounted () {
-
   },
   created () {
     this.checkStatus()
@@ -131,19 +122,23 @@ export default {
         this.chat = chat
         chat.server.start(Number(this.id), this.isLawyer)
       })
-      console.log(chat)
       chat.client.addNewMessageToPage = (name) => {
-        console.log('addNewMessageToPage成功')
         const obj = {}
         obj.welcomeMessage = `歡迎${name}進入聊天室`
         this.welcomeMessageList.push(obj)
-        console.log(this.welcomeMessageList)
       }
       chat.client.register = (id) => {
         console.log('register：' + id)
       }
       chat.client.topople = (name, message, msgTime) => {
-        console.log('topple：' + name + ' ' + message + ' ' + msgTime)
+        const obj = {}
+        obj.shot = this.otherSideData.shot
+        obj.name = name
+        obj.message = message
+        obj.msgTime = msgTime
+        this.messageList.push(obj)
+        // const chatroomContent = this.$refs.chatroomContent
+        // chatroomContent.scrollTop = chatroomContent.scrollHeight
       }
     },
     getData () {
@@ -166,9 +161,11 @@ export default {
           console.error(error)
         })
     },
-
     sendMessage () {
-      this.chat.server.privateSendMsg(Number(this.id), this.inputMessage, this.isLawyer)
+      if (this.inputMessage !== '') {
+        this.chat.server.privateSendMsg(Number(this.id), this.inputMessage, this.isLawyer)
+      }
+      this.inputMessage = ''
     }
   }
 

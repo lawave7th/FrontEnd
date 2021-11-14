@@ -147,19 +147,20 @@
     height: 56px;
 }
 .other-txt{
-    background: rgb(238, 237, 237);
+    background: rgba(226, 186, 164, 0.2);
     border-top-right-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
 }
 .user-txt{
-    background: rgb(238, 237, 237);
+    background: rgba(226, 186, 164, 0.2);
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
 }
 .chatroom-content{
     height: 600px;
+    overflow-y: auto;
 }
 .chatroom-img{
     width: 50px;

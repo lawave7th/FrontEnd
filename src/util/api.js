@@ -204,3 +204,9 @@ export const cancelAppointment = (url) => {
 export const getChatRoomInformation = (url) => {
   return request('get', url)
 }
+
+// 取消資訊
+
+export const getRejectionData = (url) => {
+  return request('get', url)
+}

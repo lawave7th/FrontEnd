@@ -121,7 +121,30 @@ circle_notifications
 </template>
 
 <script>
+// import { getLawyerEvaluation } from '@/util/api'
 export default {
-  name: 'LawyerHome.vue'
+//   data () {
+//     return {
+//       evaluationData: {}
+//     }
+//   },
+//   created () {
+//     this.getLawyerEvaluation()
+//   },
+//   methods: {
+//     getLawyerEvaluation () {
+//       getLawyerEvaluation(`lawyerlist/lawyerReview/${this.lawyerId}`)
+//         .then((res) => {
+//           console.log(res)
+//           this.evaluationData = JSON.parse(JSON.stringify(res.data))
+//           this.lawyerlist = JSON.parse(JSON.stringify(res.data.lawyerlist.splice(0, 1)))
+//           this.totalScore = res.data.totalScore[0]
+//           this.processingTime()
+//         })
+//         .catch((error) => {
+//           console.error(error)
+//         })
+//     }
+//   }
 }
 </script>

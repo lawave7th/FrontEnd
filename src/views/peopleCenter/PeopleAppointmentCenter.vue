@@ -120,180 +120,57 @@
   <!-- 預約記錄頁面 -->
   <div class="people-appointment-record " :class="activeClass === 'completed' ? 'active':'d-none' ">
     <ul id="cancelRecord">
-      <li
-        class="row border m-0 justify-content-between rounded rounded-3 px-md-7  mb-md-4 py-md-3 align-items-center">
-        <div class="col-3">
+      <li v-for="(item , index) in data.data" :key="index" :id="`cancelRecord${index}`" :class="index%2===0? '':'bg-primary-shallow'"
+        class="row border m-0 border-primary justify-content-between rounded rounded-3 px-4 py-3 px-md-7  mb-4 py-md-3 align-items-center">
+        <div class="col-12 col-md-3">
           <h4 class="mb-2">
-            林恩琪律師
+            {{item.lastName}}{{item.firstName}} 律師
           </h4>
-          <p class="m-0">02/21 14:00-15:00</p>
+          <p class="m-0">{{item.date}} {{item.startTime}}-{{item.endTime}}</p>
         </div>
 
-        <div class="col-6">
+        <div class="col-12 col-md-5">
           <ul class="d-flex flex-wrap justify-content-start">
-            <li class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">民事訴訟</li>
-            <li class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">刑事訴訟</li>
-            <li class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">其他</li>
+            <li v-for="(caseItem , index ) in item.caseType" :key="index"
+                class="rounded-pill border border-1 bg-secondary me-2 fs-7 py-1 px-3 text-white">
+              <div v-if="item.caseType.length > index">{{item.caseType[index]}}</div>
+            </li>
           </ul>
-          <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
+          <p>{{ item.caseInfo }}</p>
         </div>
-        <div class="col-3 text-center">
-          <button type="button" class="btn btn-dark">
-            諮詢紀錄</button>
-        </div>
-
-      </li>
-      <li
-        class="row border m-0 justify-content-between rounded rounded-3 px-md-7  mb-md-4 py-md-3 align-items-center">
-        <div class="col-3">
-          <h4 class="mb-2">
-            林恩琪律師
-          </h4>
-          <p class="m-0">02/21 14:00-15:00</p>
-        </div>
-
-        <div class="col-6">
-          <ul class="d-flex flex-wrap justify-content-start">
-            <li class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">民事訴訟</li>
-            <li class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">刑事訴訟</li>
-            <li class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">其他</li>
-          </ul>
-          <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
-        </div>
-        <div class="col-3 text-center">
-          <button type="button" class="btn btn-dark">
-
+        <div class="col-12 col-md-4 text-end" v-if="item.status === 'completed'">
+          <button type="button" class="btn px-3 py-2 btn-outline-secondary me-2">
+            評價</button>
+          <button type="button" class="btn px-3 py-2 btn-secondary text-center">
             諮詢紀錄
+            <span class="material-icons align-middle">chevron_right</span>
           </button>
         </div>
-
-      </li>
-      <li id="cancelRecordOne"
-          class="row border m-0 justify-content-between rounded rounded-3 px-md-7  mb-md-4 py-md-3 align-items-center">
-
-        <div class="col-3">
-          <h4 class="mb-2">
-            林恩琪律師
-          </h4>
-          <p class="m-0">02/21 14:00-15:00</p>
-        </div>
-
-        <div class="col-6">
-          <ul class="d-flex flex-wrap justify-content-start">
-            <li class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">民事訴訟</li>
-            <li class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">刑事訴訟</li>
-            <li class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">其他</li>
-          </ul>
-          <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
-        </div>
-        <div class="col-3 text-center">
-          <button type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
-                  aria-expanded="false" aria-controls="flush-collapseOne"
-                  class="btn btn-secondary ">
+        <div class="col-12 col-md-4 text-end" v-else>
+          <button type="button" data-bs-toggle="collapse" :data-bs-target="`#flush-collapse${index}`"
+                  aria-expanded="false" :aria-controls="`flush-collapse${index}`"
+                  class="btn btn-secondary " @click="getRejectionData(item.id)">
             已取消
-            <svg width="12" height="8" viewBox="0 0 12 8" fill="none"
-                 xmlns="http://www.w3.org/2000/svg">
-              <path d="M10.59 0L6 4.58L1.41 0L0 1.41L6 7.41L12 1.41L10.59 0Z"
-                    fill="white" />
-            </svg>
-
+            <span class="material-icons align-middle">expand_more</span>
           </button>
         </div>
-        <div id="flush-collapseOne" class="accordion-collapse collapse"
-             aria-labelledby="cancelRecordOne" data-bs-parent="#cancelRecord">
+        <div v-if="item.status === 'reject'" :id="`flush-collapse${index}`" class="accordion-collapse collapse"
+             :aria-labelledby="`cancelRecord${index}`" data-bs-parent="#cancelRecord">
           <div class="accordion-body px-0">
-            <div class="border-top border-3 pt-3">
-                <p>02/22 13:10</p>
-                <p>您好～我是OO律師，感謝您預約 2021/10/10 14:00
-                  的媒合諮詢，不好意思由於專長領域不符合您的需求，便取消此次預約，懇請諒解。
-                </p>
+            <div class="border-top border-primary border-3 pt-3">
+              <p>{{ rejectionData.date }}  {{ rejectionData.startTime }}</p>
+              <p>{{ rejectionData.rejection }}
+              </p>
             </div>
           </div>
         </div>
-
-      </li>
-
-      <li
-        class="row border m-0 justify-content-between rounded rounded-3 px-md-7  mb-md-4 py-md-3 align-items-center">
-        <div class="col-3">
-          <h4 class="mb-2">
-            林恩琪律師
-          </h4>
-          <p class="m-0">02/21 14:00-15:00</p>
-        </div>
-
-        <div class="col-6">
-          <ul class="d-flex flex-wrap justify-content-start">
-            <li class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">民事訴訟</li>
-            <li class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">刑事訴訟</li>
-            <li class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">其他</li>
-          </ul>
-          <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
-        </div>
-        <div class="col-3 text-center">
-          <button type="button" class="btn btn-dark">
-            諮詢紀錄
-          </button>
-        </div>
-
-      </li>
-      <li
-        class="row border m-0 justify-content-between rounded rounded-3 px-md-7  mb-md-4 py-md-3 align-items-center">
-        <div class="col-3">
-          <h4 class="mb-2">
-            林恩琪律師
-          </h4>
-          <p class="m-0">02/21 14:00-15:00</p>
-        </div>
-
-        <div class="col-6">
-          <ul class="d-flex flex-wrap justify-content-start">
-            <li class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">民事訴訟</li>
-            <li class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">刑事訴訟</li>
-            <li class="rounded-pill border fs-7 bg-secondary  text-white border-1 py-1 mb-1 me-2 px-2">其他</li>
-          </ul>
-          <p>自駕車經過十字路口，他車突然超車並阻擋行經路線造成我車撞上。</p>
-        </div>
-        <div class="col-3 text-center">
-          <button type="button" class="btn btn-dark">
-            諮詢紀錄
-          </button>
-        </div>
-
-      </li>
-
-    </ul>
-    <!-- 分頁按鈕 -->
-    <ul class="appointment-pagination d-flex justify-content-md-end">
-      <li class="me-2">
-        <a class="d-block text-white bg-dark btn-dark rounded-pill text-center fs-7"
-           href="#">1</a>
-      </li>
-      <li class="me-2">
-        <a class="d-block text-white bg-dark btn-dark rounded-pill text-center fs-7"
-           href="#">2</a>
-      </li>
-      <li>
-        <a class="d-block pagination-next text-white bg-dark btn-dark rounded-pill text-center"
-           href="#">
-          <svg class="mb-2" width="10" height="8" viewBox="0 0 10 8" fill="none"
-               xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M1.27398 0L0.333984 0.94L3.38732 4L0.333984 7.06L1.27398 8L5.27398 4L1.27398 0Z"
-              fill="white" />
-            <path
-              d="M5.66656 0L4.72656 0.94L7.7799 4L4.72656 7.06L5.66656 8L9.66656 4L5.66656 0Z"
-              fill="white" />
-          </svg>
-
-        </a>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { getReservationData, cancelAppointment } from '@/util/api'
+import { getReservationData, cancelAppointment, getRejectionData } from '@/util/api'
 import Modal from 'bootstrap/js/dist/modal'
 export default {
   data () {
@@ -301,7 +178,8 @@ export default {
       activeClass: 'audit',
       data: {},
       cancelAppointmentModal: {},
-      id: ''
+      id: '',
+      rejectionData: {}
     }
   },
   created () {
@@ -360,6 +238,17 @@ export default {
           window.showToast.showSuccessToast('取消成功')
           this.cancelAppointmentModal.hide()
           this.getReservationData()
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    },
+    getRejectionData (id) {
+      getRejectionData(`public/rejection/${id}`)
+        .then((res) => {
+          this.rejectionData = res.data
+          this.rejectionData.date = res.data.rejectionTime.substring(5, 10).replace('-', '/')
+          this.rejectionData.startTime = res.data.rejectionTime.substring(11, 16)
         })
         .catch((error) => {
           console.error(error)

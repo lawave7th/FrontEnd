@@ -29,7 +29,12 @@ instance.interceptors.response.use(
     return response
   },
   function (error) {
-    window.showToast.showErrorToast(error.response.data.Message)
+    if (error.response.data.Message !== 'An error has occurred.') {
+      window.showToast.showErrorToast(error.response.data.Message)
+    } else {
+      window.showToast.showErrorToast('發生了一點錯誤，幫您轉回首頁')
+      // this.$router.push({ name: 'Index' })
+    }
     store.commit('setLoading', false)
     return Promise.reject(error)
   }

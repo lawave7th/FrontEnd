@@ -130,7 +130,12 @@ const routes = [
   {
     path: '/chatroom',
     name: 'Chatroom',
-    component: () => import('../views/chatroom')
+    component: () => import('../views/Chatroom')
+  },
+  {
+    path: '/consultation-record',
+    name: 'ConsultationRecord',
+    component: () => import('../views/ConsultationRecord')
   }
 ]
 
