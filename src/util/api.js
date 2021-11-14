@@ -183,6 +183,12 @@ export const unblock = (url) => {
   return request('post', url)
 }
 
+// 諮詢記錄取得評價
+
+export const getScoreData = (url) => {
+  return request('get', url)
+}
+
 // 民眾會員中心
 
 // 收藏律師

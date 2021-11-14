@@ -29,7 +29,7 @@
         </div>
         <div class="col-12 col-md-3 d-flex justify-content-between align-items-end flex-md-column">
           <p class="fs-7 m-0 mb-md-3">審核中</p>
-          <button type="button" class="btn btn-outline-secondary" @click="getId(item.id)">
+          <button type="button" class="btn btn-outline-secondary" @click="getId(item.id ,'audit')">
             <span class="material-icons align-middle">close</span>
             取消預約
           </button>
@@ -109,7 +109,7 @@
             <span class="material-icons align-middle">close</span>
             取消
           </button>
-          <button type="button" class="btn btn-secondary" @click="cancelAppointment(this.id)">
+          <button type="button" class="btn btn-secondary" @click="cancelAppointment(this.auditId)">
             <span class="material-icons  align-middle">done</span>
             確定
           </button>
@@ -139,7 +139,7 @@
           <p>{{ item.caseInfo }}</p>
         </div>
         <div class="col-12 col-md-4 text-end" v-if="item.status === 'completed'">
-          <button type="button" class="btn px-3 py-2 btn-outline-secondary me-2">
+          <button type="button" class="btn px-3 py-2 btn-outline-secondary me-2 border-2" @click="getId(item.id , 'score')">
             評價</button>
           <button type="button" class="btn px-3 py-2 btn-secondary text-center">
             諮詢紀錄
@@ -167,6 +167,48 @@
       </li>
     </ul>
   </div>
+<!--  評分 modal-->
+  <div class="modal fade" id="scoreModal" ref="scoreModal" tabindex="-1"  aria-labelledby="scoreModal"
+       aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="position-relative">
+          <button type="button" class="m-1 m-md-3 btn  fs-4 position-absolute top-0 end-0"
+                  data-bs-dismiss="modal" aria-label="Close">
+            <svg width="14" height="14"
+                 viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
+                fill="black"/>
+            </svg>
+          </button>
+          <h2 class="modal-title text-center mt-3 mt-md-7 mb-2 text-secondary" id="scoreModalLabel">
+            回饋評價</h2>
+          <div class="line bg-primary "></div>
+        </div>
+        <div class="modal-body pt-5">
+          <div class="row">
+            <div class="col  d-flex  flex-column align-items-center offset-md-1 col-md-10">
+              <div class="d-flex flex-wrap mb-3 justify-content-center">
+                <p>感謝您選擇使用法學電波，請與我們分享您此次律師諮詢體驗，回饋給律師一起創造更好的體驗服務</p>
+                <p>律師諮詢滿意程度：</p>
+                <Rating class="text-primary" v-model="scoreStar" :cancel="false" />
+              </div>
+              <textarea class="rounded" cols="30" rows="4"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-0 text-center d-flex justify-content-center mb-7">
+          <button type="button" class="btn btn-outline-secondary " data-bs-dismiss="modal">
+            下次再填
+          </button>
+          <button type="button" class="btn btn-secondary">
+            送出評價
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -178,8 +220,11 @@ export default {
       activeClass: 'audit',
       data: {},
       cancelAppointmentModal: {},
-      id: '',
-      rejectionData: {}
+      auditId: '',
+      scoreId: '',
+      rejectionData: {},
+      scoreModal: {},
+      scoreStar: 0
     }
   },
   created () {
@@ -187,6 +232,7 @@ export default {
   },
   mounted () {
     this.cancelAppointmentModal = new Modal(this.$refs.cancelAppointmentModal)
+    this.scoreModal = new Modal(this.$refs.scoreModal)
   },
   methods: {
     changeTabs (item) {
@@ -227,9 +273,14 @@ export default {
         item.timestamp -= nowDate
       })
     },
-    getId (id) {
-      this.id = id
-      this.cancelAppointmentModal.show()
+    getId (id, status) {
+      if (status === 'audit') {
+        this.auditId = id
+        this.cancelAppointmentModal.show()
+      } else if (status === 'score') {
+        this.scoreId = id
+        this.scoreModal.show()
+      }
     },
     cancelAppointment (id) {
       cancelAppointment(`public/delReservation/${id}`)
@@ -238,6 +289,7 @@ export default {
           window.showToast.showSuccessToast('取消成功')
           this.cancelAppointmentModal.hide()
           this.getReservationData()
+          this.auditId = ''
         })
         .catch((error) => {
           console.error(error)

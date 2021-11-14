@@ -7,6 +7,12 @@ body{
 p{
     color:rgba(0, 0, 0, 0.78);
 }
+//頭貼小圖
+.head-shot{
+    width: 31px;
+    height: 31px;
+    object-fit: cover;
+}
 /*通用樣式*/
 .mug-shot-sm{
     width: 80px;

@@ -62,10 +62,6 @@
 
           <div class="dropdown d-md-flex align-items-md-center" v-if="isLogin()">
             <div class="header-search d-none d-lg-block me-4" :class="isBottomBanner === true ?'d-lg-none ':''">
-<!--              <input class="p-2 ps-5 rounded-pill border border-primary border-1 text-primary"-->
-<!--                     Placeholder="尋找合作律師"-->
-<!--                     type="search"-->
-<!--              />-->
             </div>
             <button
               class="d-flex  align-items-center justify-content-between
@@ -79,11 +75,10 @@
                 menu
               </span>
               <div class="photo-icons-wrap bg-white border rounded-pill position-relative">
-            <span><svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path
-  d="M16 17V17.67H0V17C0.00180427 15.364 0.505093 13.768 1.44203 12.427C2.37897 11.0859 3.70452 10.0644 5.24 9.49996C4.55194 9.04447 3.98731 8.42577 3.59646 7.69904C3.20561 6.9723 3.0007 6.16013 3 5.33496C3 4.00888 3.52678 2.73711 4.46446 1.79943C5.40214 0.861749 6.67392 0.334961 8 0.334961C9.32608 0.334961 10.5978 0.861749 11.5355 1.79943C12.4732 2.73711 13 4.00888 13 5.33496C12.9988 6.16058 12.7931 6.97305 12.4013 7.69982C12.0096 8.42659 11.444 9.04504 10.755 9.49996C12.2914 10.0635 13.618 11.0848 14.5559 12.4259C15.4938 13.767 15.9978 15.3634 16 17Z"
-  fill="#C4C4C4"/>
-</svg> </span>
+            <span>
+              <img v-if="this.shot === null" class="rounded rounded-pill mb-3 head-shot" src="../assets/img/member-logo.png" alt="會員頭貼">
+             <img v-else  class="rounded rounded-pill head-shot"  :src="this.shot" alt="會員頭貼" >
+            </span>
               </div>
             </button>
             <ul class="dropdown-menu dropdown-menu rounded rounded-3" aria-labelledby="dropdownMenuButton2">
@@ -113,10 +108,6 @@
           </div>
           <div class="dropdown d-flex" v-else>
             <div class="header-search d-none d-lg-block m4-2" :class="isBottomBanner === true ?'d-lg-none ':''">
-<!--              <input class="p-2 ps-5 rounded-pill border border-primary border-1 text-primary"-->
-<!--                     Placeholder="尋找合作律師"-->
-<!--                     type="search"-->
-<!--              />-->
             </div>
             <button
               class="d-flex  align-items-center justify-content-between
@@ -176,7 +167,7 @@
 <script>
 import RegisterModal from './modal/RegisterModal'
 import LoginModal from './modal/LoginModal'
-import { confirmStatus } from '@/util/api'
+import { confirmStatus, getMemberPhoto } from '@/util/api'
 
 export default {
   components: {
@@ -189,11 +180,13 @@ export default {
       isBottomBanner: true,
       isLawyer: false,
       pages: ['Index', 'Knowledge', 'LawyerSolvation'],
-      scrollPosition: null
+      scrollPosition: null,
+      shot: ''
     }
   },
   created () {
     this.changeNavColor(this.$route.name)
+    this.getMemberPhoto()
   },
   mounted () {
     window.addEventListener('scroll', this.updateScroll)
@@ -224,6 +217,15 @@ export default {
               this.$router.push({ name: 'LawyerCertification' })
               break
           }
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    },
+    getMemberPhoto () {
+      getMemberPhoto()
+        .then((res) => {
+          this.shot = res.data.shot
         })
         .catch((error) => {
           console.error(error)

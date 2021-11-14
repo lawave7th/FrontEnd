@@ -62,9 +62,9 @@
           <p class="text-danger m-0 ms-1" v-show="showError">
             <span class="material-icons align-middle fs-7">cancel</span>&nbsp;驗證碼輸入不一致，請重新輸入</p>
           <span
-          >沒有收到信件？<a class="border-bottom text-primary" href="#">重新傳送</a></span
+          >沒有收到信件？<a class="border-bottom text-primary" @click.prevent="verifyMail" href="#">重新傳送</a></span
           >
-          <a class="d-block mb-7 border-bottom text-primary" href="#">稍後再完成</a>
+          <a class="d-block mb-7 border-bottom text-primary" data-bs-dismiss="modal" href="#">稍後再完成</a>
         </div>
       </div>
     </div>
