@@ -64,6 +64,7 @@ img{
 }
 .service-box{
     height: 728px;
+    background: url("assets/img/index-img/group-photo.jpg");
     background-position: center center;
     background-size:cover ;
     object-fit: contain;
@@ -84,11 +85,8 @@ img{
     }
    }
 .member-photo{
-    //background: url("assets/img/lawyer-photo.jpeg");
     height: 64px;
     width: 64px;
-    //background-size: 100% 100%;
-
 }
 
 .join-photo{

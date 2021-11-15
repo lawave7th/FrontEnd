@@ -219,6 +219,7 @@ export default {
         status: status,
         rejection: rejection
       }
+      console.log(this.reservationData)
       putReservationAssent(this.reservationData)
         .then((res) => {
           if (status) {

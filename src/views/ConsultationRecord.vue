@@ -61,14 +61,14 @@
 <!--                </div>-->
 <!--              </div>-->
 <!--            </div>-->
+<!--&lt;!&ndash;          </div>&ndash;&gt;-->
+<!--          <div class="chatroom-input d-flex rounded-bottom-3 py-3 px-4 bg-primary shadow-sm align-items-center">-->
+<!--            <input type="text" class="form-control rounded rounded-3 py-2 me-3" placeholder="輸入訊息"-->
+<!--                   v-model="inputMessage">-->
+<!--            <button type="button" class="btn btn-secondary send-btn rounded-pill" @click="sendMessage">-->
+<!--              <span class="material-icons align-middle"> send </span>-->
+<!--            </button>-->
 <!--          </div>-->
-          <div class="chatroom-input d-flex rounded-bottom-3 py-3 px-4 bg-primary shadow-sm align-items-center">
-            <input type="text" class="form-control rounded rounded-3 py-2 me-3" placeholder="輸入訊息"
-                   v-model="inputMessage">
-            <button type="button" class="btn btn-secondary send-btn rounded-pill" @click="sendMessage">
-              <span class="material-icons align-middle"> send </span>
-            </button>
-          </div>
         </div>
       </div>
     </div>

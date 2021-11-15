@@ -82,8 +82,8 @@
               </div>
             </button>
             <ul class="dropdown-menu dropdown-menu rounded rounded-3" aria-labelledby="dropdownMenuButton2">
-              <li>
-                <a class="dropdown-item ps-4 pe-11 fs-4" href="#" v-show="isLawyer" @click.prevent="goMemberPage('certification')">資格認證
+              <li v-show="isLawyer">
+                <a class="dropdown-item ps-4 pe-11 fs-4" href="#"  @click.prevent="goMemberPage('certification')">資格認證
                   <span class="align-top">
                   <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 19H22L11 0L0 19ZM12 16H10V14H12V16ZM12 12H10V8H12V12Z" fill="black"/>
@@ -186,7 +186,6 @@ export default {
   },
   created () {
     this.changeNavColor(this.$route.name)
-    this.getMemberPhoto()
   },
   mounted () {
     window.addEventListener('scroll', this.updateScroll)
@@ -238,6 +237,9 @@ export default {
     },
     isLogin () {
       this.token = localStorage.getItem('lawavaToken')
+      if (this.token !== null) {
+        this.getMemberPhoto()
+      }
       return this.token !== null
     }
   },

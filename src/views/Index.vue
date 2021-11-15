@@ -50,7 +50,7 @@
               最快速便利的律師媒合平台 <br> 找律師就來法學電波
             </h2>
 
-            <button class="btn btn-primary rounded-pill py-2 py-md-3 px-3 px-md-4 text-white" type="button">
+            <button @click="this.$router.push({name: 'LawyerSolvation'})" class="btn btn-primary rounded-pill py-2 py-md-3 px-3 px-md-4 text-white" type="button">
               立即前往與律師諮詢
             </button>
         </div>
@@ -289,7 +289,7 @@
               <h4 class="text-primary">會員獨家獻禮</h4>
               <div class="line bg-primary mb-2"></div>
               <p class="text-white mb-1"><span class="material-icons text-white align-middle">done</span>
-                初次諮詢免費</p>
+                預約免費諮詢</p>
               <p class="text-white mb-1"><span class="material-icons text-white align-middle">done</span>
                 無限次數配對</p>
               <p class="text-white mb-1"><span class="material-icons text-white align-middle">done</span>
@@ -306,12 +306,18 @@
       </div>
     </div>
   </main>
+<!--  <RegisterModal ref="registerModal"></RegisterModal>-->
 </template>
 <script>
 
 import { getIndexDashboard, getIndexHotLawyer, getMemberPraise, getFilterCondition } from '@/util/api'
+// 會導致重複註冊，要再研究
+// import RegisterModal from '../components/modal/RegisterModal'
+
 export default {
-  components: {},
+  components: {
+    // RegisterModal
+  },
   data () {
     return {
       dashboardData: {},

@@ -69,7 +69,7 @@
 <!--            </button>-->
 <!--          </div>-->
          <div>
-           <button  type="button" class="btn btn-secondary" @click="goChatRoom(item.id)">
+           <button  type="button" class="btn btn-secondary" @click="goChatRoom(item.id , item.startTimestamp)">
              <span class="material-icons align-middle">forum</span>
              線上諮詢
            </button>
@@ -270,6 +270,7 @@ export default {
       const nowDate = new Date().getTime()
       this.data.data.forEach((item) => {
         item.timestamp = new Date(item.originalTime.replace('T', ' ')).getTime()
+        item.startTimestamp = item.timestamp
         item.timestamp -= nowDate
       })
     },
@@ -306,8 +307,8 @@ export default {
           console.error(error)
         })
     },
-    goChatRoom (id) {
-      this.$router.push({ name: 'Chatroom', query: { id: id } })
+    goChatRoom (id, timestamp) {
+      this.$router.push({ name: 'Chatroom', query: { id: id, startTimestamp: timestamp } })
     }
   }
 }
