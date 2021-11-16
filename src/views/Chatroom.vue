@@ -52,7 +52,7 @@
                 </div>
               </div>
               <div class="row mb-3 flex-row-reverse text-end" v-else>
-                <div class="col-8">
+                <div class="col-12">
                   <h4 class="fs-7 d-none">{{item.name}}</h4>
                   <div class="message-txt">
                     <span class="fs-7">  {{item.msgTime}}</span>
@@ -64,7 +64,7 @@
           </div>
           <div class=" d-flex rounded-bottom-3 py-3 px-4 bg-primary shadow-sm align-items-center">
             <input id="chatroomInput" type="text" class="form-control rounded rounded-3 py-2 me-3" placeholder="輸入訊息"
-                   v-model="inputMessage">
+                   v-model="inputMessage" @keydown.stop.prevent.enter="sendMessage">
             <button type="button" class="btn btn-secondary send-btn rounded-pill" @click="sendMessage">
               <span class="material-icons align-middle"> send </span>
             </button>
@@ -138,14 +138,14 @@
               <div v-if="isLawyer" class="d-flex flex-wrap mb-3 justify-content-center">
                 <p>感謝您選擇使用本媒合平台，請與我們分享您的使用經驗，幫我們製作出更符合您需求的法學電波</p>
                 <p>媒合過程滿意程度：</p>
-                <Rating class="text-primary" v-model="scoreStar" :cancel="false" />
+                <Rating class="text-primary" v-model="star" :cancel="false" />
               </div>
               <div v-else class="d-flex flex-wrap mb-3 justify-content-center">
                 <p>感謝您選擇使用法學電波，請與我們分享您此次律師諮詢體驗，回饋給律師一起創造更好的體驗服務</p>
                 <p>律師諮詢滿意程度：</p>
-                <Rating class="text-primary" v-model="scoreStar" :cancel="false" />
+                <Rating class="text-primary" v-model="star" :cancel="false" />
               </div>
-              <textarea class="rounded" cols="30" rows="4"></textarea>
+              <textarea class="rounded" cols="30" rows="4" v-model="opinion"></textarea>
             </div>
           </div>
         </div>
@@ -153,7 +153,7 @@
           <button type="button" class="btn btn-outline-secondary " data-bs-dismiss="modal">
             下次再填
           </button>
-          <button type="button" class="btn btn-secondary">
+          <button type="button" class="btn btn-secondary" @click="putScore">
             送出評價
           </button>
         </div>
@@ -168,7 +168,7 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import CenterNav from '../components/centerComponents/CenterNav'
 import PeopleSidebar from '../components/centerComponents/people/PeopleSidebar'
-import { confirmStatus, getChatRoomInformation } from '@/util/api'
+import { confirmStatus, getChatRoomInformation, putScore } from '@/util/api'
 import Modal from 'bootstrap/js/dist/modal'
 
 export default {
@@ -194,17 +194,19 @@ export default {
       time: '',
       scoreModal: {},
       endCheckModal: {},
-      scoreStar: 0
+      star: 0,
+      opinion: '',
+      intervalID: ''
     }
   },
   created () {
     this.checkStatus()
     this.id = this.$route.query.id
     this.getData()
-    this.initData()
-    window.setInterval(() => this.setTime(), 1000)
+    this.intervalID = setInterval(() => this.setTime(), 1000)
   },
   mounted () {
+    this.initData()
     this.scoreModal = new Modal(this.$refs.scoreModal)
     this.endCheckModal = new Modal(this.$refs.endCheckModal)
   },
@@ -212,14 +214,10 @@ export default {
     initData () {
       const chat = $.connection.chatHub
       $.connection.hub.url = 'https://lawave.rocket-coding.com/signalr'
-      $.connection.hub.start().done(() => {
-        console.log('start')
-        this.chat = chat
-        chat.server.start(Number(this.id), this.isLawyer)
-      })
       chat.client.addNewMessageToPage = (name) => {
         const obj = {}
         obj.welcomeMessage = `歡迎${name}進入聊天室`
+        console.log(obj)
         this.welcomeMessageList.push(obj)
       }
       chat.client.register = (id) => {
@@ -235,13 +233,18 @@ export default {
         // const chatroomContent = this.$refs.chatroomContent
         // chatroomContent.scrollTop = chatroomContent.scrollHeight
       }
+      $.connection.hub.start().done(() => {
+        this.chat = chat
+        chat.server.start(Number(this.id), this.isLawyer)
+        console.log('start')
+      })
     },
     getData () {
       getChatRoomInformation(`api/chatuserinfo/${this.id}`)
         .then((res) => {
           console.log(res)
-          this.userData = res.data.Recipientinfo[0]
-          this.otherSideData = res.data.Senderinfo[0]
+          this.userData = res.data.Senderinfo[0]
+          this.otherSideData = res.data.Recipientinfo[0]
         })
         .catch((error) => {
           console.error(error)
@@ -281,9 +284,33 @@ export default {
       this.inputMessage = ''
     },
     endChat () {
+      this.time = '00 : 00'
+      clearInterval(this.intervalID)
       this.endCheckModal.hide()
       $('#chatroomInput').attr('readonly', 'readonly')
       this.scoreModal.show()
+    },
+    putScore () {
+      let obj = {}
+      if (this.isLawyer) {
+        obj = {
+          lawaveStar: this.star,
+          lawaveOpinion: this.opinion
+        }
+      } else {
+        obj = {
+          lawyerStar: this.star,
+          lawyerOpinion: this.opinion
+        }
+      }
+      putScore(`api/lawyerOpinion/${this.id}`, obj)
+        .then((res) => {
+          console.log(res)
+          this.scoreModal.hide()
+        })
+        .catch((error) => {
+          console.error(error)
+        })
     }
   }
 

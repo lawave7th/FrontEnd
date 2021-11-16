@@ -141,7 +141,7 @@
         <div class="col-12 col-md-4 text-end" v-if="item.status === 'completed'">
           <button type="button" class="btn px-3 py-2 btn-outline-secondary me-2 border-2" @click="getId(item.id , 'score')">
             評價</button>
-          <button type="button" class="btn px-3 py-2 btn-secondary text-center">
+          <button type="button" class="btn px-3 py-2 btn-secondary text-center" @click="goConsultationRecord(item.id)">
             諮詢紀錄
             <span class="material-icons align-middle">chevron_right</span>
           </button>
@@ -192,9 +192,9 @@
               <div class="d-flex flex-wrap mb-3 justify-content-center">
                 <p>感謝您選擇使用法學電波，請與我們分享您此次律師諮詢體驗，回饋給律師一起創造更好的體驗服務</p>
                 <p>律師諮詢滿意程度：</p>
-                <Rating class="text-primary" v-model="scoreStar" :cancel="false" />
+                <Rating class="text-primary" v-model="lawyerStar" :cancel="false" />
               </div>
-              <textarea class="rounded" cols="30" rows="4"></textarea>
+              <textarea class="rounded" cols="30" rows="4" v-model="lawyerOpinion"></textarea>
             </div>
           </div>
         </div>
@@ -202,7 +202,7 @@
           <button type="button" class="btn btn-outline-secondary " data-bs-dismiss="modal">
             下次再填
           </button>
-          <button type="button" class="btn btn-secondary">
+          <button type="button" class="btn btn-secondary" @click="putScore">
             送出評價
           </button>
         </div>
@@ -212,7 +212,7 @@
 </template>
 
 <script>
-import { getReservationData, cancelAppointment, getRejectionData } from '@/util/api'
+import { getReservationData, cancelAppointment, getRejectionData, putScore } from '@/util/api'
 import Modal from 'bootstrap/js/dist/modal'
 export default {
   data () {
@@ -224,7 +224,8 @@ export default {
       scoreId: '',
       rejectionData: {},
       scoreModal: {},
-      scoreStar: 0
+      lawyerStar: 0,
+      lawyerOpinion: ''
     }
   },
   created () {
@@ -309,6 +310,23 @@ export default {
     },
     goChatRoom (id, timestamp) {
       this.$router.push({ name: 'Chatroom', query: { id: id, startTimestamp: timestamp } })
+    },
+    goConsultationRecord (id) {
+      this.$router.push({ name: 'ConsultationRecord', query: { id: id } })
+    },
+    putScore () {
+      const obj = {
+        lawyerStar: this.lawyerStar,
+        lawyerOpinion: this.lawyerOpinion
+      }
+      putScore(`api/lawyerOpinion/${this.scoreId}`, obj)
+        .then((res) => {
+          console.log(res)
+          this.scoreModal.hide()
+        })
+        .catch((error) => {
+          console.error(error)
+        })
     }
   }
 }

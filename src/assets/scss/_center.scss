@@ -161,6 +161,8 @@
 .chatroom-content{
     height: 600px;
     overflow-y: auto;
+    overflow-x: hidden;
+    word-break: break-all;
 }
 .chatroom-img{
     width: 50px;

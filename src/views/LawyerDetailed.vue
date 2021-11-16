@@ -166,7 +166,7 @@ chevron_right
              class="border border-primary rounded rounded-3 px-4 px-md-7 py-3 py-md-4 mb-3">
           <div class="row">
             <div class="col-12 col-md-3 d-flex justify-content-center d-md-block">
-              <img v-if="item.shot === null" class="rounded rounded-pill mug-shot-md"
+              <img v-if="item.shot === null" class="rounded rounded-pill mug-shot-xl"
                    src="../assets/img/member-logo.png" alt="評價民眾照片">
               <img v-else class="rounded rounded-pill mug-shot-xl" :src="item.shot" alt="評價民眾照片">
             </div>
@@ -174,7 +174,7 @@ chevron_right
               <p class="fs-7 mb-1 text-info">{{item.date}}</p>
               <h3>{{item.name}}</h3>
               <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-2">
-                <Rating class="text-primary" :modelValue="item.LawaveStar" :readonly="true" :stars="5" :cancel="false"/>
+                <Rating class="text-primary" :modelValue="item.LawaverStar" :readonly="true" :stars="5" :cancel="false"/>
                 <ul class="lawyer-tags d-flex flex-wrap justify-content-center text-white">
                   <li v-for="(caseItem , index ) in item.caseType" :key="index"
                       class="rounded-pill border border-1 bg-secondary me-2 fs-7 py-1 px-3">
@@ -182,7 +182,7 @@ chevron_right
                   </li>
                 </ul>
               </div>
-              <p>{{item.lawaveOpinion}}
+              <p>{{item.lawaverOpinion}}
               </p>
             </div>
           </div>
@@ -227,7 +227,7 @@ export default {
           console.log(res)
           this.evaluationData = JSON.parse(JSON.stringify(res.data))
           this.lawyerlist = JSON.parse(JSON.stringify(res.data.lawyerlist.splice(0, 1)))
-          this.totalScore = res.data.totalScore[0]
+          this.totalScore = res.data.totalScore.toFixed(1)
           this.processingTime()
         })
         .catch((error) => {
@@ -235,7 +235,6 @@ export default {
         })
     },
     processingTime () {
-      console.log(this.lawyerlist)
       this.lawyerlist.forEach((item) => {
         const regex = /-/g
         item.date = item.evalTime.substring(0, 10).replace(regex, '/')

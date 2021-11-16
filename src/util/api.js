@@ -216,3 +216,15 @@ export const getChatRoomInformation = (url) => {
 export const getRejectionData = (url) => {
   return request('get', url)
 }
+
+// 評分
+
+export const putScore = (url, data) => {
+  return request('put', url, data)
+}
+
+// 獲得聊天室歷史紀錄
+
+export const getChatHistory = (url) => {
+  return request('get', url)
+}

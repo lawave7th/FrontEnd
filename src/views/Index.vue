@@ -207,7 +207,7 @@
     <div class="member-praise mb-7 ">
       <div class="bg-primary-shallow pb-11 pb-md-0">
         <div class="container">
-          <h3 class="text-center text-secondary pt-7">會員好評推薦</h3>
+          <h3 class="text-center text-secondary pt-7">律師好評推薦</h3>
           <div class="line bg-primary mb-2"></div>
           <!-- 輪播功能 -->
           <div
@@ -225,12 +225,12 @@
                     class="rounded-pill
                                     member-photo position-absolute top-0 start-50 translate-middle"
                   >
-                    <img v-if="item.shot === null" class="rounded rounded-pill mb-3" src="../assets/img/member-logo.png" alt="會員好評">
-                    <img v-else  class="rounded rounded-pill"  :src="item.shot" alt="熱門律師照片" >
+                    <img v-if="item.shot === null" class="rounded rounded-pill mb-3 head-shot-xl" src="../assets/img/member-logo.png" alt="會員好評">
+                    <img v-else  class="rounded rounded-pill head-shot-xl"  :src="item.shot" alt="熱門律師照片" >
 
-                  </div>
-                  <p class="pt-6 px-5 pb-1 p-md-0">
-                    {{ item.lawyeropinion }}
+                </div>
+                <p class="pt-6 px-5 pb-1 p-md-0">
+                  {{ item.lawyeropinion }}
                   </p>
                   <p class="text-end fs-4 px-5 pb-6 p-md-0">
                   -- {{item.name}}

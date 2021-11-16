@@ -20,7 +20,7 @@
               <p>{{ item.caseInfo }}</p>
             </div>
             <div class="col-12 col-md-4 d-flex justify-content-end">
-              <button type="button" class="btn btn-outline-secondary border-2 me-2 px-2 py-2">
+              <button type="button" class="btn btn-outline-secondary border-2 me-2 px-2 py-2" @click="goConsultationRecord (item.id)">
                 諮詢紀錄
               </button>
               <button type="button" class="btn btn-secondary px-2 py-2" data-bs-toggle="collapse"
@@ -92,10 +92,11 @@ export default {
     getScoreData (id) {
       getScoreData(`lawyer/reservationReview/${id}`)
         .then((res) => {
-          if (res.data === null) {
+          if (res.data.lawyerOpinion === null) {
             this.scoreData.lawyerOpinion = '目前尚未評價'
             return
           }
+          console.log(res.data)
           this.scoreData = res.data
           this.lawyerStar = res.data.lawyerStar
           this.scoreData.time = this.scoreData.time.substring(0, 10).replace(/-/g, '/')
@@ -103,6 +104,9 @@ export default {
         .catch((error) => {
           console.error(error)
         })
+    },
+    goConsultationRecord (id) {
+      this.$router.push({ name: 'ConsultationRecord', query: { id: id } })
     }
   }
 }

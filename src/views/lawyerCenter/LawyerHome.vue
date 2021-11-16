@@ -3,32 +3,31 @@
   <div class="new-evaluation mb-5">
     <div class="d-flex justify-content-between mb-3 align-items-end">
       <h3 class="text-secondary">最新評價</h3>
-      <button type="button" class="btn btn-outline-secondary rounded-3 py-1 fs-7">查看更多評價  <svg
-        width="6" height="8" viewBox="0 0 6 8" fill="none"
-        xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M1.66662 0L0.726624 0.94L3.77996 4L0.726624 7.06L1.66662 8L5.66662 4L1.66662 0Z"
-          fill="black" />
-      </svg>
+      <button type="button" class="btn btn-outline-secondary rounded-3 py-1 fs-7" @click="this.$router.push({ name: 'LawyerAppointmentRecord' })">查看更多評價
+        <span class="material-icons align-middle fs-7">chevron_right</span>
       </button>
     </div>
 
-    <div class="border border-primary rounded rounded-3 px-4 px-md-7 py-3 py-md-4" >
+    <div class="border border-primary rounded rounded-3 px-4 px-md-6 py-3 py-md-4" >
       <div class="row">
         <div class="col-12 col-md-3 d-flex justify-content-center d-md-block">
-          <img class="rounded-pill mb-4 mt-md-0" src="../../assets/img/center/lawyer/evaluation-people.png" alt="評價民眾照片">
+          <img v-if="scoreData.shot === null" class="rounded rounded-pill mug-shot-md"
+               src="../../assets/img/member-logo.png" alt="評價民眾照片">
+          <img v-else class="rounded rounded-pill mug-shot-md" :src="scoreData.shot" alt="評價民眾照片">
         </div>
         <div class="col-12 col-md-9 text-center text-md-start ">
-          <p class="fs-7 mb-1 text-info">2021/10/03</p>
-          <h3>Clara</h3>
+          <p class="fs-7 mb-1 text-info">{{scoreData.time}}</p>
+          <h3>{{scoreData.name}}</h3>
           <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-2">
-            <Rating class="text-primary" :modelValue="5" :readonly="true" :stars="5" :cancel="false" />
+            <Rating class="text-primary" v-model="lawyerStar" :readonly="true" :stars="5" :cancel="false" />
             <ul class="lawyer-tags d-flex flex-wrap justify-content-center text-white">
-              <li class="rounded-pill border border-1 bg-secondary me-2 py-1 fs-7 px-3">民事訴訟</li>
-              <li class="rounded-pill border border-1 me-2 bg-secondary py-1 fs-7 px-3">刑事訴訟</li>
+              <li v-for="(caseItem , index ) in scoreData.caseType" :key="index"
+                  class="rounded-pill border border-1 bg-secondary me-2 fs-7 py-1 px-3">
+                <div v-if="scoreData.caseType.length > index">{{scoreData.caseType[index]}}</div>
+              </li>
             </ul>
           </div>
-          <p>目前已經是離婚狀態了，但是前夫並未照約定付撫養費，上網搜尋相關方式才發現法學電波的法律線上諮詢媒合律師的方式，嘗試預約媒合後，感謝律師的回覆，目前也委託律師解決問題中
+          <p>{{scoreData.lawyerOpinion}}
           </p>
         </div>
       </div>
@@ -120,7 +119,7 @@
 </template>
 
 <script>
-import { getReservationData, sendRemindMail } from '@/util/api'
+import { getReservationData, sendRemindMail, getScoreData } from '@/util/api'
 import Modal from 'bootstrap/js/dist/modal'
 export default {
   data () {
@@ -129,11 +128,14 @@ export default {
       memberReminderModal: {},
       selected: '系統預設',
       reminderData: {},
-      id: ''
+      id: '',
+      scoreData: {},
+      lawyerStar: 0
     }
   },
   created () {
     this.getReservationData()
+    this.getScoreData()
   },
   mounted () {
     this.memberReminderModal = new Modal(this.$refs.memberReminderModal)
@@ -183,6 +185,18 @@ export default {
       } else if (this.selected === '自行輸入') {
         this.reminderData.mailBody = ''
       }
+    },
+    getScoreData () {
+      getScoreData('lawyer/reservationReview')
+        .then((res) => {
+          this.scoreData = res.data
+          console.log(this.scoreData)
+          this.lawyerStar = res.data.lawyerStar
+          this.scoreData.time = this.scoreData.time.substring(0, 10).replace(/-/g, '/')
+        })
+        .catch((error) => {
+          console.error(error)
+        })
     },
     getId (id) {
       this.reminderData.id = id
