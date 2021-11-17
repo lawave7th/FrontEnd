@@ -225,9 +225,13 @@ export default {
       getLawyerEvaluation(`lawyerlist/lawyerReview/${this.lawyerId}`)
         .then((res) => {
           console.log(res)
+
           this.evaluationData = JSON.parse(JSON.stringify(res.data))
           this.lawyerlist = JSON.parse(JSON.stringify(res.data.lawyerlist.splice(0, 1)))
-          this.totalScore = res.data.totalScore.toFixed(1)
+          if (this.lawyerlist.length > 0) {
+            this.totalScore = res.data.totalScore.toFixed(1)
+          }
+
           this.processingTime()
         })
         .catch((error) => {

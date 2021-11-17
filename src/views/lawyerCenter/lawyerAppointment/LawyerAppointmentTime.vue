@@ -4,18 +4,7 @@
   <div class="appointment-time" >
     <div class="d-flex justify-content-between pb-2 border-bottom border-info mb-4">
       <h2 class="fs-4">設定可被預約時段表</h2>
-      <!--      先不做有時間在做-->
-      <!--      <button type="button" class="btn btn-secondary rounded-pill">-->
-      <!--        <svg width="19" height="19" viewBox="0 0 19 19" fill="none"-->
-      <!--             xmlns="http://www.w3.org/2000/svg">-->
-      <!--          <path-->
-      <!--            d="M0 15.2505V19.0005H3.75L14.81 7.94055L11.06 4.19055L0 15.2505ZM17.71 5.04055C18.1 4.65055 18.1 4.02055 17.71 3.63055L15.37 1.29055C14.98 0.900547 14.35 0.900547 13.96 1.29055L12.13 3.12055L15.88 6.87055L17.71 5.04055V5.04055Z"-->
-      <!--            fill="black"/>-->
-      <!--        </svg>-->
-      <!--        編輯-->
-      <!--      </button>-->
     </div>
-
     <div class="appointment-time-border rounded rounded-3 px-md-7 py-md-4 mb-md-7">
       <ul>
         <li class="mb-4">
@@ -24,7 +13,6 @@
           <div v-for="( item , index ) in timeData.mon" :key="index" class="d-flex align-items-center justify-content-between mb-3">
             <span class="m-0 d-none d-md-block">設定營業時段</span>
             <select v-model = "item.time" class="rounded select-icon border ps-1 pe-5  ps-md-3 pe-md-6 py-2">
-              <option  value="未選擇">－－</option>
               <option  value="上午" >上午</option>
               <option  value="下午">下午</option>
             </select>
@@ -54,7 +42,6 @@
               <option value="12:00">12:00</option>
             </select>
             <select v-else v-model = "item.endTime" class="rounded select-icon border ps-md-3 ps-1 pe-5 pe-md-8 py-2">
-              <option value="未選擇">－－</option>
               <option value="13:00">13:00</option>
               <option value="14:00">14:00</option>
               <option value="15:00">15:00</option>
@@ -70,7 +57,6 @@
               <span  v-else class="material-icons text-secondary" @click.prevent="removeTime(index , 'mon')">remove_circle_outline</span>
             </button>
           </div>
-
         </li>
         <li class="mb-4">
           <h3 class="fs-2 border-bottom pb-3 mb-3 text-secondary">星期二</h3>
@@ -78,7 +64,6 @@
           <div v-for="( item , index ) in timeData.tues" :key="index" class="d-flex align-items-center justify-content-between mb-3">
             <span class="m-0 d-none d-md-block">設定營業時段</span>
             <select v-model = "item.time" class="rounded select-icon border ps-1 pe-5  ps-md-3 pe-md-6 py-2">
-              <option  value="未選擇">－－</option>
               <option  value="上午" >上午</option>
               <option  value="下午">下午</option>
             </select>
@@ -123,7 +108,6 @@
               <span  v-else class="material-icons text-secondary" @click.prevent="removeTime(index , 'tues')">remove_circle_outline</span>
             </button>
           </div>
-
         </li>
         <li class="mb-4">
           <h3 class="fs-2 border-bottom pb-3 mb-3 text-secondary">星期三</h3>
@@ -160,7 +144,6 @@
               <option value="12:00">12:00</option>
             </select>
             <select v-else v-model = "item.endTime" class="rounded select-icon border ps-md-3 ps-1 pe-5 pe-md-8 py-2">
-              <option value="未選擇">－－</option>
               <option value="13:00">13:00</option>
               <option value="14:00">14:00</option>
               <option value="15:00">15:00</option>
@@ -176,7 +159,6 @@
               <span  v-else class="material-icons text-secondary" @click.prevent="removeTime(index , 'wed')">remove_circle_outline</span>
             </button>
           </div>
-
         </li>
         <li class="mb-4">
           <h3 class="fs-2 border-bottom pb-3 mb-3 text-secondary">星期四</h3>
@@ -184,7 +166,6 @@
           <div v-for="( item , index ) in timeData.thur" :key="index" class="d-flex align-items-center justify-content-between mb-3">
             <span class="m-0 d-none d-md-block">設定營業時段</span>
             <select v-model = "item.time" class="rounded select-icon border ps-1 pe-5  ps-md-3 pe-md-6 py-2">
-              <option  value="未選擇">－－</option>
               <option  value="上午" >上午</option>
               <option  value="下午">下午</option>
             </select>
@@ -214,7 +195,6 @@
               <option value="12:00">12:00</option>
             </select>
             <select v-else v-model = "item.endTime" class="rounded select-icon border ps-md-3 ps-1 pe-5 pe-md-8 py-2">
-              <option value="未選擇">－－</option>
               <option value="13:00">13:00</option>
               <option value="14:00">14:00</option>
               <option value="15:00">15:00</option>
@@ -230,7 +210,6 @@
               <span  v-else class="material-icons text-secondary" @click.prevent="removeTime(index , 'thur')">remove_circle_outline</span>
             </button>
           </div>
-
         </li>
         <li class="mb-4">
           <h3 class="fs-2 border-bottom pb-3 mb-3 text-secondary">星期五</h3>
@@ -238,7 +217,6 @@
           <div v-for="( item , index ) in timeData.fri" :key="index" class="d-flex align-items-center justify-content-between mb-3">
             <span class="m-0 d-none d-md-block">設定營業時段</span>
             <select v-model = "item.time" class="rounded select-icon border ps-1 pe-5  ps-md-3 pe-md-6 py-2">
-              <option  value="未選擇">－－</option>
               <option  value="上午" >上午</option>
               <option  value="下午">下午</option>
             </select>
@@ -268,7 +246,6 @@
               <option value="12:00">12:00</option>
             </select>
             <select v-else v-model = "item.endTime" class="rounded select-icon border ps-md-3 ps-1 pe-5 pe-md-8 py-2">
-              <option value="未選擇">－－</option>
               <option value="13:00">13:00</option>
               <option value="14:00">14:00</option>
               <option value="15:00">15:00</option>
@@ -284,7 +261,6 @@
               <span  v-else class="material-icons text-secondary" @click.prevent="removeTime(index , 'fri')">remove_circle_outline</span>
             </button>
           </div>
-
         </li>
         <li class="mb-4">
           <h3 class="fs-2 border-bottom pb-3 mb-3 text-secondary">星期六</h3>
@@ -292,7 +268,6 @@
           <div v-for="( item , index ) in timeData.sat" :key="index" class="d-flex align-items-center justify-content-between mb-3">
             <span class="m-0 d-none d-md-block">設定營業時段</span>
             <select v-model = "item.time" class="rounded select-icon border ps-1 pe-5  ps-md-3 pe-md-6 py-2">
-              <option  value="未選擇">－－</option>
               <option  value="上午" >上午</option>
               <option  value="下午">下午</option>
             </select>
@@ -322,7 +297,6 @@
               <option value="12:00">12:00</option>
             </select>
             <select v-else v-model = "item.endTime" class="rounded select-icon border ps-md-3 ps-1 pe-5 pe-md-8 py-2">
-              <option value="未選擇">－－</option>
               <option value="13:00">13:00</option>
               <option value="14:00">14:00</option>
               <option value="15:00">15:00</option>
@@ -338,7 +312,6 @@
               <span  v-else class="material-icons text-secondary" @click.prevent="removeTime(index , 'sat')">remove_circle_outline</span>
             </button>
           </div>
-
         </li>
         <li class="mb-4">
           <h3 class="fs-2 border-bottom pb-3 mb-3 text-secondary">星期日</h3>
@@ -346,7 +319,6 @@
           <div v-for="( item , index ) in timeData.sun" :key="index" class="d-flex align-items-center justify-content-between mb-3">
             <span class="m-0 d-none d-md-block">設定營業時段</span>
             <select v-model = "item.time" class="rounded select-icon border ps-1 pe-5  ps-md-3 pe-md-6 py-2">
-              <option  value="未選擇">－－</option>
               <option  value="上午" >上午</option>
               <option  value="下午">下午</option>
             </select>
@@ -376,7 +348,6 @@
               <option value="12:00">12:00</option>
             </select>
             <select v-else v-model = "item.endTime" class="rounded select-icon border ps-md-3 ps-1 pe-5 pe-md-8 py-2">
-              <option value="未選擇">－－</option>
               <option value="13:00">13:00</option>
               <option value="14:00">14:00</option>
               <option value="15:00">15:00</option>
@@ -392,7 +363,6 @@
               <span  v-else class="material-icons text-secondary" @click.prevent="removeTime(index , 'sun')">remove_circle_outline</span>
             </button>
           </div>
-
         </li>
         <li class="d-flex justify-content-end mb-11 mb-md-0">
           <button type="button" @click="reservationSet" class="btn-secondary rounded btn-secondary py-2 px-3 py-md-3 px-md-6">
@@ -400,145 +370,6 @@
           </button>
         </li>
       </ul>
-    </div>
-
-    <div class="border d-none rounded rounded-3 px-md-3 py-md-4 mb-md-7">
-      <table class="table table-bordered">
-        <thead>
-        <tr class="border-top-0">
-          <th class="fs-4  border-0" scope="col"></th>
-          <th class="fs-4 bg-warning" scope="col">星期日</th>
-          <th class="fs-4 bg-warning" scope="col">星期一</th>
-          <th class="fs-4 bg-warning" scope="col">星期二</th>
-          <th class="fs-4 bg-warning" scope="col">星期三</th>
-          <th class="fs-4 bg-warning" scope="col">星期四</th>
-          <th class="fs-4 bg-warning" scope="col">星期五</th>
-          <th class="fs-4 bg-warning" scope="col">星期六</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <th class="border-0" scope="row">09 AM</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th class="border-0" scope="row">10 AM</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th class="border-0" scope="row">11 AM</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th class="border-0" scope="row">12 AM</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th class="border-0" scope="row">13 PM</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th class="border-0" scope="row">14 PM</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th class="border-0" scope="row">15 PM</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th class="border-0" scope="row">16 PM</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th class="border-0" scope="row">17 PM</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th class="border-0" scope="row">18 PM</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th class="border-0" scope="row">19 PM</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th class="border-0" scope="row">20 PM</th>
-          <td></td>
-          <td class="bg-success">可預約時段</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </template>
@@ -562,6 +393,27 @@ export default {
         .then((res) => {
           console.log(res)
           this.timeData = res.data
+          if (this.timeData.mon.length === 0) {
+            this.addTime('mon')
+          }
+          if (this.timeData.tues.length === 0) {
+            this.addTime('tues')
+          }
+          if (this.timeData.wed.length === 0) {
+            this.addTime('wed')
+          }
+          if (this.timeData.thur.length === 0) {
+            this.addTime('thur')
+          }
+          if (this.timeData.fri.length === 0) {
+            this.addTime('fri')
+          }
+          if (this.timeData.sat.length === 0) {
+            this.addTime('sat')
+          }
+          if (this.timeData.sun.length === 0) {
+            this.addTime('sun')
+          }
         })
         .catch((error) => {
           console.error(error)

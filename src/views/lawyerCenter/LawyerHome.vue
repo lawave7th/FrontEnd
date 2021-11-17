@@ -9,7 +9,10 @@
     </div>
 
     <div class="border border-primary rounded rounded-3 px-4 px-md-6 py-3 py-md-4" >
-      <div class="row">
+      <div class="row" v-if="scoreData === null">
+        <h3>目前尚無評分資料唷</h3>
+      </div>
+      <div class="row" v-else>
         <div class="col-12 col-md-3 d-flex justify-content-center d-md-block">
           <img v-if="scoreData.shot === null" class="rounded rounded-pill mug-shot-md"
                src="../../assets/img/member-logo.png" alt="評價民眾照片">
@@ -190,9 +193,10 @@ export default {
       getScoreData('lawyer/reservationReview')
         .then((res) => {
           this.scoreData = res.data
-          console.log(this.scoreData)
-          this.lawyerStar = res.data.lawyerStar
-          this.scoreData.time = this.scoreData.time.substring(0, 10).replace(/-/g, '/')
+          if (this.scoreData !== null) {
+            this.lawyerStar = res.data.lawyerStar
+            this.scoreData.time = this.scoreData.time.substring(0, 10).replace(/-/g, '/')
+          }
         })
         .catch((error) => {
           console.error(error)

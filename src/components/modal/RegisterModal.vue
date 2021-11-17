@@ -270,6 +270,7 @@ export default {
       return phoneNumber.test(value)
     },
     onSubmit () {
+      console.log(this.user.isLawyer)
       userRegister(this.user)
         .then((res) => {
           const token = res.data.token
@@ -277,7 +278,6 @@ export default {
           this.$store.commit('updateToken', token)
           this.hideModal()
           this.welcomeModal.show()
-          this.reset()
         })
         .catch((error) => { console.error(error) })
     },
@@ -293,7 +293,8 @@ export default {
         .catch((error) => { console.error(error) })
     },
     goMemberPage () {
-      this.isLawyer === true ? this.$router.push({ name: 'LawyerCenter' }) : this.$router.push({ name: 'PeopleCenter' })
+      this.user.isLawyer === true ? this.$router.push({ name: 'LawyerCenter' }) : this.$router.push({ name: 'PeopleCenter' })
+      this.reset()
     }
   },
   mixins: [modalMixin]

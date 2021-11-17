@@ -335,7 +335,6 @@ export default {
           console.error(error)
         })
     },
-    // 這邊要加三個檔的條件
     controlNum () {
       if (this.data.goodAtItem.length > 3) {
         window.showToast.showErrorToast('不能選許超過3個')

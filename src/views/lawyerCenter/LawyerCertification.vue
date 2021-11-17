@@ -89,6 +89,7 @@ export default {
       tempProduct: {},
       image: [{ imgNum: '' }, { imgNum: '' }, { imgNum: '' }],
       errorMessage: false
+
     }
   },
   created () {
