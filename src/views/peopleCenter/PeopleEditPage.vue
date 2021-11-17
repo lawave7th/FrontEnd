@@ -27,27 +27,6 @@
             </div>
           </div>
         </div>
-<!--        <div class="col-10">-->
-<!--          <p class="fw-bold">工作經歷</p>-->
-<!--          <div class="row">-->
-<!--            <div class="col-md-6  mb-3">-->
-<!--              <label for="companyName" class="form-label">公司名稱：</label>-->
-<!--              <input type="text" class="form-control" id="companyName">-->
-<!--            </div>-->
-<!--            <div class="col-md-6 mb-3">-->
-<!--              <label for="jobTitle" class="form-label">職位名稱：</label>-->
-<!--              <input type="text" class="form-control" id="jobTitle">-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <button class="btn btn-primary-light rounded-pill fs-7">-->
-<!--            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--              <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM15 11H11V15H9V11H5V9H9V5H11V9H15V11Z" fill="black"/>-->
-<!--            </svg>-->
-<!--            <span class="align-middle">-->
-<!--              新增經歷-->
-<!--            </span>-->
-<!--          </button>-->
-<!--        </div>-->
         <div class="col-10">
           <label for="professionalField" class="form-label">個人介紹</label>
           <textarea class="form-control" id="professionalField" rows="3" v-model="data.introduction"></textarea>

@@ -392,28 +392,13 @@ export default {
       getLawyerReservationSet()
         .then((res) => {
           console.log(res)
-          this.timeData = res.data
-          if (this.timeData.mon.length === 0) {
-            this.addTime('mon')
-          }
-          if (this.timeData.tues.length === 0) {
-            this.addTime('tues')
-          }
-          if (this.timeData.wed.length === 0) {
-            this.addTime('wed')
-          }
-          if (this.timeData.thur.length === 0) {
-            this.addTime('thur')
-          }
-          if (this.timeData.fri.length === 0) {
-            this.addTime('fri')
-          }
-          if (this.timeData.sat.length === 0) {
-            this.addTime('sat')
-          }
-          if (this.timeData.sun.length === 0) {
-            this.addTime('sun')
-          }
+          this.timeData = JSON.parse(JSON.stringify(res.data))
+          const week = ['mon', 'tues', 'wed', 'thur', 'fri', 'sat', 'sun']
+          week.forEach((day) => {
+            if (this.timeData[day].length === 0) {
+              this.addTime(day)
+            }
+          })
         })
         .catch((error) => {
           console.error(error)

@@ -32,8 +32,7 @@ instance.interceptors.response.use(
     if (error.response.data.Message !== 'An error has occurred.') {
       window.showToast.showErrorToast(error.response.data.Message)
     } else {
-      window.showToast.showErrorToast('發生了一點錯誤，幫您轉回首頁')
-      // this.$router.push({ name: 'Index' })
+      window.showToast.showErrorToast('伺服器發生了一點錯誤，請您刷新頁面後重新嘗試')
     }
     store.commit('setLoading', false)
     return Promise.reject(error)

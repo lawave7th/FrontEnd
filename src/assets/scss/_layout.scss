@@ -135,5 +135,8 @@ footer{
     color: white;
     a{
         color: white;
+        &:hover{
+            color: cornflowerblue;
+        }
     }
 }
