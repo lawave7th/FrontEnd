@@ -187,13 +187,7 @@ export default {
   created () {
     this.changeNavColor(this.$route.name)
   },
-  mounted () {
-    window.addEventListener('scroll', this.updateScroll)
-  },
   methods: {
-    updateScroll () {
-      this.scrollPosition = window.scrollY
-    },
     changeNavColor (page) {
       if (this.pages.includes(page)) {
         this.isBottomBanner = true

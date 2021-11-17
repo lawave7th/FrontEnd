@@ -58,17 +58,17 @@
           <p>{{ item.caseInfo }}</p>
         </div>
         <div class="col-12 col-md-3 d-flex justify-content-end" >
-<!--          <div v-if="item.timestamp / 1000 / 60 > 10">-->
-<!--            <p class="text-end fs-7">-->
-<!--              <span class="material-icons align-middle text-secondary">circle_notifications</span>-->
-<!--              預約將至-->
-<!--            </p>-->
-<!--            <button  type="button" class="btn btn-outline-secondary" @click="getId(item.id)">-->
-<!--              <span class="material-icons align-middle text-secondary">close</span>-->
-<!--              取消預約-->
-<!--            </button>-->
-<!--          </div>-->
-         <div>
+          <div v-if="item.timestamp / 1000 / 60 > 10">
+            <p class="text-end fs-7">
+              <span class="material-icons align-middle text-secondary">circle_notifications</span>
+              預約將至
+            </p>
+            <button  type="button" class="btn btn-outline-secondary" @click="getId(item.id)">
+              <span class="material-icons align-middle text-secondary">close</span>
+              取消預約
+            </button>
+          </div>
+         <div class="v-else">
            <button  type="button" class="btn btn-secondary" @click="goChatRoom(item.id , item.startTimestamp)">
              <span class="material-icons align-middle">forum</span>
              線上諮詢

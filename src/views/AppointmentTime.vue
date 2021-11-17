@@ -275,6 +275,12 @@ export default {
       }
     },
     onSubmit () {
+      const token = localStorage.getItem('lawavaToken')
+      console.log(token)
+      if (token === null) {
+        window.showToast.showErrorToast('請先登入')
+        return
+      }
       this.postData.date = this.selectTime
       this.postData.time = this.time
       console.log(this.postData)
