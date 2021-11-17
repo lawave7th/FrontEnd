@@ -18,7 +18,7 @@
               <img v-else  class="rounded rounded-pill chatroom-img"  :src="otherSideData.shot" alt="聊天室對方照片" >
               <h3 class="ms-3 mb-0">{{otherSideData.lastName}}{{otherSideData.firstName}}</h3>
             </div>
-              <button class="btn btn-secondary ms-3" type="button">
+              <button class="btn btn-secondary ms-3" type="button" @click="goAppointmentRecord">
                                 <span class="material-icons align-middle">
                                     logout
                                     </span>
@@ -107,7 +107,6 @@ export default {
           res.data.message.forEach((item) => {
             const obj = {}
             obj.shot = this.otherSideData.shot
-            console.log(item)
             obj.name = item.name
             obj.message = item.Message
             obj.msgTime = item.MsgTime.substring(11, 16)
@@ -118,6 +117,9 @@ export default {
         .catch((error) => {
           console.error(error)
         })
+    },
+    goAppointmentRecord () {
+      this.isLawyer === true ? this.$router.push({ name: 'LawyerAppointmentRecord' }) : this.$router.push({ name: 'PeopleAppointmentCenter' })
     }
   }
 }

@@ -92,11 +92,11 @@ export default {
     getScoreData (id) {
       getScoreData(`lawyer/reservationReview/${id}`)
         .then((res) => {
-          if (res.data.lawyerOpinion === null) {
+          if (res.data === null) {
+            this.scoreData = {}
             this.scoreData.lawyerOpinion = '目前尚未評價'
             return
           }
-          console.log(res.data)
           this.scoreData = res.data
           this.lawyerStar = res.data.lawyerStar
           this.scoreData.time = this.scoreData.time.substring(0, 10).replace(/-/g, '/')

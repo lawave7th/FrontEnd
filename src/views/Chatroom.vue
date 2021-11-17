@@ -31,7 +31,7 @@
               </button>
             </div>
           </div>
-          <div class="chatroom-content flex-grow-1 py-3 px-4" ref="chatroomContent">
+          <div class="chatroom-content flex-grow-1 py-3 px-4" id="chatroomContent">
             <div class="system-hint d-flex flex-column align-items-center" v-for="item in welcomeMessageList" :key="item">
               <p class="d-inline-block rounded-pill border border-1 me-2 py-1 px-3">{{item.welcomeMessage}}
               </p>
@@ -230,8 +230,8 @@ export default {
         obj.message = message
         obj.msgTime = msgTime
         this.messageList.push(obj)
-        // const chatroomContent = this.$refs.chatroomContent
-        // chatroomContent.scrollTop = chatroomContent.scrollHeight
+        const chatroomContent = $('#chatroomContent')
+        chatroomContent.animate({ scrollTop: $(document).height() }, 'slow')
       }
       $.connection.hub.start().done(() => {
         this.chat = chat
@@ -292,6 +292,10 @@ export default {
     },
     putScore () {
       let obj = {}
+      if (this.star === 0 && this.opinion === '') {
+        window.showToast.showErrorToast('請填寫評分')
+        return
+      }
       if (this.isLawyer) {
         obj = {
           lawaveStar: this.star,

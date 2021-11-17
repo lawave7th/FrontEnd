@@ -58,17 +58,17 @@
           <p>{{ item.caseInfo }}</p>
         </div>
         <div class="col-12 col-md-3 d-flex justify-content-end" >
-<!--          <div v-if="item.timestamp / 1000 / 60 > 10">-->
-<!--            <p class="text-end fs-7">-->
-<!--              <span class="material-icons align-middle text-secondary">circle_notifications</span>-->
-<!--              預約將至-->
-<!--            </p>-->
-<!--            <button  type="button" class="btn btn-outline-secondary" @click="getId(item.id)">-->
-<!--              <span class="material-icons align-middle text-secondary">close</span>-->
-<!--              取消預約-->
-<!--            </button>-->
-<!--          </div>-->
-         <div>
+          <div v-if="item.timestamp / 1000 / 60 > 10">
+            <p class="text-end fs-7">
+              <span class="material-icons align-middle text-secondary">circle_notifications</span>
+              預約將至
+            </p>
+            <button  type="button" class="btn btn-outline-secondary" @click="getId(item.id)">
+              <span class="material-icons align-middle text-secondary">close</span>
+              取消預約
+            </button>
+          </div>
+         <div v-else>
            <button  type="button" class="btn btn-secondary" @click="goChatRoom(item.id , item.startTimestamp)">
              <span class="material-icons align-middle">forum</span>
              線上諮詢
@@ -139,7 +139,7 @@
           <p>{{ item.caseInfo }}</p>
         </div>
         <div class="col-12 col-md-4 text-end" v-if="item.status === 'completed'">
-          <button type="button" class="btn px-3 py-2 btn-outline-secondary me-2 border-2" @click="getId(item.id , 'score')">
+          <button type="button" class="btn px-3 py-2 btn-outline-secondary me-2 border-2" @click="getId(item.id , 'score')" :disabled="item.isEvaluation">
             評價</button>
           <button type="button" class="btn px-3 py-2 btn-secondary text-center" @click="goConsultationRecord(item.id)">
             諮詢紀錄
@@ -315,6 +315,10 @@ export default {
       this.$router.push({ name: 'ConsultationRecord', query: { id: id } })
     },
     putScore () {
+      if (this.lawyerStar === 0 && this.lawyerOpinion === '') {
+        window.showToast.showErrorToast('請填寫評分')
+        return
+      }
       const obj = {
         lawyerStar: this.lawyerStar,
         lawyerOpinion: this.lawyerOpinion
@@ -323,6 +327,8 @@ export default {
         .then((res) => {
           console.log(res)
           this.scoreModal.hide()
+          this.lawyerStar = 0
+          this.lawyerOpinion = ''
         })
         .catch((error) => {
           console.error(error)
