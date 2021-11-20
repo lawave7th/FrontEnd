@@ -5,6 +5,6 @@ module.exports = {
     public: '0.0.0.0:3000'
   },
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/FrontEnd/'
+    ? '/'
     : '/'
 }

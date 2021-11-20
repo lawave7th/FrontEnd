@@ -43,7 +43,7 @@
           <p class="mb-md-5">請輸入法學電波剛傳送至您信箱的 4 位數驗證碼</p>
           <ul class="d-flex verify-box justify-content-center">
             <li>
-              <input class="border  border-1 rounded text-center" type="text" v-model="nums[0].val" />
+              <input class="border  border-1 rounded text-center" type="text" v-model="nums[0].val"/>
             </li>
             <li class="ms-4">
               <input class="border  border-1 rounded text-center" type="text" v-model="nums[1].val"/>
@@ -52,7 +52,8 @@
               <input class="border  border-1 rounded text-center" type="text" v-model="nums[2].val"/>
             </li>
             <li class="ms-4">
-              <input class="border  border-1 rounded text-center" type="text" v-model="nums[3].val" @input="groupVerification"/>
+              <input class="border  border-1 rounded text-center" type="text" v-model="nums[3].val"
+                     @input="groupVerification"/>
             </li>
           </ul>
         </div>
@@ -94,7 +95,7 @@ export default {
       this.$emit('verify-status')
       this.$emit('verify-code', verifyCode)
     },
-    groupVerification  () {
+    groupVerification () {
       let str = ''
       this.nums.forEach((item) => {
         str += item.val
@@ -108,7 +109,7 @@ export default {
       }
     },
     verifyMail () {
-      userVerifyMail(this.mail)
+      userVerifyMail({ toaddr: this.mail })
         .then((res) => {
           this.verifyCode = res.data
         })

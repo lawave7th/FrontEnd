@@ -19,7 +19,7 @@ image
         <div>
           <div class="upload-image-box">
             <label for="certificateImg"  >
-              <img v-if="!image[0].imgNum" src="../../assets/img/center/lawyer/photo-preview.png" alt="預覽圖">
+              <img v-if="image[0].imgNum" src="../../assets/img/center/lawyer/photo-preview.png" alt="預覽圖">
               <img v-else  class="rounded rounded-3" :src="image[0].imgNum" alt="預覽圖" width="400">
             </label>
             <input class="d-none" name="fileOne" @change="uploadFile($event , 0)" ref="fileInputOne" type="file" id="certificateImg"/>
@@ -43,7 +43,7 @@ image
         <div>
           <div class="upload-image-box">
             <label for="identityCardImg">
-              <img v-if="!image[1].imgNum" src="../../assets/img/center/lawyer/photo-preview.png" alt="預覽圖">
+              <img v-if="image[1].imgNum" src="../../assets/img/center/lawyer/photo-preview.png" alt="預覽圖">
               <img v-else  class="rounded rounded-3" :src="image[1].imgNum" alt="預覽圖" width="400">
             </label>
             <input class="d-none" name="fileTwo" @change="uploadFile($event , 1)" ref="fileInputTwo" type="file" id="identityCardImg"/>
@@ -67,7 +67,7 @@ image
         <div>
           <div class="upload-image-box">
             <label for="secondCertificateImg">
-              <img v-if="!image[2].imgNum" src="../../assets/img/center/lawyer/photo-preview.png" alt="預覽圖">
+              <img v-if="image[2].imgNum" src="../../assets/img/center/lawyer/photo-preview.png" alt="預覽圖">
               <img v-else  class="rounded rounded-3" :src="image[2].imgNum" alt="預覽圖" width="400">
             </label>
             <input class="d-none" name="fileThree" @change="uploadFile($event , 2)" ref="fileInputThree" type="file" id="secondCertificateImg"/>

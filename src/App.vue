@@ -41,6 +41,7 @@ export default {
   },
   watch: {
     $route (to, from) {
+      document.body.scrollTop = document.documentElement.scrollTop = 0
       this.nowPage = to.name
       this.$store.commit('updatePage', {
         nowPage: this.nowPage

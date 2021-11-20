@@ -311,10 +311,14 @@ export default {
         .then((res) => {
           console.log(res)
           this.scoreModal.hide()
+          this.goAppointmentRecord()
         })
         .catch((error) => {
           console.error(error)
         })
+    },
+    goAppointmentRecord () {
+      this.isLawyer === true ? this.$router.push({ name: 'LawyerAppointmentRecord' }) : this.$router.push({ name: 'PeopleAppointmentCenter' })
     }
   }
 

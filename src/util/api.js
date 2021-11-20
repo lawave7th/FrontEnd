@@ -14,6 +14,7 @@ export const userRegister = (data) => {
 // 手機驗證 、 信箱驗證
 
 export const userVerifyMail = (data) => {
+  console.log(data)
   return request('post', 'api/mailVeriCode', data)
 }
 

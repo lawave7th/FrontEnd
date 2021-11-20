@@ -1,6 +1,6 @@
 <template>
   <header class="py-md-2 " ref="header"
-          :class="isBottomBanner === true ?'position-fixed  start-0 end-0 ':'bg-secondary'">
+          :class="isBottomBanner === true ?'position-fixed  start-0 end-0 ':'bg-secondary'" :style="{backgroundColor:scrollColor}">
     <div class="container p-0">
       <nav class="navbar">
         <div class="container">
@@ -178,16 +178,29 @@ export default {
     return {
       token: '',
       isBottomBanner: true,
+      scrollTop: 0,
+      scrollColor: 'transparent',
       isLawyer: false,
       pages: ['Index', 'Knowledge', 'LawyerSolvation'],
       scrollPosition: null,
-      shot: ''
+      shot: '',
+      nowPage: ''
     }
   },
   created () {
     this.changeNavColor(this.$route.name)
+    this.nowPage = this.$route.name
+    window.addEventListener('scroll', this.handleScroll)
   },
   methods: {
+    handleScroll () {
+      this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+      if (this.scrollTop > 80 && this.pages.includes(this.nowPage)) {
+        this.scrollColor = '#172A39'
+      } else {
+        this.scrollColor = 'transparent'
+      }
+    },
     changeNavColor (page) {
       if (this.pages.includes(page)) {
         this.isBottomBanner = true
@@ -239,6 +252,7 @@ export default {
   },
   watch: {
     '$store.state.nowPage': function () {
+      this.nowPage = this.$store.state.nowPage
       this.changeNavColor(this.$store.state.nowPage)
     },
     '$store.state.token': function () {

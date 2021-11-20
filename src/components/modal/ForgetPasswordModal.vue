@@ -189,11 +189,10 @@ export default {
         .catch((error) => { console.error(error) })
     },
     verifyMail () {
-      const toaddr = this.user.mail
-      if (!toaddr) {
+      if (!this.user.mail) {
         return
       }
-      userVerifyMail(toaddr)
+      userVerifyMail({ toaddr: this.user.mail })
         .then((res) => {
           console.log(res)
         })
