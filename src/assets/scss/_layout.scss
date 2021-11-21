@@ -1,6 +1,8 @@
+html,body{
+    min-height: 100%;
+}
 body{
     font-family:"Noto Sans TC";
-    height: 100vh;
     //為了解決 bootstrap Modal 開啟時會 padding-right
     padding-right: 0 !important;
 }

@@ -153,7 +153,6 @@ export default {
     }
   },
   created () {
-    console.log(this.$route.query)
     if ('goodAtListSelected' in this.$route.query) {
       this.goodAtListSelected = this.$route.query.goodAtListSelected
       this.areaSelected = this.$route.query.areaSelected
@@ -161,7 +160,6 @@ export default {
     } else {
       this.getData()
     }
-    this.getData()
     this.getFilterCondition()
   },
   methods: {

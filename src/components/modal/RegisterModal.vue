@@ -282,11 +282,10 @@ export default {
         .catch((error) => { console.error(error) })
     },
     verifyPhone () {
-      const toaddr = this.user.phone
-      if (!toaddr) {
+      if (!this.user.phone) {
         return
       }
-      userVerifyPhone(toaddr)
+      userVerifyPhone({ toaddr: this.user.phone })
         .then((res) => {
           console.log(res)
         })

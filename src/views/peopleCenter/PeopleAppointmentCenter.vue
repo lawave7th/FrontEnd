@@ -68,8 +68,8 @@
               取消預約
             </button>
           </div>
-         <div class="v-else">
-           <button  type="button" class="btn btn-secondary" @click="goChatRoom(item.id , item.startTimestamp)">
+         <div v-else>
+           <button type="button" class="btn btn-secondary" @click="goChatRoom(item.id , item.startTimestamp)">
              <span class="material-icons align-middle">forum</span>
              線上諮詢
            </button>
