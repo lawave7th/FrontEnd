@@ -37,16 +37,25 @@
 
       </li>
     </ul>
+    <div class="pagination d-flex justify-content-md-end align-items-center">
+      <Pagination :currentPage="currentPage" :totalPage="totalPage" @update="handleCurrentChange"></Pagination>
+    </div>
   </div>
 </template>
 
 <script>
 import { getBlacklist, unblock } from '@/util/api'
+import Pagination from '../../../components/Pagination'
 
 export default {
+  components: {
+    Pagination
+  },
   data () {
     return {
-      blackList: {}
+      blackList: {},
+      currentPage: 1,
+      totalPage: 0
     }
   },
   created () {
@@ -54,14 +63,19 @@ export default {
   },
   methods: {
     getBlacklist () {
-      getBlacklist()
+      getBlacklist(`lawyer/blackList/${this.currentPage}`)
         .then((res) => {
           console.log(res.data)
+          this.totalPage = res.data.maxpage
           this.blackList = res.data
         })
         .catch((error) => {
           console.error(error)
         })
+    },
+    handleCurrentChange (val) {
+      this.currentPage = val
+      this.getBlacklist()
     },
     onSubmit (id) {
       unblock(`lawyer/blockReservation/del/${id}`)

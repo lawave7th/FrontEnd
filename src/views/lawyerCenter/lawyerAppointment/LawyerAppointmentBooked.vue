@@ -29,9 +29,11 @@
             線上諮詢
             </button>
           </div>
-
         </li>
       </ul>
+      <div class="pagination d-flex justify-content-md-end align-items-center">
+        <Pagination :currentPage="currentPage" :totalPage="totalPage" @update="handleCurrentChange"></Pagination>
+      </div>
       <!--   會員提醒 modal -->
       <div class="modal fade" id="memberReminderModal" ref="memberReminderModal" tabindex="-1"  aria-labelledby="memberReminderModal"
            aria-hidden="true">
@@ -85,14 +87,20 @@
 <script>
 import { getReservationData, sendRemindMail } from '@/util/api'
 import Modal from 'bootstrap/js/dist/modal'
+import Pagination from '../../../components/Pagination'
 export default {
+  components: {
+    Pagination
+  },
   data () {
     return {
       bookedData: {},
       memberReminderModal: {},
       selected: '系統預設',
       reminderData: {},
-      id: ''
+      id: '',
+      currentPage: 1,
+      totalPage: 0
     }
   },
   created () {
@@ -106,10 +114,11 @@ export default {
       this.reminderData = {}
     },
     getReservationData () {
-      getReservationData('mem/reservation/booked')
+      getReservationData(`mem/reservation/booked/${this.currentPage}`)
         .then((res) => {
           console.log(res.data)
           this.bookedData = res.data
+          this.totalPage = res.data.maxpage
           this.bookedData.data.forEach((item) => {
             if (item.firstName === null && item.lastName === null) {
               item.firstName = '無名氏'
@@ -120,6 +129,10 @@ export default {
         .catch((error) => {
           console.error(error)
         })
+    },
+    handleCurrentChange (val) {
+      this.currentPage = val
+      this.getReservationData()
     },
     processingTime () {
       this.bookedData.data.forEach((item) => {

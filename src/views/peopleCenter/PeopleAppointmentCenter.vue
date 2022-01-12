@@ -36,6 +36,9 @@
         </div>
       </li>
       </ul>
+    <div class="pagination d-flex justify-content-md-end align-items-center">
+      <Pagination :currentPage="currentPage" :totalPage="totalPage" @update="handleCurrentChange"></Pagination>
+    </div>
   </div>
   <!-- 已預約頁面 -->
   <div class="people-booked" :class="activeClass === 'booked' ? 'active':'d-none' ">
@@ -77,6 +80,9 @@
         </div>
       </li>
     </ul>
+    <div class="pagination d-flex justify-content-md-end align-items-center">
+      <Pagination :currentPage="currentPage" :totalPage="totalPage" @update="handleCurrentChange"></Pagination>
+    </div>
   </div>
   <!--  取消預約警示-->
   <div class="modal fade" id="cancelAppointmentModal" tabindex="-1"
@@ -166,6 +172,9 @@
         </div>
       </li>
     </ul>
+    <div class="pagination d-flex justify-content-md-end align-items-center">
+      <Pagination :currentPage="currentPage" :totalPage="totalPage" @update="handleCurrentChange"></Pagination>
+    </div>
   </div>
 <!--  評分 modal-->
   <div class="modal fade" id="scoreModal" ref="scoreModal" tabindex="-1"  aria-labelledby="scoreModal"
@@ -214,7 +223,11 @@
 <script>
 import { getReservationData, cancelAppointment, getRejectionData, putScore } from '@/util/api'
 import Modal from 'bootstrap/js/dist/modal'
+import Pagination from '../../components/Pagination'
 export default {
+  components: {
+    Pagination
+  },
   data () {
     return {
       activeClass: 'audit',
@@ -225,7 +238,10 @@ export default {
       rejectionData: {},
       scoreModal: {},
       lawyerStar: 0,
-      lawyerOpinion: ''
+      lawyerOpinion: '',
+      currentPage: 1,
+      totalPage: 0,
+      activeChange: false
     }
   },
   created () {
@@ -238,13 +254,16 @@ export default {
   methods: {
     changeTabs (item) {
       this.activeClass = item
+      this.activeChange = true
       this.getReservationData()
     },
     getReservationData () {
-      getReservationData(`mem/reservation/${this.activeClass}`)
+      this.currentPage = this.activeChange ? 1 : this.currentPage
+      getReservationData(`mem/reservation/${this.activeClass}/${this.currentPage}`)
         .then((res) => {
           console.log(res.data)
           this.data = res.data
+          this.totalPage = res.data.maxpage
           this.data.data.forEach((item) => {
             if (item.firstName === null && item.lastName === null) {
               item.firstName = '無名氏'
@@ -255,6 +274,11 @@ export default {
         .catch((error) => {
           console.error(error)
         })
+    },
+    handleCurrentChange (val) {
+      this.currentPage = val
+      this.activeChange = false
+      this.getReservationData()
     },
     processingTime () {
       this.data.data.forEach((item) => {

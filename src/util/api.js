@@ -174,8 +174,8 @@ export const sendRemindMail = (data) => {
 
 // 獲取封鎖名單
 
-export const getBlacklist = () => {
-  return request('get', 'lawyer/blackList/')
+export const getBlacklist = (url) => {
+  return request('get', url)
 }
 
 // 解除封鎖
@@ -194,8 +194,8 @@ export const getScoreData = (url) => {
 
 // 收藏律師
 
-export const getCollection = () => {
-  return request('get', 'public/myCollection')
+export const getCollection = (url) => {
+  return request('get', url)
 }
 
 // 取消預約

@@ -9,6 +9,23 @@ body{
 p{
     color:rgba(0, 0, 0, 0.78);
 }
+//更改 element ui 樣式
+.pagination .el-pagination.is-background .el-pager li:not(.disabled).active{
+    background: #E2BAA4;
+    border-radius: 50%;
+}
+.pagination .el-pagination.is-background .btn-prev{
+    background: rgba(226, 186, 164, 0.2);
+    border-radius: 50%;
+}
+.pagination .el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager lid{
+    background: rgba(226, 186, 164, 0.2);
+    border-radius: 50%;
+}
+.pagination .el-pagination.is-background .el-pager li{
+    background: rgba(226, 186, 164, 0.2);
+    border-radius: 50%;
+}
 header{
     z-index:1059;
 }

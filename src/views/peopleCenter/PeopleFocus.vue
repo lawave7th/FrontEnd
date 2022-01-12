@@ -43,15 +43,24 @@
       </div>
     </li>
   </ul>
+  <div class="pagination d-flex justify-content-md-end align-items-center">
+    <Pagination :currentPage="currentPage" :totalPage="totalPage" @update="handleCurrentChange"></Pagination>
+  </div>
 </template>
 
 <script>
 import { getCollection } from '@/util/api'
+import Pagination from '../../components/Pagination'
 
 export default {
+  components: {
+    Pagination
+  },
   data () {
     return {
-      data: {}
+      data: {},
+      currentPage: 1,
+      totalPage: 0
     }
   },
   created () {
@@ -59,10 +68,11 @@ export default {
   },
   methods: {
     getCollection () {
-      getCollection()
+      getCollection(`public/myCollection/${this.currentPage}`)
         .then((res) => {
           console.log(res.data)
           this.data = res.data
+          this.totalPage = res.data.maxpage
           this.data.data.forEach((item) => {
             if (item.firstName === null && item.lastName === null) {
               item.firstName = '無名氏'
@@ -72,6 +82,10 @@ export default {
         .catch((error) => {
           console.error(error)
         })
+    },
+    handleCurrentChange (val) {
+      this.currentPage = val
+      this.getCollection()
     },
     goLawyerDetailedPage (id) {
       this.$router.push(`/lawyer-detailed/${id}`)

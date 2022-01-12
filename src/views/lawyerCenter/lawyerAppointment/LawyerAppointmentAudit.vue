@@ -41,6 +41,9 @@
         </div>
       </li>
     </ul>
+    <div class="pagination d-flex justify-content-md-end align-items-center">
+      <Pagination :currentPage="currentPage" :totalPage="totalPage" @update="handleCurrentChange"></Pagination>
+    </div>
     <!-- 婉拒 modal select 要記得補下拉樣式-->
     <div class="modal fade" id="declineModal" tabindex="-1" ref="declineModal" aria-labelledby="declineModal"
          aria-hidden="true">
@@ -134,8 +137,12 @@
 <script>
 import { getReservationData, putReservationAssent, blockMembers } from '@/util/api'
 import Modal from 'bootstrap/js/dist/modal'
+import Pagination from '../../../components/Pagination'
 
 export default {
+  components: {
+    Pagination
+  },
   data () {
     return {
       auditData: {},
@@ -143,7 +150,9 @@ export default {
       selected: '系統預設',
       declineModal: {},
       blockMembersModal: {},
-      blockMembersId: ''
+      blockMembersId: '',
+      currentPage: 1,
+      totalPage: 0
     }
   },
   created () {
@@ -159,10 +168,12 @@ export default {
       this.blockMembersId = ''
     },
     getReservationData () {
-      getReservationData('mem/reservation/audit')
+      console.log(this.currentPage)
+      getReservationData(`mem/reservation/audit/${this.currentPage}`)
         .then((res) => {
           console.log(res.data)
           this.auditData = res.data
+          this.totalPage = res.data.maxpage
           this.auditData.data.forEach((item) => {
             if (item.firstName === null && item.lastName === null) {
               item.firstName = '無名氏'
@@ -173,6 +184,10 @@ export default {
         .catch((error) => {
           console.error(error)
         })
+    },
+    handleCurrentChange (val) {
+      this.currentPage = val
+      this.getReservationData()
     },
     processingTime () {
       this.auditData.data.forEach((item) => {

@@ -14,6 +14,6 @@ git add -A
 git commit -m 'deploy'
 
 # 部署到 https://<USERNAME>.github.io/<REPO>
-git push -f https://shannon945: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@github.com/lawave7th/FrontEnd.git master:gh-pages
+git push -f https://shannon945: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@github.com/lawave7th/FrontEnd.git master:gh-pages
 
 cd -

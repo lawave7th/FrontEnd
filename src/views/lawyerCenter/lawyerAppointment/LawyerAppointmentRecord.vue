@@ -47,17 +47,26 @@
             </div>
         </li>
       </ul>
+      <div class="pagination d-flex justify-content-md-end align-items-center">
+        <Pagination :currentPage="currentPage" :totalPage="totalPage" @update="handleCurrentChange"></Pagination>
+      </div>
     </div>
 </template>
 
 <script>
 import { getReservationData, getScoreData } from '@/util/api'
+import Pagination from '../../../components/Pagination'
 export default {
+  components: {
+    Pagination
+  },
   data () {
     return {
       appointmentRecordData: {},
       scoreData: {},
-      lawyerStar: 0
+      lawyerStar: 0,
+      currentPage: 1,
+      totalPage: 0
     }
   },
   created () {
@@ -65,10 +74,11 @@ export default {
   },
   methods: {
     getReservationData () {
-      getReservationData('mem/reservation/completed')
+      getReservationData(`mem/reservation/completed/${this.currentPage}`)
         .then((res) => {
           console.log(res.data)
           this.appointmentRecordData = res.data
+          this.totalPage = res.data.maxpage
           this.appointmentRecordData.data.forEach((item) => {
             if (item.firstName === null && item.lastName === null) {
               item.firstName = '無名氏'
@@ -79,6 +89,10 @@ export default {
         .catch((error) => {
           console.error(error)
         })
+    },
+    handleCurrentChange (val) {
+      this.currentPage = val
+      this.getReservationData()
     },
     processingTime () {
       this.appointmentRecordData.data.forEach((item) => {

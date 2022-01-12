@@ -17,6 +17,8 @@ import ToastService from 'primevue/toastservice'
 import Toast from 'primevue/toast'
 import './assets/scss/helpers/prime-style.css'
 import 'primevue/resources/primevue.min.css'
+import ElementPlus from 'element-plus'
+import 'element-plus/lib/theme-chalk/index.css'
 
 // 引入全領域方法
 import Public from './util/public'
@@ -34,6 +36,7 @@ configure({
 localize('./zh_TW', TW)
 
 const app = createApp(App)
+app.use(ElementPlus)
 app.config.globalProperties.$public = Public
 app.use(router)
 app.component('Loading', Loading)

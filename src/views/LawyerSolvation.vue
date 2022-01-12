@@ -123,33 +123,28 @@
     </div>
     <div class="container d-flex justify-content-end mb-7">
       <!-- 分頁按鈕 -->
-      <ul class="appointment-pagination d-flex justify-content-md-end align-items-center">
-        <li class="me-2">
-          <a class="d-block   btn-primary rounded-pill text-center fs-7" :class="nowPage === 1 ? 'text-white' :'bg-primary-shallow'" @click.prevent="getData(1)" href="#">1</a>
-        </li>
-        <li class="me-2">
-          <a class="d-block text-secondary  btn-primary  rounded-pill text-center fs-7" :class="nowPage === 2 ? 'text-white' :'bg-primary-shallow '" @click.prevent="getData(2)" href="#">2</a>
-        </li>
-        <li>
-          <a class="d-block pagination-next text-white btn-primary bg-primary-shallow rounded-pill text-center"
-             href="#" >
-            <img src="../assets/img/next-page.png" class="mb-2" height="8" width="10"/></a>
-        </li>
-      </ul>
+      <div class="pagination d-flex justify-content-md-end align-items-center">
+        <Pagination :currentPage="currentPage" :totalPage="totalPage" @update="handleCurrentChange"></Pagination>
+      </div>
     </div>
   </main>
 </template>
 <script>
 import { getLawyerList, collectLawyer, getFilterCondition, getSelectData } from '@/util/api'
+import Pagination from '../components/Pagination'
 export default {
+  components: {
+    Pagination
+  },
   data () {
     return {
       lawyerData: {},
-      nowPage: '',
       areaList: '',
       goodAtList: '',
       areaSelected: -1,
-      goodAtListSelected: -1
+      goodAtListSelected: -1,
+      currentPage: 1,
+      totalPage: 0
     }
   },
   created () {
@@ -163,15 +158,20 @@ export default {
     this.getFilterCondition()
   },
   methods: {
-    getData (page = 1) {
-      getLawyerList(`api/lawyerlist/${page}`)
+    getData () {
+      getLawyerList(`api/lawyerlist/${this.currentPage}`)
         .then((res) => {
-          this.nowPage = page
+          console.log(res)
+          this.totalPage = res.data.maxpage
           this.lawyerData = res.data.data
         })
         .catch((error) => {
           console.error(error)
         })
+    },
+    handleCurrentChange (val) {
+      this.currentPage = val
+      this.getData()
     },
     getFilterCondition () {
       getFilterCondition()
